@@ -6,836 +6,943 @@
 <title>Hussain's Money Management</title>
 
 <style>
-:root{
- --bg:#f3f6f4;
- --card:#fff;
- --text:#17211b;
- --muted:#68756e;
- --line:#dce5e0;
- --green:#006a4e;
- --red:#e31b23;
- --gold:#b17b00;
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
-.dark{
- --bg:#0c1511;
- --card:#15201b;
- --text:#eef6f1;
- --muted:#aab7b0;
- --line:#2a3932;
-}
-*{box-sizing:border-box}
-body{
- margin:0;
- background:var(--bg);
- color:var(--text);
- font-family:Arial,"Noto Sans Bengali",sans-serif;
-}
-button,input,select,textarea{font:inherit}
-.header{
- padding:22px 15px;
- color:#fff;
- background:linear-gradient(135deg,#006a4e 0 50%,#e31b23 50%);
- border-radius:0 0 28px 28px;
-}
-.head,.wrap{max-width:1050px;margin:auto}
-.head{
- display:flex;
- justify-content:space-between;
- gap:15px;
-}
-.head h1{margin:0;font-size:27px}
-.head p{margin:5px 0;font-size:12px}
-.clock{text-align:right}
-.clock b{font-size:20px}
 
-.wrap{padding:18px 14px 60px}
+:root{
+  --bg:#f3f6f7;
+  --card:#ffffff;
+  --text:#17212b;
+  --muted:#71808b;
+  --green:#07845f;
+  --red:#d92532;
+  --blue:#287be8;
+  --gold:#b18400;
+  --border:#e1e6e9;
+  --nav:#ffffff;
+  --shadow:0 4px 18px rgba(0,0,0,.06);
+}
+
+body.dark{
+  --bg:#10151c;
+  --card:#18212b;
+  --text:#f3f6f8;
+  --muted:#9daab5;
+  --border:#2b3742;
+  --nav:#151d26;
+  --shadow:0 4px 18px rgba(0,0,0,.2);
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    "Noto Sans Bengali",
+    "Segoe UI",
+    sans-serif;
+  padding-bottom:90px;
+}
+
+button,input,textarea,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.header{
+  position:relative;
+  overflow:hidden;
+  color:white;
+  padding:28px 22px 25px;
+  border-radius:0 0 35px 35px;
+  background:
+    linear-gradient(
+      135deg,
+      #006a4e 0%,
+      #006a4e 48%,
+      #ed1c24 48%,
+      #ed1c24 100%
+    );
+  box-shadow:var(--shadow);
+}
+
+.header h1{
+  margin:0;
+  font-size:28px;
+  font-weight:800;
+}
+
+.header p{
+  margin:5px 0 18px;
+  opacity:.9;
+  font-size:15px;
+}
+
+.clock{
+  font-size:29px;
+  font-weight:800;
+}
+
+.dateText{
+  font-size:17px;
+  margin-top:2px;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:18px;
+}
 
 .week{
- display:grid;
- grid-template-columns:repeat(7,1fr);
- gap:6px;
- margin-bottom:16px;
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:2px 0 14px;
 }
-.day{
- background:var(--card);
- border:1px solid var(--line);
- border-radius:16px;
- padding:9px 2px;
- text-align:center;
-}
-.day small{
- display:block;
- color:var(--muted);
- font-size:10px;
-}
-.day.today{
- background:var(--green);
- color:white;
-}
-.day.today small{color:white}
 
-.cards{
- display:grid;
- grid-template-columns:repeat(5,1fr);
- gap:10px;
+.day{
+  min-width:76px;
+  flex:1;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:10px 5px;
+  text-align:center;
+  box-shadow:var(--shadow);
 }
-.card{
- background:var(--card);
- border:1px solid var(--line);
- border-radius:18px;
- padding:15px;
+
+.day small{
+  display:block;
+  color:var(--muted);
+  font-weight:600;
 }
-.card small{color:var(--muted)}
-.num{
- font-size:20px;
- font-weight:900;
- margin-top:5px;
+
+.day strong{
+  display:block;
+  margin-top:3px;
+  font-size:18px;
 }
-.green{color:#07864d}
-.red{color:#d52b33}
-.gold{color:var(--gold)}
+
+.day.today{
+  background:var(--green);
+  color:white;
+  border-color:var(--green);
+}
+
+.day.today small{
+  color:white;
+}
+
+.summary{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.box{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.box.full{
+  grid-column:1/-1;
+}
+
+.label{
+  color:var(--muted);
+  font-size:16px;
+}
+
+.amount{
+  margin-top:7px;
+  font-size:25px;
+  font-weight:800;
+}
+
+.income .amount{
+  color:#07845f;
+}
+
+.expense .amount{
+  color:#d92532;
+}
+
+.balance .amount{
+  color:var(--text);
+}
+
+.debt .amount{
+  color:#b18400;
+}
+
+.receive .amount{
+  color:#287be8;
+}
 
 .section{
- background:var(--card);
- border:1px solid var(--line);
- border-radius:18px;
- padding:18px;
- margin-top:16px;
+  margin-top:20px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:20px;
+  box-shadow:var(--shadow);
 }
-.section h2{
- margin:0 0 15px;
- font-size:18px;
-}
-.grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:10px;
-}
-.full{grid-column:1/-1}
 
-label{
- display:block;
- font-size:12px;
- color:var(--muted);
- margin-bottom:5px;
+.section h2{
+  margin:0 0 16px;
+  font-size:22px;
 }
-input,select,textarea{
- width:100%;
- padding:11px;
- border:1px solid var(--line);
- border-radius:12px;
- background:var(--card);
- color:var(--text);
+
+.form{
+  display:grid;
+  gap:12px;
 }
-textarea{min-height:90px}
+
+input,textarea,select{
+  width:100%;
+  padding:14px 15px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  outline:none;
+  background:var(--bg);
+  color:var(--text);
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
 
 .btn{
- border:0;
- border-radius:12px;
- padding:11px 15px;
- font-weight:800;
- cursor:pointer;
-}
-.primary{
- background:var(--green);
- color:#fff;
-}
-.soft{
- background:#e8f2ee;
- color:var(--green);
-}
-.danger{
- background:#ffe8e8;
- color:#c52229;
+  border:0;
+  border-radius:16px;
+  padding:13px 18px;
+  font-weight:800;
 }
 
-.row{
- display:flex;
- justify-content:space-between;
- gap:10px;
- border:1px solid var(--line);
- border-radius:14px;
- padding:12px;
- margin:8px 0;
+.btn.green{
+  background:var(--green);
+  color:white;
 }
-.row small{color:var(--muted)}
-.amount{
- font-weight:900;
- text-align:right;
- white-space:nowrap;
+
+.btn.blue{
+  background:var(--blue);
+  color:white;
+}
+
+.btn.red{
+  background:var(--red);
+  color:white;
+}
+
+.btn.gray{
+  background:#e7eef0;
+  color:#075f4b;
+}
+
+body.dark .btn.gray{
+  background:#26343f;
+  color:#b9f2df;
+}
+
+.iconGrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.iconBtn{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  border-radius:20px;
+  padding:14px 7px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.iconBtn .emoji{
+  font-size:26px;
+  display:block;
+}
+
+.iconBtn span:last-child{
+  display:block;
+  margin-top:5px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.transaction{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:15px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  margin-bottom:10px;
+  background:var(--card);
+}
+
+.transaction h3{
+  margin:0;
+  font-size:16px;
+}
+
+.transaction small{
+  color:var(--muted);
+}
+
+.tIncome{
+  color:#07845f;
+  font-weight:800;
+}
+
+.tExpense{
+  color:#d92532;
+  font-weight:800;
+}
+
+.delete{
+  border:0;
+  background:#ffe6e8;
+  border-radius:12px;
+  padding:8px;
+}
+
+body.dark .delete{
+  background:#382127;
+}
+
+.task{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  margin-bottom:10px;
+}
+
+.task.done{
+  opacity:.55;
+  text-decoration:line-through;
+}
+
+.taskIcon{
+  font-size:24px;
+}
+
+.taskInfo{
+  flex:1;
+}
+
+.taskInfo strong{
+  display:block;
+}
+
+.taskInfo small{
+  color:var(--muted);
+}
+
+.check{
+  border:0;
+  border-radius:12px;
+  background:#e1f5ed;
+  padding:9px;
+}
+
+body.dark .check{
+  background:#203d34;
+}
+
+.note{
+  padding:15px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  margin-bottom:10px;
+}
+
+.note strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.calculator{
+  background:#111827;
+  padding:16px;
+  border-radius:25px;
+}
+
+.calcDisplay{
+  width:100%;
+  background:#202b3a;
+  border:0;
+  color:white;
+  text-align:right;
+  font-size:30px;
+  padding:18px;
+  border-radius:16px;
+  margin-bottom:12px;
+}
+
+.calcGrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+.calcGrid button{
+  border:0;
+  min-height:60px;
+  border-radius:16px;
+  background:#263445;
+  color:white;
+  font-size:21px;
+  font-weight:700;
+}
+
+.calcGrid button.operator{
+  background:#07845f;
+}
+
+.calcGrid button.equal{
+  background:#287be8;
+}
+
+.bottomNav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:100;
+  background:var(--nav);
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:space-around;
+  padding:8px 5px calc(8px + env(safe-area-inset-bottom));
+}
+
+.navBtn{
+  border:0;
+  background:none;
+  color:var(--muted);
+  min-width:62px;
+  padding:6px;
+}
+
+.navBtn.active{
+  color:var(--green);
+}
+
+.navIcon{
+  font-size:23px;
+  display:block;
+}
+
+.navText{
+  font-size:11px;
+  font-weight:700;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:500;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modalBox{
+  width:100%;
+  max-width:430px;
+  background:var(--card);
+  color:var(--text);
+  border-radius:25px;
+  padding:25px;
+}
+
+.modalBox h2{
+  margin-top:0;
+}
+
+.pinDots{
+  text-align:center;
+  font-size:25px;
+  letter-spacing:8px;
+  margin:15px 0;
+}
+
+.statementActions{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
 }
 
 .empty{
- text-align:center;
- color:var(--muted);
- padding:20px;
+  text-align:center;
+  color:var(--muted);
+  padding:25px 5px;
 }
 
-/* TASK */
-.task{
- display:flex;
- align-items:center;
- gap:10px;
- border:1px solid var(--line);
- border-radius:14px;
- padding:12px;
- margin:8px 0;
-}
-.task.done{opacity:.55}
-.task.done .task-text{text-decoration:line-through}
-.task-icon{
- font-size:23px;
- width:32px;
- text-align:center;
-}
-.task-text{flex:1}
-.task-text b{display:block}
-.task-text small{
- display:block;
- color:var(--muted);
- margin-top:4px;
- font-size:11px;
-}
-.task-btn{
- width:38px;
- height:38px;
- border:0;
- border-radius:10px;
- cursor:pointer;
- font-size:17px;
-}
-.task-ok{
- background:#e8f2ee;
- color:var(--green);
-}
-.task-del{
- background:#ffe8e8;
- color:#c52229;
+@media(max-width:600px){
+  .summary{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .box{
+    padding:15px;
+  }
+
+  .amount{
+    font-size:21px;
+  }
+
+  .iconGrid{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .header h1{
+    font-size:24px;
+  }
 }
 
-/* NOTES */
-.note{
- border:1px solid var(--line);
- border-radius:13px;
- padding:12px;
- margin:8px 0;
-}
-.note small{color:var(--muted)}
-
-/* REMINDER */
-.reminder{
- border-left:4px solid var(--red);
- padding:11px;
- background:#e31b230d;
- border-radius:9px;
- margin:8px 0;
-}
-
-/* ICON SETTINGS */
-.icon-menu{
- display:flex;
- flex-wrap:wrap;
- gap:8px;
-}
-.icon-item{
- border:1px solid var(--line);
- background:var(--card);
- color:var(--text);
- border-radius:14px;
- padding:9px 12px;
- cursor:pointer;
- text-align:center;
-}
-.icon-item span{
- display:block;
- font-size:21px;
-}
-.icon-item small{
- color:var(--muted);
- font-size:10px;
-}
-
-/* PIN */
-#lock{
- position:fixed;
- inset:0;
- background:#0c1712;
- z-index:99;
- display:flex;
- align-items:center;
- justify-content:center;
- padding:20px;
-}
-.lockbox{
- background:#fff;
- color:#17211b;
- width:min(390px,100%);
- padding:28px;
- border-radius:24px;
- text-align:center;
-}
-.lockbox input{
- text-align:center;
- font-size:23px;
- letter-spacing:6px;
- margin:12px 0;
-}
-
-/* MODAL */
-.modal{
- display:none;
- position:fixed;
- inset:0;
- background:#0009;
- z-index:90;
- padding:15px;
- overflow:auto;
-}
-.modalbox{
- max-width:900px;
- margin:25px auto;
- background:#fff;
- color:#111;
- padding:25px;
-}
-.close{
- float:right;
- border:0;
- background:none;
- font-size:25px;
- cursor:pointer;
-}
-
-/* MEMO */
-.memo h1{text-align:center;margin:0}
-.memo .sub{text-align:center;color:#555;margin:5px 0 18px}
-.memo table{
- width:100%;
- border-collapse:collapse;
- font-size:12px;
-}
-.memo th,.memo td{
- border:1px solid #aaa;
- padding:7px;
-}
-.memo th{background:#eee}
-.total{
- margin-top:14px;
- border-top:2px solid #111;
- padding-top:8px;
-}
-.total div{
- display:flex;
- justify-content:space-between;
- margin:5px;
-}
-.grand{
- font-size:18px;
- font-weight:900;
-}
-
-/* MOBILE */
-@media(max-width:750px){
- .cards{
-  grid-template-columns:repeat(2,1fr);
- }
- .cards .card:last-child{
-  grid-column:1/-1;
- }
- .head{
-  flex-direction:column;
- }
- .clock{text-align:left}
-}
-@media(max-width:560px){
- .grid{grid-template-columns:1fr}
- .full{grid-column:auto}
- .week{gap:3px}
- .day{font-size:11px}
- .head h1{font-size:23px}
-}
-
-/* PRINT */
-@media print{
- .no-print{display:none!important}
- .modal{
-  position:static;
-  background:none;
- }
- .modalbox{
-  margin:0;
- }
+@media(max-width:380px){
+  .iconGrid{
+    grid-template-columns:repeat(3,1fr);
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- PIN LOCK -->
-<div id="lock">
-
- <div class="lockbox">
-
-  <div style="font-size:40px">🇧🇩</div>
-
-  <h2>Hussain's Money Management</h2>
-
-  <p id="lockMsg">
-   PIN দিয়ে প্রবেশ করুন
-  </p>
-
-  <input
-   id="pin"
-   type="password"
-   inputmode="numeric"
-   maxlength="8"
-   placeholder="••••"
-  >
-
-  <button
-   class="btn primary"
-   style="width:100%"
-   onclick="enterApp()">
-   🔓 প্রবেশ করুন
-  </button>
-
-  <button
-   id="firstPin"
-   class="btn soft"
-   style="width:100%;margin-top:8px"
-   onclick="setFirstPin()">
-   🔐 প্রথম PIN সেট করুন
-  </button>
-
- </div>
-</div>
-
-
 <!-- HEADER -->
-<header class="header no-print">
+<header class="header">
+  <h1>Hussain's Money Management</h1>
+  <p>Personal Finance • ব্যক্তিগত হিসাব ব্যবস্থাপনা</p>
 
- <div class="head">
-
-  <div>
-   <h1>Hussain's Money Management</h1>
-   <p>Personal Finance • ব্যক্তিগত হিসাব ব্যবস্থাপনা</p>
-  </div>
-
-  <div class="clock">
-   <b id="time"></b>
-   <br>
-   <span id="date"></span>
-  </div>
-
- </div>
-
+  <div class="clock" id="clock">00:00:00</div>
+  <div class="dateText" id="dateText">Loading...</div>
 </header>
 
 
-<main class="wrap">
+<main class="container">
 
-<!-- WEEK -->
-<div
- id="week"
- class="week no-print">
-</div>
+<!-- HOME -->
+<section id="home" class="page active">
 
+  <div class="week" id="week"></div>
 
-<!-- SUMMARY -->
-<div class="cards no-print">
+  <div class="summary">
 
- <div class="card">
-  <small>💰 আয়</small>
-  <div
-   id="income"
-   class="num green">
-   0 BDT
-  </div>
- </div>
+    <div class="box income">
+      <div class="label">💰 আয়</div>
+      <div class="amount" id="incomeTotal">0 BDT</div>
+    </div>
 
- <div class="card">
-  <small>💸 ব্যয়</small>
-  <div
-   id="expense"
-   class="num red">
-   0 BDT
-  </div>
- </div>
+    <div class="box expense">
+      <div class="label">💸 ব্যয়</div>
+      <div class="amount" id="expenseTotal">0 BDT</div>
+    </div>
 
- <div class="card">
-  <small>💵 অবশিষ্ট</small>
-  <div
-   id="balance"
-   class="num">
-   0 BDT
-  </div>
- </div>
+    <div class="box balance">
+      <div class="label">💵 অবশিষ্ট</div>
+      <div class="amount" id="balanceTotal">0 BDT</div>
+    </div>
 
- <div class="card">
-  <small>🤝 দেনা</small>
-  <div
-   id="debt"
-   class="num gold">
-   0 BDT
-  </div>
- </div>
+    <div class="box debt">
+      <div class="label">🤝 দেনা</div>
+      <div class="amount" id="debtTotal">0 BDT</div>
+    </div>
 
- <div class="card">
-  <small>💳 পাওনা</small>
-  <div
-   id="receive"
-   class="num green">
-   0 BDT
-  </div>
- </div>
-
-</div>
-
-
-<!-- NEW ACCOUNT -->
-<section class="section no-print">
-
- <h2>➕ নতুন হিসাব</h2>
-
- <div class="grid">
-
-  <div>
-   <label>📅 তারিখ</label>
-   <input id="td" type="date">
-  </div>
-
-  <div>
-   <label>⏰ সময়</label>
-   <input id="tt" type="time">
-  </div>
-
-  <div>
-   <label>📂 ধরন</label>
-
-   <select id="ty">
-
-    <option value="income">
-     💰 আয়
-    </option>
-
-    <option value="expense">
-     💸 ব্যয়
-    </option>
-
-    <option value="debt">
-     🤝 দেনা
-    </option>
-
-    <option value="receive">
-     💳 পাওনা
-    </option>
-
-   </select>
+    <div class="box receive full">
+      <div class="label">💳 পাওনা</div>
+      <div class="amount" id="receiveTotal">0 BDT</div>
+    </div>
 
   </div>
 
-  <div>
-   <label>💵 পরিমাণ</label>
-   <input
-    id="amt"
-    type="number"
-    placeholder="6765">
+  <div class="section">
+    <h2>⚡ দ্রুত কাজ</h2>
+
+    <div class="iconGrid">
+
+      <button class="iconBtn" onclick="showPage('ledger')">
+        <span class="emoji">➕</span>
+        <span>হিসাব</span>
+      </button>
+
+      <button class="iconBtn" onclick="showPage('calculator')">
+        <span class="emoji">🧮</span>
+        <span>ক্যালকুলেটর</span>
+      </button>
+
+      <button class="iconBtn" onclick="showPage('task')">
+        <span class="emoji">📌</span>
+        <span>Task</span>
+      </button>
+
+      <button class="iconBtn" onclick="showPage('notes')">
+        <span class="emoji">📝</span>
+        <span>নোট</span>
+      </button>
+
+    </div>
   </div>
-
-  <div>
-   <label>📝 বিষয়</label>
-   <input
-    id="title"
-    placeholder="বেতন / বাজার / ভাড়া">
-  </div>
-
-  <div>
-   <label>📄 বিবরণ</label>
-   <input
-    id="desc"
-    placeholder="ঐচ্ছিক">
-  </div>
-
-  <div class="full">
-
-   <button
-    class="btn primary"
-    onclick="addTransaction()">
-    💾 হিসাব সংরক্ষণ
-   </button>
-
-  </div>
-
- </div>
 
 </section>
 
 
-<!-- STATEMENT -->
-<section class="section no-print">
+<!-- LEDGER -->
+<section id="ledger" class="page">
 
- <h2>📄 Statement</h2>
+  <div class="section">
+    <h2>➕ নতুন হিসাব</h2>
 
- <div class="grid">
+    <div class="form">
 
-  <div>
-   <label>From</label>
-   <input id="from" type="date">
+      <label>📅 তারিখ</label>
+      <input type="date" id="txDate">
+
+      <label>⏰ সময়</label>
+      <input type="time" id="txTime">
+
+      <label>📂 ধরন</label>
+      <select id="txType">
+        <option value="income">💰 আয়</option>
+        <option value="expense">💸 ব্যয়</option>
+        <option value="debt">🤝 দেনা</option>
+        <option value="receive">💳 পাওনা</option>
+      </select>
+
+      <label>💵 পরিমাণ</label>
+      <input type="number" id="txAmount" placeholder="যেমন: 6765">
+
+      <label>📝 বিষয়</label>
+      <input type="text" id="txTitle" placeholder="বেতন / বাজার / ভাড়া">
+
+      <label>📄 বিবরণ</label>
+      <textarea id="txDescription" placeholder="ঐচ্ছিক"></textarea>
+
+      <button class="btn green" onclick="saveTransaction()">
+        💾 হিসাব সংরক্ষণ
+      </button>
+
+    </div>
   </div>
 
-  <div>
-   <label>To</label>
-   <input id="to" type="date">
+
+  <div class="section">
+    <h2>📋 হিসাব</h2>
+
+    <input
+      id="searchTx"
+      placeholder="🔎 হিসাব খুঁজুন"
+      oninput="renderTransactions()"
+    >
+
+    <div id="transactions"></div>
   </div>
-
-  <div class="full">
-
-   <button
-    class="btn primary"
-    onclick="previewStatement()">
-    👁️ দেখুন
-   </button>
-
-   <button
-    class="btn soft"
-    onclick="downloadStatement()">
-    ⬇️ Download
-   </button>
-
-   <button
-    class="btn soft"
-    onclick="printStatement()">
-    🖨️ Print / PDF
-   </button>
-
-  </div>
-
- </div>
 
 </section>
 
 
-<!-- TRANSACTIONS -->
-<section class="section no-print">
+<!-- CALCULATOR -->
+<section id="calculator" class="page">
 
- <h2>📋 হিসাব</h2>
+  <div class="section">
 
- <input
-  id="search"
-  placeholder="🔎 হিসাব খুঁজুন"
-  oninput="renderTransactions()">
+    <h2>🧮 হিসাব ক্যালকুলেটর</h2>
 
- <div id="transactions"></div>
+    <div class="calculator">
+
+      <input
+        class="calcDisplay"
+        id="calcDisplay"
+        value="0"
+        readonly
+      >
+
+      <div class="calcGrid">
+
+        <button onclick="calcClear()">AC</button>
+        <button onclick="calcBack()">⌫</button>
+        <button onclick="calcInput('%')">%</button>
+        <button class="operator" onclick="calcInput('/')">÷</button>
+
+        <button onclick="calcInput('7')">7</button>
+        <button onclick="calcInput('8')">8</button>
+        <button onclick="calcInput('9')">9</button>
+        <button class="operator" onclick="calcInput('*')">×</button>
+
+        <button onclick="calcInput('4')">4</button>
+        <button onclick="calcInput('5')">5</button>
+        <button onclick="calcInput('6')">6</button>
+        <button class="operator" onclick="calcInput('-')">−</button>
+
+        <button onclick="calcInput('1')">1</button>
+        <button onclick="calcInput('2')">2</button>
+        <button onclick="calcInput('3')">3</button>
+        <button class="operator" onclick="calcInput('+')">+</button>
+
+        <button onclick="calcInput('00')">00</button>
+        <button onclick="calcInput('0')">0</button>
+        <button onclick="calcInput('.')">.</button>
+        <button class="equal" onclick="calcResult()">=</button>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
 
 <!-- TASK -->
-<section class="section no-print">
+<section id="task" class="page">
 
- <h2>📌 Task</h2>
+  <div class="section">
 
- <div class="grid">
+    <h2>📌 Task</h2>
 
-  <div>
-   <label>📅 তারিখ</label>
-   <input id="taskDate" type="date">
-  </div>
+    <div class="form">
 
-  <div>
-   <label>⏰ সময়</label>
-   <input id="taskTime" type="time">
-  </div>
+      <label>📅 তারিখ</label>
+      <input type="date" id="taskDate">
 
-  <div class="full">
+      <label>⏰ সময়</label>
+      <input type="time" id="taskTime">
 
-   <label>📝 Task</label>
+      <label>📌 Task</label>
+      <input
+        id="taskText"
+        placeholder="যেমন: বিদ্যুৎ বিল দিতে হবে"
+      >
 
-   <input
-    id="taskText"
-    placeholder="যেমন: বিদ্যুৎ বিল দিতে হবে">
+      <button class="btn green" onclick="saveTask()">
+        📌 Task সংরক্ষণ
+      </button>
 
-  </div>
-
-  <div class="full">
-
-   <button
-    class="btn primary"
-    onclick="addTask()">
-    📌 Task সংরক্ষণ
-   </button>
+    </div>
 
   </div>
 
- </div>
-
- <div id="tasks"></div>
+  <div class="section">
+    <h2>📌 আমার Task</h2>
+    <div id="taskList"></div>
+  </div>
 
 </section>
 
 
-<!-- PERSONAL NOTES -->
-<section class="section no-print">
+<!-- NOTES -->
+<section id="notes" class="page">
 
- <h2>📝 Personal Notes</h2>
+  <div class="section">
 
- <div class="grid">
+    <h2>📝 Personal Notes</h2>
 
-  <div>
-   <label>শিরোনাম</label>
-   <input
-    id="noteTitle"
-    placeholder="গুরুত্বপূর্ণ বিষয়">
-  </div>
+    <div class="form">
 
-  <div>
-   <label>📅 তারিখ</label>
-   <input id="noteDate" type="date">
-  </div>
+      <input
+        id="noteTitle"
+        placeholder="শিরোনাম"
+      >
 
-  <div class="full">
+      <textarea
+        id="noteText"
+        placeholder="গুরুত্বপূর্ণ বিষয় লিখুন..."
+      ></textarea>
 
-   <label>নোট</label>
+      <button class="btn green" onclick="saveNote()">
+        📝 নোট সংরক্ষণ
+      </button>
 
-   <textarea
-    id="noteBody"
-    placeholder="গুরুত্বপূর্ণ বিষয় লিখুন..."></textarea>
+    </div>
 
   </div>
 
-  <div>
-
-   <button
-    class="btn primary"
-    onclick="addNote()">
-    📝 সংরক্ষণ
-   </button>
-
+  <div class="section">
+    <h2>📚 সংরক্ষিত নোট</h2>
+    <div id="notesList"></div>
   </div>
-
- </div>
-
- <div id="notes"></div>
 
 </section>
 
 
-<!-- REMINDER -->
-<section class="section no-print">
+<!-- STATEMENT -->
+<section id="statement" class="page">
 
- <h2>🔔 Reminder</h2>
+  <div class="section">
 
- <div class="grid">
+    <h2>📄 Statement</h2>
 
-  <div>
-   <label>📅 তারিখ</label>
-   <input id="remDate" type="date">
-  </div>
+    <div class="form">
 
-  <div>
-   <label>⏰ সময়</label>
-   <input id="remTime" type="time">
-  </div>
+      <label>From</label>
+      <input type="date" id="fromDate">
 
-  <div class="full">
+      <label>To</label>
+      <input type="date" id="toDate">
 
-   <label>🔔 মনে করানোর বিষয়</label>
+      <div class="statementActions">
 
-   <input
-    id="remText"
-    placeholder="যেমন: বিল দিতে হবে">
+        <button class="btn green" onclick="viewStatement()">
+          👁️ দেখুন
+        </button>
 
-  </div>
+        <button class="btn gray" onclick="downloadStatement()">
+          ⬇️ Download
+        </button>
 
-  <div>
+        <button class="btn gray" onclick="printStatement()">
+          🖨️ PDF
+        </button>
 
-   <button
-    class="btn primary"
-    onclick="addReminder()">
-    🔔 Reminder সংরক্ষণ
-   </button>
+      </div>
+
+    </div>
 
   </div>
 
- </div>
-
- <div id="reminders"></div>
+  <div class="section" id="statementResult">
+    <div class="empty">
+      তারিখ নির্বাচন করে Statement দেখুন।
+    </div>
+  </div>
 
 </section>
 
 
 <!-- SETTINGS -->
-<section class="section no-print">
+<section id="settings" class="page">
 
- <h2>⚙️ Settings</h2>
+  <div class="section">
 
- <div class="icon-menu">
+    <h2>⚙️ Settings</h2>
 
-  <button
-   class="icon-item"
-   onclick="toggleDark()">
-   <span>🌙</span>
-   <small>Theme</small>
-  </button>
+    <div class="iconGrid">
 
-  <button
-   class="icon-item"
-   onclick="changePin()">
-   <span>🔐</span>
-   <small>PIN</small>
-  </button>
+      <button class="iconBtn" onclick="toggleTheme()">
+        <span class="emoji">🌙</span>
+        <span>Dark / Light</span>
+      </button>
 
-  <button
-   class="icon-item"
-   onclick="backupData()">
-   <span>💾</span>
-   <small>Backup</small>
-  </button>
+      <button class="iconBtn" onclick="setPin()">
+        <span class="emoji">🔐</span>
+        <span>PIN</span>
+      </button>
 
-  <button
-   class="icon-item"
-   onclick="document.getElementById('restoreFile').click()">
-   <span>♻️</span>
-   <small>Restore</small>
-  </button>
+      <button class="iconBtn" onclick="removePin()">
+        <span class="emoji">🔓</span>
+        <span>PIN বন্ধ</span>
+      </button>
 
-  <button
-   class="icon-item"
-   onclick="clearData()">
-   <span>🗑️</span>
-   <small>Clear</small>
-  </button>
+      <button class="iconBtn" onclick="clearAllData()">
+        <span class="emoji">🗑️</span>
+        <span>সব মুছুন</span>
+      </button>
 
-  <input
-   id="restoreFile"
-   type="file"
-   accept=".json"
-   hidden
-   onchange="restoreData(event)">
+    </div>
 
- </div>
+  </div>
 
 </section>
 
 </main>
 
 
-<!-- STATEMENT MODAL -->
-<div
- id="modal"
- class="modal">
+<!-- BOTTOM NAVIGATION -->
+<nav class="bottomNav">
 
- <div class="modalbox">
-
-  <button
-   class="close"
-   onclick="closeModal()">
-   ×
+  <button class="navBtn active" onclick="showPage('home',this)">
+    <span class="navIcon">🏠</span>
+    <span class="navText">হোম</span>
   </button>
 
-  <div id="memo"></div>
+  <button class="navBtn" onclick="showPage('ledger',this)">
+    <span class="navIcon">📋</span>
+    <span class="navText">হিসাব</span>
+  </button>
 
- </div>
+  <button class="navBtn" onclick="showPage('calculator',this)">
+    <span class="navIcon">🧮</span>
+    <span class="navText">ক্যালকুলেটর</span>
+  </button>
+
+  <button class="navBtn" onclick="showPage('task',this)">
+    <span class="navIcon">📌</span>
+    <span class="navText">Task</span>
+  </button>
+
+  <button class="navBtn" onclick="showPage('statement',this)">
+    <span class="navIcon">📄</span>
+    <span class="navText">Statement</span>
+  </button>
+
+  <button class="navBtn" onclick="showPage('settings',this)">
+    <span class="navIcon">⚙️</span>
+    <span class="navText">আরও</span>
+  </button>
+
+</nav>
+
+
+<!-- PIN MODAL -->
+<div class="modal" id="pinModal">
+
+  <div class="modalBox">
+
+    <h2>🔐 Hussain's Money Management</h2>
+
+    <p>অ্যাপে প্রবেশ করতে PIN দিন</p>
+
+    <input
+      type="password"
+      id="pinInput"
+      inputmode="numeric"
+      maxlength="6"
+      placeholder="PIN"
+    >
+
+    <button
+      class="btn green"
+      style="width:100%;margin-top:12px"
+      onclick="checkPin()"
+    >
+      🔓 প্রবেশ করুন
+    </button>
+
+  </div>
 
 </div>
 
@@ -843,213 +950,124 @@ textarea{min-height:90px}
 <script>
 
 /* =========================
-   DATABASE
+   DATA
 ========================= */
 
-const STORAGE_KEY =
- "HUSSAIN_MONEY_MANAGEMENT_V3";
+let transactions =
+  JSON.parse(localStorage.getItem("hmm_transactions") || "[]");
 
+let tasks =
+  JSON.parse(localStorage.getItem("hmm_tasks") || "[]");
 
-let D =
- JSON.parse(
-  localStorage.getItem(STORAGE_KEY)
-  ||
-  '{"tx":[],"tasks":[],"notes":[],"reminders":[],"pin":"","dark":false}'
- );
-
-
-D.tx = D.tx || [];
-D.tasks = D.tasks || [];
-D.notes = D.notes || [];
-D.reminders = D.reminders || [];
+let notes =
+  JSON.parse(localStorage.getItem("hmm_notes") || "[]");
 
 
 /* =========================
-   BASIC FUNCTIONS
-========================= */
-
-function $(id){
-
- return document.getElementById(id);
-
-}
-
-
-function save(){
-
- localStorage.setItem(
-  STORAGE_KEY,
-  JSON.stringify(D)
- );
-
-}
-
-
-function today(){
-
- return new Date()
-  .toISOString()
-  .slice(0,10);
-
-}
-
-
-function money(number){
-
- return Number(number || 0)
-  .toLocaleString(
-   "en-US",
-   {
-    maximumFractionDigits:2
-   }
-  )
-  + " BDT";
-
-}
-
-
-function escapeHTML(value){
-
- return String(value || "")
-  .replace(/&/g,"&amp;")
-  .replace(/</g,"&lt;")
-  .replace(/>/g,"&gt;")
-  .replace(/"/g,"&quot;")
-  .replace(/'/g,"&#039;");
-
-}
-
-
-function toast(message){
-
- alert(message);
-
-}
-
-
-/* =========================
-   DEFAULT DATE / TIME
-========================= */
-
-function setDefaults(){
-
- const d =
-  new Date();
-
- $("td").value =
-  today();
-
- $("noteDate").value =
-  today();
-
- $("remDate").value =
-  today();
-
- $("taskDate").value =
-  today();
-
- $("from").value =
-  today();
-
- $("to").value =
-  today();
-
- $("tt").value =
-  d.toTimeString().slice(0,5);
-
- $("taskTime").value =
-  d.toTimeString().slice(0,5);
-
- $("remTime").value =
-  d.toTimeString().slice(0,5);
-
-}
-
-
-/* =========================
-   CLOCK
+   CLOCK + DATE
 ========================= */
 
 function updateClock(){
 
- const d =
-  new Date();
+  const now = new Date();
 
- $("time").textContent =
-  d.toLocaleTimeString("en-GB");
+  const time =
+    now.toLocaleTimeString("en-GB",{
+      hour:"2-digit",
+      minute:"2-digit",
+      second:"2-digit"
+    });
 
- $("date").textContent =
-  d.toLocaleDateString(
-   "en-GB",
-   {
-    weekday:"long",
-    day:"2-digit",
-    month:"long",
-    year:"numeric"
-   }
-  );
+  const date =
+    now.toLocaleDateString("en-US",{
+      weekday:"long",
+      day:"numeric",
+      month:"long",
+      year:"numeric"
+    });
 
- renderWeek();
-
- checkReminders();
+  document.getElementById("clock").textContent=time;
+  document.getElementById("dateText").textContent=date;
 
 }
 
+setInterval(updateClock,1000);
+updateClock();
+
+
+/* =========================
+   WEEK BAR
+========================= */
 
 function renderWeek(){
 
- const d =
-  new Date();
+  const box=document.getElementById("week");
+  box.innerHTML="";
 
- const day =
-  d.getDay();
+  const now=new Date();
 
- const monday =
-  new Date(d);
+  const day=now.getDay();
 
- const diff =
-  day === 0
-   ? -6
-   : 1 - day;
+  const mondayOffset=day===0 ? -6 : 1-day;
 
- monday.setDate(
-  d.getDate()+diff
- );
+  for(let i=0;i<7;i++){
 
- const names =
-  ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+    const d=new Date(now);
 
- $("week").innerHTML =
-  names.map(
-   (name,index)=>{
+    d.setDate(now.getDate()+mondayOffset+i);
 
-    const q =
-     new Date(monday);
+    const names=[
+      "Sun","Mon","Tue","Wed","Thu","Fri","Sat"
+    ];
 
-    q.setDate(
-     monday.getDate()+index
-    );
+    const div=document.createElement("div");
 
-    const date =
-     q.toISOString()
-      .slice(0,10);
+    div.className="day";
 
-    return `
+    if(d.toDateString()===now.toDateString()){
+      div.classList.add("today");
+    }
 
-     <div
-      class="day
-      ${date===today()?"today":""}">
-
-      <small>${name}</small>
-
-      <b>${q.getDate()}</b>
-
-     </div>
-
+    div.innerHTML=`
+      <small>${names[d.getDay()]}</small>
+      <strong>${d.getDate()}</strong>
     `;
 
-   }
-  ).join("");
+    box.appendChild(div);
+  }
+
+}
+
+renderWeek();
+
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
+function showPage(id,button){
+
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+
+  document.getElementById(id)
+    .classList.add("active");
+
+  document.querySelectorAll(".navBtn")
+    .forEach(b=>b.classList.remove("active"));
+
+  if(button){
+    button.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  if(id==="ledger") renderTransactions();
+  if(id==="task") renderTasks();
+  if(id==="notes") renderNotes();
 
 }
 
@@ -1058,222 +1076,182 @@ function renderWeek(){
    TRANSACTIONS
 ========================= */
 
-function addTransaction(){
+function saveTransaction(){
 
- const amount =
-  Number($("amt").value);
+  const date=document.getElementById("txDate").value;
+  const time=document.getElementById("txTime").value;
+  const type=document.getElementById("txType").value;
+  const amount=Number(document.getElementById("txAmount").value);
+  const title=document.getElementById("txTitle").value.trim();
+  const description=document.getElementById("txDescription").value.trim();
 
- if(!amount){
+  if(!date || !amount || !title){
 
-  toast("পরিমাণ দিন");
-
-  return;
-
- }
-
-
- D.tx.unshift({
-
-  id:Date.now(),
-
-  date:$("td").value,
-
-  time:$("tt").value,
-
-  type:$("ty").value,
-
-  amount:amount,
-
-  title:$("title").value || "Untitled",
-
-  desc:$("desc").value || ""
-
- });
-
-
- save();
-
- $("amt").value="";
- $("title").value="";
- $("desc").value="";
-
- render();
-
- toast("হিসাব সংরক্ষণ হয়েছে");
-
-}
-
-
-function render(){
-
- let income=0;
- let expense=0;
- let debt=0;
- let receive=0;
-
-
- D.tx.forEach(
-  x=>{
-
-   if(x.type==="income")
-    income+=x.amount;
-
-   if(x.type==="expense")
-    expense+=x.amount;
-
-   if(x.type==="debt")
-    debt+=x.amount;
-
-   if(x.type==="receive")
-    receive+=x.amount;
-
+    alert("তারিখ, পরিমাণ ও বিষয় দিন।");
+    return;
   }
- );
 
+  transactions.push({
+    id:Date.now(),
+    date,
+    time,
+    type,
+    amount,
+    title,
+    description
+  });
 
- $("income").textContent =
-  money(income);
-
- $("expense").textContent =
-  money(expense);
-
- $("balance").textContent =
-  money(income-expense);
-
- $("debt").textContent =
-  money(debt);
-
- $("receive").textContent =
-  money(receive);
-
-
- renderTransactions();
- renderTasks();
- renderNotes();
- renderReminders();
-
- document.body.classList.toggle(
-  "dark",
-  D.dark
- );
-
-}
-
-
-function renderTransactions(){
-
- const query =
-  ($("search").value || "")
-  .toLowerCase();
-
-
- const list =
-  D.tx.filter(
-   x=>
-    (
-     x.title+" "+
-     x.desc+" "+
-     x.date
-    )
-    .toLowerCase()
-    .includes(query)
+  localStorage.setItem(
+    "hmm_transactions",
+    JSON.stringify(transactions)
   );
 
+  document.getElementById("txAmount").value="";
+  document.getElementById("txTitle").value="";
+  document.getElementById("txDescription").value="";
 
- const typeName = {
+  renderTransactions();
+  updateSummary();
 
-  income:"আয়",
-
-  expense:"ব্যয়",
-
-  debt:"দেনা",
-
-  receive:"পাওনা"
-
- };
-
-
- if(!list.length){
-
-  $("transactions").innerHTML =
-   `<div class="empty">
-     📋 কোনো হিসাব নেই।
-    </div>`;
-
-  return;
-
- }
-
-
- $("transactions").innerHTML =
-  list.map(
-   x=>`
-
-    <div class="row">
-
-     <div>
-
-      <b>
-       ${escapeHTML(x.title)}
-      </b>
-
-      <br>
-
-      <small>
-       📅 ${x.date}
-       • ⏰ ${x.time}
-       • ${typeName[x.type]}
-       ${escapeHTML(x.desc)}
-      </small>
-
-     </div>
-
-
-     <div class="amount
-      ${x.type==="expense"
-       ?"red"
-       :
-       x.type==="income" ||
-       x.type==="receive"
-       ?"green"
-       :"gold"}">
-
-      ${money(x.amount)}
-
-      <br>
-
-      <button
-       class="btn danger"
-       style="padding:4px 7px;font-size:10px"
-       onclick="deleteTransaction(${x.id})">
-
-       🗑️
-
-      </button>
-
-     </div>
-
-    </div>
-
-   `
-  ).join("");
-
+  alert("হিসাব সংরক্ষণ হয়েছে।");
 }
 
 
 function deleteTransaction(id){
 
- if(!confirm("এই হিসাব মুছে ফেলবেন?"))
-  return;
+  if(!confirm("এই হিসাবটি মুছে ফেলবেন?")) return;
 
- D.tx =
-  D.tx.filter(
-   x=>x.id!==id
+  transactions=
+    transactions.filter(x=>x.id!==id);
+
+  localStorage.setItem(
+    "hmm_transactions",
+    JSON.stringify(transactions)
   );
 
- save();
+  renderTransactions();
+  updateSummary();
+}
 
- render();
+
+function renderTransactions(){
+
+  const box=document.getElementById("transactions");
+
+  const search=
+    (document.getElementById("searchTx")?.value || "")
+    .toLowerCase();
+
+  const list=transactions
+    .filter(x =>
+      x.title.toLowerCase().includes(search) ||
+      x.description.toLowerCase().includes(search)
+    )
+    .sort((a,b)=>
+      (b.date+" "+b.time)
+      .localeCompare(a.date+" "+a.time)
+    );
+
+  if(!list.length){
+
+    box.innerHTML=
+      `<div class="empty">কোনো হিসাব পাওয়া যায়নি।</div>`;
+
+    return;
+  }
+
+  box.innerHTML=list.map(x=>{
+
+    let label={
+      income:"💰 আয়",
+      expense:"💸 ব্যয়",
+      debt:"🤝 দেনা",
+      receive:"💳 পাওনা"
+    }[x.type];
+
+    let cls=x.type==="income" || x.type==="receive"
+      ?"tIncome":"tExpense";
+
+    return `
+      <div class="transaction">
+
+        <div>
+          <h3>${escapeHTML(x.title)}</h3>
+          <small>
+            📅 ${x.date}
+            ${x.time ? " • ⏰ "+x.time : ""}
+            • ${label}
+          </small>
+
+          ${
+            x.description
+            ? `<small><br>${escapeHTML(x.description)}</small>`
+            :""
+          }
+
+        </div>
+
+        <div style="text-align:right">
+
+          <div class="${cls}">
+            ${formatMoney(x.amount)}
+          </div>
+
+          <button
+            class="delete"
+            onclick="deleteTransaction(${x.id})"
+          >🗑️</button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+}
+
+
+/* =========================
+   SUMMARY
+========================= */
+
+function updateSummary(){
+
+  let income=0;
+  let expense=0;
+  let debt=0;
+  let receive=0;
+
+  transactions.forEach(x=>{
+
+    if(x.type==="income") income+=x.amount;
+    if(x.type==="expense") expense+=x.amount;
+    if(x.type==="debt") debt+=x.amount;
+    if(x.type==="receive") receive+=x.amount;
+
+  });
+
+  document.getElementById("incomeTotal")
+    .textContent=formatMoney(income);
+
+  document.getElementById("expenseTotal")
+    .textContent=formatMoney(expense);
+
+  document.getElementById("balanceTotal")
+    .textContent=formatMoney(income-expense);
+
+  document.getElementById("debtTotal")
+    .textContent=formatMoney(debt);
+
+  document.getElementById("receiveTotal")
+    .textContent=formatMoney(receive);
+
+}
+
+function formatMoney(n){
+
+  return Number(n).toLocaleString("en-US")+" BDT";
 
 }
 
@@ -1282,176 +1260,117 @@ function deleteTransaction(id){
    TASK
 ========================= */
 
-function addTask(){
+function saveTask(){
 
- const text =
-  $("taskText")
-   .value
-   .trim();
+  const date=document.getElementById("taskDate").value;
+  const time=document.getElementById("taskTime").value;
+  const text=document.getElementById("taskText").value.trim();
 
- if(!text){
+  if(!date || !text){
 
-  toast("Task লিখুন");
-
-  return;
-
- }
-
-
- D.tasks.push({
-
-  id:Date.now(),
-
-  date:$("taskDate").value,
-
-  time:$("taskTime").value,
-
-  text:text,
-
-  done:false
-
- });
-
-
- save();
-
- $("taskText").value="";
-
- renderTasks();
-
- toast("Task সংরক্ষণ হয়েছে");
-
- requestNotification();
-
-}
-
-
-function renderTasks(){
-
- D.tasks.sort(
-  (a,b)=>{
-
-   if(a.done!==b.done)
-    return a.done-b.done;
-
-   return (
-    a.date+a.time
-   )
-   .localeCompare(
-    b.date+b.time
-   );
-
+    alert("তারিখ ও Task লিখুন।");
+    return;
   }
- );
 
+  tasks.push({
+    id:Date.now(),
+    date,
+    time,
+    text,
+    done:false
+  });
 
- if(!D.tasks.length){
+  localStorage.setItem(
+    "hmm_tasks",
+    JSON.stringify(tasks)
+  );
 
-  $("tasks").innerHTML =
-   `<div class="empty">
-     📌 কোনো Task নেই।
-    </div>`;
+  document.getElementById("taskText").value="";
 
-  return;
-
- }
-
-
- $("tasks").innerHTML =
-  D.tasks.map(
-   t=>`
-
-    <div
-     class="task
-     ${t.done?"done":""}">
-
-     <div class="task-icon">
-
-      ${t.done
-       ?"✅"
-       :"📌"}
-
-     </div>
-
-
-     <div class="task-text">
-
-      <b>
-       ${escapeHTML(t.text)}
-      </b>
-
-      <small>
-
-       📅 ${t.date}
-
-       ${
-        t.time
-        ? " • ⏰ "+t.time
-        :""
-       }
-
-      </small>
-
-     </div>
-
-
-     <button
-      class="task-btn task-ok"
-      onclick="toggleTask(${t.id})">
-
-      ${t.done?"↩️":"✓"}
-
-     </button>
-
-
-     <button
-      class="task-btn task-del"
-      onclick="deleteTask(${t.id})">
-
-      🗑️
-
-     </button>
-
-    </div>
-
-   `
-  ).join("");
+  renderTasks();
 
 }
 
 
 function toggleTask(id){
 
- const task =
-  D.tasks.find(
-   x=>x.id===id
+  const t=tasks.find(x=>x.id===id);
+
+  if(t) t.done=!t.done;
+
+  localStorage.setItem(
+    "hmm_tasks",
+    JSON.stringify(tasks)
   );
 
- if(!task)return;
-
- task.done =
-  !task.done;
-
- save();
-
- renderTasks();
+  renderTasks();
 
 }
 
 
 function deleteTask(id){
 
- if(!confirm("Task মুছে ফেলবেন?"))
-  return;
+  tasks=tasks.filter(x=>x.id!==id);
 
- D.tasks =
-  D.tasks.filter(
-   x=>x.id!==id
+  localStorage.setItem(
+    "hmm_tasks",
+    JSON.stringify(tasks)
   );
 
- save();
+  renderTasks();
 
- renderTasks();
+}
+
+
+function renderTasks(){
+
+  const box=document.getElementById("taskList");
+
+  const list=[...tasks].sort((a,b)=>
+    (a.date+" "+a.time)
+    .localeCompare(b.date+" "+b.time)
+  );
+
+  if(!list.length){
+
+    box.innerHTML=
+      `<div class="empty">কোনো Task নেই।</div>`;
+
+    return;
+  }
+
+  box.innerHTML=list.map(t=>`
+
+    <div class="task ${t.done?"done":""}">
+
+      <div class="taskIcon">📌</div>
+
+      <div class="taskInfo">
+
+        <strong>${escapeHTML(t.text)}</strong>
+
+        <small>
+          📅 ${t.date}
+          ${t.time ? " • ⏰ "+t.time : ""}
+        </small>
+
+      </div>
+
+      <button
+        class="check"
+        onclick="toggleTask(${t.id})"
+      >
+        ${t.done?"↩️":"✓"}
+      </button>
+
+      <button
+        class="delete"
+        onclick="deleteTask(${t.id})"
+      >🗑️</button>
+
+    </div>
+
+  `).join("");
 
 }
 
@@ -1460,269 +1379,142 @@ function deleteTask(id){
    NOTES
 ========================= */
 
-function addNote(){
+function saveNote(){
 
- const body =
-  $("noteBody")
-   .value
-   .trim();
+  const title=document.getElementById("noteTitle").value.trim();
+  const text=document.getElementById("noteText").value.trim();
 
- if(!body){
+  if(!title && !text){
 
-  toast("নোট লিখুন");
+    alert("নোট লিখুন।");
+    return;
+  }
 
-  return;
+  notes.push({
+    id:Date.now(),
+    title:title || "নোট",
+    text
+  });
 
- }
+  localStorage.setItem(
+    "hmm_notes",
+    JSON.stringify(notes)
+  );
 
+  document.getElementById("noteTitle").value="";
+  document.getElementById("noteText").value="";
 
- D.notes.unshift({
-
-  id:Date.now(),
-
-  title:
-   $("noteTitle").value
-   || "Personal Note",
-
-  date:$("noteDate").value,
-
-  body:body
-
- });
-
-
- save();
-
- $("noteTitle").value="";
- $("noteBody").value="";
-
- renderNotes();
-
-}
-
-
-function renderNotes(){
-
- if(!D.notes.length){
-
-  $("notes").innerHTML =
-   `<div class="empty">
-    📝 কোনো নোট নেই।
-   </div>`;
-
-  return;
-
- }
-
-
- $("notes").innerHTML =
-  D.notes.map(
-   n=>`
-
-    <div class="note">
-
-     <b>
-      ${escapeHTML(n.title)}
-     </b>
-
-     <small>
-      📅 ${n.date}
-     </small>
-
-     <div style="margin-top:5px">
-      ${escapeHTML(n.body)}
-     </div>
-
-     <button
-      class="btn danger"
-      style="padding:4px 7px;font-size:10px;margin-top:7px"
-      onclick="deleteNote(${n.id})">
-
-      🗑️
-
-     </button>
-
-    </div>
-
-   `
-  ).join("");
+  renderNotes();
 
 }
 
 
 function deleteNote(id){
 
- D.notes =
-  D.notes.filter(
-   x=>x.id!==id
+  notes=notes.filter(x=>x.id!==id);
+
+  localStorage.setItem(
+    "hmm_notes",
+    JSON.stringify(notes)
   );
 
- save();
+  renderNotes();
 
- renderNotes();
+}
+
+
+function renderNotes(){
+
+  const box=document.getElementById("notesList");
+
+  if(!notes.length){
+
+    box.innerHTML=
+      `<div class="empty">কোনো নোট নেই।</div>`;
+
+    return;
+  }
+
+  box.innerHTML=[...notes].reverse().map(n=>`
+
+    <div class="note">
+
+      <strong>📝 ${escapeHTML(n.title)}</strong>
+
+      <div>${escapeHTML(n.text)}</div>
+
+      <button
+        class="delete"
+        style="margin-top:10px"
+        onclick="deleteNote(${n.id})"
+      >🗑️ মুছুন</button>
+
+    </div>
+
+  `).join("");
 
 }
 
 
 /* =========================
-   REMINDER
+   CALCULATOR
 ========================= */
 
-function addReminder(){
+let calcValue="";
 
- const text =
-  $("remText")
-   .value
-   .trim();
+function calcInput(value){
 
- if(!text){
+  calcValue+=value;
 
-  toast("Reminder লিখুন");
-
-  return;
-
- }
-
-
- D.reminders.push({
-
-  id:Date.now(),
-
-  date:$("remDate").value,
-
-  time:$("remTime").value,
-
-  text:text,
-
-  done:false
-
- });
-
-
- save();
-
- $("remText").value="";
-
- renderReminders();
-
- requestNotification();
+  document.getElementById("calcDisplay")
+    .value=calcValue || "0";
 
 }
 
+function calcClear(){
 
-function renderReminders(){
+  calcValue="";
 
- if(!D.reminders.length){
-
-  $("reminders").innerHTML =
-   `<div class="empty">
-    🔔 কোনো Reminder নেই।
-   </div>`;
-
-  return;
-
- }
-
-
- $("reminders").innerHTML =
-  D.reminders.map(
-   r=>`
-
-    <div class="reminder">
-
-     <b>
-      ${escapeHTML(r.text)}
-     </b>
-
-     <br>
-
-     <small>
-      📅 ${r.date}
-      • ⏰ ${r.time}
-     </small>
-
-     <br>
-
-     <button
-      class="btn danger"
-      style="padding:4px 7px;font-size:10px;margin-top:5px"
-      onclick="deleteReminder(${r.id})">
-
-      🗑️
-
-     </button>
-
-    </div>
-
-   `
-  ).join("");
+  document.getElementById("calcDisplay")
+    .value="0";
 
 }
 
+function calcBack(){
 
-function deleteReminder(id){
+  calcValue=calcValue.slice(0,-1);
 
- D.reminders =
-  D.reminders.filter(
-   x=>x.id!==id
-  );
-
- save();
-
- renderReminders();
+  document.getElementById("calcDisplay")
+    .value=calcValue || "0";
 
 }
 
+function calcResult(){
 
-function checkReminders(){
+  try{
 
- const d =
-  new Date();
-
- const date =
-  today();
-
- const time =
-  d.toTimeString()
-   .slice(0,5);
-
-
- D.reminders.forEach(
-  r=>{
-
-   if(
-    !r.done &&
-    r.date===date &&
-    r.time===time
-   ){
-
-    r.done=true;
-
-    save();
-
-    alert(
-     "🔔 Reminder\n\n"+
-     r.text
+    let expression=calcValue.replace(
+      /(\d+(?:\.\d+)?)%/g,
+      "($1/100)"
     );
 
-   }
+    const result=Function(
+      '"use strict";return ('+expression+')'
+    )();
+
+    calcValue=String(result);
+
+    document.getElementById("calcDisplay")
+      .value=calcValue;
+
+  }catch(e){
+
+    document.getElementById("calcDisplay")
+      .value="Error";
+
+    calcValue="";
 
   }
- );
-
-}
-
-
-function requestNotification(){
-
- if(
-  window.Notification &&
-  Notification.permission==="default"
- ){
-
-  Notification.requestPermission();
-
- }
 
 }
 
@@ -1733,366 +1525,274 @@ function requestNotification(){
 
 function getStatementData(){
 
- const from =
-  $("from").value;
+  const from=document.getElementById("fromDate").value;
+  const to=document.getElementById("toDate").value;
 
- const to =
-  $("to").value;
+  return transactions.filter(x=>{
 
+    if(from && x.date<from) return false;
+    if(to && x.date>to) return false;
 
- return D.tx
-  .filter(
-   x=>
-    x.date>=from &&
-    x.date<=to
-  )
-  .sort(
-   (a,b)=>
-    (a.date+a.time)
-    .localeCompare(
-     b.date+b.time
-    )
+    return true;
+
+  }).sort((a,b)=>
+    (a.date+" "+a.time)
+    .localeCompare(b.date+" "+b.time)
   );
 
 }
 
 
-function buildMemo(list){
+function viewStatement(){
 
- let income=0;
- let expense=0;
- let debt=0;
- let receive=0;
+  const list=getStatementData();
 
+  const box=document.getElementById("statementResult");
 
- list.forEach(
-  x=>{
+  if(!list.length){
 
-   if(x.type==="income")
-    income+=x.amount;
+    box.innerHTML=
+      `<div class="empty">এই সময়ের মধ্যে কোনো হিসাব নেই।</div>`;
 
-   if(x.type==="expense")
-    expense+=x.amount;
-
-   if(x.type==="debt")
-    debt+=x.amount;
-
-   if(x.type==="receive")
-    receive+=x.amount;
-
+    return;
   }
- );
 
+  let income=0;
+  let expense=0;
 
- const rows =
-  list.map(
-   (x,i)=>`
+  list.forEach(x=>{
 
-    <tr>
+    if(x.type==="income") income+=x.amount;
+    if(x.type==="expense") expense+=x.amount;
 
-     <td>${i+1}</td>
+  });
 
-     <td>${x.date}</td>
+  box.innerHTML=`
 
-     <td>${x.time}</td>
+    <h2>📄 Statement</h2>
 
-     <td>${escapeHTML(x.title)}</td>
+    <p>
+      মোট আয়:
+      <strong style="color:#07845f">
+        ${formatMoney(income)}
+      </strong>
+    </p>
 
-     <td>
-      ${
-       x.type==="income"
-       ?"আয়"
-       :
-       x.type==="expense"
-       ?"ব্যয়"
-       :
-       x.type==="debt"
-       ?"দেনা"
-       :"পাওনা"
-      }
-     </td>
+    <p>
+      মোট ব্যয়:
+      <strong style="color:#d92532">
+        ${formatMoney(expense)}
+      </strong>
+    </p>
 
-     <td>${money(x.amount)}</td>
+    <p>
+      অবশিষ্ট:
+      <strong>${formatMoney(income-expense)}</strong>
+    </p>
 
-     <td>${escapeHTML(x.desc)}</td>
+    <hr>
 
-    </tr>
+    ${list.map(x=>`
 
-   `
-  ).join("");
+      <div class="transaction">
 
+        <div>
+          <strong>${escapeHTML(x.title)}</strong>
+          <small>
+            <br>📅 ${x.date}
+            ${x.time ? " • ⏰ "+x.time : ""}
+          </small>
+        </div>
 
- return `
+        <strong>
+          ${formatMoney(x.amount)}
+        </strong>
 
-  <div class="memo">
+      </div>
 
-   <h1>
-    Hussain's Money Management
-   </h1>
+    `).join("")}
 
-   <div class="sub">
-    ACCOUNT STATEMENT • MEMO
-   </div>
-
-   <p>
-    <b>Statement Period:</b>
-    ${$("from").value}
-    —
-    ${$("to").value}
-   </p>
-
-   <table>
-
-    <tr>
-
-     <th>#</th>
-     <th>Date</th>
-     <th>Time</th>
-     <th>Details</th>
-     <th>Type</th>
-     <th>Amount</th>
-     <th>Note</th>
-
-    </tr>
-
-    ${
-     rows ||
-     `<tr>
-       <td colspan="7">
-        No transactions
-       </td>
-      </tr>`
-    }
-
-   </table>
-
-
-   <div class="total">
-
-    <div>
-     <span>Total Income</span>
-     <b>${money(income)}</b>
-    </div>
-
-    <div>
-     <span>Total Expense</span>
-     <b>${money(expense)}</b>
-    </div>
-
-    <div>
-     <span>Due</span>
-     <b>${money(debt)}</b>
-    </div>
-
-    <div>
-     <span>Receivable</span>
-     <b>${money(receive)}</b>
-    </div>
-
-    <div class="grand">
-     <span>Remaining</span>
-     <b>${money(income-expense)}</b>
-    </div>
-
-   </div>
-
-
-   <p style="
-    text-align:center;
-    font-size:11px;
-    color:#555;
-    border-top:1px dashed #888;
-    padding-top:10px">
-
-    Hussain's Money Management
-    • Personal Financial Record
-
-   </p>
-
-  </div>
-
- `;
+  `;
 
 }
 
 
-function previewStatement(){
+function statementText(){
 
- const list =
-  getStatementData();
+  const list=getStatementData();
 
- if(!list.length){
+  let text=
+`HUSSAIN'S MONEY MANAGEMENT
+PERSONAL FINANCE
 
-  toast(
-   "এই তারিখে কোনো হিসাব নেই"
-  );
+Statement
+From: ${document.getElementById("fromDate").value || "All"}
+To: ${document.getElementById("toDate").value || "All"}
 
-  return;
+`;
 
- }
+  let income=0;
+  let expense=0;
 
+  list.forEach((x,i)=>{
 
- $("memo").innerHTML =
-  buildMemo(list);
+    if(x.type==="income") income+=x.amount;
+    if(x.type==="expense") expense+=x.amount;
 
- $("modal").style.display =
-  "block";
+    text+=`${i+1}. ${x.title}
+Date: ${x.date}
+Time: ${x.time || "-"}
+Type: ${x.type}
+Amount: ${x.amount} BDT
+${x.description || ""}
+-------------------------
+`;
 
-}
+  });
 
+  text+=`
+TOTAL INCOME: ${income} BDT
+TOTAL EXPENSE: ${expense} BDT
+BALANCE: ${income-expense} BDT
+`;
 
-function closeModal(){
-
- $("modal").style.display =
-  "none";
+  return text;
 
 }
 
 
 function downloadStatement(){
 
- const list =
-  getStatementData();
+  const text=statementText();
 
- if(!list.length){
-
-  toast(
-   "এই তারিখে কোনো হিসাব নেই"
+  const blob=new Blob(
+    [text],
+    {type:"text/plain;charset=utf-8"}
   );
 
-  return;
+  const url=URL.createObjectURL(blob);
 
- }
+  const a=document.createElement("a");
 
+  a.href=url;
+  a.download="Hussain-Money-Statement.txt";
 
- const html = `
+  a.click();
 
- <!DOCTYPE html>
-
- <html>
-
- <head>
-
- <meta charset="UTF-8">
-
- <title>
-  Hussain Statement
- </title>
-
- <style>
-
- body{
-  font-family:Arial;
-  padding:25px;
- }
-
- table{
-  width:100%;
-  border-collapse:collapse;
- }
-
- th,td{
-  border:1px solid #aaa;
-  padding:7px;
- }
-
- th{
-  background:#eee;
- }
-
- </style>
-
- </head>
-
- <body>
-
- ${buildMemo(list)}
-
- </body>
-
- </html>
-
- `;
-
-
- const blob =
-  new Blob(
-   [html],
-   {type:"text/html"}
-  );
-
-
- const url =
-  URL.createObjectURL(blob);
-
-
- const a =
-  document.createElement("a");
-
-
- a.href=url;
-
- a.download =
-  `Hussain-Statement-${$("from").value}-${$("to").value}.html`;
-
-
- a.click();
-
- URL.revokeObjectURL(url);
-
- toast(
-  "Statement Download হয়েছে"
- );
+  URL.revokeObjectURL(url);
 
 }
 
 
 function printStatement(){
 
- const list =
-  getStatementData();
+  const list=getStatementData();
 
- if(!list.length){
+  let html=`
 
-  toast(
-   "এই তারিখে কোনো হিসাব নেই"
-  );
+  <html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Hussain's Money Statement</title>
 
-  return;
+  <style>
+    body{
+      font-family:Arial,sans-serif;
+      padding:30px;
+    }
 
- }
+    h1{
+      color:#07845f;
+    }
 
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
 
- const win =
-  window.open();
+    th,td{
+      border:1px solid #ddd;
+      padding:10px;
+      text-align:left;
+    }
 
- win.document.write(
-  buildMemo(list)
- );
+    th{
+      background:#eee;
+    }
+  </style>
 
- win.document.close();
+  </head>
 
- setTimeout(
-  ()=>win.print(),
-  300
- );
+  <body>
+
+  <h1>Hussain's Money Management</h1>
+  <h2>Statement</h2>
+
+  <table>
+
+    <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Subject</th>
+      <th>Type</th>
+      <th>Amount</th>
+    </tr>
+
+  `;
+
+  list.forEach(x=>{
+
+    html+=`
+
+      <tr>
+        <td>${x.date}</td>
+        <td>${x.time || "-"}</td>
+        <td>${escapeHTML(x.title)}</td>
+        <td>${x.type}</td>
+        <td>${formatMoney(x.amount)}</td>
+      </tr>
+
+    `;
+
+  });
+
+  html+=`
+
+  </table>
+
+  </body>
+  </html>
+  `;
+
+  const win=window.open("","_blank");
+
+  win.document.write(html);
+  win.document.close();
+
+  setTimeout(()=>{
+    win.print();
+  },500);
 
 }
 
 
 /* =========================
-   DARK MODE
+   THEME
 ========================= */
 
-function toggleDark(){
+function toggleTheme(){
 
- D.dark =
-  !D.dark;
+  document.body.classList.toggle("dark");
 
- save();
+  localStorage.setItem(
+    "hmm_dark",
+    document.body.classList.contains("dark")
+  );
 
- render();
+}
 
+if(localStorage.getItem("hmm_dark")==="true"){
+  document.body.classList.add("dark");
 }
 
 
@@ -2100,194 +1800,65 @@ function toggleDark(){
    PIN
 ========================= */
 
-function setFirstPin(){
+function setPin(){
 
- const pin =
-  $("pin").value;
-
- if(!/^\d{4,8}$/.test(pin)){
-
-  toast(
-   "৪-৮ সংখ্যার PIN দিন"
+  const pin=prompt(
+    "নতুন PIN দিন (৪-৬ সংখ্যা):"
   );
 
-  return;
+  if(!pin || !/^\d{4,6}$/.test(pin)){
 
- }
+    alert("৪ থেকে ৬ সংখ্যার PIN দিন।");
+    return;
+  }
 
+  localStorage.setItem("hmm_pin",pin);
 
- D.pin=pin;
-
- save();
-
- $("firstPin").style.display =
-  "none";
-
- toast(
-  "PIN সেট হয়েছে"
- );
+  alert("PIN সেট হয়েছে।");
 
 }
 
 
-function enterApp(){
+function removePin(){
 
- if(!D.pin){
+  if(!localStorage.getItem("hmm_pin")){
 
-  setFirstPin();
+    alert("কোনো PIN সেট করা নেই।");
+    return;
 
-  return;
+  }
 
- }
+  if(confirm("PIN বন্ধ করতে চান?")){
 
+    localStorage.removeItem("hmm_pin");
 
- if(
-  $("pin").value===
-  D.pin
- ){
+    alert("PIN বন্ধ হয়েছে।");
 
-  $("lock").style.display =
-   "none";
-
-  requestNotification();
-
- }else{
-
-  toast(
-   "ভুল PIN"
-  );
-
- }
+  }
 
 }
 
 
-function changePin(){
+function checkPin(){
 
- if(
-  prompt("বর্তমান PIN") !==
-  D.pin
- ){
+  const entered=
+    document.getElementById("pinInput").value;
 
-  toast("PIN ভুল");
+  const pin=
+    localStorage.getItem("hmm_pin");
 
-  return;
+  if(entered===pin){
 
- }
+    document.getElementById("pinModal")
+      .classList.remove("show");
 
+    document.getElementById("pinInput").value="";
 
- const newPin =
-  prompt(
-   "নতুন ৪-৮ সংখ্যার PIN"
-  );
+  }else{
 
+    alert("ভুল PIN।");
 
- if(!/^\d{4,8}$/.test(newPin)){
-
-  toast(
-   "সঠিক PIN দিন"
-  );
-
-  return;
-
- }
-
-
- D.pin=newPin;
-
- save();
-
- toast(
-  "PIN পরিবর্তন হয়েছে"
- );
-
-}
-
-
-/* =========================
-   BACKUP
-========================= */
-
-function backupData(){
-
- const blob =
-  new Blob(
-   [JSON.stringify(D,null,2)],
-   {type:"application/json"}
-  );
-
-
- const url =
-  URL.createObjectURL(blob);
-
-
- const a =
-  document.createElement("a");
-
-
- a.href=url;
-
- a.download =
-  "Hussain-Money-Management-Backup.json";
-
- a.click();
-
- URL.revokeObjectURL(url);
-
-}
-
-
-/* =========================
-   RESTORE
-========================= */
-
-function restoreData(event){
-
- const file =
-  event.target.files[0];
-
- if(!file)return;
-
-
- const reader =
-  new FileReader();
-
-
- reader.onload =
-  function(){
-
-   try{
-
-    D =
-     JSON.parse(
-      reader.result
-     );
-
-    D.tx=D.tx||[];
-    D.tasks=D.tasks||[];
-    D.notes=D.notes||[];
-    D.reminders=D.reminders||[];
-
-    save();
-
-    render();
-
-    toast(
-     "Restore সফল হয়েছে"
-    );
-
-   }catch(e){
-
-    toast(
-     "Backup ফাইল সঠিক নয়"
-    );
-
-   }
-
-  };
-
-
- reader.readAsText(file);
+  }
 
 }
 
@@ -2296,36 +1867,82 @@ function restoreData(event){
    CLEAR DATA
 ========================= */
 
-function clearData(){
+function clearAllData(){
 
- if(
-  !confirm(
-   "সব হিসাব, Task, Note ও Reminder মুছে ফেলবেন?"
-  )
- ){
+  if(!confirm(
+    "সতর্কতা!\nসব হিসাব, Task এবং Notes মুছে যাবে।\nনিশ্চিত?"
+  )) return;
 
-  return;
+  localStorage.removeItem("hmm_transactions");
+  localStorage.removeItem("hmm_tasks");
+  localStorage.removeItem("hmm_notes");
 
- }
+  transactions=[];
+  tasks=[];
+  notes=[];
 
+  updateSummary();
+  renderTransactions();
+  renderTasks();
+  renderNotes();
 
- const pin=D.pin;
- const dark=D.dark;
+  alert("সব ডাটা মুছে দেওয়া হয়েছে।");
 
-
- D={
-  tx:[],
-  tasks:[],
-  notes:[],
-  reminders:[],
-  pin:pin,
-  dark:dark
- };
+}
 
 
- save();
+/* =========================
+   SECURITY
+========================= */
 
- render();
+function checkAppLock(){
+
+  if(localStorage.getItem("hmm_pin")){
+
+    document.getElementById("pinModal")
+      .classList.add("show");
+
+  }
+
+}
+
+
+/* =========================
+   SAFE TEXT
+========================= */
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   DEFAULT DATES
+========================= */
+
+function setDefaultDates(){
+
+  const today=
+    new Date().toISOString().split("T")[0];
+
+  document.getElementById("txDate").value=today;
+  document.getElementById("taskDate").value=today;
+
+  document.getElementById("fromDate").value=today;
+  document.getElementById("toDate").value=today;
+
+  const time=
+    new Date().toTimeString().slice(0,5);
+
+  document.getElementById("txTime").value=time;
+  document.getElementById("taskTime").value=time;
 
 }
 
@@ -2334,23 +1951,12 @@ function clearData(){
    START
 ========================= */
 
-setDefaults();
-
-if(D.pin){
-
- $("firstPin").style.display =
-  "none";
-
-}
-
-render();
-
-updateClock();
-
-setInterval(
- updateClock,
- 1000
-);
+setDefaultDates();
+updateSummary();
+renderTransactions();
+renderTasks();
+renderNotes();
+checkAppLock();
 
 </script>
 
