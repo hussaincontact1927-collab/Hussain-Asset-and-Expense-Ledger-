@@ -3,580 +3,531 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>HUSSAIN • Personal Ledger</title>
 
 <style>
 *{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 :root{
-  --primary:#1677ff;
-  --dark:#0d172b;
-  --dark2:#16233d;
-  --bg:#f4f6fa;
-  --card:#ffffff;
-  --text:#172033;
-  --muted:#778195;
-  --green:#159447;
-  --red:#d94b3d;
-  --blue:#2475db;
-  --border:#e5e9f0;
-  --shadow:0 8px 25px rgba(15,30,55,.07);
+    --primary:#1677ff;
+    --dark:#0d172b;
+    --dark2:#14213d;
+    --bg:#f4f7fb;
+    --card:#ffffff;
+    --text:#182235;
+    --muted:#7b8494;
+    --green:#159447;
+    --red:#dc4437;
+    --blue:#2774d8;
+    --border:#e3e8f0;
 }
 
 body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:
+    font-family:
     "Noto Sans Bengali",
-    "Noto Sans",
+    "Nirmala UI",
     Arial,
     sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
 }
 
-body.dark{
-  --bg:#09111f;
-  --card:#111c2e;
-  --text:#f3f6fb;
-  --muted:#aab5c7;
-  --border:#25334a;
-  --shadow:0 8px 25px rgba(0,0,0,.25);
-}
+/* HEADER */
 
 header{
-  background:
-    linear-gradient(135deg,#0b1529,#162745);
-  color:white;
-  padding:24px 20px 18px;
-  border-radius:0 0 28px 28px;
-  box-shadow:0 8px 25px rgba(0,0,0,.15);
+    background:linear-gradient(135deg,#0b1427,#172846);
+    color:white;
+    padding:25px 18px 20px;
+    border-radius:0 0 28px 28px;
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
 }
 
 .header-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
 }
 
 .brand h1{
-  margin:0;
-  font-size:30px;
-  letter-spacing:.5px;
+    font-size:30px;
+    font-weight:800;
+    letter-spacing:.5px;
 }
 
 .brand p{
-  margin:5px 0 0;
-  color:#b8c4d7;
-  font-size:14px;
+    margin-top:4px;
+    color:#b9c3d3;
+    font-size:14px;
 }
 
-.date-box{
-  text-align:right;
-  line-height:1.6;
+.datetime{
+    text-align:right;
 }
 
-.time{
-  font-size:20px;
-  font-weight:700;
+#clock{
+    font-size:18px;
+    font-weight:700;
 }
 
-.date{
-  font-size:14px;
-  color:#d6deeb;
+#englishDate{
+    margin-top:4px;
+    color:#c8d0dd;
+    font-size:13px;
 }
 
-.calendar{
-  font-size:12px;
-  color:#aebbd0;
+#banglaDate,
+#hijriDate{
+    margin-top:2px;
+    color:#aeb9ca;
+    font-size:12px;
 }
+
+/* NAV */
 
 .nav{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:9px;
-  margin-top:22px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:8px;
+    margin-top:22px;
 }
 
 .nav button{
-  border:1px solid rgba(255,255,255,.18);
-  background:rgba(255,255,255,.06);
-  color:white;
-  height:58px;
-  border-radius:17px;
-  font-size:23px;
-  cursor:pointer;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.08);
+    color:white;
+    border-radius:14px;
+    min-height:48px;
+    font-size:21px;
+    cursor:pointer;
 }
 
 .nav button.active{
-  background:white;
-  color:#15223a;
+    background:white;
+    color:#182235;
 }
+
+/* MAIN */
 
 .container{
-  width:min(900px,calc(100% - 28px));
-  margin:18px auto 100px;
+    max-width:950px;
+    margin:auto;
+    padding:20px 15px 100px;
 }
 
-.tabs{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  background:#e9edf4;
-  padding:5px;
-  border-radius:30px;
-  margin-bottom:18px;
+/* DATE INFO */
+
+.date-panel{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:16px;
+    margin-bottom:18px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    text-align:center;
 }
 
-.tabs button{
-  border:0;
-  padding:13px 8px;
-  border-radius:25px;
-  background:transparent;
-  font-size:16px;
-  color:#566173;
+.date-item{
+    padding:4px 10px;
+    border-right:1px solid #e5e8ed;
 }
 
-.tabs button.active{
-  background:var(--primary);
-  color:white;
-  font-weight:700;
-  box-shadow:0 5px 15px rgba(22,119,255,.25);
+.date-item:last-child{
+    border-right:0;
 }
 
-.date-info{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:15px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  box-shadow:var(--shadow);
+.date-label{
+    font-size:12px;
+    color:var(--muted);
 }
 
-.date-info div{
-  text-align:center;
+.date-value{
+    margin-top:5px;
+    font-size:15px;
+    font-weight:700;
 }
 
-.date-info small{
-  color:var(--muted);
-  display:block;
-}
-
-.date-info strong{
-  display:block;
-  margin-top:4px;
-}
+/* BALANCE */
 
 .balance{
-  margin-top:18px;
-  background:linear-gradient(135deg,#0d172b,#182846);
-  color:white;
-  border-radius:25px;
-  padding:25px;
-  box-shadow:var(--shadow);
+    background:linear-gradient(135deg,#0d172b,#172846);
+    color:white;
+    border-radius:25px;
+    padding:25px;
+    margin-bottom:18px;
 }
 
-.balance small{
-  color:#aebbd0;
-  font-size:14px;
+.balance-label{
+    color:#b9c3d3;
+    font-size:14px;
 }
 
-.balance .amount{
-  font-size:39px;
-  font-weight:800;
-  margin:5px 0;
+.balance-value{
+    font-size:38px;
+    font-weight:800;
+    margin-top:3px;
 }
 
-.balance-row{
-  display:flex;
-  gap:20px;
-  color:#c8d2e2;
-  font-size:13px;
+.balance-sub{
+    margin-top:12px;
+    display:flex;
+    gap:25px;
+    color:#ccd4e0;
+    font-size:13px;
 }
 
-.cards{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-  margin-top:18px;
+/* SUMMARY */
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:22px;
 }
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:20px;
-  box-shadow:var(--shadow);
+.summary-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:18px;
 }
 
-.card small{
-  color:var(--muted);
-  font-size:14px;
+.summary-title{
+    color:var(--muted);
+    font-size:13px;
 }
 
-.card strong{
-  display:block;
-  font-size:27px;
-  margin-top:7px;
+.summary-value{
+    font-size:25px;
+    font-weight:800;
+    margin-top:5px;
 }
 
-.income strong{color:var(--green)}
-.expense strong{color:var(--red)}
-.receive strong{color:var(--blue)}
-.give strong{color:#7c4dcc}
+.income{
+    color:var(--green);
+}
+
+.expense{
+    color:var(--red);
+}
+
+.receivable{
+    color:#2677dc;
+}
+
+.payable{
+    color:#7549b8;
+}
+
+/* SECTION */
 
 .section{
-  margin-top:25px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:23px;
+    padding:20px;
+    margin-bottom:18px;
 }
 
 .section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
 }
 
 .section-title h2{
-  margin:0;
-  font-size:21px;
+    font-size:21px;
 }
 
 .section-title button{
-  border:0;
-  background:none;
-  color:var(--primary);
-  font-weight:700;
+    border:0;
+    background:#eaf2ff;
+    color:var(--primary);
+    padding:9px 13px;
+    border-radius:12px;
+    cursor:pointer;
 }
 
-.transaction{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:15px;
-  margin-bottom:10px;
-  display:flex;
-  align-items:center;
-  gap:13px;
-  box-shadow:var(--shadow);
+/* FORM */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
 }
 
-.tx-icon{
-  width:47px;
-  height:47px;
-  border-radius:15px;
-  display:grid;
-  place-items:center;
-  font-size:20px;
-  background:#eef4ff;
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
 }
 
-.tx-info{
-  flex:1;
+.field label{
+    font-size:13px;
+    color:#697386;
 }
 
-.tx-title{
-  font-weight:700;
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid #dce2eb;
+    border-radius:14px;
+    padding:13px;
+    font-size:15px;
+    background:#fff;
+    color:var(--text);
+    outline:none;
 }
 
-.tx-meta{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:3px;
-}
-
-.tx-amount{
-  font-weight:800;
-}
-
-.plus{color:var(--green)}
-.minus{color:var(--red)}
-
-.empty{
-  background:var(--card);
-  border:1px dashed var(--border);
-  padding:35px 15px;
-  text-align:center;
-  color:var(--muted);
-  border-radius:20px;
-}
-
-.form-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:23px;
-  padding:20px;
-  box-shadow:var(--shadow);
-}
-
-.form-card h2{
-  margin-top:0;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-}
-
-label{
-  display:block;
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:6px;
-}
-
-input,select,textarea{
-  width:100%;
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  border-radius:14px;
-  padding:14px;
-  font-size:15px;
-  outline:none;
-}
-
-input:focus,select:focus,textarea:focus{
-  border-color:var(--primary);
-  box-shadow:0 0 0 3px rgba(22,119,255,.1);
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(22,119,255,.10);
 }
 
 textarea{
-  resize:vertical;
-  min-height:80px;
+    resize:vertical;
+    min-height:90px;
 }
 
 .full{
-  grid-column:1/-1;
+    grid-column:1/-1;
 }
 
 .primary{
-  width:100%;
-  border:0;
-  background:var(--primary);
-  color:white;
-  padding:15px;
-  border-radius:15px;
-  font-size:16px;
-  font-weight:700;
-  margin-top:15px;
+    border:0;
+    background:var(--primary);
+    color:white;
+    padding:14px 18px;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
 }
 
 .secondary{
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  padding:13px 16px;
-  border-radius:13px;
-  font-weight:700;
+    border:1px solid #dce2eb;
+    background:#fff;
+    color:var(--text);
+    padding:14px 18px;
+    border-radius:14px;
+    font-size:15px;
+    cursor:pointer;
 }
+
+.form-actions{
+    display:flex;
+    gap:10px;
+    margin-top:5px;
+}
+
+/* TRANSACTIONS */
+
+.transaction{
+    border:1px solid #e5e9ef;
+    border-radius:17px;
+    padding:15px;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.transaction-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.icon{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+}
+
+.icon.in{
+    background:#e5f7ec;
+    color:var(--green);
+}
+
+.icon.out{
+    background:#ffe9e7;
+    color:var(--red);
+}
+
+.transaction-name{
+    font-weight:700;
+}
+
+.transaction-meta{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:4px;
+}
+
+.transaction-amount{
+    text-align:right;
+    font-weight:800;
+}
+
+.transaction-amount.in{
+    color:var(--green);
+}
+
+.transaction-amount.out{
+    color:var(--red);
+}
+
+.delete-btn{
+    margin-top:5px;
+    border:0;
+    background:none;
+    color:#a3aab6;
+    cursor:pointer;
+    font-size:12px;
+}
+
+/* DOWNLOAD AREA */
+
+.download-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.download-btn{
+    border:0;
+    padding:16px;
+    border-radius:16px;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    background:#edf4ff;
+    color:#176bd5;
+}
+
+.download-btn.green{
+    background:#e9f8ef;
+    color:#178b46;
+}
+
+.download-btn.dark{
+    background:#e9edf4;
+    color:#172238;
+}
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+    padding:30px 10px;
+    color:#9aa2af;
+}
+
+/* FLOAT BUTTON */
 
 .fab{
-  position:fixed;
-  right:22px;
-  bottom:75px;
-  width:62px;
-  height:62px;
-  border:0;
-  border-radius:50%;
-  background:var(--primary);
-  color:white;
-  font-size:34px;
-  box-shadow:0 10px 25px rgba(22,119,255,.35);
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    width:62px;
+    height:62px;
+    border:0;
+    border-radius:50%;
+    background:var(--primary);
+    color:white;
+    font-size:32px;
+    box-shadow:0 10px 25px rgba(0,0,0,.22);
+    cursor:pointer;
 }
 
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:var(--card);
-  border-top:1px solid var(--border);
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  padding:8px 5px calc(8px + env(safe-area-inset-bottom));
-  z-index:20;
+/* TOAST */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:95px;
+    transform:translateX(-50%) translateY(20px);
+    background:#172238;
+    color:white;
+    padding:12px 18px;
+    border-radius:14px;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:99;
 }
 
-.bottom-nav button{
-  border:0;
-  background:none;
-  color:var(--muted);
-  font-size:11px;
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
 }
 
-.bottom-nav span{
-  display:block;
-  font-size:21px;
-  margin-bottom:2px;
-}
+/* MOBILE */
 
-.bottom-nav button.active{
-  color:var(--primary);
-  font-weight:700;
-}
+@media(max-width:700px){
 
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  z-index:50;
-}
+    .header-top{
+        flex-direction:column;
+    }
 
-.modal.show{
-  display:flex;
-}
+    .datetime{
+        text-align:left;
+    }
 
-.modal-box{
-  width:min(600px,100%);
-  max-height:90vh;
-  overflow:auto;
-  background:var(--card);
-  color:var(--text);
-  border-radius:28px 28px 0 0;
-  padding:22px;
-}
+    .summary{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-.modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+    .form-grid{
+        grid-template-columns:1fr;
+    }
 
-.close{
-  border:0;
-  background:#edf1f6;
-  border-radius:50%;
-  width:38px;
-  height:38px;
-  font-size:20px;
-}
+    .full{
+        grid-column:auto;
+    }
 
-.payment-methods{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:10px;
-}
+    .date-panel{
+        grid-template-columns:1fr;
+        gap:10px;
+    }
 
-.payment-method{
-  padding:15px;
-  border:1px solid var(--border);
-  border-radius:15px;
-  background:var(--card);
-  color:var(--text);
-  text-align:left;
-}
+    .date-item{
+        border-right:0;
+        border-bottom:1px solid #e5e8ed;
+        padding-bottom:10px;
+    }
 
-.payment-method.active{
-  border:2px solid var(--primary);
-  background:#eef5ff;
-}
+    .date-item:last-child{
+        border-bottom:0;
+    }
 
-.pay-info{
-  margin-top:14px;
-  background:#f0f4fa;
-  border-radius:15px;
-  padding:15px;
-  color:#26344a;
-}
+    .download-grid{
+        grid-template-columns:1fr;
+    }
 
-body.dark .pay-info{
-  background:#19263b;
-  color:#e5ebf4;
-}
+    .transaction{
+        align-items:flex-start;
+    }
 
-.pay-number{
-  font-size:20px;
-  font-weight:800;
-  letter-spacing:1px;
-}
-
-.copy{
-  border:0;
-  background:var(--primary);
-  color:white;
-  border-radius:10px;
-  padding:9px 12px;
-  margin-top:8px;
-}
-
-.qr{
-  display:block;
-  width:190px;
-  height:190px;
-  object-fit:contain;
-  margin:15px auto;
-  background:white;
-  padding:10px;
-  border-radius:15px;
-}
-
-.notice{
-  padding:13px;
-  background:#fff6dd;
-  color:#775d18;
-  border-radius:13px;
-  font-size:13px;
-  margin-top:12px;
-}
-
-body.dark .notice{
-  background:#3b311b;
-  color:#f3d889;
-}
-
-.settings{
-  display:grid;
-  gap:10px;
-}
-
-.setting-btn{
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  padding:16px;
-  border-radius:15px;
-  text-align:left;
-  font-size:15px;
-}
-
-@media(max-width:600px){
-  .header-top{
-    flex-direction:column;
-  }
-
-  .date-box{
-    text-align:left;
-  }
-
-  .cards{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  .full{
-    grid-column:auto;
-  }
-
-  .date-info{
-    grid-template-columns:1fr 1fr 1fr;
-    font-size:12px;
-  }
-
-  .brand h1{
-    font-size:27px;
-  }
+    .transaction-amount{
+        font-size:14px;
+    }
 }
 </style>
 </head>
@@ -585,365 +536,290 @@ body.dark .notice{
 
 <header>
 
-  <div class="header-top">
+<div class="header-top">
 
-    <div class="brand">
-      <h1>HUSSAIN</h1>
-      <p>Personal Ledger • হিসাবের খাতা</p>
-    </div>
+<div class="brand">
+<h1>HUSSAIN</h1>
+<p>Personal Ledger • হিসাবের খাতা</p>
+</div>
 
-    <div class="date-box">
-      <div class="time" id="time">--:--:--</div>
-      <div class="date" id="englishDate">--</div>
-      <div class="calendar" id="banglaDate">--</div>
-      <div class="calendar" id="hijriDate">--</div>
-    </div>
+<div class="datetime">
+<div id="clock">00:00:00</div>
+<div id="englishDate"></div>
+<div id="banglaDate"></div>
+<div id="hijriDate"></div>
+</div>
 
-  </div>
+</div>
 
-  <div class="nav">
-    <button class="active" onclick="showPage('home',this)">⌂</button>
-    <button onclick="showPage('transactions',this)">☷</button>
-    <button onclick="openTransaction()">＋</button>
-    <button onclick="showPage('payment',this)">◉</button>
-    <button onclick="showPage('settings',this)">⚙</button>
-  </div>
+<div class="nav">
+<button class="active">⌂</button>
+<button>☷</button>
+<button onclick="scrollToForm()">＋</button>
+<button>−</button>
+<button>⚙</button>
+</div>
 
 </header>
 
+
 <main class="container">
 
-  <!-- HOME -->
+<!-- DATE -->
 
-  <section id="home">
+<div class="date-panel">
 
-    <div class="tabs">
-      <button onclick="setPeriod('today',this)">আজ</button>
-      <button class="active" onclick="setPeriod('month',this)">এই মাস</button>
-      <button onclick="setPeriod('all',this)">মোট</button>
-    </div>
+<div class="date-item">
+<div class="date-label">সাপ্তাহিক বার</div>
+<div class="date-value" id="weekDay">—</div>
+</div>
 
-    <div class="balance">
-      <small>বর্তমান ব্যালেন্স</small>
-      <div class="amount" id="balance">৳০</div>
+<div class="date-item">
+<div class="date-label">বাংলা তারিখ</div>
+<div class="date-value" id="bnDate">—</div>
+</div>
 
-      <div class="balance-row">
-        <span>আয় <b id="smallIncome">৳০</b></span>
-        <span>ব্যয় <b id="smallExpense">৳০</b></span>
-      </div>
-    </div>
+<div class="date-item">
+<div class="date-label">আরবি / হিজরি তারিখ</div>
+<div class="date-value" id="arDate">—</div>
+</div>
 
-    <div class="cards">
-
-      <div class="card income">
-        <small>মোট আয়</small>
-        <strong id="income">৳০</strong>
-      </div>
-
-      <div class="card expense">
-        <small>মোট ব্যয়</small>
-        <strong id="expense">৳০</strong>
-      </div>
-
-      <div class="card receive">
-        <small>মোট পাওনা</small>
-        <strong id="receive">৳০</strong>
-      </div>
-
-      <div class="card give">
-        <small>মোট দেনা</small>
-        <strong id="give">৳০</strong>
-      </div>
-
-    </div>
-
-    <div class="section">
-
-      <div class="section-title">
-        <h2>সাম্প্রতিক হিসাব</h2>
-        <button onclick="showPage('transactions')">সব দেখুন →</button>
-      </div>
-
-      <div id="recent"></div>
-
-    </div>
-
-  </section>
+</div>
 
 
-  <!-- TRANSACTIONS -->
+<!-- BALANCE -->
 
-  <section id="transactions" style="display:none">
+<div class="balance">
 
-    <div class="section-title">
-      <h2>লেনদেন</h2>
-      <button onclick="openTransaction()">＋ নতুন</button>
-    </div>
+<div class="balance-label">বর্তমান ব্যালেন্স</div>
 
-    <div class="form-card">
+<div class="balance-value" id="balance">
+৳০
+</div>
 
-      <div class="grid">
+<div class="balance-sub">
+<span>আয় <b id="balanceIncome">৳০</b></span>
+<span>ব্যয় <b id="balanceExpense">৳০</b></span>
+</div>
 
-        <div>
-          <label>মাস</label>
-          <select id="filterMonth" onchange="render()">
-            <option value="all">সব মাস</option>
-            <option value="0">জানুয়ারি</option>
-            <option value="1">ফেব্রুয়ারি</option>
-            <option value="2">মার্চ</option>
-            <option value="3">এপ্রিল</option>
-            <option value="4">মে</option>
-            <option value="5">জুন</option>
-            <option value="6">জুলাই</option>
-            <option value="7">আগস্ট</option>
-            <option value="8">সেপ্টেম্বর</option>
-            <option value="9">অক্টোবর</option>
-            <option value="10">নভেম্বর</option>
-            <option value="11">ডিসেম্বর</option>
-          </select>
-        </div>
-
-        <div>
-          <label>ধরন</label>
-          <select id="filterType" onchange="render()">
-            <option value="all">সব ধরনের</option>
-            <option value="income">আয়</option>
-            <option value="expense">ব্যয়</option>
-            <option value="receive">পাওনা</option>
-            <option value="give">দেনা</option>
-          </select>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="section">
-      <div id="allTransactions"></div>
-    </div>
-
-  </section>
+</div>
 
 
-  <!-- PAYMENT -->
+<!-- SUMMARY -->
 
-  <section id="payment" style="display:none">
+<div class="summary">
 
-    <div class="section-title">
-      <h2>পেমেন্ট করুন</h2>
-    </div>
+<div class="summary-card">
+<div class="summary-title">মোট আয়</div>
+<div class="summary-value income" id="totalIncome">৳০</div>
+</div>
 
-    <div class="form-card">
+<div class="summary-card">
+<div class="summary-title">মোট ব্যয়</div>
+<div class="summary-value expense" id="totalExpense">৳০</div>
+</div>
 
-      <h2>বিল / পেমেন্ট</h2>
+<div class="summary-card">
+<div class="summary-title">মোট পাওনা</div>
+<div class="summary-value receivable">৳০</div>
+</div>
 
-      <div class="grid">
+<div class="summary-card">
+<div class="summary-title">মোট দেনা</div>
+<div class="summary-value payable">৳০</div>
+</div>
 
-        <div>
-          <label>বিলের পরিমাণ</label>
-          <input id="payAmount" type="number" placeholder="৳ 0">
-        </div>
-
-        <div>
-          <label>বিল / Reference No.</label>
-          <input id="billNo" placeholder="যেমন: HUS-1001">
-        </div>
-
-        <div class="full">
-          <label>আপনার নাম</label>
-          <input id="payerName" placeholder="নাম লিখুন">
-        </div>
-
-      </div>
-
-      <label style="margin-top:15px">পেমেন্ট মাধ্যম</label>
-
-      <div class="payment-methods">
-
-        <button class="payment-method active"
-                onclick="selectPayment('bKash',this)">
-          📱 bKash
-        </button>
-
-        <button class="payment-method"
-                onclick="selectPayment('Nagad',this)">
-          🟠 নগদ
-        </button>
-
-        <button class="payment-method"
-                onclick="selectPayment('mCash',this)">
-          📲 mCash
-        </button>
-
-        <button class="payment-method"
-                onclick="selectPayment('Bank',this)">
-          🏦 Bank Transfer
-        </button>
-
-        <button class="payment-method"
-                onclick="selectPayment('Card',this)">
-          💳 Card Payment
-        </button>
-
-        <button class="payment-method"
-                onclick="selectPayment('QR',this)">
-          🔳 বাংলা QR
-        </button>
-
-      </div>
-
-      <div id="paymentInfo"></div>
-
-      <button class="primary" onclick="processPayment()">
-        পেমেন্ট সম্পন্ন করুন
-      </button>
-
-    </div>
-
-  </section>
+</div>
 
 
-  <!-- SETTINGS -->
+<!-- ADD TRANSACTION -->
 
-  <section id="settings" style="display:none">
+<div class="section" id="formSection">
 
-    <div class="section-title">
-      <h2>সেটিংস</h2>
-    </div>
+<div class="section-title">
+<h2>নতুন হিসাব</h2>
+</div>
 
-    <div class="settings">
+<div class="form-grid">
 
-      <button class="setting-btn" onclick="toggleDark()">
-        🌙 Dark Mode চালু / বন্ধ
-      </button>
+<div class="field">
+<label>তারিখ</label>
+<input type="date" id="date">
+</div>
 
-      <button class="setting-btn" onclick="downloadJSON()">
-        💾 সম্পূর্ণ Backup Download
-      </button>
+<div class="field">
+<label>সময়</label>
+<input type="time" id="time">
+</div>
 
-      <button class="setting-btn" onclick="downloadCSV()">
-        📊 হিসাব CSV Download
-      </button>
+<div class="field">
+<label>ধরন</label>
+<select id="type">
+<option value="income">আয়</option>
+<option value="expense">ব্যয়</option>
+</select>
+</div>
 
-      <button class="setting-btn" onclick="clearAll()">
-        🗑️ সব হিসাব মুছে ফেলুন
-      </button>
+<div class="field">
+<label>পরিমাণ</label>
+<input type="number" id="amount" placeholder="যেমন 5000">
+</div>
 
-    </div>
+<div class="field">
+<label>ক্যাটাগরি</label>
+<select id="category">
+<option>Salary</option>
+<option>Business</option>
+<option>Gift</option>
+<option>Food</option>
+<option>Transport</option>
+<option>Shopping</option>
+<option>Bill</option>
+<option>Bank</option>
+<option>Other</option>
+</select>
+</div>
 
-  </section>
+<div class="field">
+<label>পেমেন্ট মাধ্যম</label>
+<select id="payment">
+<option>Cash</option>
+<option>bKash</option>
+<option>Nagad</option>
+<option>mCash</option>
+<option>Bank Transfer</option>
+<option>Card Transfer</option>
+<option>বাংলা QR</option>
+</select>
+</div>
+
+<div class="field">
+<label>ব্যক্তি / উৎস</label>
+<input id="person" placeholder="ঐচ্ছিক">
+</div>
+
+<div class="field">
+<label>রেফারেন্স / Transaction ID</label>
+<input id="reference" placeholder="ঐচ্ছিক">
+</div>
+
+<div class="field full">
+<label>বিবরণ</label>
+<textarea id="note" placeholder="লেনদেনের বিস্তারিত লিখুন"></textarea>
+</div>
+
+<div class="full form-actions">
+<button class="primary" onclick="addTransaction()">
+হিসাব সংরক্ষণ করুন
+</button>
+
+<button class="secondary" onclick="clearForm()">
+পরিষ্কার
+</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- TRANSACTIONS -->
+
+<div class="section">
+
+<div class="section-title">
+
+<h2>সাম্প্রতিক হিসাব</h2>
+
+<button onclick="showAllTransactions()">
+সব দেখুন →
+</button>
+
+</div>
+
+<div id="transactions"></div>
+
+</div>
+
+
+<!-- STATEMENT DOWNLOAD -->
+
+<div class="section">
+
+<div class="section-title">
+<h2>Statement</h2>
+</div>
+
+<p style="color:#7b8494;font-size:13px;margin-bottom:15px;">
+আপনার সংরক্ষিত হিসাব থেকে Statement তৈরি করে ডাউনলোড করতে পারবেন।
+</p>
+
+<div class="download-grid">
+
+<button class="download-btn" onclick="downloadStatement()">
+📄 Statement Download
+</button>
+
+<button class="download-btn green" onclick="downloadCSV()">
+📊 CSV Download
+</button>
+
+<button class="download-btn dark" onclick="printStatement()">
+🖨️ Print / Save PDF
+</button>
+
+<button class="download-btn" onclick="shareStatement()">
+↗️ Share Statement
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PAYMENT SYSTEM -->
+
+<div class="section">
+
+<div class="section-title">
+<h2>Payment Methods</h2>
+</div>
+
+<div class="download-grid">
+
+<button class="download-btn" onclick="paymentInfo('bKash')">
+🟣 bKash
+</button>
+
+<button class="download-btn" onclick="paymentInfo('Nagad')">
+🟠 Nagad
+</button>
+
+<button class="download-btn" onclick="paymentInfo('mCash')">
+🟢 mCash
+</button>
+
+<button class="download-btn" onclick="paymentInfo('Bank Transfer')">
+🏦 Bank Transfer
+</button>
+
+<button class="download-btn" onclick="paymentInfo('Card Transfer')">
+💳 Card Transfer
+</button>
+
+<button class="download-btn" onclick="paymentInfo('বাংলা QR')">
+▣ বাংলা QR
+</button>
+
+</div>
+
+</div>
 
 </main>
 
 
-<button class="fab" onclick="openTransaction()">＋</button>
+<button class="fab" onclick="scrollToForm()">＋</button>
 
-
-<!-- BOTTOM NAV -->
-
-<div class="bottom-nav">
-
-  <button class="active" onclick="showPage('home',this)">
-    <span>⌂</span>
-    হোম
-  </button>
-
-  <button onclick="showPage('transactions',this)">
-    <span>☷</span>
-    লেনদেন
-  </button>
-
-  <button onclick="openTransaction()">
-    <span>＋</span>
-    হিসাব
-  </button>
-
-  <button onclick="showPage('payment',this)">
-    <span>◉</span>
-    পেমেন্ট
-  </button>
-
-  <button onclick="showPage('settings',this)">
-    <span>⚙</span>
-    আরও
-  </button>
-
-</div>
-
-
-<!-- TRANSACTION MODAL -->
-
-<div class="modal" id="transactionModal">
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-      <h2>নতুন হিসাব</h2>
-      <button class="close" onclick="closeTransaction()">×</button>
-    </div>
-
-    <div class="grid">
-
-      <div>
-        <label>তারিখ</label>
-        <input type="date" id="txDate">
-      </div>
-
-      <div>
-        <label>সময়</label>
-        <input type="time" id="txTime">
-      </div>
-
-      <div>
-        <label>ধরন</label>
-        <select id="txType">
-          <option value="income">আয়</option>
-          <option value="expense">ব্যয়</option>
-          <option value="receive">পাওনা</option>
-          <option value="give">দেনা</option>
-        </select>
-      </div>
-
-      <div>
-        <label>পরিমাণ</label>
-        <input type="number" id="txAmount" placeholder="৳ 0">
-      </div>
-
-      <div>
-        <label>ব্যক্তি / উৎস</label>
-        <input id="txPerson" placeholder="যেমন: Salary">
-      </div>
-
-      <div>
-        <label>ক্যাটাগরি</label>
-        <select id="txCategory">
-          <option>Salary</option>
-          <option>Food</option>
-          <option>Gift</option>
-          <option>Shopping</option>
-          <option>Transport</option>
-          <option>Bank</option>
-          <option>bKash</option>
-          <option>Nagad</option>
-          <option>mCash</option>
-          <option>Other</option>
-        </select>
-      </div>
-
-      <div class="full">
-        <label>বিবরণ</label>
-        <textarea id="txNote" placeholder="বিস্তারিত লিখুন"></textarea>
-      </div>
-
-    </div>
-
-    <button class="primary" onclick="saveTransaction()">
-      হিসাব সংরক্ষণ করুন
-    </button>
-
-  </div>
-
-</div>
+<div class="toast" id="toast"></div>
 
 
 <script>
@@ -953,538 +829,959 @@ body.dark .notice{
 ========================= */
 
 let transactions =
-  JSON.parse(localStorage.getItem("hussainLedger")) || [];
-
-let selectedPayment = "bKash";
-let currentPeriod = "month";
+JSON.parse(localStorage.getItem("hussainLedger") || "[]");
 
 
 /* =========================
-   BANGLA NUMBERS
+   BANGLA NUMBER
 ========================= */
 
-function bnNum(value){
+function bnNumber(number){
 
-  const map = {
-    "0":"০","1":"১","2":"২","3":"৩","4":"৪",
-    "5":"৫","6":"৬","7":"৭","8":"৮","9":"৯"
-  };
+    const map = {
+        "0":"০",
+        "1":"১",
+        "2":"২",
+        "3":"৩",
+        "4":"৪",
+        "5":"৫",
+        "6":"৬",
+        "7":"৭",
+        "8":"৮",
+        "9":"৯"
+    };
 
-  return String(value)
-    .replace(/[0-9]/g,n=>map[n]);
+    return String(number)
+    .replace(/[0-9]/g,
+    x => map[x]);
+
+}
+
+
+function money(number){
+
+    return "৳" +
+    bnNumber(
+        Number(number || 0)
+        .toLocaleString("en-IN")
+    );
 
 }
 
 
 /* =========================
-   CURRENCY
+   CLOCK
 ========================= */
 
-function money(value){
+function updateClock(){
 
-  return "৳" + bnNum(
-    Number(value || 0).toLocaleString("en-IN")
-  );
+    const now = new Date();
+
+    let h = now.getHours();
+
+    const ampm = h >= 12 ? "PM" : "AM";
+
+    h = h % 12 || 12;
+
+    const time =
+    String(h).padStart(2,"0") +
+    ":" +
+    String(now.getMinutes()).padStart(2,"0") +
+    ":" +
+    String(now.getSeconds()).padStart(2,"0") +
+    " " + ampm;
+
+    document.getElementById("clock").textContent =
+    time;
 
 }
+
+setInterval(updateClock,1000);
+updateClock();
 
 
 /* =========================
    DATE
 ========================= */
 
-const bnDays=[
-  "রবিবার","সোমবার","মঙ্গলবার","বুধবার",
-  "বৃহস্পতিবার","শুক্রবার","শনিবার"
+const weekDays = [
+"রবিবার",
+"সোমবার",
+"মঙ্গলবার",
+"বুধবার",
+"বৃহস্পতিবার",
+"শুক্রবার",
+"শনিবার"
 ];
 
-const bnMonths=[
-  "জানুয়ারি","ফেব্রুয়ারি","মার্চ","এপ্রিল",
-  "মে","জুন","জুলাই","আগস্ট",
-  "সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর"
-];
+function updateDates(){
 
-const bnBengaliMonths=[
-  "বৈশাখ","জ্যৈষ্ঠ","আষাঢ়","শ্রাবণ",
-  "ভাদ্র","আশ্বিন","কার্তিক","অগ্রহায়ণ",
-  "পৌষ","মাঘ","ফাল্গুন","চৈত্র"
-];
+    const d = new Date();
 
-function updateClock(){
+    document.getElementById("weekDay")
+    .textContent = weekDays[d.getDay()];
 
-  const now=new Date();
 
-  let time=now.toLocaleTimeString("en-US",{
-    hour:"numeric",
-    minute:"2-digit",
-    second:"2-digit"
-  });
-
-  document.getElementById("time").textContent=time;
-
-  let eng=now.toLocaleDateString("en-US",{
-    weekday:"long",
-    day:"numeric",
-    month:"long",
-    year:"numeric"
-  });
-
-  document.getElementById("englishDate").textContent=eng;
-
-  document.getElementById("banglaDate").textContent=
-    bnDays[now.getDay()]+" • "+
-    bnNum(now.getDate())+" "+
-    bnMonths[now.getMonth()]+" "+
-    bnNum(now.getFullYear());
-
-  let hijri="";
-
-  try{
-
-    hijri=new Intl.DateTimeFormat(
-      "bn-u-ca-islamic",
-      {
-        day:"numeric",
-        month:"long",
-        year:"numeric"
-      }
-    ).format(now);
-
-  }catch(e){
-
-    hijri="হিজরি তারিখ";
-
-  }
-
-  document.getElementById("hijriDate").textContent=
-    hijri;
-
-}
-
-
-/* =========================
-   BENGALI CALENDAR
-========================= */
-
-function getBanglaDate(date){
-
-  let year=date.getFullYear();
-
-  let start=new Date(year,3,14);
-
-  if(date<start){
-
-    year--;
-
-    start=new Date(year,3,14);
-
-  }
-
-  let diff=Math.floor(
-    (date-start)/(1000*60*60*24)
-  );
-
-  let monthLengths=[
-    31,31,31,31,31,30,
-    30,30,30,30,30,30
-  ];
-
-  let month=0;
-
-  while(diff>=monthLengths[month] &&
-        month<11){
-
-    diff-=monthLengths[month];
-
-    month++;
-
-  }
-
-  return (
-    bnNum(diff+1)+" "+
-    bnBengaliMonths[month]+" "+
-    bnNum(year+593)
-  );
-
-}
-
-
-/* =========================
-   PAGE NAVIGATION
-========================= */
-
-function showPage(id,button){
-
-  document.querySelectorAll("main section")
-    .forEach(x=>x.style.display="none");
-
-  document.getElementById(id)
-    .style.display="block";
-
-  document.querySelectorAll(
-    ".nav button,.bottom-nav button"
-  ).forEach(x=>x.classList.remove("active"));
-
-  if(button)
-    button.classList.add("active");
-
-  render();
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-/* =========================
-   PERIOD
-========================= */
-
-function setPeriod(period,button){
-
-  currentPeriod=period;
-
-  document.querySelectorAll(".tabs button")
-    .forEach(x=>x.classList.remove("active"));
-
-  button.classList.add("active");
-
-  render();
-
-}
-
-
-/* =========================
-   FILTER
-========================= */
-
-function getFiltered(){
-
-  const now=new Date();
-
-  return transactions.filter(t=>{
-
-    const d=new Date(t.date+"T"+(t.time||"00:00"));
-
-    if(currentPeriod==="today"){
-
-      return d.toDateString()===now.toDateString();
-
-    }
-
-    if(currentPeriod==="month"){
-
-      return d.getMonth()===now.getMonth()
-        && d.getFullYear()===now.getFullYear();
-
-    }
-
-    return true;
-
-  });
-
-}
-
-
-/* =========================
-   RENDER DASHBOARD
-========================= */
-
-function render(){
-
-  let data=getFiltered();
-
-  let income=data
-    .filter(x=>x.type==="income")
-    .reduce((a,b)=>a+Number(b.amount),0);
-
-  let expense=data
-    .filter(x=>x.type==="expense")
-    .reduce((a,b)=>a+Number(b.amount),0);
-
-  let receive=data
-    .filter(x=>x.type==="receive")
-    .reduce((a,b)=>a+Number(b.amount),0);
-
-  let give=data
-    .filter(x=>x.type==="give")
-    .reduce((a,b)=>a+Number(b.amount),0);
-
-  document.getElementById("balance")
-    .textContent=money(income-expense);
-
-  document.getElementById("income")
-    .textContent=money(income);
-
-  document.getElementById("expense")
-    .textContent=money(expense);
-
-  document.getElementById("receive")
-    .textContent=money(receive);
-
-  document.getElementById("give")
-    .textContent=money(give);
-
-  document.getElementById("smallIncome")
-    .textContent=money(income);
-
-  document.getElementById("smallExpense")
-    .textContent=money(expense);
-
-  renderRecent(data);
-
-  renderAll();
-
-}
-
-
-/* =========================
-   RECENT
-========================= */
-
-function renderRecent(data){
-
-  const box=document.getElementById("recent");
-
-  if(!data.length){
-
-    box.innerHTML=
-      `<div class="empty">
-        এখনো কোনো হিসাব যোগ করা হয়নি।
-      </div>`;
-
-    return;
-
-  }
-
-  let latest=[...data]
-    .sort((a,b)=>
-      new Date(b.date+"T"+b.time) -
-      new Date(a.date+"T"+a.time)
-    )
-    .slice(0,5);
-
-  box.innerHTML=
-    latest.map(transactionHTML).join("");
-
-}
-
-
-/* =========================
-   ALL TRANSACTIONS
-========================= */
-
-function renderAll(){
-
-  const box=document.getElementById(
-    "allTransactions"
-  );
-
-  let data=[...transactions];
-
-  let month=
-    document.getElementById("filterMonth")?.value;
-
-  let type=
-    document.getElementById("filterType")?.value;
-
-  if(month && month!=="all"){
-
-    data=data.filter(t=>
-      new Date(t.date).getMonth()===
-      Number(month)
+    const en =
+    d.toLocaleDateString(
+        "en-GB",
+        {
+            day:"2-digit",
+            month:"long",
+            year:"numeric"
+        }
     );
 
-  }
+    document.getElementById("englishDate")
+    .textContent = en;
 
-  if(type && type!=="all"){
 
-    data=data.filter(t=>t.type===type);
+    try{
 
-  }
+        const bn =
+        new Intl.DateTimeFormat(
+            "bn-BD-u-ca-beng",
+            {
+                day:"numeric",
+                month:"long",
+                year:"numeric"
+            }
+        ).format(d);
 
-  data.sort((a,b)=>
-    new Date(b.date+"T"+b.time) -
-    new Date(a.date+"T"+a.time)
-  );
+        document.getElementById("bnDate")
+        .textContent = bn;
 
-  if(!data.length){
+        document.getElementById("banglaDate")
+        .textContent = bn;
 
-    box.innerHTML=
-      `<div class="empty">
-        কোনো লেনদেন পাওয়া যায়নি।
-      </div>`;
+    }catch(e){
 
-    return;
+        document.getElementById("bnDate")
+        .textContent = "বাংলা তারিখ";
 
-  }
+    }
 
-  box.innerHTML=
-    data.map(transactionHTML).join("");
+
+    try{
+
+        const hijri =
+        new Intl.DateTimeFormat(
+            "bn-BD-u-ca-islamic",
+            {
+                day:"numeric",
+                month:"long",
+                year:"numeric"
+            }
+        ).format(d);
+
+        document.getElementById("arDate")
+        .textContent = hijri;
+
+        document.getElementById("hijriDate")
+        .textContent = hijri;
+
+    }catch(e){
+
+        document.getElementById("arDate")
+        .textContent = "হিজরি তারিখ";
+
+    }
 
 }
+
+updateDates();
 
 
 /* =========================
-   TRANSACTION HTML
+   DEFAULT DATE & TIME
 ========================= */
 
-function transactionHTML(t){
+function setDefaultDateTime(){
 
-  let isPlus=t.type==="income";
+    const now = new Date();
 
-  let typeName={
-    income:"আয়",
-    expense:"ব্যয়",
-    receive:"পাওনা",
-    give:"দেনা"
-  }[t.type];
+    const date =
+    now.getFullYear() + "-" +
+    String(now.getMonth()+1).padStart(2,"0") + "-" +
+    String(now.getDate()).padStart(2,"0");
 
-  let icon={
-    income:"＋",
-    expense:"−",
-    receive:"↙",
-    give:"↗"
-  }[t.type];
+    const time =
+    String(now.getHours()).padStart(2,"0") +
+    ":" +
+    String(now.getMinutes()).padStart(2,"0");
 
-  let date=new Date(t.date);
-
-  let dateText=
-    bnNum(date.getDate())+
-    " "+bnMonths[date.getMonth()]+
-    " "+bnNum(date.getFullYear());
-
-  return `
-    <div class="transaction">
-
-      <div class="tx-icon">
-        ${icon}
-      </div>
-
-      <div class="tx-info">
-
-        <div class="tx-title">
-          ${escapeHTML(t.person || typeName)}
-        </div>
-
-        <div class="tx-meta">
-          ${dateText}
-          • ${t.time || ""}
-          • ${typeName}
-          • ${escapeHTML(t.category || "")}
-        </div>
-
-        ${
-          t.note
-          ? `<div class="tx-meta">
-               ${escapeHTML(t.note)}
-             </div>`
-          :""
-        }
-
-      </div>
-
-      <div class="tx-amount ${
-        isPlus ? "plus":"minus"
-      }">
-
-        ${isPlus ? "+":"-"}${money(t.amount)}
-
-      </div>
-
-    </div>
-  `;
+    document.getElementById("date").value = date;
+    document.getElementById("time").value = time;
 
 }
+
+setDefaultDateTime();
 
 
 /* =========================
    ADD TRANSACTION
 ========================= */
 
-function openTransaction(){
+function addTransaction(){
 
-  document.getElementById(
-    "transactionModal"
-  ).classList.add("show");
+    const date =
+    document.getElementById("date").value;
 
-  const now=new Date();
+    const time =
+    document.getElementById("time").value;
 
-  document.getElementById("txDate")
-    .value=now.toISOString().slice(0,10);
+    const type =
+    document.getElementById("type").value;
 
-  document.getElementById("txTime")
-    .value=now.toTimeString().slice(0,5);
+    const amount =
+    Number(document.getElementById("amount").value);
+
+    const category =
+    document.getElementById("category").value;
+
+    const payment =
+    document.getElementById("payment").value;
+
+    const person =
+    document.getElementById("person").value;
+
+    const reference =
+    document.getElementById("reference").value;
+
+    const note =
+    document.getElementById("note").value;
+
+
+    if(!date || !amount || amount <= 0){
+
+        showToast("তারিখ ও সঠিক পরিমাণ দিন");
+
+        return;
+    }
+
+
+    const transaction = {
+
+        id:Date.now(),
+
+        date,
+
+        time,
+
+        type,
+
+        amount,
+
+        category,
+
+        payment,
+
+        person,
+
+        reference,
+
+        note
+
+    };
+
+
+    transactions.unshift(transaction);
+
+
+    localStorage.setItem(
+        "hussainLedger",
+        JSON.stringify(transactions)
+    );
+
+
+    clearForm();
+
+    render();
+
+    showToast("হিসাব সফলভাবে সংরক্ষণ হয়েছে");
 
 }
 
 
-function closeTransaction(){
+/* =========================
+   CLEAR
+========================= */
 
-  document.getElementById(
-    "transactionModal"
-  ).classList.remove("show");
+function clearForm(){
+
+    document.getElementById("amount").value="";
+    document.getElementById("person").value="";
+    document.getElementById("reference").value="";
+    document.getElementById("note").value="";
+
+    setDefaultDateTime();
 
 }
 
 
-function saveTransaction(){
+/* =========================
+   DELETE
+========================= */
 
-  let amount=Number(
-    document.getElementById("txAmount").value
-  );
+function deleteTransaction(id){
 
-  if(!amount || amount<=0){
+    if(!confirm("এই হিসাবটি মুছে ফেলবেন?")) return;
 
-    alert("সঠিক পরিমাণ লিখুন।");
-    return;
+    transactions =
+    transactions.filter(x => x.id !== id);
 
-  }
+    localStorage.setItem(
+        "hussainLedger",
+        JSON.stringify(transactions)
+    );
 
-  let tx={
+    render();
 
-    id:Date.now(),
+    showToast("হিসাব মুছে ফেলা হয়েছে");
 
-    date:
-      document.getElementById("txDate").value,
+}
 
-    time:
-      document.getElementById("txTime").value,
 
-    type:
-      document.getElementById("txType").value,
+/* =========================
+   RENDER
+========================= */
 
-    amount:amount,
+function render(){
 
-    person:
-      document.getElementById("txPerson").value,
+    let income = 0;
+    let expense = 0;
 
-    category:
-      document.getElementById("txCategory").value,
+    transactions.forEach(t => {
 
-    note:
-      document.getElementById("txNote").value
+        if(t.type === "income")
+            income += Number(t.amount);
 
-  };
+        else
+            expense += Number(t.amount);
 
-  transactions.push(tx);
+    });
 
-  localStorage.setItem(
-    "hussainLedger",
-    JSON.stringify(transactions)
-  );
 
-  closeTransaction();
+    const balance = income - expense;
 
-  document.getElementById("txAmount").value="";
-  document.getElementById("txPerson").value="";
-  document.getElementById("txNote").value="";
 
-  render();
+    document.getElementById("balance")
+    .textContent = money(balance);
 
-  alert("হিসাব সফলভাবে সংরক্ষণ হয়েছে।");
+    document.getElementById("balanceIncome")
+    .textContent = money(income);
+
+    document.getElementById("balanceExpense")
+    .textContent = money(expense);
+
+    document.getElementById("totalIncome")
+    .textContent = money(income);
+
+    document.getElementById("totalExpense")
+    .textContent = money(expense);
+
+
+    const box =
+    document.getElementById("transactions");
+
+
+    if(transactions.length === 0){
+
+        box.innerHTML =
+        `<div class="empty">
+        এখনো কোনো লেনদেন যোগ করা হয়নি।
+        </div>`;
+
+        return;
+    }
+
+
+    box.innerHTML =
+    transactions
+    .slice(0,10)
+    .map(t => {
+
+        const sign =
+        t.type === "income" ? "+" : "-";
+
+        const cls =
+        t.type === "income" ? "in" : "out";
+
+        const icon =
+        t.type === "income" ? "＋" : "−";
+
+
+        return `
+
+        <div class="transaction">
+
+            <div class="transaction-left">
+
+                <div class="icon ${cls}">
+                    ${icon}
+                </div>
+
+                <div>
+
+                    <div class="transaction-name">
+                        ${escapeHTML(t.category)}
+                    </div>
+
+                    <div class="transaction-meta">
+
+                        ${escapeHTML(t.date)}
+                        •
+                        ${escapeHTML(t.time || "")}
+                        •
+                        ${escapeHTML(t.payment)}
+
+                        ${t.person ?
+                        " • " + escapeHTML(t.person)
+                        : ""}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="transaction-amount ${cls}">
+
+                ${sign}${money(t.amount)}
+
+                <br>
+
+                <button
+                class="delete-btn"
+                onclick="deleteTransaction(${t.id})">
+
+                মুছুন
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    }).join("");
+
+}
+
+
+render();
+
+
+/* =========================
+   ALL TRANSACTIONS
+========================= */
+
+function showAllTransactions(){
+
+    if(transactions.length === 0){
+
+        showToast("কোনো লেনদেন নেই");
+
+        return;
+    }
+
+    document.getElementById("transactions")
+    .innerHTML = transactions.map(t => {
+
+        const cls =
+        t.type === "income" ? "in" : "out";
+
+        const sign =
+        t.type === "income" ? "+" : "-";
+
+
+        return `
+
+        <div class="transaction">
+
+        <div class="transaction-left">
+
+        <div class="icon ${cls}">
+        ${t.type === "income" ? "＋" : "−"}
+        </div>
+
+        <div>
+
+        <div class="transaction-name">
+        ${escapeHTML(t.category)}
+        </div>
+
+        <div class="transaction-meta">
+
+        ${escapeHTML(t.date)}
+        • ${escapeHTML(t.time || "")}
+        • ${escapeHTML(t.payment)}
+
+        ${t.person ?
+        " • " + escapeHTML(t.person)
+        : ""}
+
+        ${t.note ?
+        " • " + escapeHTML(t.note)
+        : ""}
+
+        </div>
+
+        </div>
+
+        </div>
+
+        <div class="transaction-amount ${cls}">
+
+        ${sign}${money(t.amount)}
+
+        <br>
+
+        <button
+        class="delete-btn"
+        onclick="deleteTransaction(${t.id})">
+
+        মুছুন
+
+        </button>
+
+        </div>
+
+        </div>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* =========================
+   STATEMENT HTML
+========================= */
+
+function statementHTML(){
+
+    let income = 0;
+    let expense = 0;
+
+    transactions.forEach(t => {
+
+        if(t.type === "income")
+            income += Number(t.amount);
+        else
+            expense += Number(t.amount);
+
+    });
+
+
+    const balance = income - expense;
+
+
+    let rows = transactions.map((t,i)=>{
+
+        return `
+
+        <tr>
+
+        <td>${i+1}</td>
+
+        <td>${escapeHTML(t.date)}</td>
+
+        <td>${escapeHTML(t.time || "")}</td>
+
+        <td>${t.type === "income" ? "আয়" : "ব্যয়"}</td>
+
+        <td>${escapeHTML(t.category)}</td>
+
+        <td>${escapeHTML(t.payment)}</td>
+
+        <td>${escapeHTML(t.person || "")}</td>
+
+        <td>${money(t.amount)}</td>
+
+        <td>${escapeHTML(t.note || "")}</td>
+
+        </tr>
+
+        `;
+
+    }).join("");
+
+
+    return `
+
+<!DOCTYPE html>
+
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>HUSSAIN Statement</title>
+
+<style>
+
+body{
+font-family:Arial,"Noto Sans Bengali",sans-serif;
+padding:25px;
+color:#182235;
+}
+
+h1{
+margin-bottom:5px;
+}
+
+.subtitle{
+color:#777;
+margin-bottom:25px;
+}
+
+.summary{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-bottom:25px;
+}
+
+.card{
+border:1px solid #ddd;
+padding:15px;
+border-radius:12px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+font-size:12px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:8px;
+text-align:left;
+}
+
+th{
+background:#eef3f9;
+}
+
+.income{
+color:#159447;
+}
+
+.expense{
+color:#dc4437;
+}
+
+@media print{
+
+body{
+padding:0;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>HUSSAIN</h1>
+
+<div class="subtitle">
+Personal Ledger • Statement
+</div>
+
+<div class="summary">
+
+<div class="card">
+মোট আয়<br>
+<strong class="income">${money(income)}</strong>
+</div>
+
+<div class="card">
+মোট ব্যয়<br>
+<strong class="expense">${money(expense)}</strong>
+</div>
+
+<div class="card">
+বর্তমান ব্যালেন্স<br>
+<strong>${money(balance)}</strong>
+</div>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>#</th>
+<th>Date</th>
+<th>Time</th>
+<th>ধরন</th>
+<th>Category</th>
+<th>Payment</th>
+<th>Person</th>
+<th>Amount</th>
+<th>Note</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${rows}
+
+</tbody>
+
+</table>
+
+<br>
+
+<p>
+Generated: ${new Date().toLocaleString()}
+</p>
+
+</body>
+
+</html>
+
+`;
+
+}
+
+
+/* =========================
+   DOWNLOAD STATEMENT
+========================= */
+
+function downloadStatement(){
+
+    if(transactions.length === 0){
+
+        showToast("Statement তৈরি করার মতো কোনো হিসাব নেই");
+
+        return;
+    }
+
+
+    const html =
+    statementHTML();
+
+
+    const blob =
+    new Blob(
+        [html],
+        {type:"text/html;charset=utf-8"}
+    );
+
+
+    const url =
+    URL.createObjectURL(blob);
+
+
+    const a =
+    document.createElement("a");
+
+    a.href = url;
+
+    a.download =
+    "HUSSAIN-Statement.html";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+
+    showToast("Statement Download হয়েছে");
+
+}
+
+
+/* =========================
+   CSV DOWNLOAD
+========================= */
+
+function downloadCSV(){
+
+    if(transactions.length === 0){
+
+        showToast("কোনো হিসাব নেই");
+
+        return;
+    }
+
+
+    let csv =
+    "Date,Time,Type,Category,Payment,Person,Reference,Amount,Note\n";
+
+
+    transactions.forEach(t => {
+
+        csv += [
+
+            t.date,
+            t.time,
+            t.type,
+            t.category,
+            t.payment,
+            t.person,
+            t.reference,
+            t.amount,
+            t.note
+
+        ].map(csvEscape).join(",") + "\n";
+
+    });
+
+
+    const blob =
+    new Blob(
+        ["\ufeff" + csv],
+        {type:"text/csv;charset=utf-8"}
+    );
+
+
+    const url =
+    URL.createObjectURL(blob);
+
+
+    const a =
+    document.createElement("a");
+
+    a.href = url;
+
+    a.download =
+    "HUSSAIN-Ledger.csv";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+
+    showToast("CSV Download হয়েছে");
+
+}
+
+
+function csvEscape(value){
+
+    value = String(value ?? "");
+
+    return '"' +
+    value.replace(/"/g,'""') +
+    '"';
+
+}
+
+
+/* =========================
+   PRINT / PDF
+========================= */
+
+function printStatement(){
+
+    if(transactions.length === 0){
+
+        showToast("কোনো হিসাব নেই");
+
+        return;
+    }
+
+
+    const win =
+    window.open("","_blank");
+
+
+    win.document.write(
+        statementHTML()
+    );
+
+    win.document.close();
+
+
+    setTimeout(()=>{
+
+        win.print();
+
+    },500);
+
+}
+
+
+/* =========================
+   SHARE
+========================= */
+
+async function shareStatement(){
+
+    if(transactions.length === 0){
+
+        showToast("কোনো হিসাব নেই");
+
+        return;
+    }
+
+
+    const blob =
+    new Blob(
+        [statementHTML()],
+        {type:"text/html"}
+    );
+
+
+    const file =
+    new File(
+        [blob],
+        "HUSSAIN-Statement.html",
+        {type:"text/html"}
+    );
+
+
+    if(
+        navigator.share &&
+        navigator.canShare &&
+        navigator.canShare({files:[file]})
+    ){
+
+        try{
+
+            await navigator.share({
+
+                title:"HUSSAIN Statement",
+
+                text:"আমার হিসাবের Statement",
+
+                files:[file]
+
+            });
+
+        }catch(e){}
+
+    }else{
+
+        downloadStatement();
+
+    }
 
 }
 
@@ -1493,372 +1790,54 @@ function saveTransaction(){
    PAYMENT
 ========================= */
 
-const paymentData={
+function paymentInfo(method){
 
-  bKash:{
-    title:"bKash",
-    number:"01XXXXXXXXX",
-    text:"এই নম্বরে Send Money / Merchant Payment করুন।"
-  },
-
-  Nagad:{
-    title:"নগদ",
-    number:"01XXXXXXXXX",
-    text:"এই নম্বরে পেমেন্ট করুন।"
-  },
-
-  mCash:{
-    title:"mCash",
-    number:"01XXXXXXXXX",
-    text:"এই নম্বরে পেমেন্ট করুন।"
-  },
-
-  Bank:{
-    title:"Bank Transfer",
-    number:"Account: 0000000000",
-    text:"Bank: Your Bank | Branch: Your Branch"
-  },
-
-  Card:{
-    title:"Card Payment",
-    number:"",
-    text:"কার্ড পেমেন্টের জন্য Payment Gateway প্রয়োজন।"
-  },
-
-  QR:{
-    title:"বাংলা QR",
-    number:"01XXXXXXXXX",
-    text:"QR স্ক্যান করে পেমেন্ট করুন।"
-  }
-
-};
-
-
-function selectPayment(method,button){
-
-  selectedPayment=method;
-
-  document.querySelectorAll(
-    ".payment-method"
-  ).forEach(x=>x.classList.remove("active"));
-
-  button.classList.add("active");
-
-  renderPaymentInfo();
+    showToast(
+        method +
+        " Payment System নির্বাচিত হয়েছে"
+    );
 
 }
 
 
-function renderPaymentInfo(){
+/* =========================
+   UTILITIES
+========================= */
 
-  let d=paymentData[selectedPayment];
+function scrollToForm(){
 
-  let html=`
-    <div class="pay-info">
-
-      <strong>${d.title}</strong>
-
-      <p>${d.text}</p>
-  `;
-
-  if(d.number){
-
-    html+=`
-      <div class="pay-number">
-        ${d.number}
-      </div>
-
-      <button class="copy"
-        onclick="copyText('${d.number}')">
-        নম্বর কপি করুন
-      </button>
-    `;
-
-  }
-
-  if(selectedPayment==="QR"){
-
-    let amount=
-      document.getElementById("payAmount").value
-      || "0";
-
-    let qrText=
-      "HUSSAIN PAYMENT | Amount: "+
-      amount+
-      " | Account: "+
-      d.number;
-
-    let qrURL=
-      "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+
-      encodeURIComponent(qrText);
-
-    html+=`
-      <img
-        class="qr"
-        src="${qrURL}"
-        alt="বাংলা QR">
-    `;
-
-  }
-
-  if(selectedPayment==="Card"){
-
-    html+=`
-      <div class="notice">
-        নিরাপত্তার কারণে এই HTML আপনার
-        Card Number, CVV বা PIN সংরক্ষণ করে না।
-        বাস্তব Card Payment-এর জন্য
-        Payment Gateway যুক্ত করতে হবে।
-      </div>
-    `;
-
-  }
-
-  html+=`</div>`;
-
-  document.getElementById(
-    "paymentInfo"
-  ).innerHTML=html;
-
-}
-
-
-function copyText(text){
-
-  navigator.clipboard.writeText(text)
-    .then(()=>{
-      alert("কপি হয়েছে: "+text);
-    })
-    .catch(()=>{
-      alert(text);
+    document
+    .getElementById("formSection")
+    .scrollIntoView({
+        behavior:"smooth"
     });
 
 }
 
 
-function processPayment(){
+function showToast(message){
 
-  let amount=Number(
-    document.getElementById("payAmount").value
-  );
+    const toast =
+    document.getElementById("toast");
 
-  let name=
-    document.getElementById("payerName").value
-    || "Payment";
+    toast.textContent =
+    message;
 
-  let bill=
-    document.getElementById("billNo").value
-    || "No Reference";
+    toast.classList.add("show");
 
-  if(!amount || amount<=0){
 
-    alert("পেমেন্টের পরিমাণ লিখুন।");
-    return;
+    setTimeout(()=>{
 
-  }
+        toast.classList.remove("show");
 
-  /*
-    এখানে বাস্তব Payment Gateway নেই।
-    তাই পেমেন্টকে Pending হিসেবে Ledger-এ রাখা হচ্ছে।
-  */
-
-  let tx={
-
-    id:Date.now(),
-
-    date:new Date().toISOString().slice(0,10),
-
-    time:new Date().toTimeString().slice(0,5),
-
-    type:"income",
-
-    amount:amount,
-
-    person:name,
-
-    category:selectedPayment,
-
-    note:
-      "Payment • "+bill+" • Pending"
-
-  };
-
-  transactions.push(tx);
-
-  localStorage.setItem(
-    "hussainLedger",
-    JSON.stringify(transactions)
-  );
-
-  alert(
-    "Payment Request তৈরি হয়েছে।\n\n"+
-    "Method: "+selectedPayment+
-    "\nAmount: "+money(amount)+
-    "\nReference: "+bill+
-    "\n\nবাস্তব টাকা গ্রহণ নিশ্চিত করতে Payment Gateway/API প্রয়োজন।"
-  );
-
-  render();
+    },2500);
 
 }
 
 
-/* =========================
-   DOWNLOAD JSON
-========================= */
+function escapeHTML(value){
 
-function downloadJSON(){
-
-  let data=JSON.stringify(
-    transactions,
-    null,
-    2
-  );
-
-  let blob=new Blob(
-    [data],
-    {type:"application/json"}
-  );
-
-  downloadBlob(
-    blob,
-    "HUSSAIN-Ledger-Backup.json"
-  );
-
-}
-
-
-/* =========================
-   DOWNLOAD CSV
-========================= */
-
-function downloadCSV(){
-
-  let rows=[
-
-    [
-      "Date",
-      "Time",
-      "Type",
-      "Amount",
-      "Person",
-      "Category",
-      "Description"
-    ]
-
-  ];
-
-  transactions.forEach(t=>{
-
-    rows.push([
-
-      t.date,
-      t.time,
-      t.type,
-      t.amount,
-      t.person,
-      t.category,
-      t.note
-
-    ]);
-
-  });
-
-  let csv=rows.map(row=>
-    row.map(x=>
-      `"${String(x||"")
-        .replace(/"/g,'""')}"`
-    ).join(",")
-  ).join("\n");
-
-  let blob=new Blob(
-    ["\ufeff"+csv],
-    {type:"text/csv;charset=utf-8"}
-  );
-
-  downloadBlob(
-    blob,
-    "HUSSAIN-Ledger.csv"
-  );
-
-}
-
-
-function downloadBlob(blob,name){
-
-  let url=URL.createObjectURL(blob);
-
-  let a=document.createElement("a");
-
-  a.href=url;
-  a.download=name;
-
-  document.body.appendChild(a);
-
-  a.click();
-
-  a.remove();
-
-  URL.revokeObjectURL(url);
-
-}
-
-
-/* =========================
-   DARK MODE
-========================= */
-
-function toggleDark(){
-
-  document.body.classList.toggle("dark");
-
-  localStorage.setItem(
-    "hussainDark",
-    document.body.classList.contains("dark")
-  );
-
-}
-
-
-/* =========================
-   CLEAR DATA
-========================= */
-
-function clearAll(){
-
-  if(!transactions.length){
-
-    alert("মুছে ফেলার মতো কোনো হিসাব নেই।");
-    return;
-
-  }
-
-  let ok=confirm(
-    "আপনি কি সত্যিই সব হিসাব মুছে ফেলতে চান?"
-  );
-
-  if(!ok)return;
-
-  transactions=[];
-
-  localStorage.removeItem(
-    "hussainLedger"
-  );
-
-  render();
-
-  alert("সব হিসাব মুছে ফেলা হয়েছে।");
-
-}
-
-
-/* =========================
-   SECURITY
-========================= */
-
-function escapeHTML(text){
-
-  return String(text||"")
+    return String(value ?? "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
@@ -1866,37 +1845,6 @@ function escapeHTML(text){
     .replace(/'/g,"&#039;");
 
 }
-
-
-/* =========================
-   INIT
-========================= */
-
-function init(){
-
-  updateClock();
-
-  setInterval(
-    updateClock,
-    1000
-  );
-
-  if(
-    localStorage.getItem("hussainDark")
-    ==="true"
-  ){
-
-    document.body.classList.add("dark");
-
-  }
-
-  renderPaymentInfo();
-
-  render();
-
-}
-
-init();
 
 </script>
 
