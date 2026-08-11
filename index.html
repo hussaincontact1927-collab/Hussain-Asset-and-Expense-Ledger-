@@ -1,39 +1,160 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HUSSAIN • Personal Ledger 2026–2046</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Noto Sans Bengali,sans-serif;background:#f4f6f8;color:#17202a}
-header{background:#111827;color:white;padding:22px 18px 26px;border-radius:0 0 24px 24px}
-.brand{display:flex;justify-content:space-between;align-items:center}.brand h1{margin:0;font-size:24px}.brand small{opacity:.7}
-.container{max-width:900px;margin:auto;padding:16px}
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:-8px}
-.card{background:white;border-radius:16px;padding:15px;box-shadow:0 3px 14px #0000000d}.label{font-size:13px;color:#667085}.value{font-size:21px;font-weight:750;margin-top:5px}
-.balance{grid-column:1/-1;background:#111827;color:white}.balance .label{color:#cbd5e1}
-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.tab{border:0;background:white;padding:11px 5px;border-radius:12px;font-weight:650;color:#475467;cursor:pointer}.tab.active{background:#111827;color:white}
-.panel{display:none}.panel.active{display:block}
-.section{background:white;border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:0 3px 14px #0000000b}
-h2{font-size:18px;margin:0 0 14px}form{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-input,select,textarea{width:100%;padding:12px;border:1px solid #d9dee5;border-radius:11px;font:inherit;background:white}textarea{min-height:80px;resize:vertical}.full{grid-column:1/-1}
-button.primary{border:0;background:#111827;color:white;padding:12px 16px;border-radius:11px;font-weight:700;cursor:pointer}
-.list{display:grid;gap:9px}.row{border:1px solid #edf0f3;border-radius:13px;padding:12px;display:flex;justify-content:space-between;gap:10px}.row strong{display:block}.meta{font-size:12px;color:#667085;margin-top:4px}.amount{font-weight:800;white-space:nowrap}.income{color:#16803c}.expense,.debt{color:#c2410c}.due{color:#2563eb}
-.actions{margin-top:7px}.actions button{border:0;background:#f1f3f5;padding:6px 9px;border-radius:8px;cursor:pointer;margin-right:4px}
-.empty{text-align:center;color:#667085;padding:22px}
-footer{text-align:center;color:#98a2b3;font-size:12px;padding:15px}
-@media(min-width:650px){.cards{grid-template-columns:repeat(5,1fr)}.balance{grid-column:auto}nav{grid-template-columns:repeat(5,1fr)}}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUSSAIN • Personal Ledger</title>
+    <style>
+        *{box-sizing:border-box} body{margin:0;font-family:sans-serif;background:#f3f4f6}
+        header{background:#111827;color:white;padding:20px;text-align:center}
+        .container{max-width:900px;margin:auto;padding:15px}
+        .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:20px}
+        .card{background:white;border-radius:12px;padding:15px;box-shadow:0 2px 4px rgba(0,0,0,0.05)}
+        .card div:first-child{font-size:12px;color:#6b7280;margin-bottom:5px}
+        .card div:last-child{font-size:18px;font-weight:bold}
+        .balance{grid-column:1/-1;background:#111827;color:white}
+        .balance div:first-child{color:#9ca3af}
+        .section{background:white;border-radius:12px;padding:15px;margin-bottom:15px;box-shadow:0 2px 4px rgba(0,0,0,0.05)}
+        h2{font-size:16px;margin:0 0 12px 0}
+        form{display:grid;gap:10px}
+        input,select,textarea{width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px}
+        button.primary{border:0;background:#111827;color:white;padding:12px;border-radius:6px;font-weight:bold;cursor:pointer}
+        .download-btn{background:#16a34a;color:white;border:none;padding:12px;border-radius:6px;font-weight:bold;width:100%;cursor:pointer}
+    </style>
+</head>
+<body>
 
-.downloads{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.download-btn{border:1px solid #d9dee5;background:#fff;padding:11px;border-radius:11px;font-weight:650;cursor:pointer}
-.filters{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.filters .full{grid-column:1/-1}
-.live-clock{font-weight:750;text-align:right;line-height:1.25}.live-clock small{display:block;font-weight:500;opacity:.75}
-.statline{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #edf0f3}.statline:last-child{border-bottom:0}
-@media(min-width:650px){.downloads{grid-template-columns:repeat(4,1fr)}.filters{grid-template-columns:repeat(4,1fr)}.filters .full{grid-column:auto}}
+<header>
+    <h1 style="margin:0;font-size:22px;">HUSSAIN</h1>
+    <p style="margin:5px 0 0 0;font-size:12px;color:#9ca3af;">Personal Ledger</p>
+</header>
 
-.calculator{display:grid;gap:10px}.calc-display{font-size:26px;font-weight:800;text-align:right;padding:14px;border:1px solid #d9dee5;border-radius:12px;background:#f8fafc}.calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.calc-grid button{padding:14px;border:0;border-radius:10px;background:#eef1f5;font-size:18px;font-weight:700}.calc-grid .wide{grid-column:span 2}
-.month-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.month-btn{padding:9px;border:1px solid #d9dee5;background:#fff;border-radius:10px;cursor:pointer}.month-btn.active{background:#111827;color:#fff}
-.qrbox{padding:14px;border:1px dashed #b7bec8;border-radius:13px;text-align:center}.pin{letter-spacing:5px}
-@media(min-width:650px){.month-grid{grid-template-columns:repeat(6,1fr)}}
+<div class="container">
+    <!-- কার্ড সামারি -->
+    <div class="cards">
+        <div class="card balance">
+            <div>বর্তমান ব্যালেন্স</div>
+            <div id="netBalance">৳০</div>
+        </div>
+        <div class="card">
+            <div>মোট আয়</div>
+            <div id="totalIncome" style="color:#16a34a">৳০</div>
+        </div>
+        <div class="card">
+            <div>মোট ব্যয়</div>
+            <div id="totalExpense" style="color:#dc2626">৳০</div>
+        </div>
+        <div class="card">
+            <div>অবশিষ্ট (আয় - ব্যয়)</div>
+            <div id="remainingBalance" style="color:#2563eb">৳০</div>
+        </div>
+    </div>
+
+    <!-- মেমো ডাউনলোড সেকশন -->
+    <div class="section">
+        <h2>তারিখ দিয়ে মেমো ডাউনলোড</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+            <div>
+                <label style="font-size:12px;">শুরুর তারিখ:</label>
+                <input type="date" id="startDate">
+            </div>
+            <div>
+                <label style="font-size:12px;">শেষের তারিখ:</label>
+                <input type="date" id="endDate">
+            </div>
+        </div>
+        <button onclick="downloadMemo()" class="download-btn">📄 মেমো ফাইল ডাউনলোড করুন</button>
+    </div>
+
+    <!-- নতুন লেনদেন ইনপুট -->
+    <div class="section">
+        <h2>নতুন লেনদেন যোগ করুন</h2>
+        <form id="ledgerForm">
+            <input type="date" id="txDate" required>
+            <select id="txType">
+                <option value="income">আয়</option>
+                <option value="expense">ব্যয়</option>
+            </select>
+            <input type="number" id="txAmount" placeholder="পরিমাণ (৳)" required>
+            <input type="text" id="txNote" placeholder="বিবরণ / নোট">
+            <button type="submit" class="primary">হিসাব সংরক্ষণ করুন</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    let transactions = JSON.parse(localStorage.getItem('ledger_data')) || [];
+
+    document.getElementById('ledgerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const date = document.getElementById('txDate').value;
+        const type = document.getElementById('txType').value;
+        const amount = parseFloat(document.getElementById('txAmount').value);
+        const note = document.getElementById('txNote').value;
+
+        transactions.push({ date, type, amount, note });
+        localStorage.setItem('ledger_data', JSON.stringify(transactions));
+        this.reset();
+        updateUI();
+    });
+
+    function updateUI() {
+        let income = 0, expense = 0;
+        transactions.forEach(t => {
+            if (t.type === 'income') income += t.amount;
+            else if (t.type === 'expense') expense += t.amount;
+        });
+
+        const remaining = income - expense;
+        document.getElementById('totalIncome').innerText = '৳' + income.toLocaleString('bn-BD');
+        document.getElementById('totalExpense').innerText = '৳' + expense.toLocaleString('bn-BD');
+        document.getElementById('remainingBalance').innerText = '৳' + remaining.toLocaleString('bn-BD');
+        document.getElementById('netBalance').innerText = '৳' + remaining.toLocaleString('bn-BD');
+    }
+
+    function downloadMemo() {
+        const start = document.getElementById('startDate').value;
+        const end = document.getElementById('endDate').value;
+
+        if (!start || !end) {
+            alert('দয়া করে শুরুর এবং শেষের তারিখ নির্বাচন করুন।');
+            return;
+        }
+
+        const filtered = transactions.filter(t => t.date >= start && t.date <= end);
+        if (filtered.length === 0) {
+            alert('এই তারিখের মধ্যে কোনো লেনদেন পাওয়া যায়নি।');
+            return;
+        }
+
+        let txt = `======================================\n`;
+        txt += `        HUSSAIN PERSONAL LEDGER        \n`;
+        txt += `             লেনদেন মেমো               \n`;
+        txt += `======================================\n`;
+        txt += `সময়সীমা: ${start} থেকে ${end}\n`;
+        txt += `--------------------------------------\n\n`;
+
+        let inSum = 0, outSum = 0;
+        filtered.forEach((t, i) => {
+            txt += `${i+1}. তারিখ: ${t.date}\n   বিবরণ: ${t.note || 'N/A'}\n   ধরণ: ${t.type==='income'?'আয়':'ব্যয়'}\n   পরিমাণ: ৳${t.amount}\n--------------------------------------\n`;
+            if (t.type === 'income') inSum += t.amount;
+            else outSum += t.amount;
+        });
+
+        txt += `\nমোট আয়: ৳${inSum}\nমোট ব্যয়: ৳${outSum}\nঅবশিষ্ট balance: ৳${inSum - outSum}\n======================================\n`;
+
+        const blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `Memo_${start}_to_${end}.txt`;
+        a.click();
+    }
+
+    updateUI();
+</script>
+
+</body>
+</html>
 </style>
 </head>
 <body>
