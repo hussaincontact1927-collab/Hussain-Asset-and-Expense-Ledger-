@@ -1,330 +1,1904 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUSSAIN • Personal Ledger</title>
-    <style>
-        *{box-sizing:border-box} body{margin:0;font-family:sans-serif;background:#f3f4f6}
-        header{background:#111827;color:white;padding:20px;text-align:center}
-        .container{max-width:900px;margin:auto;padding:15px}
-        .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:20px}
-        .card{background:white;border-radius:12px;padding:15px;box-shadow:0 2px 4px rgba(0,0,0,0.05)}
-        .card div:first-child{font-size:12px;color:#6b7280;margin-bottom:5px}
-        .card div:last-child{font-size:18px;font-weight:bold}
-        .balance{grid-column:1/-1;background:#111827;color:white}
-        .balance div:first-child{color:#9ca3af}
-        .section{background:white;border-radius:12px;padding:15px;margin-bottom:15px;box-shadow:0 2px 4px rgba(0,0,0,0.05)}
-        h2{font-size:16px;margin:0 0 12px 0}
-        form{display:grid;gap:10px}
-        input,select,textarea{width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px}
-        button.primary{border:0;background:#111827;color:white;padding:12px;border-radius:6px;font-weight:bold;cursor:pointer}
-        .download-btn{background:#16a34a;color:white;border:none;padding:12px;border-radius:6px;font-weight:bold;width:100%;cursor:pointer}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUSSAIN • Personal Ledger</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --primary:#1677ff;
+  --dark:#0d172b;
+  --dark2:#16233d;
+  --bg:#f4f6fa;
+  --card:#ffffff;
+  --text:#172033;
+  --muted:#778195;
+  --green:#159447;
+  --red:#d94b3d;
+  --blue:#2475db;
+  --border:#e5e9f0;
+  --shadow:0 8px 25px rgba(15,30,55,.07);
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:
+    "Noto Sans Bengali",
+    "Noto Sans",
+    Arial,
+    sans-serif;
+}
+
+body.dark{
+  --bg:#09111f;
+  --card:#111c2e;
+  --text:#f3f6fb;
+  --muted:#aab5c7;
+  --border:#25334a;
+  --shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+header{
+  background:
+    linear-gradient(135deg,#0b1529,#162745);
+  color:white;
+  padding:24px 20px 18px;
+  border-radius:0 0 28px 28px;
+  box-shadow:0 8px 25px rgba(0,0,0,.15);
+}
+
+.header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:15px;
+}
+
+.brand h1{
+  margin:0;
+  font-size:30px;
+  letter-spacing:.5px;
+}
+
+.brand p{
+  margin:5px 0 0;
+  color:#b8c4d7;
+  font-size:14px;
+}
+
+.date-box{
+  text-align:right;
+  line-height:1.6;
+}
+
+.time{
+  font-size:20px;
+  font-weight:700;
+}
+
+.date{
+  font-size:14px;
+  color:#d6deeb;
+}
+
+.calendar{
+  font-size:12px;
+  color:#aebbd0;
+}
+
+.nav{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:9px;
+  margin-top:22px;
+}
+
+.nav button{
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.06);
+  color:white;
+  height:58px;
+  border-radius:17px;
+  font-size:23px;
+  cursor:pointer;
+}
+
+.nav button.active{
+  background:white;
+  color:#15223a;
+}
+
+.container{
+  width:min(900px,calc(100% - 28px));
+  margin:18px auto 100px;
+}
+
+.tabs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  background:#e9edf4;
+  padding:5px;
+  border-radius:30px;
+  margin-bottom:18px;
+}
+
+.tabs button{
+  border:0;
+  padding:13px 8px;
+  border-radius:25px;
+  background:transparent;
+  font-size:16px;
+  color:#566173;
+}
+
+.tabs button.active{
+  background:var(--primary);
+  color:white;
+  font-weight:700;
+  box-shadow:0 5px 15px rgba(22,119,255,.25);
+}
+
+.date-info{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:15px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  box-shadow:var(--shadow);
+}
+
+.date-info div{
+  text-align:center;
+}
+
+.date-info small{
+  color:var(--muted);
+  display:block;
+}
+
+.date-info strong{
+  display:block;
+  margin-top:4px;
+}
+
+.balance{
+  margin-top:18px;
+  background:linear-gradient(135deg,#0d172b,#182846);
+  color:white;
+  border-radius:25px;
+  padding:25px;
+  box-shadow:var(--shadow);
+}
+
+.balance small{
+  color:#aebbd0;
+  font-size:14px;
+}
+
+.balance .amount{
+  font-size:39px;
+  font-weight:800;
+  margin:5px 0;
+}
+
+.balance-row{
+  display:flex;
+  gap:20px;
+  color:#c8d2e2;
+  font-size:13px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-top:18px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.card small{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.card strong{
+  display:block;
+  font-size:27px;
+  margin-top:7px;
+}
+
+.income strong{color:var(--green)}
+.expense strong{color:var(--red)}
+.receive strong{color:var(--blue)}
+.give strong{color:#7c4dcc}
+
+.section{
+  margin-top:25px;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.section-title h2{
+  margin:0;
+  font-size:21px;
+}
+
+.section-title button{
+  border:0;
+  background:none;
+  color:var(--primary);
+  font-weight:700;
+}
+
+.transaction{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:15px;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  box-shadow:var(--shadow);
+}
+
+.tx-icon{
+  width:47px;
+  height:47px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  font-size:20px;
+  background:#eef4ff;
+}
+
+.tx-info{
+  flex:1;
+}
+
+.tx-title{
+  font-weight:700;
+}
+
+.tx-meta{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.tx-amount{
+  font-weight:800;
+}
+
+.plus{color:var(--green)}
+.minus{color:var(--red)}
+
+.empty{
+  background:var(--card);
+  border:1px dashed var(--border);
+  padding:35px 15px;
+  text-align:center;
+  color:var(--muted);
+  border-radius:20px;
+}
+
+.form-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:23px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.form-card h2{
+  margin-top:0;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+label{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:6px;
+}
+
+input,select,textarea{
+  width:100%;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  border-radius:14px;
+  padding:14px;
+  font-size:15px;
+  outline:none;
+}
+
+input:focus,select:focus,textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(22,119,255,.1);
+}
+
+textarea{
+  resize:vertical;
+  min-height:80px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.primary{
+  width:100%;
+  border:0;
+  background:var(--primary);
+  color:white;
+  padding:15px;
+  border-radius:15px;
+  font-size:16px;
+  font-weight:700;
+  margin-top:15px;
+}
+
+.secondary{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  padding:13px 16px;
+  border-radius:13px;
+  font-weight:700;
+}
+
+.fab{
+  position:fixed;
+  right:22px;
+  bottom:75px;
+  width:62px;
+  height:62px;
+  border:0;
+  border-radius:50%;
+  background:var(--primary);
+  color:white;
+  font-size:34px;
+  box-shadow:0 10px 25px rgba(22,119,255,.35);
+}
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:var(--card);
+  border-top:1px solid var(--border);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  padding:8px 5px calc(8px + env(safe-area-inset-bottom));
+  z-index:20;
+}
+
+.bottom-nav button{
+  border:0;
+  background:none;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.bottom-nav span{
+  display:block;
+  font-size:21px;
+  margin-bottom:2px;
+}
+
+.bottom-nav button.active{
+  color:var(--primary);
+  font-weight:700;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  z-index:50;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(600px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:var(--card);
+  color:var(--text);
+  border-radius:28px 28px 0 0;
+  padding:22px;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.close{
+  border:0;
+  background:#edf1f6;
+  border-radius:50%;
+  width:38px;
+  height:38px;
+  font-size:20px;
+}
+
+.payment-methods{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:10px;
+}
+
+.payment-method{
+  padding:15px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  background:var(--card);
+  color:var(--text);
+  text-align:left;
+}
+
+.payment-method.active{
+  border:2px solid var(--primary);
+  background:#eef5ff;
+}
+
+.pay-info{
+  margin-top:14px;
+  background:#f0f4fa;
+  border-radius:15px;
+  padding:15px;
+  color:#26344a;
+}
+
+body.dark .pay-info{
+  background:#19263b;
+  color:#e5ebf4;
+}
+
+.pay-number{
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.copy{
+  border:0;
+  background:var(--primary);
+  color:white;
+  border-radius:10px;
+  padding:9px 12px;
+  margin-top:8px;
+}
+
+.qr{
+  display:block;
+  width:190px;
+  height:190px;
+  object-fit:contain;
+  margin:15px auto;
+  background:white;
+  padding:10px;
+  border-radius:15px;
+}
+
+.notice{
+  padding:13px;
+  background:#fff6dd;
+  color:#775d18;
+  border-radius:13px;
+  font-size:13px;
+  margin-top:12px;
+}
+
+body.dark .notice{
+  background:#3b311b;
+  color:#f3d889;
+}
+
+.settings{
+  display:grid;
+  gap:10px;
+}
+
+.setting-btn{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  padding:16px;
+  border-radius:15px;
+  text-align:left;
+  font-size:15px;
+}
+
+@media(max-width:600px){
+  .header-top{
+    flex-direction:column;
+  }
+
+  .date-box{
+    text-align:left;
+  }
+
+  .cards{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+  .date-info{
+    grid-template-columns:1fr 1fr 1fr;
+    font-size:12px;
+  }
+
+  .brand h1{
+    font-size:27px;
+  }
+}
+</style>
 </head>
+
 <body>
 
 <header>
-    <h1 style="margin:0;font-size:22px;">HUSSAIN</h1>
-    <p style="margin:5px 0 0 0;font-size:12px;color:#9ca3af;">Personal Ledger</p>
+
+  <div class="header-top">
+
+    <div class="brand">
+      <h1>HUSSAIN</h1>
+      <p>Personal Ledger • হিসাবের খাতা</p>
+    </div>
+
+    <div class="date-box">
+      <div class="time" id="time">--:--:--</div>
+      <div class="date" id="englishDate">--</div>
+      <div class="calendar" id="banglaDate">--</div>
+      <div class="calendar" id="hijriDate">--</div>
+    </div>
+
+  </div>
+
+  <div class="nav">
+    <button class="active" onclick="showPage('home',this)">⌂</button>
+    <button onclick="showPage('transactions',this)">☷</button>
+    <button onclick="openTransaction()">＋</button>
+    <button onclick="showPage('payment',this)">◉</button>
+    <button onclick="showPage('settings',this)">⚙</button>
+  </div>
+
 </header>
 
-<div class="container">
-    <!-- কার্ড সামারি -->
+<main class="container">
+
+  <!-- HOME -->
+
+  <section id="home">
+
+    <div class="tabs">
+      <button onclick="setPeriod('today',this)">আজ</button>
+      <button class="active" onclick="setPeriod('month',this)">এই মাস</button>
+      <button onclick="setPeriod('all',this)">মোট</button>
+    </div>
+
+    <div class="balance">
+      <small>বর্তমান ব্যালেন্স</small>
+      <div class="amount" id="balance">৳০</div>
+
+      <div class="balance-row">
+        <span>আয় <b id="smallIncome">৳০</b></span>
+        <span>ব্যয় <b id="smallExpense">৳০</b></span>
+      </div>
+    </div>
+
     <div class="cards">
-        <div class="card balance">
-            <div>বর্তমান ব্যালেন্স</div>
-            <div id="netBalance">৳০</div>
-        </div>
-        <div class="card">
-            <div>মোট আয়</div>
-            <div id="totalIncome" style="color:#16a34a">৳০</div>
-        </div>
-        <div class="card">
-            <div>মোট ব্যয়</div>
-            <div id="totalExpense" style="color:#dc2626">৳০</div>
-        </div>
-        <div class="card">
-            <div>অবশিষ্ট (আয় - ব্যয়)</div>
-            <div id="remainingBalance" style="color:#2563eb">৳০</div>
-        </div>
+
+      <div class="card income">
+        <small>মোট আয়</small>
+        <strong id="income">৳০</strong>
+      </div>
+
+      <div class="card expense">
+        <small>মোট ব্যয়</small>
+        <strong id="expense">৳০</strong>
+      </div>
+
+      <div class="card receive">
+        <small>মোট পাওনা</small>
+        <strong id="receive">৳০</strong>
+      </div>
+
+      <div class="card give">
+        <small>মোট দেনা</small>
+        <strong id="give">৳০</strong>
+      </div>
+
     </div>
 
-    <!-- মেমো ডাউনলোড সেকশন -->
     <div class="section">
-        <h2>তারিখ দিয়ে মেমো ডাউনলোড</h2>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
-            <div>
-                <label style="font-size:12px;">শুরুর তারিখ:</label>
-                <input type="date" id="startDate">
-            </div>
-            <div>
-                <label style="font-size:12px;">শেষের তারিখ:</label>
-                <input type="date" id="endDate">
-            </div>
-        </div>
-        <button onclick="downloadMemo()" class="download-btn">📄 মেমো ফাইল ডাউনলোড করুন</button>
+
+      <div class="section-title">
+        <h2>সাম্প্রতিক হিসাব</h2>
+        <button onclick="showPage('transactions')">সব দেখুন →</button>
+      </div>
+
+      <div id="recent"></div>
+
     </div>
 
-    <!-- নতুন লেনদেন ইনপুট -->
-    <div class="section">
-        <h2>নতুন লেনদেন যোগ করুন</h2>
-        <form id="ledgerForm">
-            <input type="date" id="txDate" required>
-            <select id="txType">
-                <option value="income">আয়</option>
-                <option value="expense">ব্যয়</option>
-            </select>
-            <input type="number" id="txAmount" placeholder="পরিমাণ (৳)" required>
-            <input type="text" id="txNote" placeholder="বিবরণ / নোট">
-            <button type="submit" class="primary">হিসাব সংরক্ষণ করুন</button>
-        </form>
+  </section>
+
+
+  <!-- TRANSACTIONS -->
+
+  <section id="transactions" style="display:none">
+
+    <div class="section-title">
+      <h2>লেনদেন</h2>
+      <button onclick="openTransaction()">＋ নতুন</button>
     </div>
+
+    <div class="form-card">
+
+      <div class="grid">
+
+        <div>
+          <label>মাস</label>
+          <select id="filterMonth" onchange="render()">
+            <option value="all">সব মাস</option>
+            <option value="0">জানুয়ারি</option>
+            <option value="1">ফেব্রুয়ারি</option>
+            <option value="2">মার্চ</option>
+            <option value="3">এপ্রিল</option>
+            <option value="4">মে</option>
+            <option value="5">জুন</option>
+            <option value="6">জুলাই</option>
+            <option value="7">আগস্ট</option>
+            <option value="8">সেপ্টেম্বর</option>
+            <option value="9">অক্টোবর</option>
+            <option value="10">নভেম্বর</option>
+            <option value="11">ডিসেম্বর</option>
+          </select>
+        </div>
+
+        <div>
+          <label>ধরন</label>
+          <select id="filterType" onchange="render()">
+            <option value="all">সব ধরনের</option>
+            <option value="income">আয়</option>
+            <option value="expense">ব্যয়</option>
+            <option value="receive">পাওনা</option>
+            <option value="give">দেনা</option>
+          </select>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="section">
+      <div id="allTransactions"></div>
+    </div>
+
+  </section>
+
+
+  <!-- PAYMENT -->
+
+  <section id="payment" style="display:none">
+
+    <div class="section-title">
+      <h2>পেমেন্ট করুন</h2>
+    </div>
+
+    <div class="form-card">
+
+      <h2>বিল / পেমেন্ট</h2>
+
+      <div class="grid">
+
+        <div>
+          <label>বিলের পরিমাণ</label>
+          <input id="payAmount" type="number" placeholder="৳ 0">
+        </div>
+
+        <div>
+          <label>বিল / Reference No.</label>
+          <input id="billNo" placeholder="যেমন: HUS-1001">
+        </div>
+
+        <div class="full">
+          <label>আপনার নাম</label>
+          <input id="payerName" placeholder="নাম লিখুন">
+        </div>
+
+      </div>
+
+      <label style="margin-top:15px">পেমেন্ট মাধ্যম</label>
+
+      <div class="payment-methods">
+
+        <button class="payment-method active"
+                onclick="selectPayment('bKash',this)">
+          📱 bKash
+        </button>
+
+        <button class="payment-method"
+                onclick="selectPayment('Nagad',this)">
+          🟠 নগদ
+        </button>
+
+        <button class="payment-method"
+                onclick="selectPayment('mCash',this)">
+          📲 mCash
+        </button>
+
+        <button class="payment-method"
+                onclick="selectPayment('Bank',this)">
+          🏦 Bank Transfer
+        </button>
+
+        <button class="payment-method"
+                onclick="selectPayment('Card',this)">
+          💳 Card Payment
+        </button>
+
+        <button class="payment-method"
+                onclick="selectPayment('QR',this)">
+          🔳 বাংলা QR
+        </button>
+
+      </div>
+
+      <div id="paymentInfo"></div>
+
+      <button class="primary" onclick="processPayment()">
+        পেমেন্ট সম্পন্ন করুন
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- SETTINGS -->
+
+  <section id="settings" style="display:none">
+
+    <div class="section-title">
+      <h2>সেটিংস</h2>
+    </div>
+
+    <div class="settings">
+
+      <button class="setting-btn" onclick="toggleDark()">
+        🌙 Dark Mode চালু / বন্ধ
+      </button>
+
+      <button class="setting-btn" onclick="downloadJSON()">
+        💾 সম্পূর্ণ Backup Download
+      </button>
+
+      <button class="setting-btn" onclick="downloadCSV()">
+        📊 হিসাব CSV Download
+      </button>
+
+      <button class="setting-btn" onclick="clearAll()">
+        🗑️ সব হিসাব মুছে ফেলুন
+      </button>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<button class="fab" onclick="openTransaction()">＋</button>
+
+
+<!-- BOTTOM NAV -->
+
+<div class="bottom-nav">
+
+  <button class="active" onclick="showPage('home',this)">
+    <span>⌂</span>
+    হোম
+  </button>
+
+  <button onclick="showPage('transactions',this)">
+    <span>☷</span>
+    লেনদেন
+  </button>
+
+  <button onclick="openTransaction()">
+    <span>＋</span>
+    হিসাব
+  </button>
+
+  <button onclick="showPage('payment',this)">
+    <span>◉</span>
+    পেমেন্ট
+  </button>
+
+  <button onclick="showPage('settings',this)">
+    <span>⚙</span>
+    আরও
+  </button>
+
 </div>
 
+
+<!-- TRANSACTION MODAL -->
+
+<div class="modal" id="transactionModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h2>নতুন হিসাব</h2>
+      <button class="close" onclick="closeTransaction()">×</button>
+    </div>
+
+    <div class="grid">
+
+      <div>
+        <label>তারিখ</label>
+        <input type="date" id="txDate">
+      </div>
+
+      <div>
+        <label>সময়</label>
+        <input type="time" id="txTime">
+      </div>
+
+      <div>
+        <label>ধরন</label>
+        <select id="txType">
+          <option value="income">আয়</option>
+          <option value="expense">ব্যয়</option>
+          <option value="receive">পাওনা</option>
+          <option value="give">দেনা</option>
+        </select>
+      </div>
+
+      <div>
+        <label>পরিমাণ</label>
+        <input type="number" id="txAmount" placeholder="৳ 0">
+      </div>
+
+      <div>
+        <label>ব্যক্তি / উৎস</label>
+        <input id="txPerson" placeholder="যেমন: Salary">
+      </div>
+
+      <div>
+        <label>ক্যাটাগরি</label>
+        <select id="txCategory">
+          <option>Salary</option>
+          <option>Food</option>
+          <option>Gift</option>
+          <option>Shopping</option>
+          <option>Transport</option>
+          <option>Bank</option>
+          <option>bKash</option>
+          <option>Nagad</option>
+          <option>mCash</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="full">
+        <label>বিবরণ</label>
+        <textarea id="txNote" placeholder="বিস্তারিত লিখুন"></textarea>
+      </div>
+
+    </div>
+
+    <button class="primary" onclick="saveTransaction()">
+      হিসাব সংরক্ষণ করুন
+    </button>
+
+  </div>
+
+</div>
+
+
 <script>
-    let transactions = JSON.parse(localStorage.getItem('ledger_data')) || [];
 
-    document.getElementById('ledgerForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const date = document.getElementById('txDate').value;
-        const type = document.getElementById('txType').value;
-        const amount = parseFloat(document.getElementById('txAmount').value);
-        const note = document.getElementById('txNote').value;
+/* =========================
+   DATA
+========================= */
 
-        transactions.push({ date, type, amount, note });
-        localStorage.setItem('ledger_data', JSON.stringify(transactions));
-        this.reset();
-        updateUI();
+let transactions =
+  JSON.parse(localStorage.getItem("hussainLedger")) || [];
+
+let selectedPayment = "bKash";
+let currentPeriod = "month";
+
+
+/* =========================
+   BANGLA NUMBERS
+========================= */
+
+function bnNum(value){
+
+  const map = {
+    "0":"০","1":"১","2":"২","3":"৩","4":"৪",
+    "5":"৫","6":"৬","7":"৭","8":"৮","9":"৯"
+  };
+
+  return String(value)
+    .replace(/[0-9]/g,n=>map[n]);
+
+}
+
+
+/* =========================
+   CURRENCY
+========================= */
+
+function money(value){
+
+  return "৳" + bnNum(
+    Number(value || 0).toLocaleString("en-IN")
+  );
+
+}
+
+
+/* =========================
+   DATE
+========================= */
+
+const bnDays=[
+  "রবিবার","সোমবার","মঙ্গলবার","বুধবার",
+  "বৃহস্পতিবার","শুক্রবার","শনিবার"
+];
+
+const bnMonths=[
+  "জানুয়ারি","ফেব্রুয়ারি","মার্চ","এপ্রিল",
+  "মে","জুন","জুলাই","আগস্ট",
+  "সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর"
+];
+
+const bnBengaliMonths=[
+  "বৈশাখ","জ্যৈষ্ঠ","আষাঢ়","শ্রাবণ",
+  "ভাদ্র","আশ্বিন","কার্তিক","অগ্রহায়ণ",
+  "পৌষ","মাঘ","ফাল্গুন","চৈত্র"
+];
+
+function updateClock(){
+
+  const now=new Date();
+
+  let time=now.toLocaleTimeString("en-US",{
+    hour:"numeric",
+    minute:"2-digit",
+    second:"2-digit"
+  });
+
+  document.getElementById("time").textContent=time;
+
+  let eng=now.toLocaleDateString("en-US",{
+    weekday:"long",
+    day:"numeric",
+    month:"long",
+    year:"numeric"
+  });
+
+  document.getElementById("englishDate").textContent=eng;
+
+  document.getElementById("banglaDate").textContent=
+    bnDays[now.getDay()]+" • "+
+    bnNum(now.getDate())+" "+
+    bnMonths[now.getMonth()]+" "+
+    bnNum(now.getFullYear());
+
+  let hijri="";
+
+  try{
+
+    hijri=new Intl.DateTimeFormat(
+      "bn-u-ca-islamic",
+      {
+        day:"numeric",
+        month:"long",
+        year:"numeric"
+      }
+    ).format(now);
+
+  }catch(e){
+
+    hijri="হিজরি তারিখ";
+
+  }
+
+  document.getElementById("hijriDate").textContent=
+    hijri;
+
+}
+
+
+/* =========================
+   BENGALI CALENDAR
+========================= */
+
+function getBanglaDate(date){
+
+  let year=date.getFullYear();
+
+  let start=new Date(year,3,14);
+
+  if(date<start){
+
+    year--;
+
+    start=new Date(year,3,14);
+
+  }
+
+  let diff=Math.floor(
+    (date-start)/(1000*60*60*24)
+  );
+
+  let monthLengths=[
+    31,31,31,31,31,30,
+    30,30,30,30,30,30
+  ];
+
+  let month=0;
+
+  while(diff>=monthLengths[month] &&
+        month<11){
+
+    diff-=monthLengths[month];
+
+    month++;
+
+  }
+
+  return (
+    bnNum(diff+1)+" "+
+    bnBengaliMonths[month]+" "+
+    bnNum(year+593)
+  );
+
+}
+
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
+function showPage(id,button){
+
+  document.querySelectorAll("main section")
+    .forEach(x=>x.style.display="none");
+
+  document.getElementById(id)
+    .style.display="block";
+
+  document.querySelectorAll(
+    ".nav button,.bottom-nav button"
+  ).forEach(x=>x.classList.remove("active"));
+
+  if(button)
+    button.classList.add("active");
+
+  render();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================
+   PERIOD
+========================= */
+
+function setPeriod(period,button){
+
+  currentPeriod=period;
+
+  document.querySelectorAll(".tabs button")
+    .forEach(x=>x.classList.remove("active"));
+
+  button.classList.add("active");
+
+  render();
+
+}
+
+
+/* =========================
+   FILTER
+========================= */
+
+function getFiltered(){
+
+  const now=new Date();
+
+  return transactions.filter(t=>{
+
+    const d=new Date(t.date+"T"+(t.time||"00:00"));
+
+    if(currentPeriod==="today"){
+
+      return d.toDateString()===now.toDateString();
+
+    }
+
+    if(currentPeriod==="month"){
+
+      return d.getMonth()===now.getMonth()
+        && d.getFullYear()===now.getFullYear();
+
+    }
+
+    return true;
+
+  });
+
+}
+
+
+/* =========================
+   RENDER DASHBOARD
+========================= */
+
+function render(){
+
+  let data=getFiltered();
+
+  let income=data
+    .filter(x=>x.type==="income")
+    .reduce((a,b)=>a+Number(b.amount),0);
+
+  let expense=data
+    .filter(x=>x.type==="expense")
+    .reduce((a,b)=>a+Number(b.amount),0);
+
+  let receive=data
+    .filter(x=>x.type==="receive")
+    .reduce((a,b)=>a+Number(b.amount),0);
+
+  let give=data
+    .filter(x=>x.type==="give")
+    .reduce((a,b)=>a+Number(b.amount),0);
+
+  document.getElementById("balance")
+    .textContent=money(income-expense);
+
+  document.getElementById("income")
+    .textContent=money(income);
+
+  document.getElementById("expense")
+    .textContent=money(expense);
+
+  document.getElementById("receive")
+    .textContent=money(receive);
+
+  document.getElementById("give")
+    .textContent=money(give);
+
+  document.getElementById("smallIncome")
+    .textContent=money(income);
+
+  document.getElementById("smallExpense")
+    .textContent=money(expense);
+
+  renderRecent(data);
+
+  renderAll();
+
+}
+
+
+/* =========================
+   RECENT
+========================= */
+
+function renderRecent(data){
+
+  const box=document.getElementById("recent");
+
+  if(!data.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        এখনো কোনো হিসাব যোগ করা হয়নি।
+      </div>`;
+
+    return;
+
+  }
+
+  let latest=[...data]
+    .sort((a,b)=>
+      new Date(b.date+"T"+b.time) -
+      new Date(a.date+"T"+a.time)
+    )
+    .slice(0,5);
+
+  box.innerHTML=
+    latest.map(transactionHTML).join("");
+
+}
+
+
+/* =========================
+   ALL TRANSACTIONS
+========================= */
+
+function renderAll(){
+
+  const box=document.getElementById(
+    "allTransactions"
+  );
+
+  let data=[...transactions];
+
+  let month=
+    document.getElementById("filterMonth")?.value;
+
+  let type=
+    document.getElementById("filterType")?.value;
+
+  if(month && month!=="all"){
+
+    data=data.filter(t=>
+      new Date(t.date).getMonth()===
+      Number(month)
+    );
+
+  }
+
+  if(type && type!=="all"){
+
+    data=data.filter(t=>t.type===type);
+
+  }
+
+  data.sort((a,b)=>
+    new Date(b.date+"T"+b.time) -
+    new Date(a.date+"T"+a.time)
+  );
+
+  if(!data.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        কোনো লেনদেন পাওয়া যায়নি।
+      </div>`;
+
+    return;
+
+  }
+
+  box.innerHTML=
+    data.map(transactionHTML).join("");
+
+}
+
+
+/* =========================
+   TRANSACTION HTML
+========================= */
+
+function transactionHTML(t){
+
+  let isPlus=t.type==="income";
+
+  let typeName={
+    income:"আয়",
+    expense:"ব্যয়",
+    receive:"পাওনা",
+    give:"দেনা"
+  }[t.type];
+
+  let icon={
+    income:"＋",
+    expense:"−",
+    receive:"↙",
+    give:"↗"
+  }[t.type];
+
+  let date=new Date(t.date);
+
+  let dateText=
+    bnNum(date.getDate())+
+    " "+bnMonths[date.getMonth()]+
+    " "+bnNum(date.getFullYear());
+
+  return `
+    <div class="transaction">
+
+      <div class="tx-icon">
+        ${icon}
+      </div>
+
+      <div class="tx-info">
+
+        <div class="tx-title">
+          ${escapeHTML(t.person || typeName)}
+        </div>
+
+        <div class="tx-meta">
+          ${dateText}
+          • ${t.time || ""}
+          • ${typeName}
+          • ${escapeHTML(t.category || "")}
+        </div>
+
+        ${
+          t.note
+          ? `<div class="tx-meta">
+               ${escapeHTML(t.note)}
+             </div>`
+          :""
+        }
+
+      </div>
+
+      <div class="tx-amount ${
+        isPlus ? "plus":"minus"
+      }">
+
+        ${isPlus ? "+":"-"}${money(t.amount)}
+
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+/* =========================
+   ADD TRANSACTION
+========================= */
+
+function openTransaction(){
+
+  document.getElementById(
+    "transactionModal"
+  ).classList.add("show");
+
+  const now=new Date();
+
+  document.getElementById("txDate")
+    .value=now.toISOString().slice(0,10);
+
+  document.getElementById("txTime")
+    .value=now.toTimeString().slice(0,5);
+
+}
+
+
+function closeTransaction(){
+
+  document.getElementById(
+    "transactionModal"
+  ).classList.remove("show");
+
+}
+
+
+function saveTransaction(){
+
+  let amount=Number(
+    document.getElementById("txAmount").value
+  );
+
+  if(!amount || amount<=0){
+
+    alert("সঠিক পরিমাণ লিখুন।");
+    return;
+
+  }
+
+  let tx={
+
+    id:Date.now(),
+
+    date:
+      document.getElementById("txDate").value,
+
+    time:
+      document.getElementById("txTime").value,
+
+    type:
+      document.getElementById("txType").value,
+
+    amount:amount,
+
+    person:
+      document.getElementById("txPerson").value,
+
+    category:
+      document.getElementById("txCategory").value,
+
+    note:
+      document.getElementById("txNote").value
+
+  };
+
+  transactions.push(tx);
+
+  localStorage.setItem(
+    "hussainLedger",
+    JSON.stringify(transactions)
+  );
+
+  closeTransaction();
+
+  document.getElementById("txAmount").value="";
+  document.getElementById("txPerson").value="";
+  document.getElementById("txNote").value="";
+
+  render();
+
+  alert("হিসাব সফলভাবে সংরক্ষণ হয়েছে।");
+
+}
+
+
+/* =========================
+   PAYMENT
+========================= */
+
+const paymentData={
+
+  bKash:{
+    title:"bKash",
+    number:"01XXXXXXXXX",
+    text:"এই নম্বরে Send Money / Merchant Payment করুন।"
+  },
+
+  Nagad:{
+    title:"নগদ",
+    number:"01XXXXXXXXX",
+    text:"এই নম্বরে পেমেন্ট করুন।"
+  },
+
+  mCash:{
+    title:"mCash",
+    number:"01XXXXXXXXX",
+    text:"এই নম্বরে পেমেন্ট করুন।"
+  },
+
+  Bank:{
+    title:"Bank Transfer",
+    number:"Account: 0000000000",
+    text:"Bank: Your Bank | Branch: Your Branch"
+  },
+
+  Card:{
+    title:"Card Payment",
+    number:"",
+    text:"কার্ড পেমেন্টের জন্য Payment Gateway প্রয়োজন।"
+  },
+
+  QR:{
+    title:"বাংলা QR",
+    number:"01XXXXXXXXX",
+    text:"QR স্ক্যান করে পেমেন্ট করুন।"
+  }
+
+};
+
+
+function selectPayment(method,button){
+
+  selectedPayment=method;
+
+  document.querySelectorAll(
+    ".payment-method"
+  ).forEach(x=>x.classList.remove("active"));
+
+  button.classList.add("active");
+
+  renderPaymentInfo();
+
+}
+
+
+function renderPaymentInfo(){
+
+  let d=paymentData[selectedPayment];
+
+  let html=`
+    <div class="pay-info">
+
+      <strong>${d.title}</strong>
+
+      <p>${d.text}</p>
+  `;
+
+  if(d.number){
+
+    html+=`
+      <div class="pay-number">
+        ${d.number}
+      </div>
+
+      <button class="copy"
+        onclick="copyText('${d.number}')">
+        নম্বর কপি করুন
+      </button>
+    `;
+
+  }
+
+  if(selectedPayment==="QR"){
+
+    let amount=
+      document.getElementById("payAmount").value
+      || "0";
+
+    let qrText=
+      "HUSSAIN PAYMENT | Amount: "+
+      amount+
+      " | Account: "+
+      d.number;
+
+    let qrURL=
+      "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+
+      encodeURIComponent(qrText);
+
+    html+=`
+      <img
+        class="qr"
+        src="${qrURL}"
+        alt="বাংলা QR">
+    `;
+
+  }
+
+  if(selectedPayment==="Card"){
+
+    html+=`
+      <div class="notice">
+        নিরাপত্তার কারণে এই HTML আপনার
+        Card Number, CVV বা PIN সংরক্ষণ করে না।
+        বাস্তব Card Payment-এর জন্য
+        Payment Gateway যুক্ত করতে হবে।
+      </div>
+    `;
+
+  }
+
+  html+=`</div>`;
+
+  document.getElementById(
+    "paymentInfo"
+  ).innerHTML=html;
+
+}
+
+
+function copyText(text){
+
+  navigator.clipboard.writeText(text)
+    .then(()=>{
+      alert("কপি হয়েছে: "+text);
+    })
+    .catch(()=>{
+      alert(text);
     });
 
-    function updateUI() {
-        let income = 0, expense = 0;
-        transactions.forEach(t => {
-            if (t.type === 'income') income += t.amount;
-            else if (t.type === 'expense') expense += t.amount;
-        });
+}
 
-        const remaining = income - expense;
-        document.getElementById('totalIncome').innerText = '৳' + income.toLocaleString('bn-BD');
-        document.getElementById('totalExpense').innerText = '৳' + expense.toLocaleString('bn-BD');
-        document.getElementById('remainingBalance').innerText = '৳' + remaining.toLocaleString('bn-BD');
-        document.getElementById('netBalance').innerText = '৳' + remaining.toLocaleString('bn-BD');
-    }
 
-    function downloadMemo() {
-        const start = document.getElementById('startDate').value;
-        const end = document.getElementById('endDate').value;
+function processPayment(){
 
-        if (!start || !end) {
-            alert('দয়া করে শুরুর এবং শেষের তারিখ নির্বাচন করুন।');
-            return;
-        }
+  let amount=Number(
+    document.getElementById("payAmount").value
+  );
 
-        const filtered = transactions.filter(t => t.date >= start && t.date <= end);
-        if (filtered.length === 0) {
-            alert('এই তারিখের মধ্যে কোনো লেনদেন পাওয়া যায়নি।');
-            return;
-        }
+  let name=
+    document.getElementById("payerName").value
+    || "Payment";
 
-        let txt = `======================================\n`;
-        txt += `        HUSSAIN PERSONAL LEDGER        \n`;
-        txt += `             লেনদেন মেমো               \n`;
-        txt += `======================================\n`;
-        txt += `সময়সীমা: ${start} থেকে ${end}\n`;
-        txt += `--------------------------------------\n\n`;
+  let bill=
+    document.getElementById("billNo").value
+    || "No Reference";
 
-        let inSum = 0, outSum = 0;
-        filtered.forEach((t, i) => {
-            txt += `${i+1}. তারিখ: ${t.date}\n   বিবরণ: ${t.note || 'N/A'}\n   ধরণ: ${t.type==='income'?'আয়':'ব্যয়'}\n   পরিমাণ: ৳${t.amount}\n--------------------------------------\n`;
-            if (t.type === 'income') inSum += t.amount;
-            else outSum += t.amount;
-        });
+  if(!amount || amount<=0){
 
-        txt += `\nমোট আয়: ৳${inSum}\nমোট ব্যয়: ৳${outSum}\nঅবশিষ্ট balance: ৳${inSum - outSum}\n======================================\n`;
+    alert("পেমেন্টের পরিমাণ লিখুন।");
+    return;
 
-        const blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = `Memo_${start}_to_${end}.txt`;
-        a.click();
-    }
+  }
 
-    updateUI();
+  /*
+    এখানে বাস্তব Payment Gateway নেই।
+    তাই পেমেন্টকে Pending হিসেবে Ledger-এ রাখা হচ্ছে।
+  */
+
+  let tx={
+
+    id:Date.now(),
+
+    date:new Date().toISOString().slice(0,10),
+
+    time:new Date().toTimeString().slice(0,5),
+
+    type:"income",
+
+    amount:amount,
+
+    person:name,
+
+    category:selectedPayment,
+
+    note:
+      "Payment • "+bill+" • Pending"
+
+  };
+
+  transactions.push(tx);
+
+  localStorage.setItem(
+    "hussainLedger",
+    JSON.stringify(transactions)
+  );
+
+  alert(
+    "Payment Request তৈরি হয়েছে।\n\n"+
+    "Method: "+selectedPayment+
+    "\nAmount: "+money(amount)+
+    "\nReference: "+bill+
+    "\n\nবাস্তব টাকা গ্রহণ নিশ্চিত করতে Payment Gateway/API প্রয়োজন।"
+  );
+
+  render();
+
+}
+
+
+/* =========================
+   DOWNLOAD JSON
+========================= */
+
+function downloadJSON(){
+
+  let data=JSON.stringify(
+    transactions,
+    null,
+    2
+  );
+
+  let blob=new Blob(
+    [data],
+    {type:"application/json"}
+  );
+
+  downloadBlob(
+    blob,
+    "HUSSAIN-Ledger-Backup.json"
+  );
+
+}
+
+
+/* =========================
+   DOWNLOAD CSV
+========================= */
+
+function downloadCSV(){
+
+  let rows=[
+
+    [
+      "Date",
+      "Time",
+      "Type",
+      "Amount",
+      "Person",
+      "Category",
+      "Description"
+    ]
+
+  ];
+
+  transactions.forEach(t=>{
+
+    rows.push([
+
+      t.date,
+      t.time,
+      t.type,
+      t.amount,
+      t.person,
+      t.category,
+      t.note
+
+    ]);
+
+  });
+
+  let csv=rows.map(row=>
+    row.map(x=>
+      `"${String(x||"")
+        .replace(/"/g,'""')}"`
+    ).join(",")
+  ).join("\n");
+
+  let blob=new Blob(
+    ["\ufeff"+csv],
+    {type:"text/csv;charset=utf-8"}
+  );
+
+  downloadBlob(
+    blob,
+    "HUSSAIN-Ledger.csv"
+  );
+
+}
+
+
+function downloadBlob(blob,name){
+
+  let url=URL.createObjectURL(blob);
+
+  let a=document.createElement("a");
+
+  a.href=url;
+  a.download=name;
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+  URL.revokeObjectURL(url);
+
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+function toggleDark(){
+
+  document.body.classList.toggle("dark");
+
+  localStorage.setItem(
+    "hussainDark",
+    document.body.classList.contains("dark")
+  );
+
+}
+
+
+/* =========================
+   CLEAR DATA
+========================= */
+
+function clearAll(){
+
+  if(!transactions.length){
+
+    alert("মুছে ফেলার মতো কোনো হিসাব নেই।");
+    return;
+
+  }
+
+  let ok=confirm(
+    "আপনি কি সত্যিই সব হিসাব মুছে ফেলতে চান?"
+  );
+
+  if(!ok)return;
+
+  transactions=[];
+
+  localStorage.removeItem(
+    "hussainLedger"
+  );
+
+  render();
+
+  alert("সব হিসাব মুছে ফেলা হয়েছে।");
+
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHTML(text){
+
+  return String(text||"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   INIT
+========================= */
+
+function init(){
+
+  updateClock();
+
+  setInterval(
+    updateClock,
+    1000
+  );
+
+  if(
+    localStorage.getItem("hussainDark")
+    ==="true"
+  ){
+
+    document.body.classList.add("dark");
+
+  }
+
+  renderPaymentInfo();
+
+  render();
+
+}
+
+init();
+
 </script>
 
 </body>
 </html>
-</style>
-</head>
-<body>
-<header><div class="container brand"><div><h1>HUSSAIN</h1><small>Personal Ledger</small></div><div class="live-clock" id="clock"><span>--:--:--</span><small>--</small></div></div></header>
-
-<main class="container">
-<section class="cards">
-<div class="card balance"><div class="label">বর্তমান ব্যালেন্স</div><div class="value" id="balance">৳0</div></div>
-<div class="card"><div class="label">মোট আয়</div><div class="value income" id="income">৳0</div></div>
-<div class="card"><div class="label">মোট ব্যয়</div><div class="value expense" id="expense">৳0</div></div>
-<div class="card"><div class="label">মোট দেনা</div><div class="value debt" id="debt">৳0</div></div>
-<div class="card"><div class="label">মোট পাওনা</div><div class="value due" id="due">৳0</div></div>
-</section>
-
-<nav>
-<button class="tab active" data-tab="dashboard">ড্যাশবোর্ড</button>
-<button class="tab" data-tab="add">হিসাব যোগ</button>
-<button class="tab" data-tab="ledger">লেনদেন</button>
-<button class="tab" data-tab="dues">দেনা–পাওনা</button>
-<button class="tab" data-tab="report">রিপোর্ট</button><button class="tab" data-tab="calculator">ক্যালকুলেটর</button><button class="tab" data-tab="calendar">মাস/বছর</button><button class="tab" data-tab="security">PIN</button><button class="tab" data-tab="qr">বাংলা QR</button>
-</nav>
-
-<section id="dashboard" class="panel active">
-<div class="section"><h2>আজকের হিসাব</h2><div id="todayList" class="list"></div></div>
-</section>
-
-<section id="add" class="panel">
-<div class="section"><h2>নতুন হিসাব</h2>
-<form id="entryForm">
-<input type="date" id="date" min="2026-01-01" max="2046-12-31" required><select id="type" required>
-<option value="income">আয়</option><option value="expense">ব্যয়</option><option value="debt">দেনা</option><option value="due">পাওনা</option><option value="transfer">একাউন্টে/সঞ্চয়ে দেওয়া</option><option value="loan">ধার দেওয়া</option>
-</select>
-<input id="amount" type="number" min="0" step="0.01" placeholder="পরিমাণ" required>
-<input id="person" placeholder="ব্যক্তি / উৎস (ঐচ্ছিক)">
-<select id="category"><option>Salary</option><option>Food</option><option>Grocery</option><option>Transport</option><option>Bills</option><option>Shopping</option><option>Family</option><option>Other</option></select>
-<input id="description" placeholder="বিবরণ" required>
-<select id="payment"><option value="cash">Cash</option><option value="bkash">বিকাশ</option><option value="nagad">নগদ</option><option value="mcash">mCash</option><option value="bank">Bank</option></select>
-<textarea id="note" class="full" placeholder="নোট (ঐচ্ছিক)"></textarea>
-<button class="primary full">হিসাব সংরক্ষণ</button>
-</form></div>
-</section>
-
-<section id="ledger" class="panel"><div class="section"><h2>সব লেনদেন</h2>
-<div class="filters">
-<select id="period"><option value="all">সব সময়</option><option value="day">আজ</option><option value="week">এই সপ্তাহ</option><option value="15">গত ১৫ দিন</option><option value="month">এই মাস</option><option value="year">এই বছর</option><option value="range">তারিখ থেকে–পর্যন্ত</option></select>
-<select id="yearFilter"><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option><option value="2031">2031</option><option value="2032">2032</option><option value="2033">2033</option><option value="2034">2034</option><option value="2035">2035</option><option value="2036">2036</option><option value="2037">2037</option><option value="2038">2038</option><option value="2039">2039</option><option value="2040">2040</option><option value="2041">2041</option><option value="2042">2042</option><option value="2043">2043</option><option value="2044">2044</option><option value="2045">2045</option><option value="2046">2046</option><option value="all">সব বছর</option></select>
-<select id="monthFilter"><option value="all">সব মাস</option><option value="0">জানুয়ারি</option><option value="1">ফেব্রুয়ারি</option><option value="2">মার্চ</option><option value="3">এপ্রিল</option><option value="4">মে</option><option value="5">জুন</option><option value="6">জুলাই</option><option value="7">আগস্ট</option><option value="8">সেপ্টেম্বর</option><option value="9">অক্টোবর</option><option value="10">নভেম্বর</option><option value="11">ডিসেম্বর</option></select>
-<select id="filterType"><option value="all">সব ধরন</option><option value="income">আয়</option><option value="expense">ব্যয়</option><option value="debt">দেনা</option><option value="due">পাওনা</option><option value="transfer">একাউন্টে/সঞ্চয়ে দেওয়া</option><option value="loan">ধার দেওয়া</option></select>
-<input type="date" id="fromDate" min="2026-01-01" max="2046-12-31" class="full">
-<input type="date" id="toDate" min="2026-01-01" max="2046-12-31" class="full">
-<input class="full" id="search" placeholder="বিবরণ/ব্যক্তি খুঁজুন">
-</div>
-<div id="periodSummary"></div><div id="allList" class="list"></div></div>
-<div class="section"><h2>ডেটা ডাউনলোড</h2><div class="downloads">
-<button class="download-btn" onclick="downloadJSON()">Backup (.json)</button>
-<button class="download-btn" onclick="downloadCSV()">Excel/CSV (.csv)</button>
-<button class="download-btn" onclick="downloadFilteredCSV()">বর্তমান Filter Download</button>
-<button class="download-btn" onclick="window.print()">Print / PDF</button>
-<button class="download-btn" onclick="clearAll()">সব ডেটা মুছুন</button>
-</div></div></section>
-
-<section id="dues" class="panel">
-<div class="section"><h2>দেনা–পাওনা</h2><div id="dueList" class="list"></div></div>
-</section>
-
-<section id="calculator" class="panel"><div class="section"><h2>হিসাব ক্যালকুলেটর</h2>
-<div class="calculator"><input class="calc-display" id="calcDisplay" readonly value="0">
-<div class="calc-grid">
-<button onclick="calc('7')">7</button><button onclick="calc('8')">8</button><button onclick="calc('9')">9</button><button onclick="calc('/')">÷</button>
-<button onclick="calc('4')">4</button><button onclick="calc('5')">5</button><button onclick="calc('6')">6</button><button onclick="calc('*')">×</button>
-<button onclick="calc('1')">1</button><button onclick="calc('2')">2</button><button onclick="calc('3')">3</button><button onclick="calc('-')">−</button>
-<button onclick="calc('0')">0</button><button onclick="calc('.')">.</button><button onclick="calc('=')">=</button><button onclick="calc('+')">+</button>
-<button class="wide" onclick="calc('C')">Clear</button><button class="wide" onclick="calc('back')">⌫</button>
-</div></div></div></section>
-<section id="calendar" class="panel"><div class="section"><h2>মাস ও বছর</h2><div class="month-grid" id="monthGrid"></div></div></section>
-<section id="security" class="panel"><div class="section"><h2>PIN / নিরাপত্তা</h2>
-<input id="pinSet" class="pin" inputmode="numeric" maxlength="6" placeholder="৪–৬ সংখ্যার PIN">
-<button class="primary" onclick="setPin()">PIN সেট / পরিবর্তন</button>
-<button class="primary" onclick="resetPin()">PIN Reset</button>
-<button class="primary" onclick="forgotPin()">Forgot Password</button>
-<p class="meta">PIN ভুলে গেলে রিসেটের জন্য স্থানীয় ডেটা মুছে নতুন PIN সেট করতে হবে।</p>
-</div></section>
-<section id="qr" class="panel"><div class="section"><h2>বাংলা QR</h2><div class="qrbox">বাংলা QR-এর মাধ্যমে পেমেন্ট রেকর্ড করার জায়গা প্রস্তুত।<br><small>বাস্তব QR payment/verification চালাতে সংশ্লিষ্ট ব্যাংক বা MFS-এর অনুমোদিত API/SDK প্রয়োজন হবে।</small><br><button class="primary" onclick="alert('QR payment integration পরে API/SDK দিয়ে যুক্ত করা যাবে।')">QR Scan / Pay</button></div></div></section>
-<section id="report" class="panel">
-<div class="section"><h2>সারাংশ</h2><div id="reportText"></div></div>
-</section>
-</main>
-<footer>HUSSAIN • হিসাব রাখুন, নিয়ন্ত্রণ রাখুন</footer>
-
-<script>
-const key='hussain_ledger_v1';
-let data=JSON.parse(localStorage.getItem(key)||'[]');
-const $=id=>document.getElementById(id);
-const money=n=>'৳'+Number(n||0).toLocaleString('en-US',{maximumFractionDigits:2});
-const labels={income:'আয়',expense:'ব্যয়',debt:'দেনা',due:'পাওনা',transfer:'একাউন্টে/সঞ্চয়ে',loan:'ধার দেওয়া'};
-function save(){localStorage.setItem(key,JSON.stringify(data));render()}
-function render(){
- let inc=data.filter(x=>x.type==='income').reduce((s,x)=>s+x.amount,0);
- let exp=data.filter(x=>['expense','transfer','loan'].includes(x.type)).reduce((s,x)=>s+x.amount,0);
- let debt=data.filter(x=>x.type==='debt').reduce((s,x)=>s+x.amount,0);
- let due=data.filter(x=>x.type==='due').reduce((s,x)=>s+x.amount,0);
- $('income').textContent=money(inc);$('expense').textContent=money(exp);$('debt').textContent=money(debt);$('due').textContent=money(due);$('balance').textContent=money(inc-exp);
- const html=(arr)=>arr.length?arr.slice().reverse().map((x,i)=>`<div class="row"><div><strong>${esc(x.description)}</strong><div class="meta">${x.date} • ${labels[x.type]}${x.person?' • '+esc(x.person):''}${x.category?' • '+esc(x.category):''}${x.payment?' • '+esc(x.payment):''}</div>${x.note?'<div class="meta">'+esc(x.note)+'</div>':''}<div class="actions"><button onclick="editEntry('${x.id}')">✏️</button><button onclick="deleteEntry('${x.id}')">🗑️</button></div></div><div class="amount ${x.type}">${x.type==='income'?'+':(x.type==='expense'||x.type==='transfer'||x.type==='loan')?'-':''}${money(x.amount)}</div></div>`).join(''):'<div class="empty">এই সময়ের কোনো হিসাব নেই</div>';
- const filtered=getFiltered();
- $('allList').innerHTML=html(filtered);
- const fi=filtered.filter(x=>x.type==='income').reduce((s,x)=>s+x.amount,0);
- const fe=filtered.filter(x=>['expense','transfer','loan'].includes(x.type)).reduce((s,x)=>s+x.amount,0);
- const fd=filtered.filter(x=>x.type==='debt').reduce((s,x)=>s+x.amount,0);
- const fp=filtered.filter(x=>x.type==='due').reduce((s,x)=>s+x.amount,0);
- $('periodSummary').innerHTML=`<div class="statline"><span>আয়</span><b>${money(fi)}</b></div><div class="statline"><span>খরচ/বাহির</span><b>${money(fe)}</b></div><div class="statline"><span>দেনা</span><b>${money(fd)}</b></div><div class="statline"><span>পাওনা</span><b>${money(fp)}</b></div>`;
- let today=new Date().toISOString().slice(0,10); $('todayList').innerHTML=html(data.filter(x=>x.date===today));
- $('dueList').innerHTML=html(data.filter(x=>x.type==='debt'||x.type==='due'));
- $('reportText').innerHTML=`<p>মোট এন্ট্রি: <b>${data.length}</b></p><p>মোট আয়: <b>${money(inc)}</b></p><p>মোট ব্যয়: <b>${money(exp)}</b></p><p>বর্তমান ব্যালেন্স: <b>${money(inc-exp)}</b></p><p>দেনা: <b>${money(debt)}</b> &nbsp; | &nbsp; পাওনা: <b>${money(due)}</b></p>`;
-}
-function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-
-function getFiltered(){
- const p=$('period').value, t=$('filterType').value, q=$('search').value.trim().toLowerCase();
- const now=new Date(); const start=new Date(now); start.setHours(0,0,0,0);
- if(p==='week'){let day=(start.getDay()+6)%7;start.setDate(start.getDate()-day)}
- if(p==='15') start.setDate(start.getDate()-14);
- if(p==='month') start.setDate(1);
- if(p==='year'){start.setMonth(0,1)}
- const yf=$('yearFilter').value, mf=$('monthFilter').value;
- const fd=$('fromDate').value, td=$('toDate').value;
- return data.filter(x=>{
-   const dt=new Date(x.date+'T00:00:00');
-   let ok=p==='all'||(p==='day'&&dt.getTime()===start.getTime())||(p!=='day'&&p!=='range'&&dt>=start&&dt<=now);
-   if(p==='range') ok=(!fd||x.date>=fd)&&(!td||x.date<=td);
-   if(yf!=='all' && dt.getFullYear()!=Number(yf)) ok=false;
-   if(mf!=='all' && dt.getMonth()!=Number(mf)) ok=false;
-   const typ=t==='all'||x.type===t;
-   const txt=(x.description+' '+x.person+' '+x.category+' '+x.note+' '+x.payment).toLowerCase();
-   return ok&&typ&&(!q||txt.includes(q));
- });
-}
-function downloadFile(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
-function downloadJSON(){downloadFile('HUSSAIN_Ledger_Backup.json',JSON.stringify(data,null,2),'application/json')}
-function downloadCSV(){const rows=[['Date','Type','Description','Category','Person','Amount','Note'],...data.map(x=>[x.date,labels[x.type],x.description,x.category,x.person,x.amount,x.note])];const csv=rows.map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\n');downloadFile('HUSSAIN_Ledger.csv','\ufeff'+csv,'text/csv;charset=utf-8')}
-function downloadFilteredCSV(){
- const rows=getFiltered(), out=[['Date','Type','Description','Category','Person','Payment','Amount','Note'],...rows.map(x=>[x.date,labels[x.type],x.description,x.category,x.person,x.payment,x.amount,x.note])];
- const csv=out.map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\n');
- downloadFile('HUSSAIN_Filtered_Ledger.csv','\ufeff'+csv,'text/csv;charset=utf-8');
-}
-let calcExpr='';
-function calc(k){
- if(k==='C') calcExpr='';
- else if(k==='back') calcExpr=calcExpr.slice(0,-1);
- else if(k==='='){try{if(!/^[0-9+*/(). -]+$/.test(calcExpr)) throw 0; calcExpr=String(Function('return '+calcExpr)())}catch(e){calcExpr='Error'}}
- else if(calcExpr==='Error') calcExpr=k;
- else calcExpr+=k;
- $('calcDisplay').value=calcExpr||'0';
-}
-function setPin(){const p=$('pinSet').value;if(!/^\d{4,6}$/.test(p))return alert('৪–৬ সংখ্যার PIN দিন');localStorage.setItem('hussain_pin',p);alert('PIN সংরক্ষণ হয়েছে');$('pinSet').value=''}
-function resetPin(){if(confirm('PIN মুছে নতুন PIN সেট করার অনুমতি দেবেন?')){localStorage.removeItem('hussain_pin');alert('PIN Reset হয়েছে')}}
-function forgotPin(){if(confirm('Forgot Password: নিরাপত্তার কারণে PIN Reset করতে স্থানীয় PIN মুছে দিতে হবে। চালাবেন?')){localStorage.removeItem('hussain_pin');alert('PIN Reset হয়েছে। নতুন PIN সেট করুন।')}}
-function buildMonths(){const g=$('monthGrid');for(let y=2026;y<=2046;y++){for(let m=0;m<12;m++){const b=document.createElement('button');b.className='month-btn';b.textContent=['জানু','ফেব্রু','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টে','অক্টো','নভে','ডিসে'][m]+' '+y;b.onclick=()=>{ $('yearFilter').value=String(y);$('monthFilter').value=String(m);show('ledger');render()};g.appendChild(b)}}}
-buildMonths();
-function clearAll(){if(confirm('সব হিসাব স্থায়ীভাবে মুছে ফেলবেন?')){data=[];save()}}
-['period','yearFilter','monthFilter','filterType','fromDate','toDate','search'].forEach(id=>$(id).addEventListener('input',render));
-function updateClock(){
- const d=new Date();
- $('clock').innerHTML=`<span>${d.toLocaleTimeString('bn-BD',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false})}</span><small>${d.toLocaleDateString('bn-BD',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</small>`;
-}
-setInterval(updateClock,1000); updateClock();
-$('entryForm').onsubmit=e=>{e.preventDefault();data.push({id:Date.now().toString(),date:$('date').value,type:$('type').value,amount:Number($('amount').value),person:$('person').value,category:$('category').value,payment:$('payment').value,description:$('description').value,note:$('note').value});e.target.reset();$('date').value=new Date().toISOString().slice(0,10);save();show('ledger')};
-function deleteEntry(id){if(confirm('এই হিসাবটি মুছে ফেলবেন?')){data=data.filter(x=>x.id!==id);save()}}
-function editEntry(id){let x=data.find(a=>a.id===id);if(!x)return;$('date').value=x.date;$('type').value=x.type;$('amount').value=x.amount;$('person').value=x.person;$('category').value=x.category;$('payment').value=x.payment||'cash';$('description').value=x.description;$('note').value=x.note;data=data.filter(a=>a.id!==id);show('add');render()}
-function show(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));$(id).classList.add('active');document.querySelector(`[data-tab="${id}"]`).classList.add('active')}
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>show(b.dataset.tab));
-let d=new Date();$('date').value=d.toISOString().slice(0,10);render();
-</script>
-</body></html>
