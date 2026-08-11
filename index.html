@@ -3,531 +3,629 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>HUSSAIN • Personal Ledger</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-    --primary:#1677ff;
-    --dark:#0d172b;
-    --dark2:#14213d;
-    --bg:#f4f7fb;
-    --card:#ffffff;
-    --text:#182235;
-    --muted:#7b8494;
-    --green:#159447;
-    --red:#dc4437;
-    --blue:#2774d8;
-    --border:#e3e8f0;
+ --primary:#1677ff;
+ --dark:#0d172b;
+ --dark2:#172846;
+ --bg:#f4f7fb;
+ --card:#fff;
+ --text:#182235;
+ --muted:#7b8494;
+ --green:#159447;
+ --red:#dc4437;
+ --border:#e3e8f0;
 }
 
 body{
-    font-family:
-    "Noto Sans Bengali",
-    "Nirmala UI",
-    Arial,
-    sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    min-height:100vh;
+ font-family:"Noto Sans Bengali","Nirmala UI",Arial,sans-serif;
+ background:var(--bg);
+ color:var(--text);
+ min-height:100vh;
 }
 
-/* HEADER */
-
 header{
-    background:linear-gradient(135deg,#0b1427,#172846);
-    color:white;
-    padding:25px 18px 20px;
-    border-radius:0 0 28px 28px;
-    box-shadow:0 8px 25px rgba(0,0,0,.15);
+ background:linear-gradient(135deg,#0b1427,#172846);
+ color:#fff;
+ padding:25px 18px 20px;
+ border-radius:0 0 28px 28px;
+ box-shadow:0 8px 25px rgba(0,0,0,.15);
 }
 
 .header-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:15px;
+ display:flex;
+ justify-content:space-between;
+ align-items:flex-start;
+ gap:15px;
 }
 
 .brand h1{
-    font-size:30px;
-    font-weight:800;
-    letter-spacing:.5px;
+ font-size:30px;
+ font-weight:800;
 }
 
 .brand p{
-    margin-top:4px;
-    color:#b9c3d3;
-    font-size:14px;
+ margin-top:4px;
+ color:#b9c3d3;
+ font-size:14px;
 }
 
-.datetime{
-    text-align:right;
-}
+.datetime{text-align:right}
 
 #clock{
-    font-size:18px;
-    font-weight:700;
+ font-size:18px;
+ font-weight:700;
 }
 
-#englishDate{
-    margin-top:4px;
-    color:#c8d0dd;
-    font-size:13px;
+#englishDate,#banglaDate,#hijriDate{
+ margin-top:3px;
+ color:#b9c3d3;
+ font-size:12px;
 }
-
-#banglaDate,
-#hijriDate{
-    margin-top:2px;
-    color:#aeb9ca;
-    font-size:12px;
-}
-
-/* NAV */
 
 .nav{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:8px;
-    margin-top:22px;
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:8px;
+ margin-top:22px;
 }
 
 .nav button{
-    border:1px solid rgba(255,255,255,.18);
-    background:rgba(255,255,255,.08);
-    color:white;
-    border-radius:14px;
-    min-height:48px;
-    font-size:21px;
-    cursor:pointer;
+ border:1px solid rgba(255,255,255,.18);
+ background:rgba(255,255,255,.08);
+ color:#fff;
+ border-radius:14px;
+ min-height:48px;
+ font-size:21px;
+ cursor:pointer;
 }
 
 .nav button.active{
-    background:white;
-    color:#182235;
+ background:#fff;
+ color:#182235;
 }
-
-/* MAIN */
 
 .container{
-    max-width:950px;
-    margin:auto;
-    padding:20px 15px 100px;
+ max-width:950px;
+ margin:auto;
+ padding:20px 15px 100px;
 }
 
-/* DATE INFO */
-
 .date-panel{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:16px;
-    margin-bottom:18px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    text-align:center;
+ background:#fff;
+ border:1px solid var(--border);
+ border-radius:22px;
+ padding:16px;
+ margin-bottom:18px;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ text-align:center;
 }
 
 .date-item{
-    padding:4px 10px;
-    border-right:1px solid #e5e8ed;
+ padding:4px 10px;
+ border-right:1px solid #e5e8ed;
 }
 
-.date-item:last-child{
-    border-right:0;
-}
+.date-item:last-child{border-right:0}
 
 .date-label{
-    font-size:12px;
-    color:var(--muted);
+ font-size:12px;
+ color:var(--muted);
 }
 
 .date-value{
-    margin-top:5px;
-    font-size:15px;
-    font-weight:700;
+ margin-top:5px;
+ font-size:15px;
+ font-weight:700;
 }
 
-/* BALANCE */
-
 .balance{
-    background:linear-gradient(135deg,#0d172b,#172846);
-    color:white;
-    border-radius:25px;
-    padding:25px;
-    margin-bottom:18px;
+ background:linear-gradient(135deg,#0d172b,#172846);
+ color:#fff;
+ border-radius:25px;
+ padding:25px;
+ margin-bottom:18px;
 }
 
 .balance-label{
-    color:#b9c3d3;
-    font-size:14px;
+ color:#b9c3d3;
+ font-size:14px;
 }
 
 .balance-value{
-    font-size:38px;
-    font-weight:800;
-    margin-top:3px;
+ font-size:38px;
+ font-weight:800;
+ margin-top:3px;
 }
 
 .balance-sub{
-    margin-top:12px;
-    display:flex;
-    gap:25px;
-    color:#ccd4e0;
-    font-size:13px;
+ margin-top:12px;
+ display:flex;
+ gap:25px;
+ color:#ccd4e0;
+ font-size:13px;
 }
 
-/* SUMMARY */
-
 .summary{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin-bottom:22px;
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:12px;
+ margin-bottom:22px;
 }
 
 .summary-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:18px;
+ background:#fff;
+ border:1px solid var(--border);
+ border-radius:20px;
+ padding:18px;
 }
 
 .summary-title{
-    color:var(--muted);
-    font-size:13px;
+ color:var(--muted);
+ font-size:13px;
 }
 
 .summary-value{
-    font-size:25px;
-    font-weight:800;
-    margin-top:5px;
+ font-size:25px;
+ font-weight:800;
+ margin-top:5px;
 }
 
-.income{
-    color:var(--green);
-}
-
-.expense{
-    color:var(--red);
-}
-
-.receivable{
-    color:#2677dc;
-}
-
-.payable{
-    color:#7549b8;
-}
-
-/* SECTION */
+.income{color:var(--green)}
+.expense{color:var(--red)}
 
 .section{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:23px;
-    padding:20px;
-    margin-bottom:18px;
+ background:#fff;
+ border:1px solid var(--border);
+ border-radius:23px;
+ padding:20px;
+ margin-bottom:18px;
 }
 
 .section-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:15px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:15px;
 }
 
 .section-title h2{
-    font-size:21px;
+ font-size:21px;
 }
-
-.section-title button{
-    border:0;
-    background:#eaf2ff;
-    color:var(--primary);
-    padding:9px 13px;
-    border-radius:12px;
-    cursor:pointer;
-}
-
-/* FORM */
 
 .form-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px;
 }
 
 .field{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
+ display:flex;
+ flex-direction:column;
+ gap:6px;
 }
 
 .field label{
-    font-size:13px;
-    color:#697386;
+ font-size:13px;
+ color:#697386;
 }
 
-input,
-select,
-textarea{
-    width:100%;
-    border:1px solid #dce2eb;
-    border-radius:14px;
-    padding:13px;
-    font-size:15px;
-    background:#fff;
-    color:var(--text);
-    outline:none;
+input,select,textarea{
+ width:100%;
+ border:1px solid #dce2eb;
+ border-radius:14px;
+ padding:13px;
+ font-size:15px;
+ background:#fff;
+ color:var(--text);
+ outline:none;
 }
 
-input:focus,
-select:focus,
-textarea:focus{
-    border-color:var(--primary);
-    box-shadow:0 0 0 3px rgba(22,119,255,.10);
+input:focus,select:focus,textarea:focus{
+ border-color:var(--primary);
+ box-shadow:0 0 0 3px rgba(22,119,255,.10);
 }
 
 textarea{
-    resize:vertical;
-    min-height:90px;
+ resize:vertical;
+ min-height:90px;
 }
 
-.full{
-    grid-column:1/-1;
-}
+.full{grid-column:1/-1}
 
 .primary{
-    border:0;
-    background:var(--primary);
-    color:white;
-    padding:14px 18px;
-    border-radius:14px;
-    font-size:16px;
-    font-weight:700;
-    cursor:pointer;
+ border:0;
+ background:var(--primary);
+ color:#fff;
+ padding:14px 18px;
+ border-radius:14px;
+ font-size:16px;
+ font-weight:700;
+ cursor:pointer;
 }
 
 .secondary{
-    border:1px solid #dce2eb;
-    background:#fff;
-    color:var(--text);
-    padding:14px 18px;
-    border-radius:14px;
-    font-size:15px;
-    cursor:pointer;
+ border:1px solid #dce2eb;
+ background:#fff;
+ color:var(--text);
+ padding:14px 18px;
+ border-radius:14px;
+ font-size:15px;
+ cursor:pointer;
 }
 
 .form-actions{
-    display:flex;
-    gap:10px;
-    margin-top:5px;
+ display:flex;
+ gap:10px;
+ margin-top:5px;
+}
+
+/* CALCULATOR */
+
+.calculator{
+ background:linear-gradient(145deg,#ffffff,#f8fbff);
+}
+
+.calculator-header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:15px;
+}
+
+.calculator-badge{
+ background:#eaf2ff;
+ color:#176bd5;
+ padding:7px 11px;
+ border-radius:10px;
+ font-size:12px;
+ font-weight:700;
+}
+
+.expense-types{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:10px;
+ margin-bottom:15px;
+}
+
+.type-btn{
+ border:1px solid #dfe6ef;
+ background:#fff;
+ border-radius:16px;
+ padding:14px 8px;
+ cursor:pointer;
+ font-size:13px;
+ color:#394559;
+}
+
+.type-btn span{
+ display:block;
+ font-size:24px;
+ margin-bottom:5px;
+}
+
+.type-btn.active{
+ border-color:var(--primary);
+ background:#edf5ff;
+ color:var(--primary);
+}
+
+.calc-input{
+ display:grid;
+ grid-template-columns:1fr 150px;
+ gap:10px;
+}
+
+.add-expense{
+ border:0;
+ background:var(--primary);
+ color:#fff;
+ border-radius:14px;
+ font-weight:700;
+ cursor:pointer;
+}
+
+.calc-list{
+ margin-top:18px;
+}
+
+.calc-item{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ border:1px solid #e5e9ef;
+ border-radius:16px;
+ padding:13px;
+ margin-bottom:9px;
+}
+
+.calc-left{
+ display:flex;
+ align-items:center;
+ gap:11px;
+}
+
+.calc-icon{
+ width:42px;
+ height:42px;
+ border-radius:13px;
+ background:#edf4ff;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:21px;
+}
+
+.calc-name{
+ font-weight:700;
+}
+
+.calc-note{
+ color:var(--muted);
+ font-size:11px;
+ margin-top:3px;
+}
+
+.calc-price{
+ font-weight:800;
+ color:#182235;
+}
+
+.calc-delete{
+ border:0;
+ background:transparent;
+ color:#a0a7b2;
+ cursor:pointer;
+ margin-left:7px;
+}
+
+.calc-total{
+ margin-top:15px;
+ background:#0d172b;
+ color:#fff;
+ border-radius:18px;
+ padding:18px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.calc-total-label{
+ color:#c6cfdd;
+ font-size:13px;
+}
+
+.calc-total-value{
+ font-size:28px;
+ font-weight:800;
+}
+
+.calc-actions{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+ margin-top:12px;
+}
+
+.calc-action{
+ border:0;
+ padding:13px;
+ border-radius:13px;
+ background:#edf4ff;
+ color:#176bd5;
+ font-weight:700;
+ cursor:pointer;
+}
+
+.calc-action.green{
+ background:#e9f8ef;
+ color:#178b46;
+}
+
+.calc-action.dark{
+ background:#e9edf4;
+ color:#172238;
 }
 
 /* TRANSACTIONS */
 
 .transaction{
-    border:1px solid #e5e9ef;
-    border-radius:17px;
-    padding:15px;
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
+ border:1px solid #e5e9ef;
+ border-radius:17px;
+ padding:15px;
+ margin-bottom:10px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:15px;
 }
 
 .transaction-left{
-    display:flex;
-    align-items:center;
-    gap:12px;
+ display:flex;
+ align-items:center;
+ gap:12px;
 }
 
 .icon{
-    width:42px;
-    height:42px;
-    border-radius:14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:20px;
+ width:42px;
+ height:42px;
+ border-radius:14px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:20px;
 }
 
 .icon.in{
-    background:#e5f7ec;
-    color:var(--green);
+ background:#e5f7ec;
+ color:var(--green);
 }
 
 .icon.out{
-    background:#ffe9e7;
-    color:var(--red);
+ background:#ffe9e7;
+ color:var(--red);
 }
 
-.transaction-name{
-    font-weight:700;
-}
+.transaction-name{font-weight:700}
 
 .transaction-meta{
-    color:var(--muted);
-    font-size:12px;
-    margin-top:4px;
+ color:var(--muted);
+ font-size:12px;
+ margin-top:4px;
 }
 
 .transaction-amount{
-    text-align:right;
-    font-weight:800;
+ text-align:right;
+ font-weight:800;
 }
 
-.transaction-amount.in{
-    color:var(--green);
-}
-
-.transaction-amount.out{
-    color:var(--red);
-}
+.transaction-amount.in{color:var(--green)}
+.transaction-amount.out{color:var(--red)}
 
 .delete-btn{
-    margin-top:5px;
-    border:0;
-    background:none;
-    color:#a3aab6;
-    cursor:pointer;
-    font-size:12px;
+ margin-top:5px;
+ border:0;
+ background:none;
+ color:#a3aab6;
+ cursor:pointer;
+ font-size:12px;
 }
 
-/* DOWNLOAD AREA */
-
 .download-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px;
 }
 
 .download-btn{
-    border:0;
-    padding:16px;
-    border-radius:16px;
-    font-size:15px;
-    font-weight:700;
-    cursor:pointer;
-    background:#edf4ff;
-    color:#176bd5;
+ border:0;
+ padding:16px;
+ border-radius:16px;
+ font-size:15px;
+ font-weight:700;
+ cursor:pointer;
+ background:#edf4ff;
+ color:#176bd5;
 }
 
 .download-btn.green{
-    background:#e9f8ef;
-    color:#178b46;
+ background:#e9f8ef;
+ color:#178b46;
 }
 
 .download-btn.dark{
-    background:#e9edf4;
-    color:#172238;
+ background:#e9edf4;
+ color:#172238;
 }
-
-/* EMPTY */
 
 .empty{
-    text-align:center;
-    padding:30px 10px;
-    color:#9aa2af;
+ text-align:center;
+ padding:30px 10px;
+ color:#9aa2af;
 }
-
-/* FLOAT BUTTON */
 
 .fab{
-    position:fixed;
-    right:22px;
-    bottom:22px;
-    width:62px;
-    height:62px;
-    border:0;
-    border-radius:50%;
-    background:var(--primary);
-    color:white;
-    font-size:32px;
-    box-shadow:0 10px 25px rgba(0,0,0,.22);
-    cursor:pointer;
+ position:fixed;
+ right:22px;
+ bottom:22px;
+ width:62px;
+ height:62px;
+ border:0;
+ border-radius:50%;
+ background:var(--primary);
+ color:#fff;
+ font-size:32px;
+ box-shadow:0 10px 25px rgba(0,0,0,.22);
+ cursor:pointer;
 }
 
-/* TOAST */
-
 .toast{
-    position:fixed;
-    left:50%;
-    bottom:95px;
-    transform:translateX(-50%) translateY(20px);
-    background:#172238;
-    color:white;
-    padding:12px 18px;
-    border-radius:14px;
-    opacity:0;
-    pointer-events:none;
-    transition:.3s;
-    z-index:99;
+ position:fixed;
+ left:50%;
+ bottom:95px;
+ transform:translateX(-50%) translateY(20px);
+ background:#172238;
+ color:#fff;
+ padding:12px 18px;
+ border-radius:14px;
+ opacity:0;
+ pointer-events:none;
+ transition:.3s;
+ z-index:99;
 }
 
 .toast.show{
-    opacity:1;
-    transform:translateX(-50%) translateY(0);
+ opacity:1;
+ transform:translateX(-50%) translateY(0);
 }
-
-/* MOBILE */
 
 @media(max-width:700px){
 
-    .header-top{
-        flex-direction:column;
-    }
+ .header-top{
+  flex-direction:column;
+ }
 
-    .datetime{
-        text-align:left;
-    }
+ .datetime{
+  text-align:left;
+ }
 
-    .summary{
-        grid-template-columns:repeat(2,1fr);
-    }
+ .summary{
+  grid-template-columns:repeat(2,1fr);
+ }
 
-    .form-grid{
-        grid-template-columns:1fr;
-    }
+ .form-grid{
+  grid-template-columns:1fr;
+ }
 
-    .full{
-        grid-column:auto;
-    }
+ .full{
+  grid-column:auto;
+ }
 
-    .date-panel{
-        grid-template-columns:1fr;
-        gap:10px;
-    }
+ .date-panel{
+  grid-template-columns:1fr;
+  gap:10px;
+ }
 
-    .date-item{
-        border-right:0;
-        border-bottom:1px solid #e5e8ed;
-        padding-bottom:10px;
-    }
+ .date-item{
+  border-right:0;
+  border-bottom:1px solid #e5e8ed;
+  padding-bottom:10px;
+ }
 
-    .date-item:last-child{
-        border-bottom:0;
-    }
+ .date-item:last-child{
+  border-bottom:0;
+ }
 
-    .download-grid{
-        grid-template-columns:1fr;
-    }
+ .expense-types{
+  grid-template-columns:repeat(2,1fr);
+ }
 
-    .transaction{
-        align-items:flex-start;
-    }
+ .calc-input{
+  grid-template-columns:1fr;
+ }
 
-    .transaction-amount{
-        font-size:14px;
-    }
+ .add-expense{
+  padding:14px;
+ }
+
+ .calc-actions{
+  grid-template-columns:1fr;
+ }
+
+ .download-grid{
+  grid-template-columns:1fr;
+ }
+
+ .transaction{
+  align-items:flex-start;
+ }
 }
 </style>
 </head>
@@ -553,15 +651,14 @@ textarea{
 </div>
 
 <div class="nav">
-<button class="active">⌂</button>
-<button>☷</button>
+<button class="active" onclick="topPage()">⌂</button>
+<button onclick="showAllTransactions()">☷</button>
 <button onclick="scrollToForm()">＋</button>
-<button>−</button>
-<button>⚙</button>
+<button onclick="scrollToCalculator()">🧮</button>
+<button onclick="showToast('Settings শীঘ্রই যুক্ত হবে')">⚙</button>
 </div>
 
 </header>
-
 
 <main class="container">
 
@@ -586,16 +683,13 @@ textarea{
 
 </div>
 
-
 <!-- BALANCE -->
 
 <div class="balance">
 
 <div class="balance-label">বর্তমান ব্যালেন্স</div>
 
-<div class="balance-value" id="balance">
-৳০
-</div>
+<div class="balance-value" id="balance">৳০</div>
 
 <div class="balance-sub">
 <span>আয় <b id="balanceIncome">৳০</b></span>
@@ -603,7 +697,6 @@ textarea{
 </div>
 
 </div>
-
 
 <!-- SUMMARY -->
 
@@ -620,17 +713,116 @@ textarea{
 </div>
 
 <div class="summary-card">
-<div class="summary-title">মোট পাওনা</div>
-<div class="summary-value receivable">৳০</div>
+<div class="summary-title">মোট লেনদেন</div>
+<div class="summary-value" id="totalTransactions">০</div>
 </div>
 
 <div class="summary-card">
-<div class="summary-title">মোট দেনা</div>
-<div class="summary-value payable">৳০</div>
+<div class="summary-title">Calculator খরচ</div>
+<div class="summary-value expense" id="calculatorTotalSmall">৳০</div>
 </div>
 
 </div>
 
+<!-- EXPENSE CALCULATOR -->
+
+<div class="section calculator" id="calculatorSection">
+
+<div class="calculator-header">
+
+<div>
+<h2>🧮 Expense Calculator</h2>
+<p style="color:#7b8494;font-size:12px;margin-top:4px">
+যাতায়াত, খাবার, হোটেল ও অন্যান্য খরচ হিসাব করুন
+</p>
+</div>
+
+<div class="calculator-badge">
+DAILY EXPENSE
+</div>
+
+</div>
+
+<div class="expense-types">
+
+<button class="type-btn active" onclick="selectExpenseType('যাতায়াত ভাড়া','🚌',this)">
+<span>🚌</span>
+যাতায়াত
+</button>
+
+<button class="type-btn" onclick="selectExpenseType('খাবার বিল','🍛',this)">
+<span>🍛</span>
+খাবার
+</button>
+
+<button class="type-btn" onclick="selectExpenseType('হোটেল ভাড়া','🏨',this)">
+<span>🏨</span>
+হোটেল
+</button>
+
+<button class="type-btn" onclick="selectExpenseType('অন্যান্য','🛍️',this)">
+<span>🛍️</span>
+অন্যান্য
+</button>
+
+</div>
+
+<div class="calc-input">
+
+<input
+type="number"
+id="calcAmount"
+placeholder="খরচের পরিমাণ লিখুন"
+min="0"
+step="0.01"
+>
+
+<button class="add-expense" onclick="addCalculatorExpense()">
+＋ খরচ যোগ
+</button>
+
+</div>
+
+<input
+id="calcNote"
+placeholder="ঐচ্ছিক: কোথায়/কেন খরচ হয়েছে"
+style="margin-top:10px"
+>
+
+<div class="calc-list" id="calculatorList"></div>
+
+<div class="calc-total">
+
+<div>
+<div class="calc-total-label">সর্বমোট খরচ</div>
+<div style="font-size:11px;color:#8e9aab;margin-top:3px">
+Calculator Total
+</div>
+</div>
+
+<div class="calc-total-value" id="calculatorTotal">
+৳০
+</div>
+
+</div>
+
+<div class="calc-actions">
+
+<button class="calc-action green" onclick="addCalculatorToLedger()">
+✓ Ledger-এ যোগ করুন
+</button>
+
+<button class="calc-action" onclick="downloadCalculatorStatement()">
+📄 Statement
+</button>
+
+<button class="calc-action dark" onclick="clearCalculator()">
+🗑️ সব পরিষ্কার
+</button>
+
+</div>
+
+</div>
 
 <!-- ADD TRANSACTION -->
 
@@ -673,6 +865,7 @@ textarea{
 <option>Gift</option>
 <option>Food</option>
 <option>Transport</option>
+<option>Hotel</option>
 <option>Shopping</option>
 <option>Bill</option>
 <option>Bank</option>
@@ -699,7 +892,7 @@ textarea{
 </div>
 
 <div class="field">
-<label>রেফারেন্স / Transaction ID</label>
+<label>Transaction ID / Reference</label>
 <input id="reference" placeholder="ঐচ্ছিক">
 </div>
 
@@ -709,6 +902,7 @@ textarea{
 </div>
 
 <div class="full form-actions">
+
 <button class="primary" onclick="addTransaction()">
 হিসাব সংরক্ষণ করুন
 </button>
@@ -716,22 +910,21 @@ textarea{
 <button class="secondary" onclick="clearForm()">
 পরিষ্কার
 </button>
+
 </div>
 
 </div>
 </div>
-
 
 <!-- TRANSACTIONS -->
 
 <div class="section">
 
 <div class="section-title">
-
 <h2>সাম্প্রতিক হিসাব</h2>
 
-<button onclick="showAllTransactions()">
-সব দেখুন →
+<button class="secondary" onclick="showAllTransactions()">
+সব দেখুন
 </button>
 
 </div>
@@ -740,17 +933,16 @@ textarea{
 
 </div>
 
-
-<!-- STATEMENT DOWNLOAD -->
+<!-- STATEMENT -->
 
 <div class="section">
 
 <div class="section-title">
-<h2>Statement</h2>
+<h2>Statement & Download</h2>
 </div>
 
-<p style="color:#7b8494;font-size:13px;margin-bottom:15px;">
-আপনার সংরক্ষিত হিসাব থেকে Statement তৈরি করে ডাউনলোড করতে পারবেন।
+<p style="color:#7b8494;font-size:13px;margin-bottom:15px">
+আপনার সংরক্ষিত হিসাব থেকে Statement তৈরি ও ডাউনলোড করুন।
 </p>
 
 <div class="download-grid">
@@ -775,8 +967,7 @@ textarea{
 
 </div>
 
-
-<!-- PAYMENT SYSTEM -->
+<!-- PAYMENT -->
 
 <div class="section">
 
@@ -816,20 +1007,24 @@ textarea{
 
 </main>
 
-
-<button class="fab" onclick="scrollToForm()">＋</button>
+<button class="fab" onclick="scrollToCalculator()">🧮</button>
 
 <div class="toast" id="toast"></div>
-
 
 <script>
 
 /* =========================
-   DATA
+   STORAGE
 ========================= */
 
 let transactions =
 JSON.parse(localStorage.getItem("hussainLedger") || "[]");
+
+let calculatorExpenses =
+JSON.parse(localStorage.getItem("hussainCalculator") || "[]");
+
+let selectedExpenseType = "যাতায়াত ভাড়া";
+let selectedExpenseIcon = "🚌";
 
 
 /* =========================
@@ -838,34 +1033,24 @@ JSON.parse(localStorage.getItem("hussainLedger") || "[]");
 
 function bnNumber(number){
 
-    const map = {
-        "0":"০",
-        "1":"১",
-        "2":"২",
-        "3":"৩",
-        "4":"৪",
-        "5":"৫",
-        "6":"৬",
-        "7":"৭",
-        "8":"৮",
-        "9":"৯"
-    };
+ const map={
+  "0":"০","1":"১","2":"২","3":"৩","4":"৪",
+  "5":"৫","6":"৬","7":"৭","8":"৮","9":"৯"
+ };
 
-    return String(number)
-    .replace(/[0-9]/g,
-    x => map[x]);
-
+ return String(number)
+ .replace(/[0-9]/g,x=>map[x]);
 }
-
 
 function money(number){
 
-    return "৳" +
-    bnNumber(
-        Number(number || 0)
-        .toLocaleString("en-IN")
-    );
-
+ return "৳"+Number(number||0)
+ .toLocaleString("en-IN")
+ .replace(/[0-9]/g,x=>{
+  const m={"0":"০","1":"১","2":"২","3":"৩","4":"৪",
+  "5":"৫","6":"৬","7":"৭","8":"৮","9":"৯"};
+  return m[x];
+ });
 }
 
 
@@ -875,25 +1060,17 @@ function money(number){
 
 function updateClock(){
 
-    const now = new Date();
+ const now=new Date();
 
-    let h = now.getHours();
+ let h=now.getHours();
+ const ampm=h>=12?"PM":"AM";
 
-    const ampm = h >= 12 ? "PM" : "AM";
+ h=h%12||12;
 
-    h = h % 12 || 12;
-
-    const time =
-    String(h).padStart(2,"0") +
-    ":" +
-    String(now.getMinutes()).padStart(2,"0") +
-    ":" +
-    String(now.getSeconds()).padStart(2,"0") +
-    " " + ampm;
-
-    document.getElementById("clock").textContent =
-    time;
-
+ document.getElementById("clock").textContent=
+ String(h).padStart(2,"0")+":"+
+ String(now.getMinutes()).padStart(2,"0")+":"+
+ String(now.getSeconds()).padStart(2,"0")+" "+ampm;
 }
 
 setInterval(updateClock,1000);
@@ -904,88 +1081,56 @@ updateClock();
    DATE
 ========================= */
 
-const weekDays = [
-"রবিবার",
-"সোমবার",
-"মঙ্গলবার",
-"বুধবার",
-"বৃহস্পতিবার",
-"শুক্রবার",
-"শনিবার"
+const weekDays=[
+ "রবিবার","সোমবার","মঙ্গলবার","বুধবার",
+ "বৃহস্পতিবার","শুক্রবার","শনিবার"
 ];
 
 function updateDates(){
 
-    const d = new Date();
+ const d=new Date();
 
-    document.getElementById("weekDay")
-    .textContent = weekDays[d.getDay()];
+ document.getElementById("weekDay").textContent=
+ weekDays[d.getDay()];
 
+ document.getElementById("englishDate").textContent=
+ d.toLocaleDateString("en-GB",{
+  day:"2-digit",
+  month:"long",
+  year:"numeric"
+ });
 
-    const en =
-    d.toLocaleDateString(
-        "en-GB",
-        {
-            day:"2-digit",
-            month:"long",
-            year:"numeric"
-        }
-    );
+ try{
 
-    document.getElementById("englishDate")
-    .textContent = en;
+  const bn=new Intl.DateTimeFormat(
+   "bn-BD-u-ca-beng",
+   {
+    day:"numeric",
+    month:"long",
+    year:"numeric"
+   }
+  ).format(d);
 
+  document.getElementById("bnDate").textContent=bn;
+  document.getElementById("banglaDate").textContent=bn;
 
-    try{
+ }catch(e){}
 
-        const bn =
-        new Intl.DateTimeFormat(
-            "bn-BD-u-ca-beng",
-            {
-                day:"numeric",
-                month:"long",
-                year:"numeric"
-            }
-        ).format(d);
+ try{
 
-        document.getElementById("bnDate")
-        .textContent = bn;
+  const hijri=new Intl.DateTimeFormat(
+   "bn-BD-u-ca-islamic",
+   {
+    day:"numeric",
+    month:"long",
+    year:"numeric"
+   }
+  ).format(d);
 
-        document.getElementById("banglaDate")
-        .textContent = bn;
+  document.getElementById("arDate").textContent=hijri;
+  document.getElementById("hijriDate").textContent=hijri;
 
-    }catch(e){
-
-        document.getElementById("bnDate")
-        .textContent = "বাংলা তারিখ";
-
-    }
-
-
-    try{
-
-        const hijri =
-        new Intl.DateTimeFormat(
-            "bn-BD-u-ca-islamic",
-            {
-                day:"numeric",
-                month:"long",
-                year:"numeric"
-            }
-        ).format(d);
-
-        document.getElementById("arDate")
-        .textContent = hijri;
-
-        document.getElementById("hijriDate")
-        .textContent = hijri;
-
-    }catch(e){
-
-        document.getElementById("arDate")
-        .textContent = "হিজরি তারিখ";
-
-    }
+ }catch(e){}
 
 }
 
@@ -993,25 +1138,21 @@ updateDates();
 
 
 /* =========================
-   DEFAULT DATE & TIME
+   DEFAULT DATE
 ========================= */
 
 function setDefaultDateTime(){
 
-    const now = new Date();
+ const now=new Date();
 
-    const date =
-    now.getFullYear() + "-" +
-    String(now.getMonth()+1).padStart(2,"0") + "-" +
-    String(now.getDate()).padStart(2,"0");
+ document.getElementById("date").value=
+ now.getFullYear()+"-"+
+ String(now.getMonth()+1).padStart(2,"0")+"-"+
+ String(now.getDate()).padStart(2,"0");
 
-    const time =
-    String(now.getHours()).padStart(2,"0") +
-    ":" +
-    String(now.getMinutes()).padStart(2,"0");
-
-    document.getElementById("date").value = date;
-    document.getElementById("time").value = time;
+ document.getElementById("time").value=
+ String(now.getHours()).padStart(2,"0")+":"+
+ String(now.getMinutes()).padStart(2,"0");
 
 }
 
@@ -1019,259 +1160,607 @@ setDefaultDateTime();
 
 
 /* =========================
-   ADD TRANSACTION
+   CALCULATOR TYPE
+========================= */
+
+function selectExpenseType(type,icon,button){
+
+ selectedExpenseType=type;
+ selectedExpenseIcon=icon;
+
+ document.querySelectorAll(".type-btn")
+ .forEach(btn=>btn.classList.remove("active"));
+
+ button.classList.add("active");
+
+}
+
+
+/* =========================
+   ADD CALCULATOR EXPENSE
+========================= */
+
+function addCalculatorExpense(){
+
+ const amount=Number(
+  document.getElementById("calcAmount").value
+ );
+
+ const note=
+ document.getElementById("calcNote").value.trim();
+
+ if(!amount || amount<=0){
+
+  showToast("সঠিক খরচের পরিমাণ দিন");
+  return;
+ }
+
+ calculatorExpenses.unshift({
+
+  id:Date.now(),
+
+  type:selectedExpenseType,
+
+  icon:selectedExpenseIcon,
+
+  amount:amount,
+
+  note:note,
+
+  date:new Date().toISOString()
+
+ });
+
+ saveCalculator();
+
+ document.getElementById("calcAmount").value="";
+ document.getElementById("calcNote").value="";
+
+ renderCalculator();
+
+ showToast("Calculator-এ খরচ যোগ হয়েছে");
+
+}
+
+
+/* =========================
+   SAVE CALCULATOR
+========================= */
+
+function saveCalculator(){
+
+ localStorage.setItem(
+  "hussainCalculator",
+  JSON.stringify(calculatorExpenses)
+ );
+
+}
+
+
+/* =========================
+   RENDER CALCULATOR
+========================= */
+
+function renderCalculator(){
+
+ const list=
+ document.getElementById("calculatorList");
+
+ if(calculatorExpenses.length===0){
+
+  list.innerHTML=
+  `<div class="empty">
+  এখনো কোনো খরচ যোগ করা হয়নি।
+  </div>`;
+
+ }else{
+
+  list.innerHTML=
+  calculatorExpenses.map(item=>`
+
+  <div class="calc-item">
+
+   <div class="calc-left">
+
+    <div class="calc-icon">
+     ${item.icon}
+    </div>
+
+    <div>
+
+     <div class="calc-name">
+      ${escapeHTML(item.type)}
+     </div>
+
+     <div class="calc-note">
+      ${escapeHTML(item.note || "কোনো বিবরণ নেই")}
+     </div>
+
+    </div>
+
+   </div>
+
+   <div class="calc-price">
+
+    ${money(item.amount)}
+
+    <button
+    class="calc-delete"
+    onclick="deleteCalculatorExpense(${item.id})">
+    ✕
+    </button>
+
+   </div>
+
+  </div>
+
+  `).join("");
+
+ }
+
+ const total=
+ calculatorExpenses.reduce(
+  (sum,item)=>sum+Number(item.amount),0
+ );
+
+ document.getElementById("calculatorTotal")
+ .textContent=money(total);
+
+ document.getElementById("calculatorTotalSmall")
+ .textContent=money(total);
+
+}
+
+
+renderCalculator();
+
+
+/* =========================
+   DELETE CALCULATOR ITEM
+========================= */
+
+function deleteCalculatorExpense(id){
+
+ calculatorExpenses=
+ calculatorExpenses.filter(item=>item.id!==id);
+
+ saveCalculator();
+ renderCalculator();
+
+ showToast("খরচ মুছে ফেলা হয়েছে");
+
+}
+
+
+/* =========================
+   CLEAR CALCULATOR
+========================= */
+
+function clearCalculator(){
+
+ if(calculatorExpenses.length===0){
+
+  showToast("Calculator খালি আছে");
+  return;
+
+ }
+
+ if(!confirm("Calculator-এর সব খরচ মুছে ফেলবেন?"))
+ return;
+
+ calculatorExpenses=[];
+
+ saveCalculator();
+ renderCalculator();
+
+ showToast("Calculator পরিষ্কার হয়েছে");
+
+}
+
+
+/* =========================
+   ADD CALCULATOR TO LEDGER
+========================= */
+
+function addCalculatorToLedger(){
+
+ if(calculatorExpenses.length===0){
+
+  showToast("প্রথমে Calculator-এ খরচ যোগ করুন");
+  return;
+
+ }
+
+ const now=new Date();
+
+ calculatorExpenses.forEach(item=>{
+
+  transactions.unshift({
+
+   id:Date.now()+Math.random(),
+
+   date:
+   now.getFullYear()+"-"+
+   String(now.getMonth()+1).padStart(2,"0")+"-"+
+   String(now.getDate()).padStart(2,"0"),
+
+   time:
+   String(now.getHours()).padStart(2,"0")+":"+
+   String(now.getMinutes()).padStart(2,"0"),
+
+   type:"expense",
+
+   amount:Number(item.amount),
+
+   category:item.type,
+
+   payment:"Cash",
+
+   person:"",
+
+   reference:"Calculator",
+
+   note:item.note || "Expense Calculator থেকে যোগ করা হয়েছে"
+
+  });
+
+ });
+
+ localStorage.setItem(
+  "hussainLedger",
+  JSON.stringify(transactions)
+ );
+
+ render();
+
+ showToast("Calculator-এর খরচ Ledger-এ যোগ হয়েছে");
+
+}
+
+
+/* =========================
+   CALCULATOR STATEMENT
+========================= */
+
+function downloadCalculatorStatement(){
+
+ if(calculatorExpenses.length===0){
+
+  showToast("Calculator-এ কোনো খরচ নেই");
+  return;
+
+ }
+
+ const total=
+ calculatorExpenses.reduce(
+  (sum,item)=>sum+Number(item.amount),0
+ );
+
+ const rows=
+ calculatorExpenses.map((item,index)=>`
+
+ <tr>
+  <td>${index+1}</td>
+  <td>${escapeHTML(item.type)}</td>
+  <td>${escapeHTML(item.note||"")}</td>
+  <td>${money(item.amount)}</td>
+ </tr>
+
+ `).join("");
+
+ const html=`
+
+ <!DOCTYPE html>
+ <html lang="bn">
+ <head>
+ <meta charset="UTF-8">
+
+ <title>HUSSAIN Expense Statement</title>
+
+ <style>
+
+ body{
+  font-family:Arial,"Noto Sans Bengali",sans-serif;
+  padding:25px;
+  color:#182235;
+ }
+
+ h1{margin-bottom:5px}
+
+ .sub{
+  color:#777;
+  margin-bottom:20px;
+ }
+
+ table{
+  width:100%;
+  border-collapse:collapse;
+ }
+
+ th,td{
+  border:1px solid #ddd;
+  padding:10px;
+ }
+
+ th{
+  background:#eef3f9;
+ }
+
+ .total{
+  margin-top:20px;
+  padding:18px;
+  background:#0d172b;
+  color:white;
+  border-radius:12px;
+  font-size:22px;
+  font-weight:bold;
+ }
+
+ </style>
+ </head>
+
+ <body>
+
+ <h1>HUSSAIN</h1>
+
+ <div class="sub">
+ Expense Calculator Statement
+ </div>
+
+ <table>
+
+ <thead>
+ <tr>
+  <th>#</th>
+  <th>খরচের ধরন</th>
+  <th>বিবরণ</th>
+  <th>পরিমাণ</th>
+ </tr>
+ </thead>
+
+ <tbody>
+ ${rows}
+ </tbody>
+
+ </table>
+
+ <div class="total">
+ সর্বমোট খরচ: ${money(total)}
+ </div>
+
+ <p style="margin-top:20px">
+ Generated: ${new Date().toLocaleString()}
+ </p>
+
+ </body>
+ </html>
+ `;
+
+ const blob=
+ new Blob([html],{type:"text/html;charset=utf-8"});
+
+ const url=URL.createObjectURL(blob);
+
+ const a=document.createElement("a");
+
+ a.href=url;
+ a.download="HUSSAIN-Expense-Statement.html";
+
+ document.body.appendChild(a);
+
+ a.click();
+
+ a.remove();
+
+ URL.revokeObjectURL(url);
+
+ showToast("Expense Statement Download হয়েছে");
+
+}
+
+
+/* =========================
+   ADD LEDGER TRANSACTION
 ========================= */
 
 function addTransaction(){
 
-    const date =
-    document.getElementById("date").value;
+ const date=document.getElementById("date").value;
+ const time=document.getElementById("time").value;
+ const type=document.getElementById("type").value;
+ const amount=Number(document.getElementById("amount").value);
+ const category=document.getElementById("category").value;
+ const payment=document.getElementById("payment").value;
+ const person=document.getElementById("person").value;
+ const reference=document.getElementById("reference").value;
+ const note=document.getElementById("note").value;
 
-    const time =
-    document.getElementById("time").value;
+ if(!date || !amount || amount<=0){
 
-    const type =
-    document.getElementById("type").value;
+  showToast("তারিখ ও সঠিক পরিমাণ দিন");
+  return;
 
-    const amount =
-    Number(document.getElementById("amount").value);
+ }
 
-    const category =
-    document.getElementById("category").value;
+ transactions.unshift({
 
-    const payment =
-    document.getElementById("payment").value;
+  id:Date.now(),
 
-    const person =
-    document.getElementById("person").value;
+  date,
+  time,
+  type,
+  amount,
+  category,
+  payment,
+  person,
+  reference,
+  note
 
-    const reference =
-    document.getElementById("reference").value;
+ });
 
-    const note =
-    document.getElementById("note").value;
+ localStorage.setItem(
+  "hussainLedger",
+  JSON.stringify(transactions)
+ );
 
+ clearForm();
+ render();
 
-    if(!date || !amount || amount <= 0){
-
-        showToast("তারিখ ও সঠিক পরিমাণ দিন");
-
-        return;
-    }
-
-
-    const transaction = {
-
-        id:Date.now(),
-
-        date,
-
-        time,
-
-        type,
-
-        amount,
-
-        category,
-
-        payment,
-
-        person,
-
-        reference,
-
-        note
-
-    };
-
-
-    transactions.unshift(transaction);
-
-
-    localStorage.setItem(
-        "hussainLedger",
-        JSON.stringify(transactions)
-    );
-
-
-    clearForm();
-
-    render();
-
-    showToast("হিসাব সফলভাবে সংরক্ষণ হয়েছে");
+ showToast("হিসাব সফলভাবে সংরক্ষণ হয়েছে");
 
 }
 
 
 /* =========================
-   CLEAR
+   CLEAR FORM
 ========================= */
 
 function clearForm(){
 
-    document.getElementById("amount").value="";
-    document.getElementById("person").value="";
-    document.getElementById("reference").value="";
-    document.getElementById("note").value="";
+ document.getElementById("amount").value="";
+ document.getElementById("person").value="";
+ document.getElementById("reference").value="";
+ document.getElementById("note").value="";
 
-    setDefaultDateTime();
+ setDefaultDateTime();
 
 }
 
 
 /* =========================
-   DELETE
+   DELETE TRANSACTION
 ========================= */
 
 function deleteTransaction(id){
 
-    if(!confirm("এই হিসাবটি মুছে ফেলবেন?")) return;
+ if(!confirm("এই হিসাবটি মুছে ফেলবেন?"))
+ return;
 
-    transactions =
-    transactions.filter(x => x.id !== id);
+ transactions=
+ transactions.filter(x=>x.id!==id);
 
-    localStorage.setItem(
-        "hussainLedger",
-        JSON.stringify(transactions)
-    );
+ localStorage.setItem(
+  "hussainLedger",
+  JSON.stringify(transactions)
+ );
 
-    render();
+ render();
 
-    showToast("হিসাব মুছে ফেলা হয়েছে");
+ showToast("হিসাব মুছে ফেলা হয়েছে");
 
 }
 
 
 /* =========================
-   RENDER
+   RENDER LEDGER
 ========================= */
 
 function render(){
 
-    let income = 0;
-    let expense = 0;
+ let income=0;
+ let expense=0;
 
-    transactions.forEach(t => {
+ transactions.forEach(t=>{
 
-        if(t.type === "income")
-            income += Number(t.amount);
+  if(t.type==="income")
+   income+=Number(t.amount);
+  else
+   expense+=Number(t.amount);
 
-        else
-            expense += Number(t.amount);
+ });
 
-    });
+ const balance=income-expense;
 
+ document.getElementById("balance")
+ .textContent=money(balance);
 
-    const balance = income - expense;
+ document.getElementById("balanceIncome")
+ .textContent=money(income);
 
+ document.getElementById("balanceExpense")
+ .textContent=money(expense);
 
-    document.getElementById("balance")
-    .textContent = money(balance);
+ document.getElementById("totalIncome")
+ .textContent=money(income);
 
-    document.getElementById("balanceIncome")
-    .textContent = money(income);
+ document.getElementById("totalExpense")
+ .textContent=money(expense);
 
-    document.getElementById("balanceExpense")
-    .textContent = money(expense);
+ document.getElementById("totalTransactions")
+ .textContent=bnNumber(transactions.length);
 
-    document.getElementById("totalIncome")
-    .textContent = money(income);
+ const box=document.getElementById("transactions");
 
-    document.getElementById("totalExpense")
-    .textContent = money(expense);
+ if(transactions.length===0){
 
+  box.innerHTML=
+  `<div class="empty">
+  এখনো কোনো লেনদেন যোগ করা হয়নি।
+  </div>`;
 
-    const box =
-    document.getElementById("transactions");
+  return;
+ }
 
+ box.innerHTML=
+ transactions.slice(0,10).map(t=>{
 
-    if(transactions.length === 0){
+  const sign=t.type==="income"?"+":"-";
+  const cls=t.type==="income"?"in":"out";
 
-        box.innerHTML =
-        `<div class="empty">
-        এখনো কোনো লেনদেন যোগ করা হয়নি।
-        </div>`;
+  return `
 
-        return;
-    }
+  <div class="transaction">
 
+   <div class="transaction-left">
 
-    box.innerHTML =
-    transactions
-    .slice(0,10)
-    .map(t => {
+    <div class="icon ${cls}">
+     ${t.type==="income"?"＋":"−"}
+    </div>
 
-        const sign =
-        t.type === "income" ? "+" : "-";
+    <div>
 
-        const cls =
-        t.type === "income" ? "in" : "out";
+     <div class="transaction-name">
+      ${escapeHTML(t.category)}
+     </div>
 
-        const icon =
-        t.type === "income" ? "＋" : "−";
+     <div class="transaction-meta">
 
+      ${escapeHTML(t.date)}
+      • ${escapeHTML(t.time||"")}
+      • ${escapeHTML(t.payment)}
 
-        return `
+      ${t.person ?
+      " • "+escapeHTML(t.person):""}
 
-        <div class="transaction">
+     </div>
 
-            <div class="transaction-left">
+    </div>
 
-                <div class="icon ${cls}">
-                    ${icon}
-                </div>
+   </div>
 
-                <div>
+   <div class="transaction-amount ${cls}">
 
-                    <div class="transaction-name">
-                        ${escapeHTML(t.category)}
-                    </div>
+    ${sign}${money(t.amount)}
 
-                    <div class="transaction-meta">
+    <br>
 
-                        ${escapeHTML(t.date)}
-                        •
-                        ${escapeHTML(t.time || "")}
-                        •
-                        ${escapeHTML(t.payment)}
+    <button
+    class="delete-btn"
+    onclick="deleteTransaction(${t.id})">
 
-                        ${t.person ?
-                        " • " + escapeHTML(t.person)
-                        : ""}
+    মুছুন
 
-                    </div>
+    </button>
 
-                </div>
+   </div>
 
-            </div>
+  </div>
 
+  `;
 
-            <div class="transaction-amount ${cls}">
-
-                ${sign}${money(t.amount)}
-
-                <br>
-
-                <button
-                class="delete-btn"
-                onclick="deleteTransaction(${t.id})">
-
-                মুছুন
-
-                </button>
-
-            </div>
-
-        </div>
-
-        `;
-
-    }).join("");
+ }).join("");
 
 }
-
-
-render();
 
 
 /* =========================
@@ -1280,284 +1769,238 @@ render();
 
 function showAllTransactions(){
 
-    if(transactions.length === 0){
+ const box=document.getElementById("transactions");
 
-        showToast("কোনো লেনদেন নেই");
+ if(transactions.length===0){
 
-        return;
-    }
+  showToast("কোনো লেনদেন নেই");
+  return;
 
-    document.getElementById("transactions")
-    .innerHTML = transactions.map(t => {
+ }
 
-        const cls =
-        t.type === "income" ? "in" : "out";
+ box.innerHTML=
+ transactions.map(t=>{
 
-        const sign =
-        t.type === "income" ? "+" : "-";
+  const cls=t.type==="income"?"in":"out";
+  const sign=t.type==="income"?"+":"-";
 
+  return `
 
-        return `
+  <div class="transaction">
 
-        <div class="transaction">
+   <div class="transaction-left">
 
-        <div class="transaction-left">
+    <div class="icon ${cls}">
+     ${t.type==="income"?"＋":"−"}
+    </div>
 
-        <div class="icon ${cls}">
-        ${t.type === "income" ? "＋" : "−"}
-        </div>
+    <div>
 
-        <div>
+     <div class="transaction-name">
+      ${escapeHTML(t.category)}
+     </div>
 
-        <div class="transaction-name">
-        ${escapeHTML(t.category)}
-        </div>
+     <div class="transaction-meta">
 
-        <div class="transaction-meta">
+      ${escapeHTML(t.date)}
+      • ${escapeHTML(t.time||"")}
+      • ${escapeHTML(t.payment)}
 
-        ${escapeHTML(t.date)}
-        • ${escapeHTML(t.time || "")}
-        • ${escapeHTML(t.payment)}
+      ${t.person ?
+      " • "+escapeHTML(t.person):""}
 
-        ${t.person ?
-        " • " + escapeHTML(t.person)
-        : ""}
+      ${t.note ?
+      " • "+escapeHTML(t.note):""}
 
-        ${t.note ?
-        " • " + escapeHTML(t.note)
-        : ""}
+     </div>
 
-        </div>
+    </div>
 
-        </div>
+   </div>
 
-        </div>
+   <div class="transaction-amount ${cls}">
 
-        <div class="transaction-amount ${cls}">
+    ${sign}${money(t.amount)}
 
-        ${sign}${money(t.amount)}
+    <br>
 
-        <br>
+    <button
+    class="delete-btn"
+    onclick="deleteTransaction(${t.id})">
 
-        <button
-        class="delete-btn"
-        onclick="deleteTransaction(${t.id})">
+    মুছুন
 
-        মুছুন
+    </button>
 
-        </button>
+   </div>
 
-        </div>
+  </div>
 
-        </div>
+  `;
 
-        `;
-
-    }).join("");
+ }).join("");
 
 }
 
 
 /* =========================
-   STATEMENT HTML
+   STATEMENT
 ========================= */
 
 function statementHTML(){
 
-    let income = 0;
-    let expense = 0;
+ let income=0;
+ let expense=0;
 
-    transactions.forEach(t => {
+ transactions.forEach(t=>{
 
-        if(t.type === "income")
-            income += Number(t.amount);
-        else
-            expense += Number(t.amount);
+  if(t.type==="income")
+   income+=Number(t.amount);
+  else
+   expense+=Number(t.amount);
 
-    });
+ });
 
+ const balance=income-expense;
 
-    const balance = income - expense;
+ const rows=transactions.map((t,i)=>`
 
+ <tr>
 
-    let rows = transactions.map((t,i)=>{
+ <td>${i+1}</td>
+ <td>${escapeHTML(t.date)}</td>
+ <td>${escapeHTML(t.time||"")}</td>
+ <td>${t.type==="income"?"আয়":"ব্যয়"}</td>
+ <td>${escapeHTML(t.category)}</td>
+ <td>${escapeHTML(t.payment)}</td>
+ <td>${escapeHTML(t.person||"")}</td>
+ <td>${money(t.amount)}</td>
+ <td>${escapeHTML(t.note||"")}</td>
 
-        return `
+ </tr>
 
-        <tr>
+ `).join("");
 
-        <td>${i+1}</td>
+ return `
 
-        <td>${escapeHTML(t.date)}</td>
+ <!DOCTYPE html>
 
-        <td>${escapeHTML(t.time || "")}</td>
+ <html lang="bn">
 
-        <td>${t.type === "income" ? "আয়" : "ব্যয়"}</td>
+ <head>
 
-        <td>${escapeHTML(t.category)}</td>
+ <meta charset="UTF-8">
 
-        <td>${escapeHTML(t.payment)}</td>
+ <title>HUSSAIN Statement</title>
 
-        <td>${escapeHTML(t.person || "")}</td>
+ <style>
 
-        <td>${money(t.amount)}</td>
+ body{
+  font-family:Arial,"Noto Sans Bengali",sans-serif;
+  padding:25px;
+  color:#182235;
+ }
 
-        <td>${escapeHTML(t.note || "")}</td>
+ h1{margin-bottom:5px}
 
-        </tr>
+ .subtitle{
+  color:#777;
+  margin-bottom:25px;
+ }
 
-        `;
+ .summary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:25px;
+ }
 
-    }).join("");
+ .card{
+  border:1px solid #ddd;
+  padding:15px;
+  border-radius:12px;
+ }
 
+ table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:12px;
+ }
 
-    return `
+ th,td{
+  border:1px solid #ddd;
+  padding:8px;
+  text-align:left;
+ }
 
-<!DOCTYPE html>
+ th{
+  background:#eef3f9;
+ }
 
-<html lang="bn">
+ </style>
 
-<head>
+ </head>
 
-<meta charset="UTF-8">
+ <body>
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
+ <h1>HUSSAIN</h1>
 
-<title>HUSSAIN Statement</title>
+ <div class="subtitle">
+ Personal Ledger • Statement
+ </div>
 
-<style>
+ <div class="summary">
 
-body{
-font-family:Arial,"Noto Sans Bengali",sans-serif;
-padding:25px;
-color:#182235;
-}
+ <div class="card">
+ মোট আয়<br>
+ <strong>${money(income)}</strong>
+ </div>
 
-h1{
-margin-bottom:5px;
-}
+ <div class="card">
+ মোট ব্যয়<br>
+ <strong>${money(expense)}</strong>
+ </div>
 
-.subtitle{
-color:#777;
-margin-bottom:25px;
-}
+ <div class="card">
+ বর্তমান ব্যালেন্স<br>
+ <strong>${money(balance)}</strong>
+ </div>
 
-.summary{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-bottom:25px;
-}
+ </div>
 
-.card{
-border:1px solid #ddd;
-padding:15px;
-border-radius:12px;
-}
+ <table>
 
-table{
-width:100%;
-border-collapse:collapse;
-font-size:12px;
-}
+ <thead>
 
-th,td{
-border:1px solid #ddd;
-padding:8px;
-text-align:left;
-}
+ <tr>
+ <th>#</th>
+ <th>Date</th>
+ <th>Time</th>
+ <th>ধরন</th>
+ <th>Category</th>
+ <th>Payment</th>
+ <th>Person</th>
+ <th>Amount</th>
+ <th>Note</th>
+ </tr>
 
-th{
-background:#eef3f9;
-}
+ </thead>
 
-.income{
-color:#159447;
-}
+ <tbody>
+ ${rows}
+ </tbody>
 
-.expense{
-color:#dc4437;
-}
+ </table>
 
-@media print{
+ <p style="margin-top:20px">
+ Generated: ${new Date().toLocaleString()}
+ </p>
 
-body{
-padding:0;
-}
+ </body>
 
-}
+ </html>
 
-</style>
-
-</head>
-
-<body>
-
-<h1>HUSSAIN</h1>
-
-<div class="subtitle">
-Personal Ledger • Statement
-</div>
-
-<div class="summary">
-
-<div class="card">
-মোট আয়<br>
-<strong class="income">${money(income)}</strong>
-</div>
-
-<div class="card">
-মোট ব্যয়<br>
-<strong class="expense">${money(expense)}</strong>
-</div>
-
-<div class="card">
-বর্তমান ব্যালেন্স<br>
-<strong>${money(balance)}</strong>
-</div>
-
-</div>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>#</th>
-<th>Date</th>
-<th>Time</th>
-<th>ধরন</th>
-<th>Category</th>
-<th>Payment</th>
-<th>Person</th>
-<th>Amount</th>
-<th>Note</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-${rows}
-
-</tbody>
-
-</table>
-
-<br>
-
-<p>
-Generated: ${new Date().toLocaleString()}
-</p>
-
-</body>
-
-</html>
-
-`;
+ `;
 
 }
 
@@ -1568,162 +2011,128 @@ Generated: ${new Date().toLocaleString()}
 
 function downloadStatement(){
 
-    if(transactions.length === 0){
+ if(transactions.length===0){
 
-        showToast("Statement তৈরি করার মতো কোনো হিসাব নেই");
+  showToast("Statement তৈরি করার মতো কোনো হিসাব নেই");
+  return;
 
-        return;
-    }
+ }
 
+ const blob=new Blob(
+  [statementHTML()],
+  {type:"text/html;charset=utf-8"}
+ );
 
-    const html =
-    statementHTML();
+ const url=URL.createObjectURL(blob);
 
+ const a=document.createElement("a");
 
-    const blob =
-    new Blob(
-        [html],
-        {type:"text/html;charset=utf-8"}
-    );
+ a.href=url;
+ a.download="HUSSAIN-Statement.html";
 
+ document.body.appendChild(a);
 
-    const url =
-    URL.createObjectURL(blob);
+ a.click();
 
+ a.remove();
 
-    const a =
-    document.createElement("a");
+ URL.revokeObjectURL(url);
 
-    a.href = url;
-
-    a.download =
-    "HUSSAIN-Statement.html";
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    a.remove();
-
-    URL.revokeObjectURL(url);
-
-
-    showToast("Statement Download হয়েছে");
+ showToast("Statement Download হয়েছে");
 
 }
 
 
 /* =========================
-   CSV DOWNLOAD
+   CSV
 ========================= */
 
 function downloadCSV(){
 
-    if(transactions.length === 0){
+ if(transactions.length===0){
 
-        showToast("কোনো হিসাব নেই");
+  showToast("কোনো হিসাব নেই");
+  return;
 
-        return;
-    }
+ }
 
+ let csv=
+ "Date,Time,Type,Category,Payment,Person,Reference,Amount,Note\n";
 
-    let csv =
-    "Date,Time,Type,Category,Payment,Person,Reference,Amount,Note\n";
+ transactions.forEach(t=>{
 
+  csv += [
 
-    transactions.forEach(t => {
+   t.date,
+   t.time,
+   t.type,
+   t.category,
+   t.payment,
+   t.person,
+   t.reference,
+   t.amount,
+   t.note
 
-        csv += [
+  ].map(csvEscape).join(",")+"\n";
 
-            t.date,
-            t.time,
-            t.type,
-            t.category,
-            t.payment,
-            t.person,
-            t.reference,
-            t.amount,
-            t.note
+ });
 
-        ].map(csvEscape).join(",") + "\n";
+ const blob=new Blob(
+  ["\ufeff"+csv],
+  {type:"text/csv;charset=utf-8"}
+ );
 
-    });
+ const url=URL.createObjectURL(blob);
 
+ const a=document.createElement("a");
 
-    const blob =
-    new Blob(
-        ["\ufeff" + csv],
-        {type:"text/csv;charset=utf-8"}
-    );
+ a.href=url;
+ a.download="HUSSAIN-Ledger.csv";
 
+ document.body.appendChild(a);
 
-    const url =
-    URL.createObjectURL(blob);
+ a.click();
 
+ a.remove();
 
-    const a =
-    document.createElement("a");
+ URL.revokeObjectURL(url);
 
-    a.href = url;
-
-    a.download =
-    "HUSSAIN-Ledger.csv";
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    a.remove();
-
-    URL.revokeObjectURL(url);
-
-
-    showToast("CSV Download হয়েছে");
+ showToast("CSV Download হয়েছে");
 
 }
 
 
 function csvEscape(value){
 
-    value = String(value ?? "");
-
-    return '"' +
-    value.replace(/"/g,'""') +
-    '"';
+ return '"'+
+ String(value??"").replace(/"/g,'""')+
+ '"';
 
 }
 
 
 /* =========================
-   PRINT / PDF
+   PRINT
 ========================= */
 
 function printStatement(){
 
-    if(transactions.length === 0){
+ if(transactions.length===0){
 
-        showToast("কোনো হিসাব নেই");
+  showToast("কোনো হিসাব নেই");
+  return;
 
-        return;
-    }
+ }
 
+ const win=window.open("","_blank");
 
-    const win =
-    window.open("","_blank");
+ win.document.write(statementHTML());
 
+ win.document.close();
 
-    win.document.write(
-        statementHTML()
-    );
-
-    win.document.close();
-
-
-    setTimeout(()=>{
-
-        win.print();
-
-    },500);
+ setTimeout(()=>{
+  win.print();
+ },500);
 
 }
 
@@ -1734,54 +2143,45 @@ function printStatement(){
 
 async function shareStatement(){
 
-    if(transactions.length === 0){
+ if(transactions.length===0){
 
-        showToast("কোনো হিসাব নেই");
+  showToast("কোনো হিসাব নেই");
+  return;
 
-        return;
-    }
+ }
 
+ const blob=new Blob(
+  [statementHTML()],
+  {type:"text/html"}
+ );
 
-    const blob =
-    new Blob(
-        [statementHTML()],
-        {type:"text/html"}
-    );
+ const file=new File(
+  [blob],
+  "HUSSAIN-Statement.html",
+  {type:"text/html"}
+ );
 
+ if(
+  navigator.share &&
+  navigator.canShare &&
+  navigator.canShare({files:[file]})
+ ){
 
-    const file =
-    new File(
-        [blob],
-        "HUSSAIN-Statement.html",
-        {type:"text/html"}
-    );
+  try{
 
+   await navigator.share({
+    title:"HUSSAIN Statement",
+    text:"আমার হিসাবের Statement",
+    files:[file]
+   });
 
-    if(
-        navigator.share &&
-        navigator.canShare &&
-        navigator.canShare({files:[file]})
-    ){
+  }catch(e){}
 
-        try{
+ }else{
 
-            await navigator.share({
+  downloadStatement();
 
-                title:"HUSSAIN Statement",
-
-                text:"আমার হিসাবের Statement",
-
-                files:[file]
-
-            });
-
-        }catch(e){}
-
-    }else{
-
-        downloadStatement();
-
-    }
+ }
 
 }
 
@@ -1792,10 +2192,39 @@ async function shareStatement(){
 
 function paymentInfo(method){
 
-    showToast(
-        method +
-        " Payment System নির্বাচিত হয়েছে"
-    );
+ showToast(method+" Payment Method নির্বাচিত হয়েছে");
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function scrollToForm(){
+
+ document.getElementById("formSection")
+ .scrollIntoView({
+  behavior:"smooth"
+ });
+
+}
+
+function scrollToCalculator(){
+
+ document.getElementById("calculatorSection")
+ .scrollIntoView({
+  behavior:"smooth"
+ });
+
+}
+
+function topPage(){
+
+ window.scrollTo({
+  top:0,
+  behavior:"smooth"
+ });
 
 }
 
@@ -1804,45 +2233,28 @@ function paymentInfo(method){
    UTILITIES
 ========================= */
 
-function scrollToForm(){
-
-    document
-    .getElementById("formSection")
-    .scrollIntoView({
-        behavior:"smooth"
-    });
-
-}
-
-
 function showToast(message){
 
-    const toast =
-    document.getElementById("toast");
+ const toast=document.getElementById("toast");
 
-    toast.textContent =
-    message;
+ toast.textContent=message;
 
-    toast.classList.add("show");
+ toast.classList.add("show");
 
-
-    setTimeout(()=>{
-
-        toast.classList.remove("show");
-
-    },2500);
+ setTimeout(()=>{
+  toast.classList.remove("show");
+ },2500);
 
 }
-
 
 function escapeHTML(value){
 
-    return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+ return String(value??"")
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/"/g,"&quot;")
+ .replace(/'/g,"&#039;");
 
 }
 
