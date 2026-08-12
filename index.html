@@ -3,154 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>Hussain's Money Management</title>
 
 <style>
 :root{
-  --green:#087f5b;
-  --red:#e31d2b;
-  --bg:#f3f6f5;
-  --card:#fff;
-  --text:#18201d;
-  --muted:#6d7874;
-  --border:#dce4e1;
+ --green:#087f5b;
+ --red:#e31d2b;
+ --bg:#f3f6f5;
+ --card:#fff;
+ --text:#18201d;
+ --muted:#6d7874;
+ --border:#dce4e1;
 }
 
 *{box-sizing:border-box}
 
 body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,"Noto Sans Bengali",sans-serif;
-  padding-bottom:78px;
+ margin:0;
+ background:var(--bg);
+ color:var(--text);
+ font-family:Arial,"Noto Sans Bengali",sans-serif;
+ padding-bottom:78px;
 }
 
 body.dark{
-  --bg:#101715;
-  --card:#1b2522;
-  --text:#f2f5f4;
-  --muted:#a9b5b1;
-  --border:#303c38;
+ --bg:#101715;
+ --card:#1b2522;
+ --text:#f2f5f4;
+ --muted:#a9b5b1;
+ --border:#303c38;
 }
 
-/* HEADER */
-
 header{
-  padding:22px 18px;
-  color:#fff;
-  border-radius:0 0 26px 26px;
-  background:linear-gradient(
-    135deg,
-    var(--green) 0 52%,
-    var(--red) 52%
-  );
-  position:relative;
-  overflow:hidden;
+ padding:22px 18px;
+ color:#fff;
+ border-radius:0 0 26px 26px;
+ background:linear-gradient(135deg,var(--green) 0 52%,var(--red) 52%);
+ position:relative;
+ overflow:hidden;
 }
 
 header:after{
-  content:"🇧🇩";
-  position:absolute;
-  right:22px;
-  top:15px;
-  font-size:54px;
+ content:"🇧🇩";
+ position:absolute;
+ right:22px;
+ top:15px;
+ font-size:54px;
 }
 
 h1{
-  margin:0;
-  font-size:23px;
+ margin:0;
+ font-size:23px;
 }
 
 .sub{
-  margin:5px 0 12px;
+ margin:5px 0 12px;
 }
 
 .clock{
-  font-size:23px;
-  font-weight:bold;
+ font-size:23px;
+ font-weight:bold;
 }
 
 .date{
-  font-size:13px;
+ font-size:13px;
 }
 
-/* WEEK */
-
 .week{
-  display:flex;
-  gap:7px;
-  overflow:auto;
-  padding:11px;
+ display:flex;
+ gap:7px;
+ overflow:auto;
+ padding:11px;
 }
 
 .day{
-  min-width:62px;
-  text-align:center;
-  padding:8px 3px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:15px;
+ min-width:62px;
+ text-align:center;
+ padding:8px 3px;
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:15px;
 }
 
 .day.active{
-  background:var(--green);
-  color:white;
+ background:var(--green);
+ color:white;
 }
 
 .day b,
 .day small{
-  display:block;
+ display:block;
 }
-
-/* MAIN */
 
 main{
-  max-width:1000px;
-  margin:auto;
-  padding:4px 13px;
+ max-width:1000px;
+ margin:auto;
+ padding:4px 13px;
 }
 
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
-
-/* CARDS */
+.page{display:none}
+.page.active{display:block}
 
 .grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:9px;
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:9px;
 }
 
-.card,
-.form{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:19px;
-  padding:15px;
-  margin:9px 0;
+.card,.form{
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:19px;
+ padding:15px;
+ margin:9px 0;
 }
 
-.card h2,
-.form h2{
-  font-size:18px;
-  margin:0 0 12px;
+.card h2,.form h2{
+ font-size:18px;
+ margin:0 0 12px;
 }
 
 .stat{
-  font-size:12px;
-  color:var(--muted);
+ font-size:12px;
+ color:var(--muted);
 }
 
 .val{
-  font-size:20px;
-  font-weight:bold;
-  margin-top:4px;
+ font-size:20px;
+ font-weight:bold;
+ margin-top:4px;
 }
 
 .in{color:#078659}
@@ -158,290 +140,334 @@ main{
 .debt{color:#a87900}
 .rec{color:#287be8}
 
-/* INPUT */
-
-input,
-select,
-textarea{
-  width:100%;
-  padding:10px;
-  margin:4px 0 8px;
-  border:1px solid var(--border);
-  border-radius:11px;
-  background:transparent;
-  color:var(--text);
+input,select,textarea{
+ width:100%;
+ padding:10px;
+ margin:4px 0 8px;
+ border:1px solid var(--border);
+ border-radius:11px;
+ background:transparent;
+ color:var(--text);
 }
 
 textarea{
-  min-height:90px;
+ min-height:90px;
 }
 
-/* BUTTON */
-
-button,
-.btn{
-  border:0;
-  border-radius:11px;
-  padding:10px 13px;
-  font-weight:bold;
-  cursor:pointer;
+button,.btn{
+ border:0;
+ border-radius:11px;
+ padding:10px 13px;
+ font-weight:bold;
+ cursor:pointer;
 }
 
-.g{
-  background:var(--green);
-  color:#fff;
-}
-
-.b{
-  background:#287be8;
-  color:#fff;
-}
-
-.red{
-  background:var(--red);
-  color:#fff;
-}
-
-.soft{
-  background:#e8efed;
-  color:var(--green);
-}
+.g{background:var(--green);color:#fff}
+.b{background:#287be8;color:#fff}
+.red{background:var(--red);color:#fff}
+.soft{background:#e8efed;color:var(--green)}
 
 body.dark .soft{
-  background:#293530;
-  color:white;
+ background:#293530;
+ color:white;
 }
 
 .row{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
+ display:flex;
+ gap:8px;
+ flex-wrap:wrap;
 }
 
 .row>*{
-  flex:1;
+ flex:1;
 }
 
-/* ICON MENU */
-
 .icons{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:8px;
 }
 
 .icon{
-  background:var(--card);
-  color:var(--text);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:10px 4px;
-  text-align:center;
-  text-decoration:none;
+ background:var(--card);
+ color:var(--text);
+ border:1px solid var(--border);
+ border-radius:16px;
+ padding:10px 4px;
+ text-align:center;
+ text-decoration:none;
 }
 
 .icon span{
-  display:block;
-  font-size:22px;
+ display:block;
+ font-size:22px;
 }
 
 .icon small{
-  font-size:10px;
+ font-size:10px;
 }
 
-/* LIST */
-
 .item{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:11px;
-  margin:7px 0;
-  display:flex;
-  justify-content:space-between;
-  gap:8px;
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:14px;
+ padding:11px;
+ margin:7px 0;
+ display:flex;
+ justify-content:space-between;
+ gap:8px;
 }
 
 .muted{
-  color:var(--muted);
+ color:var(--muted);
 }
 
-/* GRAPH */
-
 .pie{
-  width:260px;
-  height:260px;
-  border-radius:50%;
-  margin:18px auto;
-  background:
-    conic-gradient(
-      #087f5b 0 45%,
-      #e31d2b 45% 75%,
-      #f2b134 75% 90%,
-      #287be8 90%
-    );
-  position:relative;
+ width:260px;
+ height:260px;
+ border-radius:50%;
+ margin:18px auto;
+ background:conic-gradient(
+ #087f5b 0 45%,
+ #e31d2b 45% 75%,
+ #f2b134 75% 90%,
+ #287be8 90%
+ );
+ position:relative;
 }
 
 .pie:after{
-  content:"";
-  position:absolute;
-  inset:67px;
-  background:var(--card);
-  border-radius:50%;
+ content:"";
+ position:absolute;
+ inset:67px;
+ background:var(--card);
+ border-radius:50%;
 }
-
-/* ISLAMIC THEME */
 
 .theme-islamic header{
-  background:
-    linear-gradient(
-      135deg,
-      #063b2b,
-      #0c7c5b
-    );
+ background:linear-gradient(135deg,#063b2b,#0c7c5b);
 }
 
-/* BOTTOM NAV */
-
 .bottom{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:75px;
-  background:var(--card);
-  border-top:1px solid var(--border);
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  z-index:10;
+ position:fixed;
+ bottom:0;
+ left:0;
+ right:0;
+ height:75px;
+ background:var(--card);
+ border-top:1px solid var(--border);
+ display:grid;
+ grid-template-columns:repeat(6,1fr);
+ z-index:10;
 }
 
 .nav{
-  background:transparent;
-  color:var(--muted);
-  font-size:10px;
+ background:transparent;
+ color:var(--muted);
+ font-size:10px;
 }
 
 .nav span{
-  display:block;
-  font-size:20px;
+ display:block;
+ font-size:20px;
 }
 
 .nav.active{
-  color:var(--green);
+ color:var(--green);
 }
 
-/* MEMO */
-
 .memo{
-  background:#fff;
-  color:#18201d;
-  padding:26px;
-  max-width:900px;
-  margin:auto;
-  border:1px solid #ddd;
+ background:#fff;
+ color:#18201d;
+ padding:26px;
+ max-width:900px;
+ margin:auto;
+ border:1px solid #ddd;
 }
 
 .memohead{
-  border-bottom:5px solid #087f5b;
-  padding-bottom:13px;
+ border-bottom:5px solid #087f5b;
+ padding-bottom:13px;
 }
 
 .memohead h1{
-  color:#087f5b;
+ color:#087f5b;
 }
 
 .memo table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:16px;
+ width:100%;
+ border-collapse:collapse;
+ margin-top:16px;
 }
 
-.memo th,
-.memo td{
-  border:1px solid #d8dfdc;
-  padding:7px;
-  font-size:11px;
+.memo th,.memo td{
+ border:1px solid #d8dfdc;
+ padding:7px;
+ font-size:11px;
 }
 
 .memo th{
-  background:#087f5b;
-  color:#fff;
+ background:#087f5b;
+ color:#fff;
 }
 
 .totals{
-  max-width:300px;
-  margin:15px 0 0 auto;
+ max-width:300px;
+ margin:15px 0 0 auto;
 }
 
 .totals div{
-  display:flex;
-  justify-content:space-between;
-  border-bottom:1px solid #ddd;
-  padding:7px;
+ display:flex;
+ justify-content:space-between;
+ border-bottom:1px solid #ddd;
+ padding:7px;
 }
 
 .sign{
-  display:flex;
-  justify-content:space-between;
-  margin-top:40px;
+ display:flex;
+ justify-content:space-between;
+ margin-top:40px;
 }
 
-/* MOBILE */
+#pinLock{
+ position:fixed;
+ inset:0;
+ background:var(--bg);
+ z-index:99999;
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+}
+
+.pinBox{
+ width:100%;
+ max-width:350px;
+ background:var(--card);
+ padding:25px;
+ border-radius:25px;
+ border:1px solid var(--border);
+ text-align:center;
+ box-shadow:0 10px 40px #0002;
+}
+
+.pinDots{
+ font-size:24px;
+ letter-spacing:7px;
+ margin:15px;
+}
+
+.pinKeypad{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:8px;
+}
+
+.pinKeypad button{
+ font-size:20px;
+ padding:15px;
+ background:var(--bg);
+ color:var(--text);
+}
+
+.pinKeypad .enter{
+ background:var(--green);
+ color:#fff;
+}
 
 @media(max-width:600px){
 
-  .icons{
-    grid-template-columns:repeat(4,1fr);
-  }
+ .icons{
+  grid-template-columns:repeat(4,1fr);
+ }
 
-  .memo{
-    padding:12px;
-  }
+ .memo{
+  padding:12px;
+ }
 
-  .memo th,
-  .memo td{
-    font-size:8px;
-    padding:4px;
-  }
+ .memo th,.memo td{
+  font-size:8px;
+  padding:4px;
+ }
 
 }
 
-/* PRINT */
-
 @media print{
 
-  body{
-    background:#fff;
-    padding:0;
-  }
+ body{
+  background:#fff;
+  padding:0;
+ }
 
-  .no-print,
-  header,
-  .week,
-  .bottom{
-    display:none!important;
-  }
+ .no-print,
+ header,
+ .week,
+ .bottom,
+ #pinLock{
+  display:none!important;
+ }
 
-  .page{
-    display:none!important;
-  }
+ .page{
+  display:none!important;
+ }
 
-  #memo{
-    display:block!important;
-  }
+ #memo{
+  display:block!important;
+ }
 
-  .memo{
-    border:0;
-  }
+ .memo{
+  border:0;
+ }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- ================= PIN LOCK ================= -->
+
+<div id="pinLock">
+
+<div class="pinBox">
+
+<h2>🔐 Hussain's Money Management</h2>
+
+<p class="muted">
+আপনার PIN দিন
+</p>
+
+<div id="pinDots" class="pinDots">
+○ ○ ○ ○
+</div>
+
+<div class="pinKeypad">
+
+<button onclick="pinInput('1')">1</button>
+<button onclick="pinInput('2')">2</button>
+<button onclick="pinInput('3')">3</button>
+
+<button onclick="pinInput('4')">4</button>
+<button onclick="pinInput('5')">5</button>
+<button onclick="pinInput('6')">6</button>
+
+<button onclick="pinInput('7')">7</button>
+<button onclick="pinInput('8')">8</button>
+<button onclick="pinInput('9')">9</button>
+
+<button onclick="pinClear()">⌫</button>
+<button onclick="pinInput('0')">0</button>
+<button class="enter" onclick="checkPin()">✓</button>
+
+</div>
+
+<p id="pinError" style="color:#e31d2b"></p>
+
+</div>
+
+</div>
+
+
+<!-- ================= HEADER ================= -->
 
 <header>
 
@@ -457,14 +483,15 @@ Hussain's Money Management
 
 </header>
 
-<!-- WEEK -->
+
+<!-- ================= WEEK ================= -->
 
 <div id="week" class="week"></div>
 
 
 <main>
 
-<!-- HOME -->
+<!-- ================= HOME ================= -->
 
 <section id="home" class="page active">
 
@@ -497,8 +524,6 @@ Hussain's Money Management
 
 </div>
 
-
-<!-- ICON MENU -->
 
 <div class="card">
 
@@ -550,8 +575,6 @@ Hussain's Money Management
 </div>
 
 
-<!-- ISLAMIC LINKS -->
-
 <div class="card">
 
 <h2>☪️ ইসলামিক রিসোর্স</h2>
@@ -594,7 +617,7 @@ target="_blank">
 </section>
 
 
-<!-- LEDGER -->
+<!-- ================= LEDGER ================= -->
 
 <section id="ledger" class="page">
 
@@ -612,21 +635,10 @@ target="_blank">
 
 <select id="etype">
 
-<option value="income">
-💰 আয়
-</option>
-
-<option value="expense">
-💸 ব্যয়
-</option>
-
-<option value="debt">
-🤝 দেনা
-</option>
-
-<option value="receive">
-💳 পাওনা
-</option>
+<option value="income">💰 আয়</option>
+<option value="expense">💸 ব্যয়</option>
+<option value="debt">🤝 দেনা</option>
+<option value="receive">💳 পাওনা</option>
 
 </select>
 
@@ -648,12 +660,8 @@ placeholder="6765">
 
 <textarea id="edesc"></textarea>
 
-<button
-class="btn g"
-onclick="addEntry()">
-
+<button class="btn g" onclick="addEntry()">
 💾 সংরক্ষণ
-
 </button>
 
 </div>
@@ -666,7 +674,7 @@ onclick="addEntry()">
 <input
 id="search"
 placeholder="🔎 খুঁজুন"
-oninput="renderEntries">
+oninput="renderEntries()">
 
 <div id="entries"></div>
 
@@ -675,7 +683,7 @@ oninput="renderEntries">
 </section>
 
 
-<!-- CALCULATOR -->
+<!-- ================= CALCULATOR ================= -->
 
 <section id="calc" class="page">
 
@@ -684,51 +692,25 @@ oninput="renderEntries">
 <h2>🧮 হিসাব ক্যালকুলেটর</h2>
 
 <label>🚕 যাতায়াত</label>
-<input
-id="c1"
-type="number"
-value="0"
-oninput="calc()">
+<input id="c1" type="number" value="0" oninput="calc()">
 
 <label>🍛 খাবার</label>
-<input
-id="c2"
-type="number"
-value="0"
-oninput="calc()">
+<input id="c2" type="number" value="0" oninput="calc()">
 
 <label>🏨 হোটেল</label>
-<input
-id="c3"
-type="number"
-value="0"
-oninput="calc()">
+<input id="c3" type="number" value="0" oninput="calc()">
 
 <label>📦 অন্যান্য</label>
-<input
-id="c4"
-type="number"
-value="0"
-oninput="calc()">
+<input id="c4" type="number" value="0" oninput="calc()">
 
-<h2 id="ctotal">
-0 BDT
-</h2>
+<h2 id="ctotal">0 BDT</h2>
 
-<button
-class="btn g"
-onclick="saveCalc()">
-
+<button class="btn g" onclick="saveCalc()">
 💾 ব্যয় হিসেবে সংরক্ষণ
-
 </button>
 
-<button
-class="btn soft"
-onclick="clearCalc()">
-
+<button class="btn soft" onclick="clearCalc()">
 C
-
 </button>
 
 </div>
@@ -736,7 +718,7 @@ C
 </section>
 
 
-<!-- GRAPH -->
+<!-- ================= GRAPH ================= -->
 
 <section id="graph" class="page">
 
@@ -746,20 +728,11 @@ C
 
 <div class="row">
 
-<input
-id="gfrom"
-type="date">
+<input id="gfrom" type="date">
+<input id="gto" type="date">
 
-<input
-id="gto"
-type="date">
-
-<button
-class="btn g"
-onclick="renderGraph()">
-
+<button class="btn g" onclick="renderGraph()">
 Update
-
 </button>
 
 </div>
@@ -773,7 +746,7 @@ Update
 </section>
 
 
-<!-- MEMO -->
+<!-- ================= MEMO ================= -->
 
 <section id="memo" class="page">
 
@@ -784,60 +757,33 @@ Update
 <div class="row">
 
 <div>
-
 <label>From Date</label>
-
-<input
-id="mfrom"
-type="date">
-
+<input id="mfrom" type="date">
 </div>
 
 <div>
-
 <label>To Date</label>
-
-<input
-id="mto"
-type="date">
-
+<input id="mto" type="date">
 </div>
 
 </div>
-
 
 <div class="row">
 
-<button
-class="btn g"
-onclick="buildMemo()">
-
+<button class="btn g" onclick="buildMemo()">
 👁️ Preview
-
 </button>
 
-<button
-class="btn b"
-onclick="downloadMemo()">
-
+<button class="btn b" onclick="downloadMemo()">
 📄 PDF / Save
-
 </button>
 
-<button
-class="btn soft"
-onclick="downloadCSV()">
-
+<button class="btn soft" onclick="downloadCSV()">
 📊 CSV
-
 </button>
 
-<button
-class="btn soft"
-onclick="window.print()">
-
+<button class="btn soft" onclick="window.print()">
 🖨️ Print
-
 </button>
 
 </div>
@@ -849,7 +795,7 @@ onclick="window.print()">
 </section>
 
 
-<!-- TASK -->
+<!-- ================= TASK ================= -->
 
 <section id="task" class="page">
 
@@ -858,29 +804,19 @@ onclick="window.print()">
 <h2>📌 Task</h2>
 
 <label>তারিখ</label>
-
-<input
-id="tdate"
-type="date">
+<input id="tdate" type="date">
 
 <label>সময়</label>
-
-<input
-id="ttime"
-type="time">
+<input id="ttime" type="time">
 
 <label>Task</label>
 
 <input
 id="ttext"
-placeholder="বিল / ডাক্তার / স্কুল ফি">
+placeholder="অমুক তারিখ বিল / ডাক্তার / স্কুল ফি">
 
-<button
-class="btn g"
-onclick="addTask()">
-
+<button class="btn g" onclick="addTask()">
 📌 সংরক্ষণ
-
 </button>
 
 </div>
@@ -894,7 +830,7 @@ onclick="addTask()">
 </section>
 
 
-<!-- NOTES -->
+<!-- ================= NOTES ================= -->
 
 <section id="notes" class="page">
 
@@ -902,21 +838,15 @@ onclick="addTask()">
 
 <h2>📝 Personal Notes</h2>
 
-<input
-id="ntitle"
-placeholder="শিরোনাম">
+<input id="ntitle" placeholder="শিরোনাম">
 
 <textarea
 id="ntext"
-placeholder="গুরুত্বপূর্ণ বিষয়...">
+placeholder="গুরুত্বপূর্ণ বিষয় নোট করুন...">
 </textarea>
 
-<button
-class="btn g"
-onclick="addNote()">
-
+<button class="btn g" onclick="addNote()">
 💾 সংরক্ষণ
-
 </button>
 
 </div>
@@ -930,80 +860,162 @@ onclick="addNote()">
 </section>
 
 
-<!-- ISLAM -->
+<!-- ================= ISLAM ================= -->
 
 <section id="islam" class="page">
 
 <div class="card">
 
-<h2>🕌 আজকের নামাজ ও রোযার সময়</h2>
+<h2>🕌 নামাজ ও রোযার সময়সূচি</h2>
 
 <p class="muted">
-লোকেশনভিত্তিক স্বয়ংক্রিয় সময়ের জন্য API প্রয়োজন।
+API থেকে স্বয়ংক্রিয়ভাবে সময় আপডেট হবে।
 </p>
 
-<div class="grid">
+<div class="row">
 
 <div>
-🌙 সেহরী শেষ
-<input id="fajrEnd" type="time">
-</div>
 
-<div>
-🌅 সূর্যোদয়
-<input id="sunrise" type="time">
-</div>
+<label>শহর</label>
 
-<div>
-🕌 ফজর
-<input id="fajr" type="time">
+<input
+id="prayerCity"
+value="Dubai">
+
 </div>
 
 <div>
-☀️ যোহর
-<input id="dhuhr" type="time">
+
+<label>দেশ</label>
+
+<input
+id="prayerCountry"
+value="United Arab Emirates">
+
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div>
+
+<label>তারিখ</label>
+
+<input
+id="prayerDate"
+type="date">
+
 </div>
 
 <div>
-🌤️ আসর
-<input id="asr" type="time">
+
+<label>Calculation Method</label>
+
+<select id="prayerMethod">
+
+<option value="8">
+Gulf Region
+</option>
+
+<option value="4">
+Umm Al-Qura, Makkah
+</option>
+
+<option value="1">
+Karachi
+</option>
+
+<option value="3">
+Muslim World League
+</option>
+
+</select>
+
 </div>
 
-<div>
-🌇 সূর্যাস্ত
-<input id="sunset" type="time">
 </div>
 
-<div>
-🌙 মাগরিব / ইফতার
-<input id="maghrib" type="time">
-</div>
-
-<div>
-🌃 ইশা
-<input id="isha" type="time">
-</div>
-
-</div>
 
 <button
 class="btn g"
-onclick="savePrayer()">
+onclick="loadPrayerTimes()">
 
-💾 সময় সংরক্ষণ
+🔄 সময় আপডেট করুন
 
 </button>
 
+
+<div
+id="prayerStatus"
+class="muted"
+style="margin-top:10px">
+
+সময় লোড হচ্ছে...
+
+</div>
+
+
 <hr>
 
-<div id="prayerShow"></div>
+
+<div class="item">
+<span>🌙 আজকের সেহরী শেষ</span>
+<b id="apiImsak">--:--</b>
+</div>
+
+<div class="item">
+<span>🕌 ফজর</span>
+<b id="apiFajr">--:--</b>
+</div>
+
+<div class="item">
+<span>🌅 সূর্যোদয়</span>
+<b id="apiSunrise">--:--</b>
+</div>
+
+<div class="item">
+<span>☀️ যোহর</span>
+<b id="apiDhuhr">--:--</b>
+</div>
+
+<div class="item">
+<span>🌤️ আসর</span>
+<b id="apiAsr">--:--</b>
+</div>
+
+<div class="item">
+<span>🌇 সূর্যাস্ত</span>
+<b id="apiSunset">--:--</b>
+</div>
+
+<div class="item">
+<span>🌙 মাগরিব / ইফতার</span>
+<b id="apiMaghrib">--:--</b>
+</div>
+
+<div class="item">
+<span>🌃 ইশা</span>
+<b id="apiIsha">--:--</b>
+</div>
+
+<hr>
+
+<div class="item">
+
+<span>📅 হিজরি তারিখ</span>
+
+<b id="apiHijri">--</b>
+
+</div>
 
 </div>
 
 </section>
 
 
-<!-- SETTINGS -->
+<!-- ================= SETTINGS ================= -->
 
 <section id="settings" class="page">
 
@@ -1023,7 +1035,7 @@ onclick="toggleDark()">
 class="btn soft"
 onclick="theme('bangladesh')">
 
-🇧🇩 Bangladesh
+🇧🇩 Bangladesh Theme
 
 </button>
 
@@ -1031,7 +1043,7 @@ onclick="theme('bangladesh')">
 class="btn soft"
 onclick="theme('islamic')">
 
-☪️ Islamic
+☪️ Islamic Theme
 
 </button>
 
@@ -1064,9 +1076,17 @@ onchange="restore(this)">
 
 <button
 class="btn soft"
-onclick="openPin()">
+onclick="setPin()">
 
-🔐 PIN Set/Reset
+🔐 PIN Set / Reset
+
+</button>
+
+<button
+class="btn soft"
+onclick="removePin()">
+
+🔓 PIN Lock বন্ধ
 
 </button>
 
@@ -1091,7 +1111,7 @@ onclick="clearAll()">
 </section>
 
 
-<!-- ADVICE -->
+<!-- ================= ADVICE ================= -->
 
 <section id="advice" class="page">
 
@@ -1123,7 +1143,7 @@ onclick="sendAdvice()">
 </main>
 
 
-<!-- BOTTOM NAV -->
+<!-- ================= BOTTOM NAV ================= -->
 
 <nav class="bottom">
 
@@ -1186,7 +1206,9 @@ onclick="go('settings',this)">
 
 <script>
 
-/* STORAGE */
+/* =========================================
+ STORAGE
+========================================= */
 
 const K={
  e:"hm_entries",
@@ -1197,121 +1219,150 @@ const K={
 };
 
 let E=JSON.parse(
-localStorage.getItem(K.e)||"[]"
+ localStorage.getItem(K.e)||"[]"
 );
 
 let T=JSON.parse(
-localStorage.getItem(K.t)||"[]"
+ localStorage.getItem(K.t)||"[]"
 );
 
 let N=JSON.parse(
-localStorage.getItem(K.n)||"[]"
+ localStorage.getItem(K.n)||"[]"
 );
 
-const today=()=>new Date()
-.toISOString()
-.slice(0,10);
 
-const money=n=>
-(+n||0)
-.toLocaleString("en-US")+" BDT";
+function today(){
+
+ return new Date()
+ .toISOString()
+ .slice(0,10);
+
+}
 
 
-/* PAGE */
+function money(n){
+
+ return (+n||0)
+ .toLocaleString("en-US")
+ +" BDT";
+
+}
+
+
+/* =========================================
+ NAVIGATION
+========================================= */
 
 function go(id,btn){
 
-document
-.querySelectorAll(".page")
-.forEach(x=>x.classList.remove("active"));
+ document
+ .querySelectorAll(".page")
+ .forEach(
+  x=>x.classList.remove("active")
+ );
 
-document
-.getElementById(id)
-.classList.add("active");
+ document
+ .getElementById(id)
+ .classList.add("active");
 
-document
-.querySelectorAll(".nav")
-.forEach(x=>x.classList.remove("active"));
 
-if(btn)btn.classList.add("active");
+ document
+ .querySelectorAll(".nav")
+ .forEach(
+  x=>x.classList.remove("active")
+ );
 
-if(id==="home")dash();
+ if(btn)
+  btn.classList.add("active");
 
-if(id==="ledger")renderEntries();
 
-if(id==="graph")renderGraph();
+ if(id==="home")dash();
 
-if(id==="memo")buildMemo();
+ if(id==="ledger")renderEntries();
 
-if(id==="task")renderTasks();
+ if(id==="graph")renderGraph();
 
-if(id==="notes")renderNotes();
+ if(id==="memo")buildMemo();
 
-if(id==="islam")renderPrayer();
+ if(id==="task")renderTasks();
+
+ if(id==="notes")renderNotes();
+
+ if(id==="islam")
+  loadPrayerTimes();
 
 }
 
 
-/* CLOCK */
+/* =========================================
+ CLOCK + WEEK
+========================================= */
 
 function tick(){
 
-let d=new Date();
+ let d=new Date();
 
-clock.textContent=
-d.toLocaleTimeString("en-GB");
+ clock.textContent=
+ d.toLocaleTimeString("en-GB");
 
-date.textContent=
-d.toLocaleDateString(
-"en-GB",
-{
- weekday:"long",
- day:"2-digit",
- month:"long",
- year:"numeric"
+ date.textContent=
+ d.toLocaleDateString(
+ "bn-BD",
+ {
+  weekday:"long",
+  day:"2-digit",
+  month:"long",
+  year:"numeric"
  }
-);
+ );
 
-let day=d.getDay();
 
-let m=new Date(d);
+ let day=d.getDay();
 
-m.setDate(
-d.getDate()-
-(day===0?6:day-1)
-);
+ let m=new Date(d);
 
-week.innerHTML="";
+ m.setDate(
+  d.getDate()-
+  (day===0?6:day-1)
+ );
 
-for(let i=0;i<7;i++){
 
-let x=new Date(m);
+ week.innerHTML="";
 
-x.setDate(m.getDate()+i);
 
-week.innerHTML+=`
+ for(let i=0;i<7;i++){
 
-<div class="day ${
-x.toDateString()===d.toDateString()
-?"active":""
-}">
+  let x=new Date(m);
 
-<small>
-${x.toLocaleDateString(
-"en-US",
-{weekday:"short"}
-)}
-</small>
+  x.setDate(
+   m.getDate()+i
+  );
 
-<b>
-${x.getDate()}
-</b>
 
-</div>
+  week.innerHTML+=`
 
-`;
+  <div class="day ${
+   x.toDateString()===
+   d.toDateString()
+   ?"active":""
+  }">
 
-}
+  <small>
+  ${x.toLocaleDateString(
+   "bn-BD",
+   {weekday:"short"}
+  )}
+  </small>
+
+  <b>
+  ${x.getDate()}
+  </b>
+
+  </div>
+
+  `;
+
+ }
 
 }
 
@@ -1319,9 +1370,12 @@ setInterval(tick,1000);
 tick();
 
 
-/* DEFAULT DATES */
+/* =========================================
+ DEFAULT DATES
+========================================= */
 
 edate.value=today();
+
 tdate.value=today();
 
 gfrom.value=today();
@@ -1338,1219 +1392,1872 @@ new Date()
 ttime.value=etime.value;
 
 
-/* ADD ENTRY */
+/* =========================================
+ ENTRY
+========================================= */
 
 function addEntry(){
 
-let e={
- id:Date.now(),
- date:edate.value,
- time:etime.value,
- type:etype.value,
- title:etitle.value.trim(),
- amount:+eamount.value||0,
- desc:edesc.value
-};
+ let e={
 
-if(!e.title||!e.amount){
+  id:Date.now(),
 
-alert("বিষয় ও পরিমাণ দিন");
+  date:edate.value,
 
-return;
+  time:etime.value,
+
+  type:etype.value,
+
+  title:etitle.value.trim(),
+
+  amount:+eamount.value||0,
+
+  desc:edesc.value
+
+ };
+
+
+ if(!e.title||!e.amount){
+
+  alert("বিষয় ও পরিমাণ দিন");
+
+  return;
+
+ }
+
+
+ E.push(e);
+
+
+ localStorage.setItem(
+  K.e,
+  JSON.stringify(E)
+ );
+
+
+ etitle.value="";
+ eamount.value="";
+ edesc.value="";
+
+
+ dash();
+ renderEntries();
 
 }
 
-E.push(e);
-
-localStorage.setItem(
-K.e,
-JSON.stringify(E)
-);
-
-etitle.value="";
-eamount.value="";
-edesc.value="";
-
-dash();
-renderEntries();
-
-}
-
-
-/* ENTRY ROW */
 
 function row(e){
 
-return `
+ return `
 
-<div class="item">
+ <div class="item">
 
-<div>
+ <div>
 
-<b>${e.title}</b>
+ <b>${e.title}</b>
 
-<br>
+ <br>
 
-<small class="muted">
+ <small class="muted">
 
-${e.date}
-•
-${new Date(e.date)
-.toLocaleDateString(
-"bn-BD",
-{weekday:"long"}
-)}
-•
-${e.time||"--"}
+ ${e.date}
+ •
+ ${new Date(e.date)
+ .toLocaleDateString(
+ "bn-BD",
+ {weekday:"long"}
+ )}
+ •
+ ${e.time||"--"}
 
-<br>
+ <br>
 
-${e.desc||""}
+ ${e.desc||""}
 
-</small>
+ </small>
 
-</div>
+ </div>
 
-<div>
+ <div>
 
-<b>${money(e.amount)}</b>
+ <b>${money(e.amount)}</b>
 
-<br>
+ <br>
 
-<button
-class="btn red"
-onclick="delE(${e.id})">
+ <button
+ class="btn red"
+ onclick="delE(${e.id})">
 
-🗑️
+ 🗑️
 
-</button>
+ </button>
 
-</div>
+ </div>
 
-</div>
+ </div>
 
-`;
+ `;
 
 }
 
-
-/* ENTRIES */
 
 function renderEntries(){
 
-let q=
-(search.value||"")
-.toLowerCase();
+ let q=
+ (search.value||"")
+ .toLowerCase();
 
-entries.innerHTML=
 
-[...E]
-.reverse()
-.filter(e=>
-(e.title+" "+e.desc)
-.toLowerCase()
-.includes(q)
-)
-.map(row)
-.join("")
+ entries.innerHTML=
 
-||
+ [...E]
+ .reverse()
+ .filter(e=>
+  (e.title+" "+e.desc)
+  .toLowerCase()
+  .includes(q)
+ )
+ .map(row)
+ .join("")
 
-"<div class='muted'>কোনো হিসাব নেই</div>";
+ ||
+
+ "<div class='muted'>কোনো হিসাব নেই</div>";
 
 }
 
-
-/* DELETE */
 
 function delE(id){
 
-E=E.filter(
-x=>x.id!==id
-);
+ E=E.filter(
+  x=>x.id!==id
+ );
 
-localStorage.setItem(
-K.e,
-JSON.stringify(E)
-);
+ localStorage.setItem(
+  K.e,
+  JSON.stringify(E)
+ );
 
-dash();
-renderEntries();
+ dash();
+ renderEntries();
 
 }
 
 
-/* DASHBOARD */
+/* =========================================
+ DASHBOARD
+========================================= */
 
 function dash(){
 
-let i=0;
-let o=0;
-let d=0;
-let r=0;
+ let i=0;
+ let o=0;
+ let d=0;
+ let r=0;
 
-E.forEach(e=>{
 
-if(e.type==="income")
-i+=e.amount;
+ E.forEach(e=>{
 
-if(e.type==="expense")
-o+=e.amount;
+  if(e.type==="income")
+   i+=e.amount;
 
-if(e.type==="debt")
-d+=e.amount;
+  if(e.type==="expense")
+   o+=e.amount;
 
-if(e.type==="receive")
-r+=e.amount;
+  if(e.type==="debt")
+   d+=e.amount;
 
-});
+  if(e.type==="receive")
+   r+=e.amount;
 
-income.textContent=money(i);
-expense.textContent=money(o);
-balance.textContent=money(i-o);
-debt.textContent=money(d);
-receive.textContent=money(r);
+ });
 
-recent.innerHTML=
 
-E
-.slice(-5)
-.reverse()
-.map(row)
-.join("")
+ income.textContent=money(i);
+ expense.textContent=money(o);
+ balance.textContent=money(i-o);
+ debt.textContent=money(d);
+ receive.textContent=money(r);
 
-||
 
-"<div class='muted'>কোনো হিসাব নেই</div>";
+ recent.innerHTML=
+
+ E
+ .slice(-5)
+ .reverse()
+ .map(row)
+ .join("")
+
+ ||
+
+ "<div class='muted'>কোনো হিসাব নেই</div>";
 
 }
 
 
-/* CALCULATOR */
+/* =========================================
+ CALCULATOR
+========================================= */
 
 function calc(){
 
-ctotal.textContent=
-money(
-[c1,c2,c3,c4]
-.reduce(
-(s,x)=>s+(+x.value||0),
-0
-)
-);
+ ctotal.textContent=
+ money(
+  [c1,c2,c3,c4]
+  .reduce(
+   (s,x)=>s+(+x.value||0),
+   0
+  )
+ );
 
 }
+
 
 function clearCalc(){
 
-[c1,c2,c3,c4]
-.forEach(x=>x.value=0);
+ [c1,c2,c3,c4]
+ .forEach(
+  x=>x.value=0
+ );
 
-calc();
+ calc();
 
 }
+
 
 function saveCalc(){
 
-let n=
-[c1,c2,c3,c4]
-.reduce(
-(s,x)=>s+(+x.value||0),
-0
-);
+ let n=
+ [c1,c2,c3,c4]
+ .reduce(
+  (s,x)=>s+(+x.value||0),
+  0
+ );
 
-if(!n)return;
 
-let d=new Date();
+ if(!n)return;
 
-E.push({
 
-id:Date.now(),
+ let d=new Date();
 
-date:today(),
 
-time:d.toTimeString()
-.slice(0,5),
+ E.push({
 
-type:"expense",
+  id:Date.now(),
 
-title:"Calculator Expense",
+  date:today(),
 
-amount:n,
+  time:d.toTimeString()
+  .slice(0,5),
 
-desc:
-"যাতায়াত + খাবার + হোটেল + অন্যান্য"
+  type:"expense",
 
-});
+  title:"Calculator Expense",
 
-localStorage.setItem(
-K.e,
-JSON.stringify(E)
-);
+  amount:n,
 
-dash();
+  desc:
+  "যাতায়াত + খাবার + হোটেল + অন্যান্য"
 
-clearCalc();
+ });
 
-alert("ব্যয় সংরক্ষণ হয়েছে");
+
+ localStorage.setItem(
+  K.e,
+  JSON.stringify(E)
+ );
+
+
+ dash();
+
+ clearCalc();
+
+ alert("ব্যয় সংরক্ষণ হয়েছে");
 
 }
 
 
-/* GRAPH */
+/* =========================================
+ GRAPH
+========================================= */
 
 function renderGraph(){
 
-let a=E.filter(e=>
-(!gfrom.value||e.date>=gfrom.value)&&
-(!gto.value||e.date<=gto.value)
-);
+ let a=E.filter(e=>
+  (!gfrom.value||
+   e.date>=gfrom.value)
+  &&
+  (!gto.value||
+   e.date<=gto.value)
+ );
 
-let v={
- income:0,
- expense:0,
- debt:0,
- receive:0
-};
 
-a.forEach(e=>{
-v[e.type]+=e.amount;
-});
+ let v={
+  income:0,
+  expense:0,
+  debt:0,
+  receive:0
+ };
 
-let total=
-Object.values(v)
-.reduce((s,x)=>s+x,0)||1;
 
-let cur=0;
+ a.forEach(e=>{
+  v[e.type]+=e.amount;
+ });
 
-let parts=[];
 
-let colors=[
-"#087f5b",
-"#e31d2b",
-"#f2b134",
-"#287be8"
-];
+ let total=
+ Object.values(v)
+ .reduce(
+  (s,x)=>s+x,
+  0
+ )||1;
 
-Object
-.entries(v)
-.forEach(
-([k,n],idx)=>{
 
-let end=
-cur+
-n/total*360;
+ let cur=0;
 
-parts.push(
-`${colors[idx]}
-${cur}deg
-${end}deg`
-);
+ let parts=[];
 
-cur=end;
+ let colors=[
+  "#087f5b",
+  "#e31d2b",
+  "#f2b134",
+  "#287be8"
+ ];
 
-});
 
-pie.style.background=
-`conic-gradient(
-${parts.join(",")}
-)`;
+ Object
+ .entries(v)
+ .forEach(
+ ([k,n],idx)=>{
 
-let names={
- income:"আয়",
- expense:"ব্যয়",
- debt:"দেনা",
- receive:"পাওনা"
-};
+  let end=
+  cur+
+  n/total*360;
 
-legend.innerHTML=
+  parts.push(
+   `${colors[idx]}
+   ${cur}deg
+   ${end}deg`
+  );
 
-Object.entries(v)
-.map(([k,n])=>
+  cur=end;
 
-`<div class="item">
+ });
 
-<span>${names[k]}</span>
 
-<b>
-${money(n)}
-•
-${Math.round(n/total*100)}%
-</b>
+ pie.style.background=
+ `conic-gradient(
+ ${parts.join(",")}
+ )`;
 
-</div>`
 
-)
-.join("");
+ let names={
+  income:"আয়",
+  expense:"ব্যয়",
+  debt:"দেনা",
+  receive:"পাওনা"
+ };
+
+
+ legend.innerHTML=
+
+ Object
+ .entries(v)
+ .map(
+ ([k,n])=>
+
+ `<div class="item">
+
+ <span>${names[k]}</span>
+
+ <b>
+ ${money(n)}
+ •
+ ${Math.round(n/total*100)}%
+ </b>
+
+ </div>`
+
+ )
+ .join("");
 
 }
 
 
-/* TASK */
+/* =========================================
+ TASK
+========================================= */
 
 function addTask(){
 
-if(!ttext.value.trim())
-return;
+ if(!ttext.value.trim())
+  return;
 
-T.push({
 
-id:Date.now(),
-date:tdate.value,
-time:ttime.value,
-text:ttext.value,
-done:false
+ T.push({
 
-});
+  id:Date.now(),
 
-localStorage.setItem(
-K.t,
-JSON.stringify(T)
-);
+  date:tdate.value,
 
-ttext.value="";
+  time:ttime.value,
 
-renderTasks();
+  text:ttext.value,
+
+  done:false
+
+ });
+
+
+ localStorage.setItem(
+  K.t,
+  JSON.stringify(T)
+ );
+
+
+ ttext.value="";
+
+ renderTasks();
 
 }
+
 
 function renderTasks(){
 
-tasks.innerHTML=
+ tasks.innerHTML=
 
-T
-.slice()
-.reverse()
-.map(x=>
+ T
+ .slice()
+ .reverse()
+ .map(x=>
 
-`<div class="item">
+ `<div class="item">
 
-<div>
+ <div>
 
-<b>
-${x.done?"✅":"📌"}
-${x.text}
-</b>
+ <b>
+ ${x.done?"✅":"📌"}
+ ${x.text}
+ </b>
 
-<br>
+ <br>
 
-<small>
-${x.date}
-•
-${x.time}
-</small>
+ <small>
+ ${x.date}
+ •
+ ${x.time}
+ </small>
 
-</div>
+ </div>
 
-<div>
+ <div>
 
-<button
-class="btn soft"
-onclick="doneT(${x.id})">
+ <button
+ class="btn soft"
+ onclick="doneT(${x.id})">
 
-✓
+ ✓
 
-</button>
+ </button>
 
-<button
-class="btn red"
-onclick="delT(${x.id})">
+ <button
+ class="btn red"
+ onclick="delT(${x.id})">
 
-🗑️
+ 🗑️
 
-</button>
+ </button>
 
-</div>
+ </div>
 
-</div>`
+ </div>`
 
-)
-.join("")
+ )
+ .join("")
 
-||
+ ||
 
-"<div class='muted'>কোনো Task নেই</div>";
+ "<div class='muted'>কোনো Task নেই</div>";
 
 }
+
 
 function doneT(id){
 
-let x=T.find(
-x=>x.id===id
-);
+ let x=T.find(
+  x=>x.id===id
+ );
 
-x.done=!x.done;
+ if(x)
+  x.done=!x.done;
 
-localStorage.setItem(
-K.t,
-JSON.stringify(T)
-);
 
-renderTasks();
+ localStorage.setItem(
+  K.t,
+  JSON.stringify(T)
+ );
+
+ renderTasks();
 
 }
+
 
 function delT(id){
 
-T=T.filter(
-x=>x.id!==id
-);
+ T=T.filter(
+  x=>x.id!==id
+ );
 
-localStorage.setItem(
-K.t,
-JSON.stringify(T)
-);
+ localStorage.setItem(
+  K.t,
+  JSON.stringify(T)
+ );
 
-renderTasks();
+ renderTasks();
 
 }
 
 
-/* NOTES */
+/* =========================================
+ NOTES
+========================================= */
 
 function addNote(){
 
-if(!ntext.value.trim())
-return;
+ if(!ntext.value.trim())
+  return;
 
-N.push({
 
-id:Date.now(),
+ N.push({
 
-title:
-ntitle.value||
-"Personal Note",
+  id:Date.now(),
 
-text:ntext.value,
+  title:
+  ntitle.value||
+  "Personal Note",
 
-date:
-new Date()
-.toLocaleString("en-GB")
+  text:ntext.value,
 
-});
+  date:
+  new Date()
+  .toLocaleString("en-GB")
 
-localStorage.setItem(
-K.n,
-JSON.stringify(N)
-);
+ });
 
-ntitle.value="";
-ntext.value="";
 
-renderNotes();
+ localStorage.setItem(
+  K.n,
+  JSON.stringify(N)
+ );
+
+
+ ntitle.value="";
+ ntext.value="";
+
+ renderNotes();
 
 }
+
 
 function renderNotes(){
 
-notes.innerHTML=
+ notes.innerHTML=
 
-N
-.slice()
-.reverse()
-.map(x=>
+ N
+ .slice()
+ .reverse()
+ .map(x=>
 
-`<div class="item">
+ `<div class="item">
 
-<div>
+ <div>
 
-<b>
-📝 ${x.title}
-</b>
+ <b>
+ 📝 ${x.title}
+ </b>
 
-<p>
-${x.text}
-</p>
+ <p>
+ ${x.text}
+ </p>
 
-<small>
-${x.date}
-</small>
+ <small>
+ ${x.date}
+ </small>
 
-</div>
+ </div>
 
-<button
-class="btn red"
-onclick="delN(${x.id})">
+ <button
+ class="btn red"
+ onclick="delN(${x.id})">
 
-🗑️
+ 🗑️
 
-</button>
+ </button>
 
-</div>`
+ </div>`
 
-)
-.join("")
+ )
+ .join("")
 
-||
+ ||
 
-"<div class='muted'>কোনো নোট নেই</div>";
+ "<div class='muted'>কোনো নোট নেই</div>";
 
 }
+
 
 function delN(id){
 
-N=N.filter(
-x=>x.id!==id
-);
+ N=N.filter(
+  x=>x.id!==id
+ );
 
-localStorage.setItem(
-K.n,
-JSON.stringify(N)
-);
+ localStorage.setItem(
+  K.n,
+  JSON.stringify(N)
+ );
 
-renderNotes();
+ renderNotes();
 
 }
 
 
-/* MEMO */
+/* =========================================
+ MEMO
+========================================= */
 
 function filtered(){
 
-return E.filter(e=>
-(!mfrom.value||e.date>=mfrom.value)&&
-(!mto.value||e.date<=mto.value)
-);
+ return E.filter(e=>
+  (!mfrom.value||
+   e.date>=mfrom.value)
+  &&
+  (!mto.value||
+   e.date<=mto.value)
+ );
 
 }
+
 
 function buildMemo(){
 
-let a=filtered();
+ let a=filtered();
 
-let i=0;
-let o=0;
-let d=0;
-let r=0;
-
-a.forEach(e=>{
-
-if(e.type==="income")
-i+=e.amount;
-
-if(e.type==="expense")
-o+=e.amount;
-
-if(e.type==="debt")
-d+=e.amount;
-
-if(e.type==="receive")
-r+=e.amount;
-
-});
-
-memoOut.innerHTML=`
-
-<div class="memo">
-
-<div class="memohead">
-
-<h1>
-HUSSAIN'S MONEY MANAGEMENT
-</h1>
-
-<b>
-আমার ব্যক্তিগত হিসাব খাতা
-</b>
-
-<p>
-MEMO / STATEMENT
-</p>
-
-<p>
-
-Period:
-${mfrom.value||"All"}
-→
-${mto.value||"All"}
-
-<br>
-
-Generated:
-${new Date()
-.toLocaleString("en-GB")}
-
-</p>
-
-</div>
+ let i=0;
+ let o=0;
+ let d=0;
+ let r=0;
 
 
-<table>
+ a.forEach(e=>{
 
-<thead>
+  if(e.type==="income")
+   i+=e.amount;
 
-<tr>
+  if(e.type==="expense")
+   o+=e.amount;
 
-<th>তারিখ</th>
-<th>বার</th>
-<th>সময়</th>
-<th>বিবরণ</th>
-<th>ধরন</th>
-<th>পরিমাণ</th>
+  if(e.type==="debt")
+   d+=e.amount;
 
-</tr>
+  if(e.type==="receive")
+   r+=e.amount;
 
-</thead>
+ });
 
-<tbody>
 
-${
-a.map(e=>
+ memoOut.innerHTML=`
 
-`<tr>
+ <div class="memo">
 
-<td>${e.date}</td>
+ <div class="memohead">
 
-<td>
-${new Date(e.date)
-.toLocaleDateString(
-"bn-BD",
-{weekday:"long"}
-)}
-</td>
+ <h1>
+ HUSSAIN'S MONEY MANAGEMENT
+ </h1>
 
-<td>${e.time||"--"}</td>
+ <b>
+ আমার ব্যক্তিগত হিসাব খাতা
+ </b>
 
-<td>
-${e.title}
-<br>
-${e.desc||""}
-</td>
+ <p>
+ MEMO / STATEMENT
+ </p>
 
-<td>${e.type}</td>
+ <p>
 
-<td>${money(e.amount)}</td>
+ Period:
+ ${mfrom.value||"All"}
+ →
+ ${mto.value||"All"}
 
-</tr>`
+ <br>
 
-).join("")
+ Generated:
+ ${new Date()
+ .toLocaleString("en-GB")}
 
-||
+ </p>
 
-`<tr>
-<td colspan="6">
-No transactions
-</td>
-</tr>`
+ </div>
+
+
+ <table>
+
+ <thead>
+
+ <tr>
+
+ <th>তারিখ</th>
+ <th>বার</th>
+ <th>সময়</th>
+ <th>বিবরণ</th>
+ <th>ধরন</th>
+ <th>পরিমাণ</th>
+
+ </tr>
+
+ </thead>
+
+ <tbody>
+
+ ${
+ a.map(e=>
+
+ `<tr>
+
+ <td>${e.date}</td>
+
+ <td>
+ ${new Date(e.date)
+ .toLocaleDateString(
+  "bn-BD",
+  {weekday:"long"}
+ )}
+ </td>
+
+ <td>${e.time||"--"}</td>
+
+ <td>
+ ${e.title}
+ <br>
+ ${e.desc||""}
+ </td>
+
+ <td>${e.type}</td>
+
+ <td>${money(e.amount)}</td>
+
+ </tr>`
+
+ ).join("")
+
+ ||
+
+ `<tr>
+ <td colspan="6">
+ No transactions
+ </td>
+ </tr>`
+
+ }
+
+ </tbody>
+
+ </table>
+
+
+ <div class="totals">
+
+ <div>
+ <b>মোট আয়</b>
+ <b>${money(i)}</b>
+ </div>
+
+ <div>
+ <b>মোট ব্যয়</b>
+ <b>${money(o)}</b>
+ </div>
+
+ <div>
+ <b>মোট দেনা</b>
+ <b>${money(d)}</b>
+ </div>
+
+ <div>
+ <b>মোট পাওনা</b>
+ <b>${money(r)}</b>
+ </div>
+
+ <div>
+ <b>অবশিষ্ট</b>
+ <b>${money(i-o)}</b>
+ </div>
+
+ </div>
+
+
+ <div class="sign">
+
+ <span>
+ Prepared by<br>
+ <b>
+ Hussain's Money Management
+ </b>
+ </span>
+
+ <span>
+ Signature: __________________
+ </span>
+
+ </div>
+
+ </div>
+
+ `;
 
 }
 
-</tbody>
-
-</table>
-
-
-<div class="totals">
-
-<div>
-<b>মোট আয়</b>
-<b>${money(i)}</b>
-</div>
-
-<div>
-<b>মোট ব্যয়</b>
-<b>${money(o)}</b>
-</div>
-
-<div>
-<b>মোট দেনা</b>
-<b>${money(d)}</b>
-</div>
-
-<div>
-<b>মোট পাওনা</b>
-<b>${money(r)}</b>
-</div>
-
-<div>
-<b>অবশিষ্ট</b>
-<b>${money(i-o)}</b>
-</div>
-
-</div>
-
-
-<div class="sign">
-
-<span>
-Prepared by<br>
-<b>
-Hussain's Money Management
-</b>
-</span>
-
-<span>
-Signature: __________________
-</span>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-/* PDF / PRINT */
 
 function downloadMemo(){
 
-buildMemo();
+ buildMemo();
 
-setTimeout(
-()=>window.print(),
-200
-);
+ setTimeout(
+  ()=>window.print(),
+  200
+ );
 
 }
 
-
-/* CSV */
 
 function downloadCSV(){
 
-let a=filtered();
+ let a=filtered();
 
-let csv=
-"Date,Day,Time,Description,Type,Amount BDT\n"+
 
-a.map(e=>
+ let csv=
+ "Date,Day,Time,Description,Type,Amount BDT\n"+
 
-[
-e.date,
+ a.map(e=>
 
-new Date(e.date)
-.toLocaleDateString(
-"en-US",
-{weekday:"long"}
-),
+ [
+  e.date,
 
-e.time,
+  new Date(e.date)
+  .toLocaleDateString(
+   "en-US",
+   {weekday:"long"}
+  ),
 
-e.title,
+  e.time,
 
-e.type,
+  e.title,
 
-e.amount
+  e.type,
 
-]
-.map(x=>
-`"${String(x)
-.replaceAll('"','""')}"`
-)
-.join(",")
+  e.amount
 
-)
-.join("\n");
+ ]
+ .map(x=>
+  `"${String(x)
+  .replaceAll('"','""')}"`
+ )
+ .join(",")
 
-let blob=
-new Blob(
-["\ufeff"+csv],
-{
-type:"text/csv;charset=utf-8"
+ )
+ .join("\n");
+
+
+ let blob=
+ new Blob(
+  ["\ufeff"+csv],
+  {
+   type:
+   "text/csv;charset=utf-8"
+  }
+ );
+
+
+ let u=
+ URL.createObjectURL(blob);
+
+
+ let a1=
+ document.createElement("a");
+
+
+ a1.href=u;
+
+ a1.download=
+ `Hussains-Statement-${
+  mfrom.value
+ }-${
+  mto.value
+ }.csv`;
+
+
+ a1.click();
+
+ URL.revokeObjectURL(u);
+
 }
-);
-
-let u=
-URL.createObjectURL(blob);
-
-let a1=
-document.createElement("a");
-
-a1.href=u;
-
-a1.download=
-`Hussains-Statement-${mfrom.value}-${mto.value}.csv`;
-
-a1.click();
-
-URL.revokeObjectURL(u);
-
-}
 
 
-/* BACKUP */
+/* =========================================
+ BACKUP
+========================================= */
 
 function backup(){
 
-let data={
+ let data={
 
-version:1,
+  version:1,
 
-createdAt:
-new Date().toISOString(),
+  createdAt:
+  new Date().toISOString(),
 
-entries:E,
+  entries:E,
 
-tasks:T,
+  tasks:T,
 
-notes:N,
+  notes:N,
 
-prayer:
-JSON.parse(
-localStorage.getItem(K.p)||"{}"
-)
+  prayer:
+  JSON.parse(
+   localStorage.getItem(K.p)
+   ||"{}"
+  )
 
-};
+ };
 
-let blob=
-new Blob(
-[
-JSON.stringify(
-data,
-null,
-2
-)
-],
-{
-type:"application/json"
+
+ let blob=
+ new Blob(
+  [
+   JSON.stringify(
+    data,
+    null,
+    2
+   )
+  ],
+  {
+   type:
+   "application/json"
+  }
+ );
+
+
+ let u=
+ URL.createObjectURL(blob);
+
+
+ let a=
+ document.createElement("a");
+
+
+ a.href=u;
+
+ a.download=
+ `Hussain-Money-Backup-${
+  today()
+ }.json`;
+
+
+ a.click();
+
+
+ URL.revokeObjectURL(u);
+
 }
-);
-
-let u=
-URL.createObjectURL(blob);
-
-let a=
-document.createElement("a");
-
-a.href=u;
-
-a.download=
-`Hussain-Money-Backup-${today()}.json`;
-
-a.click();
-
-URL.revokeObjectURL(u);
-
-}
 
 
-/* RESTORE */
+/* =========================================
+ RESTORE
+========================================= */
 
 function restore(input){
 
-let f=input.files[0];
+ let f=input.files[0];
 
-if(!f)return;
+ if(!f)return;
 
-let r=
-new FileReader();
 
-r.onload=()=>{
+ let r=
+ new FileReader();
 
-try{
 
-let x=
-JSON.parse(r.result);
+ r.onload=()=>{
 
-E=x.entries||[];
-T=x.tasks||[];
-N=x.notes||[];
+  try{
 
-localStorage.setItem(
-K.e,
-JSON.stringify(E)
-);
+   let x=
+   JSON.parse(r.result);
 
-localStorage.setItem(
-K.t,
-JSON.stringify(T)
-);
 
-localStorage.setItem(
-K.n,
-JSON.stringify(N)
-);
+   E=x.entries||[];
+   T=x.tasks||[];
+   N=x.notes||[];
 
-if(x.prayer){
 
-localStorage.setItem(
-K.p,
-JSON.stringify(x.prayer)
-);
+   localStorage.setItem(
+    K.e,
+    JSON.stringify(E)
+   );
+
+   localStorage.setItem(
+    K.t,
+    JSON.stringify(T)
+   );
+
+   localStorage.setItem(
+    K.n,
+    JSON.stringify(N)
+   );
+
+
+   if(x.prayer){
+
+    localStorage.setItem(
+     K.p,
+     JSON.stringify(
+      x.prayer
+     )
+    );
+
+   }
+
+
+   dash();
+   renderEntries();
+   renderTasks();
+   renderNotes();
+
+
+   alert(
+    "Backup Restore হয়েছে"
+   );
+
+  }
+
+  catch(e){
+
+   alert(
+    "Backup ফাইল সঠিক নয়"
+   );
+
+  }
+
+ };
+
+
+ r.readAsText(f);
 
 }
 
-dash();
-renderEntries();
-renderTasks();
-renderNotes();
 
-alert(
-"Backup Restore হয়েছে"
-);
-
-}
-
-catch(e){
-
-alert(
-"Backup ফাইল সঠিক নয়"
-);
-
-}
-
-};
-
-r.readAsText(f);
-
-}
-
-
-/* THEME */
+/* =========================================
+ THEMES
+========================================= */
 
 function toggleDark(){
 
-document.body
-.classList
-.toggle("dark");
+ document.body
+ .classList
+ .toggle("dark");
 
-localStorage.setItem(
-"hm_dark",
-document.body
-.classList
-.contains("dark")
-);
+
+ localStorage.setItem(
+  "hm_dark",
+  document.body
+  .classList
+  .contains("dark")
+ );
 
 }
+
 
 function theme(x){
 
-document.body
-.classList
-.toggle(
-"theme-islamic",
-x==="islamic"
-);
-
-localStorage.setItem(
-"hm_theme",
-x
-);
-
-}
+ document.body
+ .classList
+ .toggle(
+  "theme-islamic",
+  x==="islamic"
+ );
 
 
-/* PIN */
-
-function openPin(){
-
-let p=
-prompt(
-"নতুন PIN দিন (৪-৬ সংখ্যা):"
-);
-
-if(
-p &&
-/^\d{4,6}$/.test(p)
-){
-
-localStorage.setItem(
-K.pin,
-p
-);
-
-alert(
-"PIN সেট হয়েছে"
-);
-
-}
-
-else if(p){
-
-alert(
-"৪-৬ সংখ্যার PIN দিন"
-);
-
-}
+ localStorage.setItem(
+  "hm_theme",
+  x
+ );
 
 }
 
 
-/* CLEAR */
-
-function clearAll(){
-
-if(
-!confirm(
-"সব হিসাব, Task ও Notes মুছে ফেলবেন?"
-)
-)return;
-
-[
-K.e,
-K.t,
-K.n
-]
-.forEach(
-x=>localStorage.removeItem(x)
-);
-
-E=[];
-T=[];
-N=[];
-
-dash();
-renderEntries();
-renderTasks();
-renderNotes();
-
-}
-
-
-/* ADVICE */
+/* =========================================
+ ADVICE
+========================================= */
 
 function sendAdvice(){
 
-let t=
-atext.value.trim();
-
-if(!t){
-
-alert(
-"পরামর্শ লিখুন"
-);
-
-return;
-
-}
-
-location.href=
-"mailto:hussain.connect@outlook.com"+
-"?subject="+
-encodeURIComponent(
-"Hussain's Money Management - পরামর্শ"
-)+
-"&body="+
-encodeURIComponent(
-"নাম: "+
-(aname.value||"অজ্ঞাত")+
-"\n\n"+
-t
-);
-
-}
+ let t=
+ atext.value.trim();
 
 
-/* PRAYER */
+ if(!t){
 
-function savePrayer(){
+  alert(
+   "পরামর্শ লিখুন"
+  );
 
-let ids=[
-"fajrEnd",
-"sunrise",
-"fajr",
-"dhuhr",
-"asr",
-"sunset",
-"maghrib",
-"isha"
-];
+  return;
 
-let o={};
+ }
 
-ids.forEach(
-id=>{
-o[id]=
-document
-.getElementById(id)
-.value;
-}
-);
 
-localStorage.setItem(
-K.p,
-JSON.stringify(o)
-);
-
-renderPrayer();
-
-}
-
-function renderPrayer(){
-
-let o=
-JSON.parse(
-localStorage.getItem(K.p)||"{}"
-);
-
-let names={
-
-fajrEnd:"আজকের সেহরী শেষ",
-
-sunrise:"সূর্যোদয়",
-
-fajr:"ফজর",
-
-dhuhr:"যোহর",
-
-asr:"আসর",
-
-sunset:"সূর্যাস্ত",
-
-maghrib:"মাগরিব / ইফতার",
-
-isha:"ইশা"
-
-};
-
-prayerShow.innerHTML=
-
-Object.keys(names)
-.map(k=>
-
-`<div class="item">
-
-<span>
-${names[k]}
-</span>
-
-<b>
-${o[k]||"--:--"}
-</b>
-
-</div>`
-
-)
-.join("");
-
-Object.keys(names)
-.forEach(k=>{
-
-document
-.getElementById(k)
-.value=o[k]||"";
-
-});
+ location.href=
+ "mailto:hussain.connect@outlook.com"+
+ "?subject="+
+ encodeURIComponent(
+  "Hussain's Money Management - পরামর্শ"
+ )+
+ "&body="+
+ encodeURIComponent(
+  "নাম: "+
+  (aname.value||"অজ্ঞাত")+
+  "\n\n"+
+  t
+ );
 
 }
 
 
-/* LOAD */
+/* =========================================
+ AUTOMATIC PRAYER API
+ ALADHAN
+========================================= */
+
+const PRAYER_API=
+"https://api.aladhan.com/v1/timingsByAddress";
+
+
+function getPrayerDate(){
+
+ return new Date()
+ .toISOString()
+ .slice(0,10);
+
+}
+
+
+function apiDateFormat(date){
+
+ let p=date.split("-");
+
+ return p[2]+"-"+p[1]+"-"+p[0];
+
+}
+
+
+function cleanTime(time){
+
+ if(!time)
+  return "--:--";
+
+
+ return time
+ .replace(
+  /\s*\(.+\)/,
+  ""
+ )
+ .trim();
+
+}
+
+
+async function loadPrayerTimes(){
+
+ const city=
+ document
+ .getElementById(
+  "prayerCity"
+ )
+ .value
+ .trim();
+
+
+ const country=
+ document
+ .getElementById(
+  "prayerCountry"
+ )
+ .value
+ .trim();
+
+
+ const date=
+ document
+ .getElementById(
+  "prayerDate"
+ )
+ .value;
+
+
+ const method=
+ document
+ .getElementById(
+  "prayerMethod"
+ )
+ .value;
+
+
+ const status=
+ document
+ .getElementById(
+  "prayerStatus"
+ );
+
+
+ if(
+  !city||
+  !country||
+  !date
+ ){
+
+  status.textContent=
+  "শহর, দেশ ও তারিখ নির্বাচন করুন।";
+
+  return;
+
+ }
+
+
+ status.textContent=
+ "⏳ নামাজের সময় আপডেট হচ্ছে...";
+
+
+ try{
+
+  const apiDate=
+  apiDateFormat(date);
+
+
+  const url=
+  `${PRAYER_API}/${apiDate}`+
+  `?address=${
+   encodeURIComponent(
+    city+","+country
+   )
+  }`+
+  `&method=${method}`;
+
+
+  const response=
+  await fetch(url);
+
+
+  if(!response.ok){
+
+   throw new Error(
+    "API response error"
+   );
+
+  }
+
+
+  const json=
+  await response.json();
+
+
+  if(
+   json.code!==200||
+   !json.data
+  ){
+
+   throw new Error(
+    "Prayer time পাওয়া যায়নি"
+   );
+
+  }
+
+
+  const t=
+  json.data.timings;
+
+
+  document.getElementById(
+   "apiImsak"
+  ).textContent=
+  cleanTime(t.Imsak);
+
+
+  document.getElementById(
+   "apiFajr"
+  ).textContent=
+  cleanTime(t.Fajr);
+
+
+  document.getElementById(
+   "apiSunrise"
+  ).textContent=
+  cleanTime(t.Sunrise);
+
+
+  document.getElementById(
+   "apiDhuhr"
+  ).textContent=
+  cleanTime(t.Dhuhr);
+
+
+  document.getElementById(
+   "apiAsr"
+  ).textContent=
+  cleanTime(t.Asr);
+
+
+  document.getElementById(
+   "apiSunset"
+  ).textContent=
+  cleanTime(t.Sunset);
+
+
+  document.getElementById(
+   "apiMaghrib"
+  ).textContent=
+  cleanTime(t.Maghrib);
+
+
+  document.getElementById(
+   "apiIsha"
+  ).textContent=
+  cleanTime(t.Isha);
+
+
+  const hijri=
+  json.data.date.hijri;
+
+
+  document.getElementById(
+   "apiHijri"
+  ).textContent=
+  `${hijri.day} ${hijri.month.en} ${hijri.year} AH`;
+
+
+  status.innerHTML=
+  `✅ আপডেট হয়েছে: <b>${city}, ${country}</b>`;
+
+
+  localStorage.setItem(
+   "hm_prayer_api",
+   JSON.stringify({
+
+    city,
+    country,
+    date,
+    method,
+    timings:t,
+    hijri:hijri,
+    updatedAt:
+    new Date().toISOString()
+
+   })
+  );
+
+ }
+
+ catch(error){
+
+  console.error(error);
+
+
+  status.innerHTML=
+  `❌ API থেকে সময় আনা যায়নি।<br>
+  <small>
+  ইন্টারনেট সংযোগ পরীক্ষা করুন।
+  </small>`;
+
+
+  loadSavedPrayer();
+
+ }
+
+}
+
+
+function loadSavedPrayer(){
+
+ const saved=
+ localStorage.getItem(
+  "hm_prayer_api"
+ );
+
+
+ if(!saved)
+  return;
+
+
+ try{
+
+  const data=
+  JSON.parse(saved);
+
+
+  const t=
+  data.timings;
+
+
+  document.getElementById(
+   "apiImsak"
+  ).textContent=
+  cleanTime(t.Imsak);
+
+
+  document.getElementById(
+   "apiFajr"
+  ).textContent=
+  cleanTime(t.Fajr);
+
+
+  document.getElementById(
+   "apiSunrise"
+  ).textContent=
+  cleanTime(t.Sunrise);
+
+
+  document.getElementById(
+   "apiDhuhr"
+  ).textContent=
+  cleanTime(t.Dhuhr);
+
+
+  document.getElementById(
+   "apiAsr"
+  ).textContent=
+  cleanTime(t.Asr);
+
+
+  document.getElementById(
+   "apiSunset"
+  ).textContent=
+  cleanTime(t.Sunset);
+
+
+  document.getElementById(
+   "apiMaghrib"
+  ).textContent=
+  cleanTime(t.Maghrib);
+
+
+  document.getElementById(
+   "apiIsha"
+  ).textContent=
+  cleanTime(t.Isha);
+
+
+  if(data.hijri){
+
+   document.getElementById(
+    "apiHijri"
+   ).textContent=
+   `${data.hijri.day} `+
+   `${data.hijri.month.en} `+
+   `${data.hijri.year} AH`;
+
+  }
+
+ }
+
+ catch(e){
+
+  console.log(
+   "Saved prayer data invalid"
+  );
+
+ }
+
+}
+
+
+/* =========================================
+ PRAYER API INITIALIZATION
+========================================= */
+
+function initializePrayerAPI(){
+
+ const input=
+ document.getElementById(
+  "prayerDate"
+ );
+
+
+ input.value=
+ getPrayerDate();
+
+
+ const saved=
+ localStorage.getItem(
+  "hm_prayer_api"
+ );
+
+
+ if(saved){
+
+  try{
+
+   const data=
+   JSON.parse(saved);
+
+
+   document.getElementById(
+    "prayerCity"
+   ).value=
+   data.city||
+   "Dubai";
+
+
+   document.getElementById(
+    "prayerCountry"
+   ).value=
+   data.country||
+   "United Arab Emirates";
+
+
+   document.getElementById(
+    "prayerMethod"
+   ).value=
+   data.method||
+   "8";
+
+  }
+
+  catch(e){}
+
+ }
+
+
+ loadPrayerTimes();
+
+}
+
+
+/* DATE CHANGE */
+
+document.addEventListener(
+ "change",
+ function(e){
+
+  if(
+   e.target.id===
+   "prayerDate"
+  ){
+
+   loadPrayerTimes();
+
+  }
+
+ }
+);
+
+
+/* MIDNIGHT UPDATE */
+
+setInterval(
+ function(){
+
+  const input=
+  document.getElementById(
+   "prayerDate"
+  );
+
+
+  if(!input)
+   return;
+
+
+  const t=
+  getPrayerDate();
+
+
+  if(input.value!==t){
+
+   input.value=t;
+
+   loadPrayerTimes();
+
+  }
+
+ },
+60000
+);
+
+
+/* =========================================
+ PIN SYSTEM
+========================================= */
+
+let enteredPin="";
+
+
+function updatePinDots(){
+
+ let dots="";
+
+ for(let i=0;i<4;i++){
+
+  dots+=
+  i<enteredPin.length
+  ?"● "
+  :"○ ";
+
+ }
+
+ pinDots.textContent=
+ dots;
+
+}
+
+
+function pinInput(n){
+
+ if(
+  enteredPin.length>=6
+ )
+  return;
+
+
+ enteredPin+=n;
+
+ updatePinDots();
+
+}
+
+
+function pinClear(){
+
+ enteredPin=
+ enteredPin.slice(0,-1);
+
+ updatePinDots();
+
+}
+
+
+function checkPin(){
+
+ const saved=
+ localStorage.getItem(
+  K.pin
+ );
+
+
+ if(!saved){
+
+  hidePin();
+
+  return;
+
+ }
+
+
+ if(enteredPin===saved){
+
+  enteredPin="";
+
+  hidePin();
+
+ }
+
+ else{
+
+  pinError.textContent=
+  "PIN ভুল হয়েছে";
+
+  enteredPin="";
+
+  updatePinDots();
+
+ }
+
+}
+
+
+function showPin(){
+
+ document.getElementById(
+  "pinLock"
+ ).style.display="flex";
+
+ enteredPin="";
+
+ updatePinDots();
+
+}
+
+
+function hidePin(){
+
+ document.getElementById(
+  "pinLock"
+ ).style.display="none";
+
+ pinError.textContent="";
+
+}
+
+
+function setPin(){
+
+ let p=
+ prompt(
+  "নতুন PIN দিন (৪-৬ সংখ্যা):"
+ );
+
+
+ if(
+  p&&
+  /^\d{4,6}$/.test(p)
+ ){
+
+  localStorage.setItem(
+   K.pin,
+   p
+  );
+
+
+  alert(
+   "PIN সেট হয়েছে। এখন থেকে অ্যাপ খুললে PIN চাইবে।"
+  );
+
+ }
+
+ else if(p){
+
+  alert(
+   "৪-৬ সংখ্যার PIN দিন।"
+  );
+
+ }
+
+}
+
+
+function removePin(){
+
+ if(
+  confirm(
+   "PIN Lock বন্ধ করতে চান?"
+  )
+ ){
+
+  localStorage.removeItem(
+   K.pin
+  );
+
+  alert(
+   "PIN Lock বন্ধ হয়েছে।"
+  );
+
+ }
+
+}
+
+
+/* =========================================
+ CLEAR ALL
+========================================= */
+
+function clearAll(){
+
+ if(
+  !confirm(
+   "সব হিসাব, Task ও Notes মুছে ফেলবেন?"
+  )
+ )
+  return;
+
+
+ [
+  K.e,
+  K.t,
+  K.n
+ ]
+ .forEach(
+  x=>localStorage.removeItem(x)
+ );
+
+
+ E=[];
+ T=[];
+ N=[];
+
+
+ dash();
+ renderEntries();
+ renderTasks();
+ renderNotes();
+
+}
+
+
+/* =========================================
+ INITIAL LOAD
+========================================= */
 
 if(
-localStorage.getItem("hm_dark")
-==="true"
-)
-document.body.classList.add("dark");
+ localStorage.getItem(
+  "hm_dark"
+ )==="true"
+){
+
+ document.body
+ .classList
+ .add("dark");
+
+}
+
 
 if(
-localStorage.getItem("hm_theme")
-==="islamic"
-)
-document.body.classList.add(
-"theme-islamic"
-);
+ localStorage.getItem(
+  "hm_theme"
+ )==="islamic"
+){
+
+ document.body
+ .classList
+ .add(
+  "theme-islamic"
+ );
+
+}
+
 
 dash();
+
 renderEntries();
+
 renderTasks();
+
 renderNotes();
-renderPrayer();
-calc();
+
 renderGraph();
+
 buildMemo();
+
+calc();
+
+initializePrayerAPI();
+
+
+/* PIN STARTUP */
+
+if(
+ localStorage.getItem(K.pin)
+){
+
+ showPin();
+
+}
 
 </script>
 
