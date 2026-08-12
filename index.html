@@ -2,2369 +2,3584 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>আমার ব্যক্তিগত হিসাব খাতা</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Hussain's Money Management</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
 
 :root{
---green:#087f5b;
---red:#d71920;
---gold:#b88918;
---blue:#3976c7;
---bg:#f3f6f5;
---card:#fff;
---text:#17201d;
---muted:#6d7773;
---border:#dbe4e1;
+    --primary:#087f5b;
+    --primary2:#075c45;
+    --income:#087f5b;
+    --expense:#d62828;
+    --gold:#d9a441;
+    --bg:#f3f7f5;
+    --card:#ffffff;
+    --text:#17211f;
+    --muted:#687572;
+    --border:#dfe7e4;
+    --nav:#ffffff;
 }
 
-body{
-margin:0;
-background:var(--bg);
-color:var(--text);
-font-family:Arial,"Noto Sans Bengali",sans-serif;
-padding-bottom:80px;
+html,body{
+    width:100%;
+    height:100%;
+    margin:0;
+    overflow:hidden;
+    font-family:
+      "Noto Sans Bengali",
+      "Noto Sans Arabic",
+      Arial,
+      sans-serif;
+    background:var(--bg);
+    color:var(--text);
 }
 
-body.dark{
---bg:#101513;
---card:#19201d;
---text:#f1f5f3;
---muted:#a9b4af;
---border:#35423e;
-}
-
-button,input,select,textarea{
-font:inherit;
+button,input,select{
+    font:inherit;
 }
 
 button{
-cursor:pointer;
+    border:0;
+    cursor:pointer;
 }
 
-header{
-color:#fff;
-padding:16px;
-border-radius:0 0 28px 28px;
-background:linear-gradient(120deg,#087f5b 0 58%,#d71920 58%);
-background-position:center;
-background-size:cover;
+#app{
+    width:100%;
+    height:100dvh;
+    position:relative;
+    overflow:hidden;
 }
 
-.top{
-display:flex;
-align-items:center;
-gap:10px;
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    height:166px;
+    position:relative;
+    overflow:hidden;
+    color:white;
+    padding:15px 16px 10px;
+    background:
+      linear-gradient(135deg,#075d45,#0b8b66 55%,#064b39);
+    box-shadow:0 3px 15px rgba(0,0,0,.20);
 }
 
-.menu{
-width:44px;
-height:44px;
-border:0;
-border-radius:13px;
-background:#ffffff25;
-color:white;
-font-size:25px;
+.header.wallpaper1{
+    background:
+      linear-gradient(135deg,rgba(2,53,39,.88),rgba(5,128,91,.75)),
+      radial-gradient(circle at 80% 20%,#37b58c,transparent 35%);
 }
 
-h1{
-font-size:20px;
-margin:0;
+.header.wallpaper2{
+    background:
+      linear-gradient(135deg,rgba(5,45,36,.92),rgba(9,105,80,.82)),
+      radial-gradient(circle at 20% 30%,#d5aa4a,transparent 25%);
 }
 
-.clock{
-font-size:27px;
-font-weight:bold;
-margin-top:14px;
+.header.wallpaper3{
+    background:
+      linear-gradient(135deg,#006a4e,#087f5b,#013d2e);
 }
 
-.dates{
-font-size:12px;
-line-height:1.7;
-margin-top:4px;
+.header.wallpaper4{
+    background:
+      linear-gradient(135deg,#132f28,#176e52,#063b2d);
 }
 
-.prayer-pills{
-display:flex;
-gap:6px;
-overflow:auto;
-margin-top:10px;
+.header.wallpaper5{
+    background:
+      linear-gradient(135deg,#024b38,#0a8f69,#143b2e);
 }
 
-.pill{
-white-space:nowrap;
-padding:6px 9px;
-border:1px solid #ffffff35;
-border-radius:12px;
-background:#ffffff20;
-font-size:11px;
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
-main{
-max-width:950px;
-margin:auto;
-padding:13px;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:9px;
 }
 
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
+.menuBtn{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    background:rgba(255,255,255,.17);
+    color:white;
+    font-size:25px;
 }
+
+.brandText{
+    line-height:1.05;
+}
+
+.brandText strong{
+    font-size:18px;
+    display:block;
+}
+
+.brandText small{
+    opacity:.85;
+    font-size:11px;
+}
+
+.headerDate{
+    margin-top:10px;
+    text-align:center;
+    font-size:13px;
+    opacity:.95;
+}
+
+.headerCards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:9px;
+}
+
+.headCard{
+    min-height:49px;
+    padding:7px 9px;
+    border-radius:12px;
+    background:rgba(0,0,0,.18);
+    backdrop-filter:blur(7px);
+}
+
+.headCard small{
+    display:block;
+    opacity:.78;
+    font-size:10px;
+}
+
+.headCard strong{
+    font-size:14px;
+}
+
+.nextPrayer{
+    text-align:center;
+    position:absolute;
+    right:10px;
+    top:55px;
+    width:130px;
+}
+
+.nextPrayer .count{
+    font-weight:bold;
+    font-size:16px;
+}
+
+.ramadan{
+    position:absolute;
+    left:14px;
+    bottom:8px;
+    font-size:11px;
+    opacity:.95;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    position:absolute;
+    left:0;
+    right:0;
+    top:166px;
+    bottom:76px;
+    overflow:hidden;
+}
+
+.view{
+    display:none;
+    width:100%;
+    height:100%;
+    overflow:auto;
+    padding:14px 14px 22px;
+    scrollbar-width:none;
+}
+
+.view::-webkit-scrollbar{
+    display:none;
+}
+
+.view.active{
+    display:block;
+}
+
+/* =========================
+   CARDS
+========================= */
 
 .card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:20px;
-padding:14px;
-margin-bottom:12px;
-box-shadow:0 2px 10px #00000008;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:15px;
+    margin-bottom:13px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
 }
 
-.full{
-grid-column:1/-1;
+.cardTitle{
+    font-weight:800;
+    font-size:18px;
+    margin-bottom:12px;
 }
 
-.stat b{
-display:block;
-font-size:21px;
-margin-top:5px;
+.grid2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
-.green{color:var(--green)}
-.red{color:var(--red)}
-.blue{color:var(--blue)}
-.gold{color:var(--gold)}
+.grid3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+}
+
+.stat{
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:12px;
+    background:#fff;
+}
+
+.stat small{
+    display:block;
+    color:var(--muted);
+}
+
+.stat strong{
+    font-size:21px;
+    display:block;
+    margin-top:5px;
+}
+
+.income{
+    color:var(--income);
+}
+
+.expense{
+    color:var(--expense);
+}
+
+/* =========================
+   FORMS
+========================= */
 
 label{
-display:block;
-font-size:13px;
-font-weight:bold;
-margin:8px 0 4px;
+    display:block;
+    font-weight:700;
+    font-size:13px;
+    margin-bottom:6px;
 }
 
-input,select,textarea{
-width:100%;
-padding:10px;
-border:1px solid var(--border);
-border-radius:12px;
-background:var(--card);
-color:var(--text);
+input,select{
+    width:100%;
+    height:46px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:0 12px;
+    outline:none;
+    background:white;
+    color:var(--text);
 }
 
-textarea{
-min-height:100px;
+input:focus,select:focus{
+    border-color:var(--primary);
 }
 
-.row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:9px;
+.formRow{
+    margin-bottom:11px;
 }
 
-.actions{
-display:flex;
-flex-wrap:wrap;
-gap:7px;
-margin-top:10px;
+.primaryBtn{
+    width:100%;
+    min-height:46px;
+    border-radius:13px;
+    background:var(--primary);
+    color:white;
+    font-weight:800;
 }
 
-.btn{
-border:0;
-border-radius:12px;
-padding:10px 13px;
-background:#e8f1ee;
-color:var(--green);
-font-weight:bold;
+.secondaryBtn{
+    min-height:44px;
+    border-radius:12px;
+    background:#e9f3ef;
+    color:var(--primary2);
+    font-weight:700;
+    padding:0 14px;
 }
 
-.primary{
-background:var(--green);
-color:white;
+.dangerBtn{
+    min-height:44px;
+    border-radius:12px;
+    background:#fdeaea;
+    color:#b51717;
+    font-weight:700;
+    padding:0 14px;
 }
 
-.danger{
-background:#fde8e9;
-color:#c71928;
+/* =========================
+   TABLE
+========================= */
+
+.tableWrap{
+    overflow:auto;
+    border:1px solid var(--border);
+    border-radius:13px;
 }
 
-.list{
-display:grid;
-gap:8px;
-margin-top:10px;
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:590px;
+    background:white;
 }
 
-.item{
-border:1px solid var(--border);
-border-radius:14px;
-padding:10px;
-display:flex;
-justify-content:space-between;
-gap:8px;
-align-items:center;
+th,td{
+    padding:9px 8px;
+    border-bottom:1px solid var(--border);
+    text-align:left;
+    font-size:12px;
 }
 
-.muted{
-color:var(--muted);
-font-size:12px;
+th{
+    background:var(--primary);
+    color:white;
 }
 
-/* BOTTOM ICON BAR */
-
-.bottom{
-position:fixed;
-z-index:50;
-bottom:7px;
-left:7px;
-right:7px;
-background:#fffffff2;
-border:1px solid var(--border);
-border-radius:22px;
-padding:5px;
-display:flex;
-justify-content:space-around;
-box-shadow:0 6px 25px #0002;
-backdrop-filter:blur(10px);
+tr:last-child td{
+    border-bottom:0;
 }
 
-body.dark .bottom{
-background:#19201df2;
+.amountIncome{
+    color:#087f5b;
+    font-weight:800;
 }
 
-.nav{
-border:0;
-background:transparent;
-color:var(--muted);
-font-size:9px;
-min-width:45px;
-padding:4px;
-border-radius:13px;
+.amountExpense{
+    color:#d62828;
+    font-weight:800;
 }
 
-.nav span{
-display:block;
-font-size:19px;
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottomNav{
+    position:absolute;
+    left:10px;
+    right:10px;
+    bottom:8px;
+    height:68px;
+    z-index:50;
+    background:rgba(255,255,255,.96);
+    border:1px solid var(--border);
+    border-radius:25px;
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    box-shadow:0 7px 25px rgba(0,0,0,.13);
+    backdrop-filter:blur(12px);
 }
 
-.nav.active{
-background:var(--green);
-color:white;
+.navBtn{
+    background:transparent;
+    color:#69736f;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:2px;
+    font-size:21px;
 }
 
-/* DRAWER */
-
-.drawer{
-position:fixed;
-z-index:100;
-top:0;
-bottom:0;
-left:-330px;
-width:310px;
-max-width:88%;
-background:var(--card);
-padding:16px;
-overflow:auto;
-transition:.25s;
-box-shadow:8px 0 30px #0003;
+.navBtn span{
+    font-size:9px;
 }
 
-.drawer.open{
-left:0;
+.navBtn.active{
+    color:white;
 }
 
-.shade{
-display:none;
-position:fixed;
-inset:0;
-background:#0008;
-z-index:90;
+.navBtn.active .navIcon{
+    background:var(--primary);
+    width:48px;
+    height:43px;
+    border-radius:17px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-.shade.show{
-display:block;
+.navBtn.active span{
+    color:var(--primary);
 }
 
-.mi{
-display:flex;
-align-items:center;
-gap:10px;
-width:100%;
-border:0;
-text-align:left;
-padding:12px;
-margin:6px 0;
-border-radius:13px;
-background:#edf3f1;
-color:var(--text);
-font-weight:bold;
+/* =========================
+   SIDE MENU
+========================= */
+
+.overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.42);
+    z-index:100;
 }
 
-body.dark .mi{
-background:#222c28;
+.overlay.show{
+    display:block;
 }
 
-/* MODAL */
-
-.modal-bg{
-display:none;
-position:fixed;
-z-index:120;
-inset:0;
-background:#0008;
-padding:12px;
-overflow:auto;
+.sideMenu{
+    position:absolute;
+    left:-310px;
+    top:0;
+    bottom:0;
+    width:285px;
+    background:white;
+    z-index:110;
+    transition:.25s ease;
+    padding:18px;
+    overflow:auto;
 }
 
-.modal-bg.show{
-display:block;
+.sideMenu.open{
+    left:0;
 }
 
-.modal{
-max-width:760px;
-margin:20px auto;
-background:var(--card);
-color:var(--text);
-border-radius:24px;
-padding:16px;
+.menuHeader{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
 }
 
-/* CALCULATOR */
-
-.calc{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:6px;
+.menuHeader strong{
+    font-size:19px;
 }
 
-.calc input{
-grid-column:1/-1;
-font-size:25px;
-text-align:right;
+.closeBtn{
+    background:#edf2f0;
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    font-size:22px;
 }
 
-.calc button{
-padding:14px;
-border:0;
-border-radius:10px;
-background:#e8efed;
-color:var(--text);
-font-weight:bold;
+.menuItem{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:13px;
+    border-radius:13px;
+    background:white;
+    text-align:left;
+    margin-bottom:6px;
 }
 
-/* MEMO */
-
-.memo{
-background:#fff;
-color:#111;
-border:1px solid #aaa;
-padding:22px;
-max-width:700px;
-margin:12px auto;
+.menuItem:hover{
+    background:#edf7f3;
 }
 
-.memo h2{
-margin-top:0;
+/* =========================
+   PRAYER
+========================= */
+
+.prayerHero{
+    background:
+      linear-gradient(135deg,#063e2f,#07805c);
+    color:white;
+    border-radius:18px;
+    padding:16px;
+    margin-bottom:12px;
 }
 
-.rule{
-border-top:4px solid var(--green);
-margin:14px 0;
+.prayerHero h2{
+    margin:0 0 5px;
 }
 
-.memo table{
-width:100%;
-border-collapse:collapse;
-font-size:10px;
+.nextBig{
+    font-size:24px;
+    font-weight:900;
 }
 
-.memo th,.memo td{
-border:1px solid #999;
-padding:6px;
+.nextCountdown{
+    font-size:18px;
+    margin-top:5px;
 }
 
-.memo th{
-background:var(--green);
-color:#fff;
+.prayerGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:9px;
 }
 
-.signature{
-display:flex;
-justify-content:space-between;
-margin-top:50px;
+.prayerItem{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:12px;
 }
 
-/* THEME */
-
-.themes{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px;
+.prayerItem strong{
+    display:block;
+    font-size:16px;
 }
 
-.theme{
-height:70px;
-border:0;
-border-radius:14px;
-color:white;
-font-weight:bold;
+.prayerItem span{
+    color:var(--primary);
+    font-weight:900;
+    font-size:21px;
 }
 
-/* ISLAMIC MENU */
+/* =========================
+   CALCULATOR
+========================= */
 
-.islamic-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:9px;
+.calcDisplay{
+    background:#101714;
+    color:white;
+    border-radius:17px;
+    min-height:85px;
+    padding:15px;
+    text-align:right;
+    margin-bottom:10px;
+    overflow:hidden;
 }
 
-.big-option{
-border:1px solid var(--border);
-border-radius:18px;
-padding:15px;
-background:var(--card);
-text-align:center;
-font-weight:bold;
-color:var(--text);
+.calcExpression{
+    color:#a9b9b4;
+    min-height:22px;
+    font-size:13px;
 }
 
-.big-option .ico{
-font-size:30px;
-display:block;
-margin-bottom:6px;
+.calcResult{
+    font-size:29px;
+    font-weight:800;
 }
 
-/* RAMADAN */
-
-.countdown{
-font-size:25px;
-font-weight:bold;
-text-align:center;
-padding:18px;
-border-radius:18px;
-background:linear-gradient(135deg,#087f5b,#174b3d);
-color:white;
+.calcGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:7px;
 }
 
-/* HADITH */
-
-.hadith-option{
-display:flex;
-gap:12px;
-align-items:center;
-padding:14px;
-border:1px solid var(--border);
-border-radius:17px;
-margin:8px 0;
-background:var(--card);
-color:var(--text);
+.calcGrid.scientific{
+    grid-template-columns:repeat(5,1fr);
 }
 
-.hadith-option .ico{
-font-size:29px;
+.calcKey{
+    min-height:52px;
+    border-radius:13px;
+    background:#eef3f1;
+    font-weight:800;
+    font-size:16px;
 }
 
-/* PIN */
-
-.pin-dots{
-font-size:25px;
-letter-spacing:8px;
-text-align:center;
+.calcKey.operator{
+    background:#dff1eb;
+    color:var(--primary);
 }
 
-/* READING */
-
-body.reading{
-font-size:18px;
-line-height:1.9;
+.calcKey.equal{
+    background:var(--primary);
+    color:white;
 }
 
-body.reading .card{
-border-radius:8px;
+.calcKey.danger{
+    background:#fde7e7;
+    color:#b51717;
 }
 
-@media(max-width:520px){
-.row{grid-template-columns:1fr}
-.grid{gap:7px}
-.card{padding:12px}
-.memo{padding:12px}
-.memo table{font-size:8px}
+/* =========================
+   GRAPH
+========================= */
+
+.chartBox{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:270px;
 }
+
+canvas{
+    max-width:100%;
+}
+
+/* =========================
+   MEMO
+========================= */
+
+.memoPaper{
+    background:white;
+    border:1px solid #cfd9d5;
+    padding:25px 20px;
+    border-radius:3px;
+    box-shadow:0 7px 20px rgba(0,0,0,.08);
+    color:#111;
+}
+
+.memoTop{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    align-items:flex-start;
+}
+
+.memoBrand{
+    font-size:23px;
+    font-weight:900;
+    line-height:1.1;
+}
+
+.memoTitle{
+    font-size:27px;
+    font-weight:900;
+    text-align:right;
+}
+
+.memoSubtitle{
+    margin-top:8px;
+    font-weight:700;
+    font-size:18px;
+}
+
+.memoLine{
+    height:4px;
+    background:var(--primary);
+    margin:15px 0;
+}
+
+.memoPeriod{
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.memoTable{
+    width:100%;
+    min-width:0;
+    font-size:11px;
+}
+
+.memoTable th,
+.memoTable td{
+    font-size:11px;
+    padding:7px 5px;
+}
+
+.memoSign{
+    display:flex;
+    justify-content:space-between;
+    margin-top:35px;
+    gap:25px;
+}
+
+.signBox{
+    width:45%;
+}
+
+.signLine{
+    border-bottom:1px solid #111;
+    height:30px;
+}
+
+.noSummaryCards{
+    display:none;
+}
+
+/* =========================
+   ISLAMIC SUB MENU
+========================= */
+
+.subGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.subBtn{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:17px 10px;
+    text-align:center;
+    font-weight:800;
+}
+
+.subBtn .bigIcon{
+    font-size:34px;
+    display:block;
+    margin-bottom:5px;
+}
+
+/* =========================
+   THEME
+========================= */
+
+.themeGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.themeBtn{
+    height:90px;
+    border-radius:16px;
+    color:white;
+    font-weight:900;
+    position:relative;
+    overflow:hidden;
+}
+
+.themeBtn.t1{
+    background:linear-gradient(135deg,#004d40,#087f5b,#d7ad48);
+}
+
+.themeBtn.t2{
+    background:linear-gradient(135deg,#082d23,#176b51,#b78a2b);
+}
+
+.themeBtn.t3{
+    background:linear-gradient(135deg,#006a4e,#0b8f68,#01452f);
+}
+
+.themeBtn.t4{
+    background:linear-gradient(135deg,#183a30,#116b50,#072e24);
+}
+
+.themeBtn.t5{
+    background:linear-gradient(135deg,#003f30,#0b7557,#1c4437);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:390px){
+    .brandText strong{
+        font-size:15px;
+    }
+
+    .header{
+        height:158px;
+    }
+
+    .main{
+        top:158px;
+    }
+
+    .bottomNav{
+        height:64px;
+    }
+
+    .navBtn{
+        font-size:18px;
+    }
+
+    .navBtn span{
+        font-size:8px;
+    }
+
+    .headerCards{
+        gap:5px;
+    }
+
+    .headCard{
+        padding:5px;
+    }
+}
+
+/* =========================
+   PRINT MEMO
+========================= */
 
 @media print{
-body>*{
-display:none!important;
-}
-.modal-bg.show{
-display:block!important;
-position:static;
-background:#fff;
-padding:0;
-}
-.modal{
-max-width:none;
-}
-.no-print{
-display:none!important;
-}
+    body{
+        overflow:visible;
+        background:white;
+    }
+
+    body *{
+        visibility:hidden;
+    }
+
+    #memoPaper,
+    #memoPaper *{
+        visibility:visible;
+    }
+
+    #memoPaper{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        box-shadow:none;
+        border:0;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<header id="header">
+<div id="app">
 
-<div class="top">
+<!-- ================= HEADER ================= -->
 
-<button class="menu" onclick="toggleMenu()">☰</button>
+<header class="header wallpaper1" id="header">
 
-<div>
-<h1 id="appTitle">আমার ব্যক্তিগত হিসাব খাতা</h1>
-<div>Hussain's Money Management</div>
-</div>
+    <div class="topbar">
 
-</div>
+        <div class="brand">
 
-<div id="clock" class="clock">--:--:--</div>
+            <button class="menuBtn" onclick="openMenu()">
+                ☰
+            </button>
 
-<div id="dates" class="dates"></div>
+            <div class="brandText">
+                <strong>Hussain's Money Management</strong>
+                <small id="headerSubtitle">
+                    ব্যক্তিগত হিসাব খাতা
+                </small>
+            </div>
 
-<div id="prayerPills" class="prayer-pills"></div>
+        </div>
+
+        <button class="menuBtn" onclick="openView('settings')">
+            ⚙️
+        </button>
+
+    </div>
+
+    <div class="headerDate">
+        <span id="gregorianDate">--</span>
+        &nbsp; | &nbsp;
+        <span id="hijriDate">--</span>
+        &nbsp; | &nbsp;
+        <span id="banglaDate">--</span>
+    </div>
+
+    <div class="headerCards">
+
+        <div class="headCard">
+            <small>🕌 পরবর্তী নামাজ</small>
+            <strong id="nextPrayerName">লোড হচ্ছে...</strong>
+            <div class="count" id="nextPrayerCount">--:--:--</div>
+        </div>
+
+        <div class="headCard">
+            <small>🌙 রামাদ্বান</small>
+            <strong id="ramadanText">--</strong>
+            <div class="count" id="ramadanCount">-- দিন</div>
+        </div>
+
+    </div>
 
 </header>
 
 
-<!-- DRAWER -->
+<!-- ================= MAIN ================= -->
 
-<div id="shade" class="shade" onclick="toggleMenu()"></div>
+<main class="main">
 
-<aside id="drawer" class="drawer">
+<!-- ================= HOME ================= -->
 
-<div style="display:flex;justify-content:space-between;align-items:center">
-<h2>☰ Menu</h2>
-<button class="btn" onclick="toggleMenu()">✕</button>
-</div>
+<section class="view active" id="home">
 
-<button class="mi" onclick="goTo('home')">
-🏠 <span>Home</span>
-</button>
+    <div class="card">
 
-<button class="mi" onclick="goTo('entry')">
-💰 <span>নতুন হিসাব</span>
-</button>
+        <div class="cardTitle">
+            🏠 <span data-i18n="dashboard">ড্যাশবোর্ড</span>
+        </div>
 
-<button class="mi" onclick="goTo('history')">
-📋 <span>হিসাব তালিকা</span>
-</button>
+        <div class="grid2">
 
-<button class="mi" onclick="goTo('report')">
-📊 <span>রিপোর্ট ও গ্রাফ</span>
-</button>
+            <div class="stat">
+                <small>মোট আয়</small>
+                <strong class="income" id="homeIncome">0 BDT</strong>
+            </div>
 
-<button class="mi" onclick="calculator()">
-🧮 <span>Calculator</span>
-</button>
+            <div class="stat">
+                <small>মোট ব্যয়</small>
+                <strong class="expense" id="homeExpense">0 BDT</strong>
+            </div>
 
-<button class="mi" onclick="memo()">
-📄 <span>Statement Memo</span>
-</button>
+        </div>
 
-<button class="mi" onclick="goTo('task')">
-📌 <span>Task</span>
-</button>
+        <div class="grid2" style="margin-top:10px">
 
-<button class="mi" onclick="islamicMenu()">
-🕌 <span>ইসলামিক</span>
-</button>
+            <div class="stat">
+                <small>ব্যালেন্স</small>
+                <strong id="homeBalance">0 BDT</strong>
+            </div>
 
-<button class="mi" onclick="hadithQuranMenu()">
-📖 <span>হাদিস & কুরআন</span>
-</button>
+            <div class="stat">
+                <small>লেনদেন</small>
+                <strong id="homeTransactions">0</strong>
+            </div>
 
-<button class="mi" onclick="backup()">
-💾 <span>Backup</span>
-</button>
+        </div>
 
-<button class="mi" onclick="restore()">
-📥 <span>Restore</span>
-</button>
-
-<button class="mi" onclick="suggestion()">
-📝 <span>পরামর্শ বক্স</span>
-</button>
-
-<button class="mi" onclick="settings()">
-⚙️ <span>Settings</span>
-</button>
-
-</aside>
+    </div>
 
 
-<main>
+    <div class="card">
 
-<!-- HOME -->
+        <div class="cardTitle">
+            🕌 নামাজের সংক্ষিপ্ত সময়
+        </div>
 
-<section id="home" class="grid">
+        <div class="prayerGrid">
 
-<div class="card stat green">
-💰 আয়
-<b id="income">0 BDT</b>
-</div>
+            <div class="prayerItem">
+                <strong>ফজর</strong>
+                <span id="hFajr">--</span>
+            </div>
 
-<div class="card stat red">
-💸 ব্যয়
-<b id="expense">0 BDT</b>
-</div>
+            <div class="prayerItem">
+                <strong>সূর্যোদয়</strong>
+                <span id="hSunrise">--</span>
+            </div>
 
-<div class="card stat">
-💵 অবশিষ্ট
-<b id="balance">0 BDT</b>
-</div>
+            <div class="prayerItem">
+                <strong>যোহর</strong>
+                <span id="hDhuhr">--</span>
+            </div>
 
-<div class="card stat gold">
-🤝 দেনা
-<b id="debt">0 BDT</b>
-</div>
+            <div class="prayerItem">
+                <strong>আসর</strong>
+                <span id="hAsr">--</span>
+            </div>
 
-<div class="card stat blue full">
-💳 পাওনা
-<b id="receive">0 BDT</b>
-</div>
+            <div class="prayerItem">
+                <strong>মাগরিব</strong>
+                <span id="hMaghrib">--</span>
+            </div>
 
-</section>
+            <div class="prayerItem">
+                <strong>ইশা</strong>
+                <span id="hIsha">--</span>
+            </div>
+
+        </div>
+
+    </div>
 
 
-<!-- ENTRY -->
+    <div class="card">
 
-<section id="entry" class="card">
+        <div class="cardTitle">
+            🌙 রামাদ্বান
+        </div>
 
-<h2>➕ নতুন হিসাব</h2>
+        <div id="ramadanHome">
+            রামাদ্বান Countdown প্রস্তুত হচ্ছে...
+        </div>
 
-<div class="row">
-
-<div>
-<label>📅 তারিখ</label>
-<input id="date" type="date">
-</div>
-
-<div>
-<label>⏰ সময়</label>
-<input id="time" type="time">
-</div>
-
-</div>
-
-<div class="row">
-
-<div>
-<label>📂 ধরন</label>
-
-<select id="type">
-<option value="income">💰 আয়</option>
-<option value="expense">💸 ব্যয়</option>
-<option value="debt">🤝 দেনা</option>
-<option value="receive">💳 পাওনা</option>
-</select>
-
-</div>
-
-<div>
-<label>💵 পরিমাণ</label>
-<input id="amount" type="number" inputmode="decimal" placeholder="0">
-</div>
-
-</div>
-
-<label>📒 আয়/ব্যয়ের খাত</label>
-<input id="category" placeholder="বেতন / বাজার / বিল / অন্যান্য">
-
-<label>📝 বিবরণ</label>
-<input id="description" placeholder="ঐচ্ছিক">
-
-<div class="actions">
-
-<button class="btn primary" onclick="addEntry()">
-💾 সংরক্ষণ
-</button>
-
-<button class="btn" onclick="clearForm()">
-↺ পরিষ্কার
-</button>
-
-</div>
+    </div>
 
 </section>
 
 
-<!-- HISTORY -->
+<!-- ================= ACCOUNT ================= -->
 
-<section id="history" class="card">
+<section class="view" id="account">
 
-<h2>📋 হিসাব তালিকা</h2>
+    <div class="card">
 
-<div class="row">
+        <div class="cardTitle">
+            💰 নতুন হিসাব
+        </div>
 
-<input id="search" oninput="render()" placeholder="🔎 খুঁজুন">
+        <div class="formRow">
 
-<select id="monthFilter" onchange="render()">
-<option value="">সব মাস</option>
-<option value="01">জানুয়ারি</option>
-<option value="02">ফেব্রুয়ারি</option>
-<option value="03">মার্চ</option>
-<option value="04">এপ্রিল</option>
-<option value="05">মে</option>
-<option value="06">জুন</option>
-<option value="07">জুলাই</option>
-<option value="08">আগস্ট</option>
-<option value="09">সেপ্টেম্বর</option>
-<option value="10">অক্টোবর</option>
-<option value="11">নভেম্বর</option>
-<option value="12">ডিসেম্বর</option>
-</select>
+            <label>ধরন</label>
 
-</div>
+            <select id="type">
+                <option value="income">আয়</option>
+                <option value="expense">ব্যয়</option>
+            </select>
 
-<div id="entries" class="list"></div>
+        </div>
+
+        <div class="formRow">
+
+            <label>খাত</label>
+
+            <input
+                id="category"
+                placeholder="যেমন: বেতন, খাবার, যাতায়াত"
+            >
+
+        </div>
+
+        <div class="formRow">
+
+            <label>পরিমাণ</label>
+
+            <input
+                id="amount"
+                type="number"
+                inputmode="decimal"
+                placeholder="0"
+            >
+
+        </div>
+
+        <div class="formRow">
+
+            <label>তারিখ</label>
+
+            <input id="entryDate" type="date">
+
+        </div>
+
+        <div class="formRow">
+
+            <label>সময়</label>
+
+            <input id="entryTime" type="time">
+
+        </div>
+
+        <button class="primaryBtn" onclick="addTransaction()">
+            ➕ হিসাব যোগ করুন
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="cardTitle">
+            📋 সাম্প্রতিক হিসাব
+        </div>
+
+        <div class="tableWrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ক্রমিক</th>
+                        <th>তারিখ</th>
+                        <th>সময়</th>
+                        <th>ধরন</th>
+                        <th>খাত</th>
+                        <th>পরিমাণ</th>
+                        <th>মুছুন</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="transactionTable">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- REPORT -->
+<!-- ================= REPORT ================= -->
 
-<section id="report" class="card">
+<section class="view" id="report">
 
-<h2>📊 রিপোর্ট ও বৃত্ত গ্রাফ</h2>
+    <div class="card">
 
-<div class="grid">
+        <div class="cardTitle">
+            📊 রিপোর্ট
+        </div>
 
-<div class="card stat green">
-মোট আয়
-<b id="reportIncome">0 BDT</b>
-</div>
+        <div class="grid2">
 
-<div class="card stat red">
-মোট ব্যয়
-<b id="reportExpense">0 BDT</b>
-</div>
+            <div class="stat">
+                <small>মোট আয়</small>
+                <strong class="income" id="reportIncome">0 BDT</strong>
+            </div>
 
-</div>
+            <div class="stat">
+                <small>মোট ব্যয়</small>
+                <strong class="expense" id="reportExpense">0 BDT</strong>
+            </div>
 
-<canvas id="pie"
-width="330"
-height="270"
-style="max-width:100%">
-</canvas>
+        </div>
 
-<div id="legend" class="muted"></div>
+        <div class="stat" style="margin-top:10px">
+            <small>বর্তমান ব্যালেন্স</small>
+            <strong id="reportBalance">0 BDT</strong>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="cardTitle">
+            🥧 আয় বনাম ব্যয় — বৃত্ত গ্রাফ
+        </div>
+
+        <div class="chartBox">
+
+            <canvas id="pieChart"
+                    width="260"
+                    height="260">
+            </canvas>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="cardTitle">
+            📈 খাতভিত্তিক রিপোর্ট
+        </div>
+
+        <div id="categoryReport">
+            কোনো হিসাব নেই।
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- TASK -->
+<!-- ================= CALCULATOR ================= -->
 
-<section id="task" class="card">
+<section class="view" id="calc">
 
-<h2>📌 Task</h2>
+    <div class="card">
 
-<div class="row">
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:10px;
+        ">
 
-<div>
-<label>📅 তারিখ</label>
-<input id="taskDate" type="date">
-</div>
+            <div class="cardTitle" style="margin:0">
+                🧮 Calculator
+            </div>
 
-<div>
-<label>⏰ সময়</label>
-<input id="taskTime" type="time">
-</div>
+            <button
+                class="secondaryBtn"
+                onclick="toggleScientific()"
+                id="scientificBtn">
+                Scientific
+            </button>
 
-</div>
+        </div>
 
-<label>📝 Task</label>
-<input id="taskText" placeholder="কাজ লিখুন">
 
-<button class="btn primary" style="margin-top:9px"
-onclick="addTask()">
-📌 Task যোগ করুন
-</button>
+        <div class="calcDisplay">
 
-<div id="tasks" class="list"></div>
+            <div class="calcExpression" id="calcExpression">
+            </div>
+
+            <div class="calcResult" id="calcResult">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="calcGrid" id="calcGrid">
+
+            <button class="calcKey danger"
+                    onclick="calcClear()">AC</button>
+
+            <button class="calcKey"
+                    onclick="calcInput('(')">(</button>
+
+            <button class="calcKey"
+                    onclick="calcInput(')')">)</button>
+
+            <button class="calcKey operator"
+                    onclick="calcInput('/')">÷</button>
+
+            <button class="calcKey"
+                    onclick="calcInput('7')">7</button>
+
+            <button class="calcKey"
+                    onclick="calcInput('8')">8</button>
+
+            <button class="calcKey"
+                    onclick="calcInput('9')">9</button>
+
+            <button class="calcKey operator"
+                    onclick="calcInput('*')">×</button>
+
+            <button class="calcKey"
+                    onclick="calcInput('4')">4</button>
+
+            <button class="calcKey"
+                    onclick="calcInput('5')">5</button>
+
+            <button class="calcKey"
+                    onclick="calcInput('6')">6</button>
+
+            <button class="calcKey operator"
+                    onclick="calcInput('-')">−</button>
+
+            <button class="calcKey"
+                    onclick="calcInput('1')">1</button>
+
+            <button class="calcKey"
+                    onclick="calcInput('2')">2</button>
+
+            <button class="calcKey"
+                    onclick="calcInput('3')">3</button>
+
+            <button class="calcKey operator"
+                    onclick="calcInput('+')">+</button>
+
+            <button class="calcKey"
+                    onclick="calcInput('0')">0</button>
+
+            <button class="calcKey"
+                    onclick="calcInput('.')">.</button>
+
+            <button class="calcKey"
+                    onclick="calcBack()">⌫</button>
+
+            <button class="calcKey equal"
+                    onclick="calcEqual()">=</button>
+
+        </div>
+
+
+        <div
+            id="scientificKeys"
+            style="display:none;margin-top:8px">
+
+            <div class="calcGrid scientific">
+
+                <button class="calcKey"
+                        onclick="calcFunc('sin')">sin</button>
+
+                <button class="calcKey"
+                        onclick="calcFunc('cos')">cos</button>
+
+                <button class="calcKey"
+                        onclick="calcFunc('tan')">tan</button>
+
+                <button class="calcKey"
+                        onclick="calcFunc('sqrt')">√</button>
+
+                <button class="calcKey"
+                        onclick="calcInput('**')">xʸ</button>
+
+                <button class="calcKey"
+                        onclick="calcFunc('log')">log</button>
+
+                <button class="calcKey"
+                        onclick="calcFunc('ln')">ln</button>
+
+                <button class="calcKey"
+                        onclick="calcInput('Math.PI')">π</button>
+
+                <button class="calcKey"
+                        onclick="calcInput('Math.E')">e</button>
+
+                <button class="calcKey"
+                        onclick="calcFunc('abs')">|x|</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MEMO ================= -->
+
+<section class="view" id="memo">
+
+    <div class="card">
+
+        <div class="cardTitle">
+            📄 Statement Memo
+        </div>
+
+        <div class="grid2">
+
+            <div class="formRow">
+                <label>From Date</label>
+                <input type="date" id="memoFrom">
+            </div>
+
+            <div class="formRow">
+                <label>To Date</label>
+                <input type="date" id="memoTo">
+            </div>
+
+        </div>
+
+        <button class="primaryBtn"
+                onclick="generateMemo()">
+            📄 Statement তৈরি করুন
+        </button>
+
+        <button class="secondaryBtn"
+                style="width:100%;margin-top:8px"
+                onclick="printMemo()">
+            ⬇️ Memo / PDF Save
+        </button>
+
+    </div>
+
+
+    <!--
+      IMPORTANT:
+      এখানে আলাদা মোট আয় / মোট ব্যয় /
+      অবশিষ্ট / দেনা / পাওনা কার্ড রাখা হয়নি।
+    -->
+
+    <div class="memoPaper"
+         id="memoPaper">
+
+        <div class="memoTop">
+
+            <div>
+
+                <div class="memoBrand">
+                    Hussain's Money<br>
+                    Management
+                </div>
+
+                <div class="memoSubtitle">
+                    📒 ব্যক্তিগত হিসাব খাতা
+                </div>
+
+            </div>
+
+            <div class="memoTitle">
+
+                STATEMENT
+
+                <div style="
+                    font-size:13px;
+                    font-weight:500;
+                    margin-top:4px;
+                " id="memoDate">
+                    --
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="memoLine"></div>
+
+
+        <div class="memoPeriod"
+             id="memoPeriod">
+            সময়কাল: --
+        </div>
+
+
+        <div class="tableWrap">
+
+            <table class="memoTable">
+
+                <thead>
+
+                    <tr>
+                        <th>ক্রমিক</th>
+                        <th>তারিখ</th>
+                        <th>সময়</th>
+                        <th>ধরন</th>
+                        <th>খাত</th>
+                        <th>পরিমাণ</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="memoRows">
+
+                    <tr>
+                        <td colspan="6"
+                            style="text-align:center">
+                            কোনো হিসাব নেই
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div class="memoSign">
+
+            <div class="signBox">
+
+                Prepared by:
+
+                <strong style="display:block">
+                    Hussain
+                </strong>
+
+            </div>
+
+            <div class="signBox">
+
+                Signature:
+
+                <div class="signLine"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ISLAMIC ================= -->
+
+<section class="view" id="islamic">
+
+    <div class="prayerHero">
+
+        <h2>🕌 নামাজের সময়সূচি</h2>
+
+        <div>
+            পরবর্তী নামাজ:
+            <strong id="bigNextPrayer">
+                --
+            </strong>
+        </div>
+
+        <div class="nextBig"
+             id="bigPrayerTime">
+            --
+        </div>
+
+        <div class="nextCountdown"
+             id="bigCountdown">
+            --:--:--
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="cardTitle">
+            📅 আজকের তারিখ
+        </div>
+
+        <div class="grid2">
+
+            <div class="stat">
+                <small>ইংরেজি</small>
+                <strong id="islamicGreg">--</strong>
+            </div>
+
+            <div class="stat">
+                <small>আরবি</small>
+                <strong id="islamicHijri">--</strong>
+            </div>
+
+        </div>
+
+        <div class="stat"
+             style="margin-top:10px">
+
+            <small>বাংলা</small>
+            <strong id="islamicBangla">
+                --
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="cardTitle">
+            🌙 সেহরি ও ইফতার
+        </div>
+
+        <div class="grid2">
+
+            <div class="stat">
+                <small>সেহরি শেষ</small>
+                <strong id="imsak">--</strong>
+            </div>
+
+            <div class="stat">
+                <small>ইফতার</small>
+                <strong id="iftar">--</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="cardTitle">
+            🕌 নামাজ ও সূর্যের সময়
+        </div>
+
+        <div class="prayerGrid">
+
+            <div class="prayerItem">
+                <strong>ফজর</strong>
+                <span id="pFajr">--</span>
+            </div>
+
+            <div class="prayerItem">
+                <strong>সূর্যোদয়</strong>
+                <span id="pSunrise">--</span>
+            </div>
+
+            <div class="prayerItem">
+                <strong>যোহর</strong>
+                <span id="pDhuhr">--</span>
+            </div>
+
+            <div class="prayerItem">
+                <strong>আসর</strong>
+                <span id="pAsr">--</span>
+            </div>
+
+            <div class="prayerItem">
+                <strong>সূর্যাস্ত</strong>
+                <span id="pSunset">--</span>
+            </div>
+
+            <div class="prayerItem">
+                <strong>মাগরিব</strong>
+                <span id="pMaghrib">--</span>
+            </div>
+
+            <div class="prayerItem">
+                <strong>ইশা</strong>
+                <span id="pIsha">--</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="cardTitle">
+            🌙 Ramadan Countdown
+        </div>
+
+        <div class="stat">
+
+            <strong id="ramadanBig">
+                --
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= QURAN HADITH ================= -->
+
+<section class="view" id="quranHadith">
+
+    <div class="card">
+
+        <div class="cardTitle">
+            📖 কুরআন ও হাদীস
+        </div>
+
+        <div class="subGrid">
+
+            <button class="subBtn"
+                    onclick="openExternal('https://quran.com/')">
+
+                <span class="bigIcon">📖</span>
+
+                কুরআন
+
+            </button>
+
+
+            <button class="subBtn"
+                    onclick="openExternal('https://ihadis.com/')">
+
+                <span class="bigIcon">📚</span>
+
+                Hadith BD
+
+            </button>
+
+
+            <button class="subBtn"
+                    onclick="openExternal('https://ihadis.com/bn/40-hadith')">
+
+                <span class="bigIcon">📜</span>
+
+                ৪০ হাদিস
+
+            </button>
+
+
+            <button class="subBtn"
+                    onclick="openExternal('https://www.tafheem.net/')">
+
+                <span class="bigIcon">📘</span>
+
+                তাহফীম
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<section class="view" id="settings">
+
+    <div class="card">
+
+        <div class="cardTitle">
+            ⚙️ Settings
+        </div>
+
+        <div class="formRow">
+
+            <label>🌐 Language</label>
+
+            <select id="language"
+                    onchange="changeLanguage()">
+
+                <option value="bn">বাংলা</option>
+                <option value="en">English</option>
+                <option value="ur">اردو</option>
+                <option value="ar">العربية</option>
+                <option value="es">Español</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="formRow">
+
+            <label>📍 নামাজের স্থান</label>
+
+            <input
+                id="city"
+                placeholder="Dhaka">
+
+        </div>
+
+
+        <div class="formRow">
+
+            <label>🌍 Country</label>
+
+            <input
+                id="country"
+                placeholder="Bangladesh">
+
+        </div>
+
+
+        <button class="primaryBtn"
+                onclick="saveLocation()">
+            💾 Location Save
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="cardTitle">
+            🖼️ Header Wallpaper / Theme
+        </div>
+
+        <div class="themeGrid">
+
+            <button class="themeBtn t1"
+                    onclick="setTheme(1)">
+                🌙 ইসলামিক ১
+            </button>
+
+            <button class="themeBtn t2"
+                    onclick="setTheme(2)">
+                🕌 ইসলামিক ২
+            </button>
+
+            <button class="themeBtn t3"
+                    onclick="setTheme(3)">
+                🌳 বাংলাদেশ সবুজ ১
+            </button>
+
+            <button class="themeBtn t4"
+                    onclick="setTheme(4)">
+                🌲 বাংলাদেশ সবুজ ২
+            </button>
+
+            <button class="themeBtn t5"
+                    onclick="setTheme(5)">
+                🌿 সবুজ ইসলামিক
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="cardTitle">
+            💾 Data
+        </div>
+
+        <div class="grid2">
+
+            <button class="secondaryBtn"
+                    onclick="exportData()">
+                ⬇️ Backup
+            </button>
+
+            <button class="dangerBtn"
+                    onclick="clearAllData()">
+                🗑️ সব মুছুন
+            </button>
+
+        </div>
+
+    </div>
 
 </section>
 
 </main>
 
 
-<!-- BOTTOM ICON BAR -->
+<!-- ================= BOTTOM NAV ================= -->
 
-<nav class="bottom">
+<nav class="bottomNav">
 
-<button class="nav active" onclick="goTo('home')">
-<span>🏠</span>Home
-</button>
+    <button class="navBtn active"
+            onclick="openView('home')">
 
-<button class="nav" onclick="goTo('entry')">
-<span>💰</span>হিসাব
-</button>
+        <div class="navIcon">🏠</div>
+        <span>Home</span>
 
-<button class="nav" onclick="goTo('report')">
-<span>📊</span>রিপোর্ট
-</button>
+    </button>
 
-<button class="nav" onclick="calculator()">
-<span>🧮</span>Calc
-</button>
 
-<button class="nav" onclick="memo()">
-<span>📄</span>Memo
-</button>
+    <button class="navBtn"
+            onclick="openView('account')">
 
-<button class="nav" onclick="islamicMenu()">
-<span>🕌</span>ইসলামিক
-</button>
+        <div class="navIcon">💰</div>
+        <span>হিসাব</span>
 
-<button class="nav" onclick="hadithQuranMenu()">
-<span>📖</span>হাদিস
-</button>
+    </button>
+
+
+    <button class="navBtn"
+            onclick="openView('report')">
+
+        <div class="navIcon">📊</div>
+        <span>রিপোর্ট</span>
+
+    </button>
+
+
+    <button class="navBtn"
+            onclick="openView('calc')">
+
+        <div class="navIcon">🧮</div>
+        <span>Calc</span>
+
+    </button>
+
+
+    <button class="navBtn"
+            onclick="openView('memo')">
+
+        <div class="navIcon">📄</div>
+        <span>Memo</span>
+
+    </button>
+
+
+    <button class="navBtn"
+            onclick="openView('islamic')">
+
+        <div class="navIcon">🕌</div>
+        <span>ইসলামিক</span>
+
+    </button>
+
+
+    <button class="navBtn"
+            onclick="openView('quranHadith')">
+
+        <div class="navIcon">📖</div>
+        <span>কুরআন</span>
+
+    </button>
 
 </nav>
 
 
-<!-- MODAL -->
+<!-- ================= SIDE MENU ================= -->
 
-<div id="modalBg" class="modal-bg">
-<div id="modal" class="modal"></div>
+<div class="overlay"
+     id="overlay"
+     onclick="closeMenu()">
+
+</div>
+
+
+<aside class="sideMenu"
+       id="sideMenu">
+
+    <div class="menuHeader">
+
+        <strong>
+            ☰ Menu
+        </strong>
+
+        <button class="closeBtn"
+                onclick="closeMenu()">
+            ×
+        </button>
+
+    </div>
+
+
+    <button class="menuItem"
+            onclick="menuGo('home')">
+        🏠 Dashboard
+    </button>
+
+    <button class="menuItem"
+            onclick="menuGo('account')">
+        💰 হিসাব
+    </button>
+
+    <button class="menuItem"
+            onclick="menuGo('report')">
+        📊 রিপোর্ট
+    </button>
+
+    <button class="menuItem"
+            onclick="menuGo('calc')">
+        🧮 Calculator
+    </button>
+
+    <button class="menuItem"
+            onclick="menuGo('memo')">
+        📄 Statement Memo
+    </button>
+
+    <button class="menuItem"
+            onclick="menuGo('islamic')">
+        🕌 নামাজ ও রামাদ্বান
+    </button>
+
+    <button class="menuItem"
+            onclick="menuGo('quranHadith')">
+        📖 কুরআন ও হাদীস
+    </button>
+
+    <button class="menuItem"
+            onclick="menuGo('settings')">
+        ⚙️ Settings
+    </button>
+
+</aside>
+
 </div>
 
 
 <script>
 
-/* =========================
-DATABASE
-========================= */
+/* =====================================================
+   GLOBAL DATA
+===================================================== */
 
-const STORAGE_KEY="HUSSAIN_PERSONAL_LEDGER";
+let transactions =
+    JSON.parse(localStorage.getItem("hussain_transactions") || "[]");
 
-let db=JSON.parse(
-localStorage.getItem(STORAGE_KEY) ||
-'{"entries":[],"tasks":[],"lang":"bn","theme":"bd","dark":false,"reading":false,"pin":""}'
-);
+let settings =
+    JSON.parse(localStorage.getItem("hussain_settings") || "{}");
 
-function save(){
-localStorage.setItem(STORAGE_KEY,JSON.stringify(db));
-}
+let prayerData = null;
 
-function $(id){
-return document.getElementById(id);
-}
+let currentTheme =
+    Number(localStorage.getItem("hussain_theme") || 1);
 
-function money(value){
-return Number(value||0).toLocaleString(undefined,{
-maximumFractionDigits:2
-})+" BDT";
-}
+let calcExpression = "";
 
-function toggleMenu(){
-$("drawer").classList.toggle("open");
-$("shade").classList.toggle("show");
-}
+let scientificMode = false;
 
-function goTo(id){
-$("drawer").classList.remove("open");
-$("shade").classList.remove("show");
-$(id).scrollIntoView({behavior:"smooth"});
-}
 
-function openModal(html){
-$("modal").innerHTML=html;
-$("modalBg").classList.add("show");
-}
+/* =====================================================
+   INITIALIZATION
+===================================================== */
 
-function closeModal(){
-$("modalBg").classList.remove("show");
-}
+document.addEventListener("DOMContentLoaded",()=>{
 
+    document.getElementById("entryDate").value =
+        todayISO();
 
-/* =========================
-ACCOUNTING
-========================= */
+    document.getElementById("entryTime").value =
+        currentTime();
 
-function addEntry(){
+    document.getElementById("memoFrom").value =
+        todayISO();
 
-const amount=Number($("amount").value);
+    document.getElementById("memoTo").value =
+        todayISO();
 
-if(!amount){
-alert("পরিমাণ লিখুন");
-return;
-}
+    document.getElementById("city").value =
+        settings.city || "Dhaka";
 
-db.entries.unshift({
-id:Date.now(),
-date:$("date").value,
-time:$("time").value,
-type:$("type").value,
-amount:amount,
-category:$("category").value||"—",
-description:$("description").value||""
-});
+    document.getElementById("country").value =
+        settings.country || "Bangladesh";
 
-save();
-clearForm();
-render();
-}
+    setTheme(currentTheme);
 
-function clearForm(){
-$("amount").value="";
-$("category").value="";
-$("description").value="";
-}
+    renderTransactions();
 
-function total(type){
-return db.entries
-.filter(x=>x.type===type)
-.reduce((sum,x)=>sum+Number(x.amount),0);
-}
+    updateDashboard();
 
-function render(){
+    generateMemo();
 
-let search=($("search").value||"").toLowerCase();
-let month=$("monthFilter").value;
+    updateDates();
 
-let list=db.entries.filter(x=>{
+    loadPrayerTimes();
 
-let text=(x.category+" "+x.description+" "+x.type).toLowerCase();
+    setInterval(updateClock,1000);
 
-let matchSearch=text.includes(search);
-
-let matchMonth=!month ||
-(x.date||"").slice(5,7)===month;
-
-return matchSearch&&matchMonth;
-});
-
-$("entries").innerHTML=list.length?
-
-list.map(x=>`
-
-<div class="item">
-
-<div>
-
-<b>${x.category}</b>
-
-<br>
-
-<small>
-${x.date} • ${x.time} • ${typeName(x.type)}
-${x.description?" • "+x.description:""}
-</small>
-
-</div>
-
-<div>
-
-<b>${money(x.amount)}</b>
-
-<br>
-
-<button class="btn"
-onclick="editEntry(${x.id})">
-✏️
-</button>
-
-<button class="btn danger"
-onclick="deleteEntry(${x.id})">
-🗑️
-</button>
-
-</div>
-
-</div>
-
-`).join("")
-
-:
-
-`<div class="muted" style="text-align:center">
-কোনো হিসাব নেই
-</div>`;
-
-$("income").textContent=money(total("income"));
-$("expense").textContent=money(total("expense"));
-$("balance").textContent=money(total("income")-total("expense"));
-$("debt").textContent=money(total("debt"));
-$("receive").textContent=money(total("receive"));
-
-$("reportIncome").textContent=money(total("income"));
-$("reportExpense").textContent=money(total("expense"));
-
-drawPie();
-}
-
-function typeName(type){
-
-if(type==="income")return"আয়";
-if(type==="expense")return"ব্যয়";
-if(type==="debt")return"দেনা";
-
-return"পাওনা";
-}
-
-function deleteEntry(id){
-
-if(!confirm("এই হিসাবটি মুছে ফেলবেন?"))return;
-
-db.entries=db.entries.filter(x=>x.id!==id);
-
-save();
-render();
-}
-
-function editEntry(id){
-
-const x=db.entries.find(a=>a.id===id);
-
-if(!x)return;
-
-$("date").value=x.date;
-$("time").value=x.time;
-$("type").value=x.type;
-$("amount").value=x.amount;
-$("category").value=x.category;
-$("description").value=x.description;
-
-db.entries=db.entries.filter(a=>a.id!==id);
-
-save();
-render();
-
-goTo("entry");
-
-}
-
-
-/* =========================
-PIE
-========================= */
-
-function drawPie(){
-
-const canvas=$("pie");
-const ctx=canvas.getContext("2d");
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-const values=[
-total("income"),
-total("expense"),
-total("debt"),
-total("receive")
-];
-
-const sum=values.reduce((a,b)=>a+b,0);
-
-if(!sum){
-
-$("legend").textContent="হিসাব যোগ করলে গ্রাফ দেখা যাবে";
-return;
-}
-
-const colors=[
-"#087f5b",
-"#d71920",
-"#c69214",
-"#3976c7"
-];
-
-let start=-Math.PI/2;
-
-values.forEach((value,i)=>{
-
-if(!value)return;
-
-const end=start+(value/sum)*Math.PI*2;
-
-ctx.beginPath();
-ctx.moveTo(165,135);
-ctx.arc(165,135,100,start,end);
-ctx.fillStyle=colors[i];
-ctx.fill();
-
-start=end;
+    setInterval(updateDates,60000);
 
 });
 
-ctx.beginPath();
-ctx.arc(165,135,45,0,Math.PI*2);
-ctx.fillStyle=getComputedStyle(document.body)
-.getPropertyValue("--card");
-ctx.fill();
 
-$("legend").innerHTML=
-"💰 আয়: "+money(values[0])+
-" &nbsp; 💸 ব্যয়: "+money(values[1])+
-" &nbsp; 🤝 দেনা: "+money(values[2])+
-" &nbsp; 💳 পাওনা: "+money(values[3]);
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function openView(id){
+
+    document.querySelectorAll(".view")
+        .forEach(v=>v.classList.remove("active"));
+
+    const target =
+        document.getElementById(id);
+
+    if(target){
+        target.classList.add("active");
+    }
+
+    document.querySelectorAll(".navBtn")
+        .forEach(btn=>btn.classList.remove("active"));
+
+    const mapping = {
+        home:0,
+        account:1,
+        report:2,
+        calc:3,
+        memo:4,
+        islamic:5,
+        quranHadith:6
+    };
+
+    const buttons =
+        document.querySelectorAll(".navBtn");
+
+    if(mapping[id] !== undefined){
+        buttons[mapping[id]].classList.add("active");
+    }
+
+    closeMenu();
+
+    if(id==="report"){
+        drawPieChart();
+        renderCategoryReport();
+    }
+
+    if(id==="memo"){
+        generateMemo();
+    }
 }
 
 
-/* =========================
-TASK
-========================= */
-
-function addTask(){
-
-if(!$("taskText").value.trim()){
-alert("Task লিখুন");
-return;
-}
-
-db.tasks.unshift({
-id:Date.now(),
-date:$("taskDate").value,
-time:$("taskTime").value,
-text:$("taskText").value,
-done:false
-});
-
-save();
-
-$("taskText").value="";
-
-renderTasks();
-}
-
-function renderTasks(){
-
-$("tasks").innerHTML=db.tasks.map(x=>`
-
-<div class="item">
-
-<div>
-<b>${x.done?"✅":"📌"} ${x.text}</b>
-<br>
-<small>${x.date} • ${x.time}</small>
-</div>
-
-<div>
-
-<button class="btn"
-onclick="taskDone(${x.id})">
-✓
-</button>
-
-<button class="btn danger"
-onclick="taskDelete(${x.id})">
-🗑️
-</button>
-
-</div>
-
-</div>
-
-`).join("") ||
-
-`<div class="muted">কোনো Task নেই</div>`;
-
-}
-
-function taskDone(id){
-
-const x=db.tasks.find(a=>a.id===id);
-
-if(x)x.done=!x.done;
-
-save();
-renderTasks();
-}
-
-function taskDelete(id){
-
-db.tasks=db.tasks.filter(x=>x.id!==id);
-
-save();
-renderTasks();
+function menuGo(id){
+    openView(id);
 }
 
 
-/* =========================
-CALCULATOR
-========================= */
+/* =====================================================
+   SIDE MENU
+===================================================== */
 
-function calculator(){
+function openMenu(){
 
-openModal(`
+    document.getElementById("sideMenu")
+        .classList.add("open");
 
-<h2>🧮 Calculator</h2>
-
-<div class="calc">
-
-<input id="calc" readonly>
-
-<button onclick="calcAdd('7')">7</button>
-<button onclick="calcAdd('8')">8</button>
-<button onclick="calcAdd('9')">9</button>
-<button onclick="calcAdd('/')">÷</button>
-
-<button onclick="calcAdd('4')">4</button>
-<button onclick="calcAdd('5')">5</button>
-<button onclick="calcAdd('6')">6</button>
-<button onclick="calcAdd('*')">×</button>
-
-<button onclick="calcAdd('1')">1</button>
-<button onclick="calcAdd('2')">2</button>
-<button onclick="calcAdd('3')">3</button>
-<button onclick="calcAdd('-')">−</button>
-
-<button onclick="calcAdd('0')">0</button>
-<button onclick="calcAdd('.')">.</button>
-<button onclick="calcAdd('+')">+</button>
-<button onclick="clearCalc()">C</button>
-
-<button onclick="calcAdd('(')">(</button>
-<button onclick="calcAdd(')')">)</button>
-<button onclick="backspace()">⌫</button>
-<button onclick="calculate()">=</button>
-
-</div>
-
-<div class="actions">
-
-<button class="btn"
-onclick="scientificCalculator()">
-🔬 Scientific Mode
-</button>
-
-<button class="btn"
-onclick="closeModal()">
-✕
-</button>
-
-</div>
-`);
-}
-
-function calcAdd(v){
-$("calc").value+=v;
-}
-
-function clearCalc(){
-$("calc").value="";
-}
-
-function backspace(){
-$("calc").value=$("calc").value.slice(0,-1);
-}
-
-function calculate(){
-
-try{
-$("calc").value=Function(
-"return "+$("calc").value
-)();
-}
-catch(e){
-$("calc").value="Error";
-}
-
-}
-
-function scientificCalculator(){
-
-openModal(`
-
-<h2>🔬 Scientific Calculator</h2>
-
-<div class="calc">
-
-<input id="calc" readonly>
-
-<button onclick="calcAdd('Math.sin(')">sin</button>
-<button onclick="calcAdd('Math.cos(')">cos</button>
-<button onclick="calcAdd('Math.tan(')">tan</button>
-<button onclick="calcAdd('Math.log10(')">log</button>
-
-<button onclick="calcAdd('Math.log(')">ln</button>
-<button onclick="calcAdd('Math.sqrt(')">√</button>
-<button onclick="calcAdd('Math.PI')">π</button>
-<button onclick="calcAdd('**')">^</button>
-
-<button onclick="calcAdd('7')">7</button>
-<button onclick="calcAdd('8')">8</button>
-<button onclick="calcAdd('9')">9</button>
-<button onclick="calcAdd('/')">÷</button>
-
-<button onclick="calcAdd('4')">4</button>
-<button onclick="calcAdd('5')">5</button>
-<button onclick="calcAdd('6')">6</button>
-<button onclick="calcAdd('*')">×</button>
-
-<button onclick="calcAdd('1')">1</button>
-<button onclick="calcAdd('2')">2</button>
-<button onclick="calcAdd('3')">3</button>
-<button onclick="calcAdd('-')">−</button>
-
-<button onclick="calcAdd('0')">0</button>
-<button onclick="calcAdd('.')">.</button>
-<button onclick="clearCalc()">C</button>
-<button onclick="calculate()">=</button>
-
-</div>
-
-<div class="actions">
-
-<button class="btn"
-onclick="calculator()">
-Normal Mode
-</button>
-
-<button class="btn"
-onclick="closeModal()">
-✕
-</button>
-
-</div>
-`);
+    document.getElementById("overlay")
+        .classList.add("show");
 }
 
 
-/* =========================
-MEMO
-========================= */
+function closeMenu(){
 
-function memo(){
+    document.getElementById("sideMenu")
+        .classList.remove("open");
 
-openModal(`
-
-<div class="no-print">
-
-<h2>📄 Statement Memo</h2>
-
-<div class="row">
-
-<div>
-<label>From Date</label>
-<input id="fromDate" type="date">
-</div>
-
-<div>
-<label>To Date</label>
-<input id="toDate" type="date">
-</div>
-
-</div>
-
-<div class="actions">
-
-<button class="btn primary"
-onclick="makeMemo()">
-👁️ Memo তৈরি
-</button>
-
-<button class="btn"
-onclick="window.print()">
-🖨️ PDF / Print
-</button>
-
-<button class="btn"
-onclick="downloadMemo()">
-⬇️ Download
-</button>
-
-<button class="btn"
-onclick="closeModal()">
-✕
-</button>
-
-</div>
-
-</div>
-
-<div id="memoView"></div>
-`);
-
-const dates=db.entries.map(x=>x.date).sort();
-
-$("fromDate").value=dates[0]||new Date().toISOString().slice(0,10);
-$("toDate").value=new Date().toISOString().slice(0,10);
-
-makeMemo();
-}
-
-function makeMemo(){
-
-const from=$("fromDate").value;
-const to=$("toDate").value;
-
-const list=db.entries.filter(x=>x.date>=from&&x.date<=to);
-
-let rows=list.map((x,i)=>`
-
-<tr>
-<td>${i+1}</td>
-<td>${x.date}</td>
-<td>${x.time}</td>
-<td>${typeName(x.type)}</td>
-<td>${x.category}</td>
-<td>${money(x.amount)}</td>
-</tr>
-
-`).join("");
-
-if(!rows){
-
-rows=`
-<tr>
-<td colspan="6">কোনো হিসাব নেই</td>
-</tr>`;
-}
-
-$("memoView").innerHTML=`
-
-<div id="memoPaper" class="memo">
-
-<div style="display:flex;justify-content:space-between">
-
-<div>
-<h2>Hussain's Money Management</h2>
-<b>📒 ব্যক্তিগত হিসাব খাতা</b>
-</div>
-
-<b>STATEMENT</b>
-
-</div>
-
-<div class="rule"></div>
-
-<p>
-<b>From:</b> ${from}
-&nbsp;&nbsp;
-<b>To:</b> ${to}
-</p>
-
-<table>
-
-<tr>
-<th>ক্রমিক</th>
-<th>তারিখ</th>
-<th>সময়</th>
-<th>ধরন</th>
-<th>আয়/ব্যয়ের খাত</th>
-<th>পরিমাণ</th>
-</tr>
-
-${rows}
-
-</table>
-
-<div style="margin-top:15px">
-
-<b>মোট আয়:</b> ${money(list.filter(x=>x.type==="income").reduce((a,x)=>a+x.amount,0))}
-
-<br>
-
-<b>মোট ব্যয়:</b> ${money(list.filter(x=>x.type==="expense").reduce((a,x)=>a+x.amount,0))}
-
-<br>
-
-<b>নিট:</b> ${money(
-list.filter(x=>x.type==="income").reduce((a,x)=>a+x.amount,0)
--
-list.filter(x=>x.type==="expense").reduce((a,x)=>a+x.amount,0)
-)}
-
-</div>
-
-<div class="signature">
-
-<div>
-Prepared by:<br>
-<b>Hussain</b>
-</div>
-
-<div>
-Signature:<br>
-____________________
-</div>
-
-</div>
-
-</div>
-`;
-}
-
-function downloadMemo(){
-
-makeMemo();
-
-const html=`
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Hussain Statement</title>
-<style>
-body{font-family:Arial;padding:20px}
-.memo{max-width:700px;margin:auto}
-table{width:100%;border-collapse:collapse}
-th,td{border:1px solid #999;padding:7px}
-th{background:#087f5b;color:white}
-.signature{display:flex;justify-content:space-between;margin-top:60px}
-</style>
-</head>
-<body>
-${$("memoPaper").outerHTML}
-</body>
-</html>
-`;
-
-const blob=new Blob([html],{type:"text/html"});
-
-const link=document.createElement("a");
-
-link.href=URL.createObjectURL(blob);
-link.download="Hussain-Statement-Memo.html";
-link.click();
+    document.getElementById("overlay")
+        .classList.remove("show");
 }
 
 
-/* =========================
-BACKUP
-========================= */
+/* =====================================================
+   DATE
+===================================================== */
 
-function backup(){
+function todayISO(){
 
-const blob=new Blob(
-[JSON.stringify(db,null,2)],
-{type:"application/json"}
-);
+    const d = new Date();
 
-const link=document.createElement("a");
+    const y = d.getFullYear();
 
-link.href=URL.createObjectURL(blob);
-link.download="Hussain-Ledger-Backup.json";
-link.click();
+    const m = String(d.getMonth()+1)
+        .padStart(2,"0");
+
+    const day = String(d.getDate())
+        .padStart(2,"0");
+
+    return `${y}-${m}-${day}`;
 }
 
 
-/* =========================
-RESTORE
-========================= */
+function currentTime(){
 
-function restore(){
+    const d = new Date();
 
-const input=document.createElement("input");
-
-input.type="file";
-input.accept=".json";
-
-input.onchange=function(){
-
-const reader=new FileReader();
-
-reader.onload=function(){
-
-try{
-
-db=JSON.parse(reader.result);
-
-save();
-render();
-renderTasks();
-applySettings();
-
-alert("Backup সফলভাবে Restore হয়েছে।");
-
-}catch(e){
-
-alert("Backup ফাইলটি সঠিক নয়।");
-
-}
-
-};
-
-reader.readAsText(input.files[0]);
-
-};
-
-input.click();
+    return String(d.getHours()).padStart(2,"0")
+        + ":"
+        + String(d.getMinutes()).padStart(2,"0");
 }
 
 
-/* =========================
-SUGGESTION
-========================= */
+function formatDate(date){
 
-function suggestion(){
+    if(!date) return "";
 
-openModal(`
+    const d = new Date(date+"T00:00:00");
 
-<h2>📝 পরামর্শ বক্স</h2>
-
-<textarea id="suggestionText"
-placeholder="আপনার পরামর্শ লিখুন..."></textarea>
-
-<p class="muted">
-পাঠানো হবে: hussain.connect@outlook.com
-</p>
-
-<div class="actions">
-
-<button class="btn primary"
-onclick="sendSuggestion()">
-📨 পাঠান
-</button>
-
-<button class="btn"
-onclick="closeModal()">
-✕
-</button>
-
-</div>
-`);
-}
-
-function sendSuggestion(){
-
-const text=$("suggestionText").value;
-
-location.href=
-"mailto:hussain.connect@outlook.com"+
-"?subject=Hussain%20Ledger%20Suggestion"+
-"&body="+encodeURIComponent(text);
+    return d.toLocaleDateString("bn-BD",{
+        day:"2-digit",
+        month:"2-digit",
+        year:"numeric"
+    });
 }
 
 
-/* =========================
-ISLAMIC MENU
-========================= */
+/* =====================================================
+   BANGLA DATE
+   Approximate traditional Bangla calendar conversion
+===================================================== */
 
-function islamicMenu(){
+function getBanglaDate(date = new Date()){
 
-openModal(`
+    /*
+      Bangladesh Bangla calendar:
+      বৈশাখ শুরু 14 April.
+      This implementation is designed for the
+      modern Bangladesh calendar.
+    */
 
-<h2>🕌 ইসলামিক</h2>
+    const months = [
+        "বৈশাখ",
+        "জ্যৈষ্ঠ",
+        "আষাঢ়",
+        "শ্রাবণ",
+        "ভাদ্র",
+        "আশ্বিন",
+        "কার্তিক",
+        "অগ্রহায়ণ",
+        "পৌষ",
+        "মাঘ",
+        "ফাল্গুন",
+        "চৈত্র"
+    ];
 
-<div class="islamic-grid">
+    const year =
+        date.getFullYear();
 
-<button class="big-option"
-onclick="prayerPage()">
-<span class="ico">🕌</span>
-নামাজের সময়
-</button>
+    const month =
+        date.getMonth();
 
-<button class="big-option"
-onclick="prayerPage()">
-<span class="ico">🌙</span>
-সেহরি ও ইফতার
-</button>
+    const day =
+        date.getDate();
 
-<button class="big-option"
-onclick="prayerPage()">
-<span class="ico">🌅</span>
-সূর্যোদয় / সূর্যাস্ত
-</button>
+    let banglaYear =
+        year - 593;
 
-<button class="big-option"
-onclick="ramadan()">
-<span class="ico">🌙</span>
-Ramadan Countdown
-</button>
+    let start =
+        new Date(year,3,14);
 
-<button class="big-option"
-onclick="showDates()">
-<span class="ico">📅</span>
-বাংলা ও হিজরি তারিখ
-</button>
+    if(date < start){
+        banglaYear--;
+        start =
+            new Date(year-1,3,14);
+    }
 
-<button class="big-option"
-onclick="closeModal();goTo('home')">
-<span class="ico">🕰️</span>
-পরবর্তী ওয়াক্ত
-</button>
+    const diff =
+        Math.floor(
+            (date-start)/(1000*60*60*24)
+        );
 
-</div>
+    let monthIndex = 0;
+    let remaining = diff;
 
-<div id="islamicContent"></div>
+    const monthLengths =
+        [31,31,31,31,31,30,30,30,30,30,30,30];
 
-<div class="actions">
-<button class="btn" onclick="closeModal()">✕ বন্ধ</button>
-</div>
-`);
+    for(let i=0;i<12;i++){
+
+        if(remaining < monthLengths[i]){
+            monthIndex=i;
+            break;
+        }
+
+        remaining -= monthLengths[i];
+
+        if(i===11){
+            monthIndex=11;
+        }
+    }
+
+    const banglaDay =
+        remaining+1;
+
+    const suffix =
+        ["১","২","৩","৪","৫","৬","৭","৮","৯","১০",
+         "১১","১২","১৩","১৪","১৫","১৬","১৭","১৮","১৯","২০",
+         "২১","২২","২৩","২৪","২৫","২৬","২৭","২৮","২৯","৩০","৩১"];
+
+    return (
+        (suffix[banglaDay-1] || banglaDay)
+        + " "
+        + months[monthIndex]
+        + " "
+        + banglaYear
+    );
 }
 
-function prayerPage(){
 
-closeModal();
-goTo("prayerPage");
-}
+/* =====================================================
+   HIJRI + DATES
+===================================================== */
 
+async function updateDates(){
 
-/* =========================
-PRAYER SECTION
-========================= */
+    const now = new Date();
 
-function createPrayerSection(){
+    document.getElementById("gregorianDate")
+        .textContent =
+        now.toLocaleDateString("bn-BD",{
+            day:"numeric",
+            month:"long",
+            year:"numeric"
+        });
 
-if($("prayerPage"))return;
+    const bangla =
+        getBanglaDate(now);
 
-const section=document.createElement("section");
+    document.getElementById("banglaDate")
+        .textContent =
+        bangla;
 
-section.id="prayerPage";
-section.className="card";
+    document.getElementById("islamicGreg")
+        .textContent =
+        now.toLocaleDateString("bn-BD");
 
-section.innerHTML=`
+    document.getElementById("islamicBangla")
+        .textContent =
+        bangla;
 
-<h2>🕌 নামাজ ও রোযার সময়সূচি</h2>
+    try{
 
-<div class="row">
+        const dd =
+            String(now.getDate()).padStart(2,"0");
 
-<div>
-<label>City</label>
-<input id="city" value="Dhaka">
-</div>
+        const mm =
+            String(now.getMonth()+1).padStart(2,"0");
 
-<div>
-<label>Country</label>
-<input id="country" value="Bangladesh">
-</div>
+        const yyyy =
+            now.getFullYear();
 
-</div>
+        const url =
+          `https://api.aladhan.com/v1/gToH?date=${dd}-${mm}-${yyyy}`;
 
-<button class="btn primary"
-style="margin-top:9px"
-onclick="loadPrayer()">
-🔄 API থেকে আপডেট
-</button>
+        const response =
+            await fetch(url);
 
-<div id="prayerList" class="list"></div>
-`;
+        const data =
+            await response.json();
 
-document.querySelector("main").appendChild(section);
+        if(data.code===200){
 
-}
+            const h =
+                data.data.hijri;
 
-createPrayerSection();
+            const hijriText =
+                `${h.day} ${h.month.en} ${h.year} AH`;
 
+            document.getElementById("hijriDate")
+                .textContent =
+                hijriText;
 
-async function loadPrayer(){
+            document.getElementById("islamicHijri")
+                .textContent =
+                hijriText;
+        }
 
-const city=$("city").value;
-const country=$("country").value;
+    }catch(error){
 
-const now=new Date();
+        document.getElementById("hijriDate")
+            .textContent =
+            "Hijri unavailable";
 
-const url=
-"https://api.aladhan.com/v1/timingsByCity/"+
-now.getDate()+"-"+
-(now.getMonth()+1)+"-"+
-now.getFullYear()+
-"?city="+encodeURIComponent(city)+
-"&country="+encodeURIComponent(country)+
-"&method=1";
-
-try{
-
-const response=await fetch(url);
-const json=await response.json();
-
-const t=json.data.timings;
-
-const list=[
-
-["🌙","সেহরি শেষ সময়",t.Imsak],
-["🌇","ইফতার / সূর্যাস্ত",t.Maghrib],
-["🌅","সূর্যোদয়",t.Sunrise],
-["🕌","ফজর",t.Fajr],
-["🕌","যোহর",t.Dhuhr],
-["🕌","আসর",t.Asr],
-["🕌","মাগরিব",t.Maghrib],
-["🕌","ইশা",t.Isha]
-
-];
-
-$("prayerList").innerHTML=list.map(x=>`
-
-<div class="item">
-
-<b>${x[0]} ${x[1]}</b>
-<b>${x[2]}</b>
-
-</div>
-
-`).join("");
-
-$("prayerPills").innerHTML=list.map(x=>`
-
-<div class="pill">
-${x[1]}<br>
-<b>${x[2]}</b>
-</div>
-
-`).join("");
-
-}catch(e){
-
-$("prayerList").innerHTML=
-`<div class="muted">
-API থেকে সময় পাওয়া যায়নি। Internet connection পরীক্ষা করুন।
-</div>`;
-
-}
+    }
 
 }
 
 
-/* =========================
-RAMADAN
-========================= */
+/* =====================================================
+   PRAYER API
+===================================================== */
 
-function ramadan(){
+async function loadPrayerTimes(){
 
-const now=new Date();
+    const city =
+        settings.city || "Dhaka";
 
-let year=now.getFullYear();
+    const country =
+        settings.country || "Bangladesh";
 
-let ramadanStart=new Date(year,1,18);
+    try{
 
-if(now>ramadanStart){
-ramadanStart=new Date(year+1,1,8);
-}
+        /*
+          Method 1 = University of Islamic Sciences,
+          Karachi.
+          
+          You can change method if your local authority
+          follows another calculation method.
+        */
 
-openModal(`
+        const url =
+          "https://api.aladhan.com/v1/timingsByCity"
+          + "?city="
+          + encodeURIComponent(city)
+          + "&country="
+          + encodeURIComponent(country)
+          + "&method=1";
 
-<h2>🌙 Ramadan Countdown</h2>
+        const response =
+            await fetch(url);
 
-<div class="countdown" id="ramadanTimer">
-লোড হচ্ছে...
-</div>
+        const data =
+            await response.json();
 
-<p class="muted" style="text-align:center">
-সম্ভাব্য রমাদ্বান শুরু: ${ramadanStart.toLocaleDateString("bn-BD")}
-</p>
+        if(data.code !== 200)
+            throw new Error("API error");
 
-<div class="actions">
-<button class="btn" onclick="closeModal()">✕</button>
-</div>
-`);
+        prayerData =
+            data.data;
 
-function tick(){
+        displayPrayerTimes();
 
-const diff=ramadanStart-new Date();
+        updateNextPrayer();
 
-if(diff<=0){
+    }catch(error){
 
-$("ramadanTimer").innerHTML=
-"🌙 রমাদ্বান মোবারক";
+        console.log(error);
 
-return;
-}
+        document.getElementById("nextPrayerName")
+            .textContent =
+            "API Error";
 
-const days=Math.floor(diff/86400000);
-const hours=Math.floor(diff/3600000)%24;
-const minutes=Math.floor(diff/60000)%60;
-const seconds=Math.floor(diff/1000)%60;
-
-$("ramadanTimer").innerHTML=
-"🌙 "+days+" দিন<br>"+
-hours+" ঘণ্টা "+
-minutes+" মিনিট "+
-seconds+" সেকেন্ড";
-
-}
-
-tick();
-
-setInterval(tick,1000);
-}
-
-
-/* =========================
-HADITH & QURAN
-========================= */
-
-function hadithQuranMenu(){
-
-openModal(`
-
-<h2>📖 হাদিস & কুরআন</h2>
-
-<div>
-
-<button class="hadith-option"
-onclick="openHadithBD()">
-
-<div class="ico">📜</div>
-
-<div>
-<b>HadithBD</b>
-<br>
-<small>বাংলা হাদিসের অনলাইন সংগ্রহ</small>
-</div>
-
-</button>
-
-
-<button class="hadith-option"
-onclick="fortyHadith()">
-
-<div class="ico">📜</div>
-
-<div>
-<b>বাংলা ৪০ হাদিস</b>
-<br>
-<small>ইমাম নববীর ৪০ হাদিস</small>
-</div>
-
-</button>
-
-
-<button class="hadith-option"
-onclick="openTafheem()">
-
-<div class="ico">📖</div>
-
-<div>
-<b>তাফহীমুল কুরআন</b>
-<br>
-<small>কুরআন ও তাফসির</small>
-</div>
-
-</button>
-
-</div>
-
-<div class="actions">
-
-<button class="btn"
-onclick="closeModal()">
-✕ বন্ধ
-</button>
-
-</div>
-
-`);
-}
-
-
-function openHadithBD(){
-
-window.open(
-"https://www.hadithbd.com",
-"_blank"
-);
+    }
 
 }
 
-function openTafheem(){
 
-window.open(
-"https://amartafheem.com/",
-"_blank"
-);
-
-}
-
-function fortyHadith(){
-
-openModal(`
-
-<h2>📜 বাংলা ৪০ হাদিস</h2>
-
-<div class="card">
-
-<h3>ইমাম নববীর ৪০ হাদিস</h3>
-
-<p>
-এখানে ইমাম নববীর ৪০ হাদিসের
-আরবি মূল, বাংলা অনুবাদ ও
-হাদিসের উৎস দেখার ব্যবস্থা রাখা হয়েছে।
-</p>
-
-<p class="muted">
-নির্ভরযোগ্য অনলাইন উৎস থেকে পূর্ণ পাঠ
-দেখুন।
-</p>
-
-<button class="btn primary"
-onclick="window.open(
-'https://www.hadithbd.com/',
-'_blank'
-)">
-📜 HadithBD খুলুন
-</button>
-
-</div>
-
-<div class="actions">
-
-<button class="btn"
-onclick="hadithQuranMenu()">
-↩ ফিরে যান
-</button>
-
-<button class="btn"
-onclick="closeModal()">
-✕
-</button>
-
-</div>
-
-`);
-}
-
-
-/* =========================
-SETTINGS
-========================= */
-
-function settings(){
-
-openModal(`
-
-<h2>⚙️ Settings</h2>
-
-<label>🌐 Language</label>
-
-<select id="language"
-onchange="changeLanguage(this.value)">
-
-<option value="bn">বাংলা</option>
-<option value="en">English</option>
-<option value="ar">العربية</option>
-<option value="ur">اردو</option>
-<option value="es">Español</option>
-
-</select>
-
-<h3>🖼️ Header Wallpaper</h3>
-
-<div class="themes">
-
-<button class="theme"
-style="background:linear-gradient(135deg,#075c45,#102820)"
-onclick="changeTheme('islamic1')">
-🕌 Islamic 1
-</button>
-
-<button class="theme"
-style="background:linear-gradient(135deg,#087f5b,#9a7415)"
-onclick="changeTheme('islamic2')">
-🌙 Islamic 2
-</button>
-
-<button class="theme"
-style="background:linear-gradient(135deg,#073c2d,#111)"
-onclick="changeTheme('islamic3')">
-📖 Islamic 3
-</button>
-
-<button class="theme"
-style="background:linear-gradient(135deg,#0b6d53,#365f46)"
-onclick="changeTheme('islamic4')">
-🕌 Islamic 4
-</button>
-
-<button class="theme"
-style="background:linear-gradient(135deg,#175d3a,#5e994e)"
-onclick="changeTheme('forest1')">
-🌳 বাংলাদেশ বন ১
-</button>
-
-<button class="theme"
-style="background:linear-gradient(135deg,#14583f,#769d55)"
-onclick="changeTheme('forest2')">
-🌿 বাংলাদেশ প্রকৃতি ২
-</button>
-
-<button class="theme"
-style="background:linear-gradient(120deg,#087f5b 0 58%,#d71920 58%)"
-onclick="changeTheme('bd')">
-🇧🇩 বাংলাদেশ
-</button>
-
-</div>
-
-<div class="actions">
-
-<button class="btn"
-onclick="toggleDarkMode()">
-🌙 Reading Mode
-</button>
-
-<button class="btn"
-onclick="pinSettings()">
-🔐 PIN Lock
-</button>
-
-</div>
-
-`);
-}
-
-
-function changeLanguage(lang){
-
-db.lang=lang;
-save();
-applySettings();
-closeModal();
-
-}
-
-function applyLanguage(){
-
-const titles={
-bn:"আমার ব্যক্তিগত হিসাব খাতা",
-en:"My Personal Ledger",
-ar:"دفتري المالي الشخصي",
-ur:"میری ذاتی حساب کتاب",
-es:"Mi Libro de Finanzas Personal"
-};
-
-$("appTitle").textContent=titles[db.lang]||titles.bn;
-
-document.documentElement.dir=
-(db.lang==="ar"||db.lang==="ur")?"rtl":"ltr";
-}
-
-function changeTheme(theme){
-
-db.theme=theme;
-save();
-applySettings();
-closeModal();
-
-}
-
-function toggleDarkMode(){
-
-db.dark=!db.dark;
-save();
-applySettings();
-closeModal();
-
-}
-
-function applySettings(){
-
-document.body.classList.toggle("dark",db.dark);
-document.body.classList.toggle("reading",db.reading);
-
-const themes={
-
-bd:"linear-gradient(120deg,#087f5b 0 58%,#d71920 58%)",
-
-islamic1:"linear-gradient(120deg,#075c45,#102820)",
-
-islamic2:"linear-gradient(120deg,#087f5b,#9a7415)",
-
-islamic3:"linear-gradient(120deg,#073c2d,#111)",
-
-islamic4:"linear-gradient(120deg,#0b6d53,#365f46)",
-
-forest1:"linear-gradient(120deg,#175d3a,#5e994e)",
-
-forest2:"linear-gradient(120deg,#14583f,#769d55)"
-
-};
-
-$("header").style.background=
-themes[db.theme]||themes.bd;
-
-applyLanguage();
+function displayPrayerTimes(){
+
+    const t =
+        prayerData.timings;
+
+    setText("hFajr",t.Fajr);
+    setText("hSunrise",t.Sunrise);
+    setText("hDhuhr",t.Dhuhr);
+    setText("hAsr",t.Asr);
+    setText("hMaghrib",t.Maghrib);
+    setText("hIsha",t.Isha);
+
+    setText("pFajr",t.Fajr);
+    setText("pSunrise",t.Sunrise);
+    setText("pDhuhr",t.Dhuhr);
+    setText("pAsr",t.Asr);
+    setText("pSunset",t.Sunset);
+    setText("pMaghrib",t.Maghrib);
+    setText("pIsha",t.Isha);
+
+    setText("imsak",
+        t.Imsak || t.Fajr);
+
+    setText("iftar",
+        t.Maghrib);
 
 }
 
 
-/* =========================
-PIN
-========================= */
+/* =====================================================
+   NEXT PRAYER
+===================================================== */
 
-function pinSettings(){
+function parseTime(time){
 
-openModal(`
+    const parts =
+        time.split(":");
 
-<h2>🔐 PIN Lock</h2>
+    const d = new Date();
 
-<p class="muted">
-নতুন PIN দিতে চাইলে নিচে ৪-৬ সংখ্যার PIN লিখুন।
-</p>
+    d.setHours(
+        Number(parts[0]),
+        Number(parts[1]),
+        0,
+        0
+    );
 
-<input
-id="newPin"
-type="password"
-inputmode="numeric"
-maxlength="6"
-placeholder="নতুন PIN">
-
-<div class="actions">
-
-<button class="btn primary"
-onclick="savePin()">
-💾 Save PIN
-</button>
-
-<button class="btn"
-onclick="removePin()">
-🔓 PIN Remove
-</button>
-
-</div>
-`);
-}
-
-function savePin(){
-
-const pin=$("newPin").value;
-
-if(!/^[0-9]{4,6}$/.test(pin)){
-
-alert("৪-৬ সংখ্যার PIN দিন");
-return;
-
-}
-
-db.pin=pin;
-save();
-
-alert("PIN সংরক্ষণ হয়েছে");
-closeModal();
-
-}
-
-function removePin(){
-
-db.pin="";
-save();
-
-alert("PIN Lock সরানো হয়েছে");
-closeModal();
-
+    return d;
 }
 
 
-/* =========================
-DATES
-========================= */
+function updateNextPrayer(){
 
-function showDates(){
+    if(!prayerData)
+        return;
 
-const now=new Date();
+    const t =
+        prayerData.timings;
 
-openModal(`
+    const prayers = [
 
-<h2>📅 তারিখ</h2>
+        ["ফজর",t.Fajr],
+        ["যোহর",t.Dhuhr],
+        ["আসর",t.Asr],
+        ["মাগরিব",t.Maghrib],
+        ["ইশা",t.Isha]
 
-<div class="card">
+    ];
 
-<b>🇧🇩 বাংলা:</b><br>
-${now.toLocaleDateString("bn-BD",{
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
-})}
+    const now =
+        new Date();
 
-<br><br>
+    let next = null;
 
-<b>🇬🇧 English:</b><br>
-${now.toLocaleDateString("en-GB",{
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
-})}
+    for(const p of prayers){
 
-<br><br>
+        const d =
+            parseTime(p[1]);
 
-<b>🌙 Hijri:</b><br>
-${new Intl.DateTimeFormat(
-"ar-SA-u-ca-islamic",
-{
-day:"numeric",
-month:"long",
-year:"numeric"
+        if(d > now){
+
+            next = {
+                name:p[0],
+                time:p[1],
+                date:d
+            };
+
+            break;
+        }
+    }
+
+    if(!next){
+
+        const tomorrow =
+            new Date();
+
+        tomorrow.setDate(
+            tomorrow.getDate()+1
+        );
+
+        next = {
+            name:"ফজর",
+            time:t.Fajr,
+            date:parseTime(t.Fajr)
+        };
+
+        next.date.setDate(
+            tomorrow.getDate()
+        );
+    }
+
+    window.nextPrayer =
+        next;
+
+    setText(
+        "nextPrayerName",
+        next.name
+    );
+
+    setText(
+        "bigNextPrayer",
+        next.name
+    );
+
+    setText(
+        "bigPrayerTime",
+        next.time
+    );
+
 }
-).format(now)}
-
-</div>
-
-<button class="btn"
-onclick="closeModal()">
-✕
-</button>
-
-`);
-}
 
 
-/* =========================
-CLOCK
-========================= */
+/* =====================================================
+   LIVE CLOCK / COUNTDOWN
+===================================================== */
 
 function updateClock(){
 
-const now=new Date();
+    updateNextPrayer();
 
-$("clock").textContent=
-now.toLocaleTimeString();
+    if(!window.nextPrayer)
+        return;
 
-$("dates").innerHTML=
+    let target =
+        window.nextPrayer.date;
 
-now.toLocaleDateString(
-"bn-BD",
-{
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
+    let now =
+        new Date();
+
+    let diff =
+        target-now;
+
+    if(diff<0){
+
+        updateNextPrayer();
+
+        return;
+    }
+
+    const h =
+        Math.floor(diff/3600000);
+
+    const m =
+        Math.floor(
+            (diff%3600000)/60000
+        );
+
+    const s =
+        Math.floor(
+            (diff%60000)/1000
+        );
+
+    const text =
+        `${String(h).padStart(2,"0")}:`
+        + `${String(m).padStart(2,"0")}:`
+        + `${String(s).padStart(2,"0")}`;
+
+    setText(
+        "nextPrayerCount",
+        text
+    );
+
+    setText(
+        "bigCountdown",
+        text
+    );
+
+    updateRamadanCountdown();
+
 }
-)+
-"<br>"+
-now.toLocaleDateString(
-"en-GB",
-{
-day:"2-digit",
-month:"long",
-year:"numeric"
+
+
+/* =====================================================
+   RAMADAN COUNTDOWN
+===================================================== */
+
+function updateRamadanCountdown(){
+
+    /*
+      Ramadan date is lunar and can vary by moon sighting.
+      The target below is an estimated upcoming Ramadan date.
+      It can be changed from this single variable.
+    */
+
+    const ramadanTarget =
+        new Date("2027-02-08T00:00:00");
+
+    const now =
+        new Date();
+
+    let diff =
+        ramadanTarget-now;
+
+    if(diff<0){
+
+        document.getElementById("ramadanText")
+            .textContent =
+            "পরবর্তী রামাদ্বান";
+
+        document.getElementById("ramadanCount")
+            .textContent =
+            "তারিখ API/চাঁদ দেখার ভিত্তিতে";
+
+        return;
+    }
+
+    const days =
+        Math.floor(
+            diff/(1000*60*60*24)
+        );
+
+    const hours =
+        Math.floor(
+            (diff%(1000*60*60*24))
+            /(1000*60*60)
+        );
+
+    const minutes =
+        Math.floor(
+            (diff%(1000*60*60))
+            /(1000*60)
+        );
+
+    const seconds =
+        Math.floor(
+            (diff%(1000*60))
+            /1000
+        );
+
+    const text =
+        `${days} দিন ${hours} ঘণ্টা ${minutes} মিনিট`;
+
+    setText(
+        "ramadanText",
+        "রামাদ্বান"
+    );
+
+    setText(
+        "ramadanCount",
+        text
+    );
+
+    setText(
+        "ramadanHome",
+        `🌙 রামাদ্বান শুরু হতে প্রায় ${days} দিন ${hours} ঘণ্টা বাকি।`
+    );
+
+    setText(
+        "ramadanBig",
+        `${days} দিন ${hours} ঘণ্টা ${minutes} মিনিট ${seconds} সেকেন্ড`
+    );
+
 }
-)+
-"<br>🌙 "+
-new Intl.DateTimeFormat(
-"ar-SA-u-ca-islamic",
-{
-day:"numeric",
-month:"long",
-year:"numeric"
+
+
+/* =====================================================
+   ACCOUNT
+===================================================== */
+
+function addTransaction(){
+
+    const type =
+        document.getElementById("type").value;
+
+    const category =
+        document.getElementById("category")
+            .value.trim();
+
+    const amount =
+        Number(
+            document.getElementById("amount").value
+        );
+
+    const date =
+        document.getElementById("entryDate").value;
+
+    const time =
+        document.getElementById("entryTime").value;
+
+    if(!category){
+
+        alert("খাত লিখুন।");
+
+        return;
+    }
+
+    if(!amount || amount<=0){
+
+        alert("সঠিক পরিমাণ দিন।");
+
+        return;
+    }
+
+    transactions.push({
+
+        id:Date.now(),
+
+        type,
+
+        category,
+
+        amount,
+
+        date,
+
+        time
+
+    });
+
+    saveTransactions();
+
+    document.getElementById("category")
+        .value="";
+
+    document.getElementById("amount")
+        .value="";
+
+    renderTransactions();
+
+    updateDashboard();
+
+    alert("হিসাব সফলভাবে যোগ হয়েছে।");
+
 }
-).format(now);
 
-setTimeout(updateClock,1000);
+
+function saveTransactions(){
+
+    localStorage.setItem(
+        "hussain_transactions",
+        JSON.stringify(transactions)
+    );
 
 }
 
 
-/* =========================
-INITIALIZE
-========================= */
+function renderTransactions(){
 
-const now=new Date();
-const today=now.toISOString().slice(0,10);
+    const tbody =
+        document.getElementById(
+            "transactionTable"
+        );
 
-$("date").value=today;
-$("time").value=now.toTimeString().slice(0,5);
+    tbody.innerHTML="";
 
-$("taskDate").value=today;
-$("taskTime").value=now.toTimeString().slice(0,5);
+    if(!transactions.length){
 
-applySettings();
-render();
-renderTasks();
-updateClock();
-loadPrayer();
+        tbody.innerHTML=`
+        <tr>
+            <td colspan="7"
+                style="text-align:center">
+                কোনো হিসাব নেই
+            </td>
+        </tr>`;
+
+        return;
+    }
+
+    transactions
+        .slice()
+        .reverse()
+        .forEach((x,index)=>{
+
+            const tr =
+                document.createElement("tr");
+
+            tr.innerHTML=`
+
+                <td>${transactions.length-index}</td>
+
+                <td>${formatDate(x.date)}</td>
+
+                <td>${x.time}</td>
+
+                <td>
+                    ${
+                        x.type==="income"
+                        ? "আয়"
+                        : "ব্যয়"
+                    }
+                </td>
+
+                <td>${escapeHTML(x.category)}</td>
+
+                <td class="${
+                    x.type==="income"
+                    ? "amountIncome"
+                    : "amountExpense"
+                }">
+                    ${formatMoney(x.amount)} BDT
+                </td>
+
+                <td>
+                    <button
+                      class="dangerBtn"
+                      onclick="deleteTransaction(${x.id})">
+                      ×
+                    </button>
+                </td>
+
+            `;
+
+            tbody.appendChild(tr);
+
+        });
+
+}
+
+
+function deleteTransaction(id){
+
+    if(!confirm("এই হিসাবটি মুছবেন?"))
+        return;
+
+    transactions =
+        transactions.filter(
+            x=>x.id!==id
+        );
+
+    saveTransactions();
+
+    renderTransactions();
+
+    updateDashboard();
+
+}
+
+
+function updateDashboard(){
+
+    let income=0;
+    let expense=0;
+
+    transactions.forEach(x=>{
+
+        if(x.type==="income")
+            income += Number(x.amount);
+
+        else
+            expense += Number(x.amount);
+
+    });
+
+    const balance =
+        income-expense;
+
+    setText(
+        "homeIncome",
+        formatMoney(income)+" BDT"
+    );
+
+    setText(
+        "homeExpense",
+        formatMoney(expense)+" BDT"
+    );
+
+    setText(
+        "homeBalance",
+        formatMoney(balance)+" BDT"
+    );
+
+    setText(
+        "homeTransactions",
+        transactions.length
+    );
+
+    setText(
+        "reportIncome",
+        formatMoney(income)+" BDT"
+    );
+
+    setText(
+        "reportExpense",
+        formatMoney(expense)+" BDT"
+    );
+
+    setText(
+        "reportBalance",
+        formatMoney(balance)+" BDT"
+    );
+
+    drawPieChart();
+
+    renderCategoryReport();
+
+}
+
+
+/* =====================================================
+   REPORT / PIE CHART
+===================================================== */
+
+function drawPieChart(){
+
+    const canvas =
+        document.getElementById("pieChart");
+
+    if(!canvas)
+        return;
+
+    const ctx =
+        canvas.getContext("2d");
+
+    const income =
+        transactions
+            .filter(x=>x.type==="income")
+            .reduce(
+                (a,b)=>a+Number(b.amount),
+                0
+            );
+
+    const expense =
+        transactions
+            .filter(x=>x.type==="expense")
+            .reduce(
+                (a,b)=>a+Number(b.amount),
+                0
+            );
+
+    ctx.clearRect(
+        0,0,
+        canvas.width,
+        canvas.height
+    );
+
+    const total =
+        income+expense;
+
+    const cx=130;
+    const cy=130;
+    const radius=95;
+
+    if(total===0){
+
+        ctx.beginPath();
+
+        ctx.arc(
+            cx,cy,radius,
+            0,Math.PI*2
+        );
+
+        ctx.fillStyle="#dce6e2";
+
+        ctx.fill();
+
+        ctx.fillStyle="#687572";
+
+        ctx.font="bold 14px Arial";
+
+        ctx.textAlign="center";
+
+        ctx.fillText(
+            "কোনো হিসাব নেই",
+            cx,
+            cy+5
+        );
+
+        return;
+    }
+
+    let start=-Math.PI/2;
+
+    const incomeAngle =
+        (income/total)*Math.PI*2;
+
+    ctx.beginPath();
+
+    ctx.moveTo(cx,cy);
+
+    ctx.arc(
+        cx,cy,radius,
+        start,
+        start+incomeAngle
+    );
+
+    ctx.closePath();
+
+    ctx.fillStyle="#087f5b";
+
+    ctx.fill();
+
+    start += incomeAngle;
+
+    ctx.beginPath();
+
+    ctx.moveTo(cx,cy);
+
+    ctx.arc(
+        cx,cy,radius,
+        start,
+        start+((expense/total)*Math.PI*2)
+    );
+
+    ctx.closePath();
+
+    ctx.fillStyle="#d62828";
+
+    ctx.fill();
+
+    ctx.beginPath();
+
+    ctx.arc(
+        cx,cy,48,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fillStyle="#fff";
+
+    ctx.fill();
+
+    ctx.fillStyle="#17211f";
+
+    ctx.font="bold 15px Arial";
+
+    ctx.textAlign="center";
+
+    ctx.fillText(
+        "মোট",
+        cx,
+        cy-3
+    );
+
+    ctx.font="bold 12px Arial";
+
+    ctx.fillText(
+        formatMoney(total),
+        cx,
+        cy+16
+    );
+
+}
+
+
+function renderCategoryReport(){
+
+    const box =
+        document.getElementById(
+            "categoryReport"
+        );
+
+    if(!transactions.length){
+
+        box.textContent =
+            "কোনো হিসাব নেই।";
+
+        return;
+    }
+
+    const categories={};
+
+    transactions.forEach(x=>{
+
+        if(!categories[x.category])
+            categories[x.category]=0;
+
+        categories[x.category] +=
+            x.type==="income"
+            ? Number(x.amount)
+            : -Number(x.amount);
+
+    });
+
+    box.innerHTML="";
+
+    Object.entries(categories)
+        .forEach(([key,value])=>{
+
+            const div =
+                document.createElement("div");
+
+            div.className="stat";
+
+            div.style.marginBottom="8px";
+
+            div.innerHTML=`
+
+                <small>${escapeHTML(key)}</small>
+
+                <strong class="${
+                    value>=0
+                    ? "income"
+                    : "expense"
+                }">
+                    ${formatMoney(value)} BDT
+                </strong>
+
+            `;
+
+            box.appendChild(div);
+
+        });
+
+}
+
+
+/* =====================================================
+   MEMO
+===================================================== */
+
+function generateMemo(){
+
+    const from =
+        document.getElementById(
+            "memoFrom"
+        ).value;
+
+    const to =
+        document.getElementById(
+            "memoTo"
+        ).value;
+
+    if(!from || !to)
+        return;
+
+    const filtered =
+        transactions.filter(x=>
+            x.date>=from &&
+            x.date<=to
+        );
+
+    document.getElementById(
+        "memoPeriod"
+    ).textContent =
+        `সময়কাল: ${formatDate(from)} → ${formatDate(to)}`;
+
+    document.getElementById(
+        "memoDate"
+    ).textContent =
+        new Date().toLocaleDateString(
+            "bn-BD"
+        );
+
+    const tbody =
+        document.getElementById(
+            "memoRows"
+        );
+
+    tbody.innerHTML="";
+
+    if(!filtered.length){
+
+        tbody.innerHTML=`
+
+        <tr>
+
+            <td colspan="6"
+                style="text-align:center">
+
+                এই সময়কালে কোনো হিসাব নেই
+
+            </td>
+
+        </tr>
+
+        `;
+
+        return;
+    }
+
+    filtered.forEach((x,index)=>{
+
+        const tr =
+            document.createElement("tr");
+
+        tr.innerHTML=`
+
+            <td>${index+1}</td>
+
+            <td>${formatDate(x.date)}</td>
+
+            <td>${x.time}</td>
+
+            <td>
+                ${
+                    x.type==="income"
+                    ? "আয়"
+                    : "ব্যয়"
+                }
+            </td>
+
+            <td>
+                ${escapeHTML(x.category)}
+            </td>
+
+            <td>
+                ${formatMoney(x.amount)} BDT
+            </td>
+
+        `;
+
+        tbody.appendChild(tr);
+
+    });
+
+}
+
+
+function printMemo(){
+
+    generateMemo();
+
+    setTimeout(()=>{
+
+        window.print();
+
+    },200);
+
+}
+
+
+/* =====================================================
+   CALCULATOR
+===================================================== */
+
+function calcInput(value){
+
+    calcExpression += value;
+
+    updateCalcDisplay();
+
+}
+
+
+function calcClear(){
+
+    calcExpression="";
+
+    updateCalcDisplay();
+
+}
+
+
+function calcBack(){
+
+    calcExpression =
+        calcExpression.slice(0,-1);
+
+    updateCalcDisplay();
+
+}
+
+
+function calcEqual(){
+
+    try{
+
+        const safe =
+            calcExpression
+                .replace(/÷/g,"/")
+                .replace(/×/g,"*");
+
+        const result =
+            Function(
+                `"use strict"; return (${safe})`
+            )();
+
+        calcExpression =
+            String(result);
+
+        document.getElementById(
+            "calcResult"
+        ).textContent =
+            result;
+
+    }catch(e){
+
+        document.getElementById(
+            "calcResult"
+        ).textContent =
+            "Error";
+
+    }
+
+}
+
+
+function updateCalcDisplay(){
+
+    document.getElementById(
+        "calcExpression"
+    ).textContent =
+        calcExpression;
+
+    document.getElementById(
+        "calcResult"
+    ).textContent =
+        calcExpression || "0";
+
+}
+
+
+function toggleScientific(){
+
+    scientificMode =
+        !scientificMode;
+
+    document.getElementById(
+        "scientificKeys"
+    ).style.display =
+        scientificMode
+        ? "block"
+        : "none";
+
+}
+
+
+function calcFunc(fn){
+
+    try{
+
+        const value =
+            Number(
+                calcExpression || 0
+            );
+
+        let result=0;
+
+        if(fn==="sin")
+            result=Math.sin(value);
+
+        if(fn==="cos")
+            result=Math.cos(value);
+
+        if(fn==="tan")
+            result=Math.tan(value);
+
+        if(fn==="sqrt")
+            result=Math.sqrt(value);
+
+        if(fn==="log")
+            result=Math.log10(value);
+
+        if(fn==="ln")
+            result=Math.log(value);
+
+        if(fn==="abs")
+            result=Math.abs(value);
+
+        calcExpression =
+            String(result);
+
+        updateCalcDisplay();
+
+    }catch(e){
+
+        calcExpression="";
+
+        document.getElementById(
+            "calcResult"
+        ).textContent="Error";
+
+    }
+
+}
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+const translations={
+
+    bn:{
+        dashboard:"ড্যাশবোর্ড"
+    },
+
+    en:{
+        dashboard:"Dashboard"
+    },
+
+    ur:{
+        dashboard:"ڈیش بورڈ"
+    },
+
+    ar:{
+        dashboard:"لوحة التحكم"
+    },
+
+    es:{
+        dashboard:"Panel"
+    }
+
+};
+
+
+function changeLanguage(){
+
+    const lang =
+        document.getElementById(
+            "language"
+        ).value;
+
+    localStorage.setItem(
+        "hussain_language",
+        lang
+    );
+
+    document.querySelectorAll(
+        "[data-i18n]"
+    ).forEach(el=>{
+
+        const key =
+            el.dataset.i18n;
+
+        if(translations[lang] &&
+           translations[lang][key]){
+
+            el.textContent =
+                translations[lang][key];
+
+        }
+
+    });
+
+}
+
+
+/* =====================================================
+   THEME
+===================================================== */
+
+function setTheme(n){
+
+    currentTheme=n;
+
+    localStorage.setItem(
+        "hussain_theme",
+        n
+    );
+
+    const header =
+        document.getElementById("header");
+
+    header.className =
+        "header wallpaper"+n;
+
+}
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+function saveLocation(){
+
+    settings.city =
+        document.getElementById(
+            "city"
+        ).value.trim() || "Dhaka";
+
+    settings.country =
+        document.getElementById(
+            "country"
+        ).value.trim() || "Bangladesh";
+
+    localStorage.setItem(
+        "hussain_settings",
+        JSON.stringify(settings)
+    );
+
+    loadPrayerTimes();
+
+    alert(
+        "Location saved."
+    );
+
+}
+
+
+/* =====================================================
+   DATA BACKUP
+===================================================== */
+
+function exportData(){
+
+    const data =
+        JSON.stringify(
+            transactions,
+            null,
+            2
+        );
+
+    const blob =
+        new Blob(
+            [data],
+            {type:"application/json"}
+        );
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const a =
+        document.createElement("a");
+
+    a.href=url;
+
+    a.download=
+        "Hussain-Money-Management-Backup.json";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+function clearAllData(){
+
+    if(!confirm(
+        "সব হিসাব মুছে ফেলবেন? এটি আর ফিরিয়ে আনা যাবে না।"
+    ))
+        return;
+
+    transactions=[];
+
+    saveTransactions();
+
+    renderTransactions();
+
+    updateDashboard();
+
+    generateMemo();
+
+}
+
+
+/* =====================================================
+   EXTERNAL LINKS
+===================================================== */
+
+function openExternal(url){
+
+    window.open(
+        url,
+        "_blank",
+        "noopener,noreferrer"
+    );
+
+}
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function setText(id,text){
+
+    const el =
+        document.getElementById(id);
+
+    if(el)
+        el.textContent=text;
+
+}
+
+
+function formatMoney(number){
+
+    return Number(number || 0)
+        .toLocaleString("en-US",{
+            maximumFractionDigits:2
+        });
+
+}
+
+
+function escapeHTML(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   LOAD SAVED LANGUAGE
+===================================================== */
+
+const savedLanguage =
+    localStorage.getItem(
+        "hussain_language"
+    );
+
+if(savedLanguage){
+
+    setTimeout(()=>{
+
+        const select =
+            document.getElementById(
+                "language"
+            );
+
+        if(select){
+
+            select.value =
+                savedLanguage;
+
+            changeLanguage();
+
+        }
+
+    },100);
+
+}
 
 </script>
 
