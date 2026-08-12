@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 <title>Hussain's Money Management</title>
 
 <style>
@@ -15,6 +14,8 @@
  --text:#18201d;
  --muted:#6d7874;
  --border:#dce4e1;
+ --blue:#287be8;
+ --yellow:#e4a900;
 }
 
 *{box-sizing:border-box}
@@ -47,9 +48,9 @@ header{
 header:after{
  content:"🇧🇩";
  position:absolute;
- right:22px;
+ right:20px;
  top:15px;
- font-size:54px;
+ font-size:50px;
 }
 
 h1{
@@ -62,7 +63,7 @@ h1{
 }
 
 .clock{
- font-size:23px;
+ font-size:22px;
  font-weight:bold;
 }
 
@@ -163,9 +164,12 @@ button,.btn{
 }
 
 .g{background:var(--green);color:#fff}
-.b{background:#287be8;color:#fff}
+.b{background:var(--blue);color:#fff}
 .red{background:var(--red);color:#fff}
-.soft{background:#e8efed;color:var(--green)}
+.soft{
+ background:#e8efed;
+ color:var(--green);
+}
 
 body.dark .soft{
  background:#293530;
@@ -178,9 +182,7 @@ body.dark .soft{
  flex-wrap:wrap;
 }
 
-.row>*{
- flex:1;
-}
+.row>*{flex:1}
 
 .icons{
  display:grid;
@@ -218,35 +220,7 @@ body.dark .soft{
  gap:8px;
 }
 
-.muted{
- color:var(--muted);
-}
-
-.pie{
- width:260px;
- height:260px;
- border-radius:50%;
- margin:18px auto;
- background:conic-gradient(
- #087f5b 0 45%,
- #e31d2b 45% 75%,
- #f2b134 75% 90%,
- #287be8 90%
- );
- position:relative;
-}
-
-.pie:after{
- content:"";
- position:absolute;
- inset:67px;
- background:var(--card);
- border-radius:50%;
-}
-
-.theme-islamic header{
- background:linear-gradient(135deg,#063b2b,#0c7c5b);
-}
+.muted{color:var(--muted)}
 
 .bottom{
  position:fixed;
@@ -276,12 +250,88 @@ body.dark .soft{
  color:var(--green);
 }
 
+/* Calculator */
+
+.calc-display{
+ background:#111;
+ color:#fff;
+ border-radius:16px;
+ padding:15px;
+ margin-bottom:10px;
+ text-align:right;
+ min-height:80px;
+}
+
+.calc-expression{
+ color:#aaa;
+ font-size:13px;
+ min-height:20px;
+}
+
+.calc-result{
+ font-size:30px;
+ overflow:auto;
+}
+
+.calc-grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:7px;
+}
+
+.calc-grid button{
+ min-height:48px;
+ font-size:16px;
+ background:var(--bg);
+ color:var(--text);
+ border:1px solid var(--border);
+}
+
+.calc-grid button.operator{
+ background:var(--green);
+ color:#fff;
+}
+
+.calc-grid button.equal{
+ background:var(--red);
+ color:#fff;
+}
+
+.science{
+ display:none;
+}
+
+.science.show{
+ display:grid;
+}
+
+/* Pie */
+
+.pie{
+ width:260px;
+ height:260px;
+ border-radius:50%;
+ margin:18px auto;
+ background:#ddd;
+ position:relative;
+}
+
+.pie:after{
+ content:"";
+ position:absolute;
+ inset:67px;
+ background:var(--card);
+ border-radius:50%;
+}
+
+/* Memo */
+
 .memo{
  background:#fff;
  color:#18201d;
- padding:26px;
+ padding:28px;
  max-width:900px;
- margin:auto;
+ margin:15px auto;
  border:1px solid #ddd;
 }
 
@@ -300,9 +350,10 @@ body.dark .soft{
  margin-top:16px;
 }
 
-.memo th,.memo td{
+.memo th,
+.memo td{
  border:1px solid #d8dfdc;
- padding:7px;
+ padding:8px;
  font-size:11px;
 }
 
@@ -311,22 +362,27 @@ body.dark .soft{
  color:#fff;
 }
 
-.totals{
- max-width:300px;
- margin:15px 0 0 auto;
+.summary{
+ margin:18px 0 0 auto;
+ max-width:360px;
 }
 
-.totals div{
+.summary div{
  display:flex;
  justify-content:space-between;
  border-bottom:1px solid #ddd;
- padding:7px;
+ padding:8px;
 }
 
-.sign{
+.signature{
+ margin-top:55px;
  display:flex;
  justify-content:space-between;
- margin-top:40px;
+ gap:40px;
+}
+
+.signature div{
+ min-width:220px;
 }
 
 #pinLock{
@@ -348,12 +404,11 @@ body.dark .soft{
  border-radius:25px;
  border:1px solid var(--border);
  text-align:center;
- box-shadow:0 10px 40px #0002;
 }
 
 .pinDots{
- font-size:24px;
- letter-spacing:7px;
+ font-size:23px;
+ letter-spacing:6px;
  margin:15px;
 }
 
@@ -375,6 +430,10 @@ body.dark .soft{
  color:#fff;
 }
 
+.theme-islamic header{
+ background:linear-gradient(135deg,#063b2b,#0c7c5b);
+}
+
 @media(max-width:600px){
 
  .icons{
@@ -385,9 +444,14 @@ body.dark .soft{
   padding:12px;
  }
 
- .memo th,.memo td{
+ .memo th,
+ .memo td{
   font-size:8px;
   padding:4px;
+ }
+
+ .signature{
+  flex-direction:column;
  }
 
 }
@@ -399,10 +463,10 @@ body.dark .soft{
   padding:0;
  }
 
- .no-print,
  header,
  .week,
  .bottom,
+ .no-print,
  #pinLock{
   display:none!important;
  }
@@ -424,7 +488,7 @@ body.dark .soft{
 
 <body>
 
-<!-- ================= PIN LOCK ================= -->
+<!-- PIN -->
 
 <div id="pinLock">
 
@@ -432,9 +496,7 @@ body.dark .soft{
 
 <h2>🔐 Hussain's Money Management</h2>
 
-<p class="muted">
-আপনার PIN দিন
-</p>
+<p class="muted">PIN দিন</p>
 
 <div id="pinDots" class="pinDots">
 ○ ○ ○ ○
@@ -460,14 +522,13 @@ body.dark .soft{
 
 </div>
 
-<p id="pinError" style="color:#e31d2b"></p>
+<p id="pinError"></p>
 
 </div>
-
 </div>
 
 
-<!-- ================= HEADER ================= -->
+<!-- HEADER -->
 
 <header>
 
@@ -484,14 +545,14 @@ Hussain's Money Management
 </header>
 
 
-<!-- ================= WEEK ================= -->
+<!-- WEEK -->
 
 <div id="week" class="week"></div>
 
 
 <main>
 
-<!-- ================= HOME ================= -->
+<!-- HOME -->
 
 <section id="home" class="page active">
 
@@ -538,7 +599,7 @@ Hussain's Money Management
 
 <button class="icon" onclick="go('calc')">
 <span>🧮</span>
-<small>ক্যালকুলেটর</small>
+<small>Calculator</small>
 </button>
 
 <button class="icon" onclick="go('graph')">
@@ -577,12 +638,11 @@ Hussain's Money Management
 
 <div class="card">
 
-<h2>☪️ ইসলামিক রিসোর্স</h2>
+<h2>📖 ইসলামিক রিসোর্স</h2>
 
 <div class="icons">
 
-<a
-class="icon"
+<a class="icon"
 href="https://amartafheem.com/"
 target="_blank">
 
@@ -591,8 +651,7 @@ target="_blank">
 
 </a>
 
-<a
-class="icon"
+<a class="icon"
 href="https://www.hadithbd.com/"
 target="_blank">
 
@@ -617,7 +676,7 @@ target="_blank">
 </section>
 
 
-<!-- ================= LEDGER ================= -->
+<!-- LEDGER -->
 
 <section id="ledger" class="page">
 
@@ -642,22 +701,13 @@ target="_blank">
 
 </select>
 
-<label>বিষয়</label>
-
-<input
-id="etitle"
-placeholder="বেতন / বাজার / ভাড়া">
+<label>বিবরণ</label>
+<input id="etitle" placeholder="বেতন / বাজার / ভাড়া">
 
 <label>পরিমাণ</label>
+<input id="eamount" type="number" placeholder="6765">
 
-<input
-id="eamount"
-type="number"
-min="0"
-placeholder="6765">
-
-<label>বিবরণ</label>
-
+<label>অতিরিক্ত নোট</label>
 <textarea id="edesc"></textarea>
 
 <button class="btn g" onclick="addEntry()">
@@ -671,10 +721,9 @@ placeholder="6765">
 
 <h2>📋 হিসাব</h2>
 
-<input
-id="search"
+<input id="search"
 placeholder="🔎 খুঁজুন"
-oninput="renderEntries()">
+oninput="renderEntries">
 
 <div id="entries"></div>
 
@@ -683,42 +732,114 @@ oninput="renderEntries()">
 </section>
 
 
-<!-- ================= CALCULATOR ================= -->
+<!-- SCIENTIFIC CALCULATOR -->
 
 <section id="calc" class="page">
 
 <div class="card">
 
-<h2>🧮 হিসাব ক্যালকুলেটর</h2>
+<h2>🧮 Calculator</h2>
 
-<label>🚕 যাতায়াত</label>
-<input id="c1" type="number" value="0" oninput="calc()">
+<div class="row">
 
-<label>🍛 খাবার</label>
-<input id="c2" type="number" value="0" oninput="calc()">
-
-<label>🏨 হোটেল</label>
-<input id="c3" type="number" value="0" oninput="calc()">
-
-<label>📦 অন্যান্য</label>
-<input id="c4" type="number" value="0" oninput="calc()">
-
-<h2 id="ctotal">0 BDT</h2>
-
-<button class="btn g" onclick="saveCalc()">
-💾 ব্যয় হিসেবে সংরক্ষণ
+<button class="btn g"
+onclick="setCalcMode('normal')">
+সাধারণ
 </button>
 
-<button class="btn soft" onclick="clearCalc()">
-C
+<button class="btn b"
+onclick="setCalcMode('scientific')">
+Scientific
 </button>
+
+<button class="btn soft"
+onclick="toggleAngle()"
+id="angleBtn">
+DEG
+</button>
+
+</div>
+
+<div class="calc-display">
+
+<div id="calcExpression"
+class="calc-expression">
+</div>
+
+<div id="calcResult"
+class="calc-result">
+0
+</div>
+
+</div>
+
+
+<div class="calc-grid science"
+id="scientificButtons">
+
+<button onclick="calcFunc('sin')">sin</button>
+<button onclick="calcFunc('cos')">cos</button>
+<button onclick="calcFunc('tan')">tan</button>
+<button onclick="calcFunc('sqrt')">√</button>
+
+<button onclick="calcFunc('asin')">sin⁻¹</button>
+<button onclick="calcFunc('acos')">cos⁻¹</button>
+<button onclick="calcFunc('atan')">tan⁻¹</button>
+<button onclick="calcFunc('log')">log</button>
+
+<button onclick="calcFunc('ln')">ln</button>
+<button onclick="calcFunc('square')">x²</button>
+<button onclick="calcFunc('inverse')">1/x</button>
+<button onclick="calcInput('π')">π</button>
+
+<button onclick="calcInput('e')">e</button>
+<button onclick="calcInput('(')">(</button>
+<button onclick="calcInput(')')">)</button>
+<button onclick="calcInput('^')">xʸ</button>
+
+</div>
+
+
+<div class="calc-grid" style="margin-top:8px">
+
+<button onclick="calcClear()">AC</button>
+<button onclick="calcDelete()">DEL</button>
+<button onclick="calcInput('%')">%</button>
+<button class="operator" onclick="calcInput('/')">÷</button>
+
+<button onclick="calcInput('7')">7</button>
+<button onclick="calcInput('8')">8</button>
+<button onclick="calcInput('9')">9</button>
+<button class="operator" onclick="calcInput('*')">×</button>
+
+<button onclick="calcInput('4')">4</button>
+<button onclick="calcInput('5')">5</button>
+<button onclick="calcInput('6')">6</button>
+<button class="operator" onclick="calcInput('-')">−</button>
+
+<button onclick="calcInput('1')">1</button>
+<button onclick="calcInput('2')">2</button>
+<button onclick="calcInput('3')">3</button>
+<button class="operator" onclick="calcInput('+')">+</button>
+
+<button onclick="calcInput('0')">0</button>
+<button onclick="calcInput('.')">.</button>
+<button onclick="calcInput('00')">00</button>
+<button class="equal" onclick="calcEqual()">=</button>
+
+</div>
+
+
+<div id="calcHistory"
+style="margin-top:15px">
+</div>
 
 </div>
 
 </section>
 
 
-<!-- ================= GRAPH ================= -->
+<!-- GRAPH -->
 
 <section id="graph" class="page">
 
@@ -731,7 +852,8 @@ C
 <input id="gfrom" type="date">
 <input id="gto" type="date">
 
-<button class="btn g" onclick="renderGraph()">
+<button class="btn g"
+onclick="renderGraph()">
 Update
 </button>
 
@@ -746,7 +868,7 @@ Update
 </section>
 
 
-<!-- ================= MEMO ================= -->
+<!-- MEMO -->
 
 <section id="memo" class="page">
 
@@ -770,19 +892,23 @@ Update
 
 <div class="row">
 
-<button class="btn g" onclick="buildMemo()">
+<button class="btn g"
+onclick="buildMemo()">
 👁️ Preview
 </button>
 
-<button class="btn b" onclick="downloadMemo()">
+<button class="btn b"
+onclick="downloadMemo()">
 📄 PDF / Save
 </button>
 
-<button class="btn soft" onclick="downloadCSV()">
+<button class="btn soft"
+onclick="downloadCSV()">
 📊 CSV
 </button>
 
-<button class="btn soft" onclick="window.print()">
+<button class="btn soft"
+onclick="window.print()">
 🖨️ Print
 </button>
 
@@ -795,7 +921,7 @@ Update
 </section>
 
 
-<!-- ================= TASK ================= -->
+<!-- TASK -->
 
 <section id="task" class="page">
 
@@ -810,12 +936,11 @@ Update
 <input id="ttime" type="time">
 
 <label>Task</label>
-
-<input
-id="ttext"
+<input id="ttext"
 placeholder="অমুক তারিখ বিল / ডাক্তার / স্কুল ফি">
 
-<button class="btn g" onclick="addTask()">
+<button class="btn g"
+onclick="addTask()">
 📌 সংরক্ষণ
 </button>
 
@@ -830,7 +955,7 @@ placeholder="অমুক তারিখ বিল / ডাক্তার / �
 </section>
 
 
-<!-- ================= NOTES ================= -->
+<!-- NOTES -->
 
 <section id="notes" class="page">
 
@@ -838,14 +963,14 @@ placeholder="অমুক তারিখ বিল / ডাক্তার / �
 
 <h2>📝 Personal Notes</h2>
 
-<input id="ntitle" placeholder="শিরোনাম">
+<input id="ntitle"
+placeholder="শিরোনাম">
 
-<textarea
-id="ntext"
-placeholder="গুরুত্বপূর্ণ বিষয় নোট করুন...">
-</textarea>
+<textarea id="ntext"
+placeholder="গুরুত্বপূর্ণ বিষয় লিখুন..."></textarea>
 
-<button class="btn g" onclick="addNote()">
+<button class="btn g"
+onclick="addNote()">
 💾 সংরক্ষণ
 </button>
 
@@ -853,14 +978,14 @@ placeholder="গুরুত্বপূর্ণ বিষয় নোট কর�
 
 <div class="card">
 
-<div id="notes"></div>
+<div id="notesList"></div>
 
 </div>
 
 </section>
 
 
-<!-- ================= ISLAM ================= -->
+<!-- ISLAM -->
 
 <section id="islam" class="page">
 
@@ -875,42 +1000,26 @@ API থেকে স্বয়ংক্রিয়ভাবে সময় আপড�
 <div class="row">
 
 <div>
-
 <label>শহর</label>
-
-<input
-id="prayerCity"
-value="Dubai">
-
+<input id="prayerCity" value="Dubai">
 </div>
 
 <div>
-
 <label>দেশ</label>
-
-<input
-id="prayerCountry"
+<input id="prayerCountry"
 value="United Arab Emirates">
-
 </div>
 
 </div>
-
 
 <div class="row">
 
 <div>
-
 <label>তারিখ</label>
-
-<input
-id="prayerDate"
-type="date">
-
+<input id="prayerDate" type="date">
 </div>
 
 <div>
-
 <label>Calculation Method</label>
 
 <select id="prayerMethod">
@@ -937,31 +1046,21 @@ Muslim World League
 
 </div>
 
-
-<button
-class="btn g"
+<button class="btn g"
 onclick="loadPrayerTimes()">
-
 🔄 সময় আপডেট করুন
-
 </button>
 
-
-<div
-id="prayerStatus"
+<div id="prayerStatus"
 class="muted"
 style="margin-top:10px">
-
 সময় লোড হচ্ছে...
-
 </div>
-
 
 <hr>
 
-
 <div class="item">
-<span>🌙 আজকের সেহরী শেষ</span>
+<span>🌙 সেহরী শেষ</span>
 <b id="apiImsak">--:--</b>
 </div>
 
@@ -991,7 +1090,7 @@ style="margin-top:10px">
 </div>
 
 <div class="item">
-<span>🌙 মাগরিব / ইফতার</span>
+<span>🌙 ইফতার / মাগরিব</span>
 <b id="apiMaghrib">--:--</b>
 </div>
 
@@ -1003,11 +1102,8 @@ style="margin-top:10px">
 <hr>
 
 <div class="item">
-
 <span>📅 হিজরি তারিখ</span>
-
 <b id="apiHijri">--</b>
-
 </div>
 
 </div>
@@ -1015,7 +1111,7 @@ style="margin-top:10px">
 </section>
 
 
-<!-- ================= SETTINGS ================= -->
+<!-- SETTINGS -->
 
 <section id="settings" class="page">
 
@@ -1023,87 +1119,61 @@ style="margin-top:10px">
 
 <h2>⚙️ Settings</h2>
 
-<button
-class="btn soft"
+<button class="btn soft"
 onclick="toggleDark()">
-
 🌙 Dark / ☀️ Light
-
 </button>
 
-<button
-class="btn soft"
+<button class="btn soft"
 onclick="theme('bangladesh')">
-
 🇧🇩 Bangladesh Theme
-
 </button>
 
-<button
-class="btn soft"
+<button class="btn soft"
 onclick="theme('islamic')">
-
 ☪️ Islamic Theme
-
 </button>
 
 <hr>
 
-<button
-class="btn g"
+<button class="btn g"
 onclick="backup()">
-
 💾 Backup Download
-
 </button>
 
-<button
-class="btn b"
+<button class="btn b"
 onclick="document.getElementById('restore').click()">
-
 📥 Restore Backup
-
 </button>
 
-<input
-id="restore"
+<input id="restore"
 type="file"
 accept=".json"
 style="display:none"
-onchange="restore(this)">
+onchange="restoreBackup(this)">
 
 <hr>
 
-<button
-class="btn soft"
+<button class="btn soft"
 onclick="setPin()">
-
 🔐 PIN Set / Reset
-
 </button>
 
-<button
-class="btn soft"
+<button class="btn soft"
 onclick="removePin()">
-
 🔓 PIN Lock বন্ধ
-
 </button>
 
-<button
-class="btn soft"
+<hr>
+
+<button class="btn soft"
 onclick="go('advice')">
-
 💡 পরামর্শ
-
 </button>
 
-<button
-class="btn red"
+<button class="btn red"
 onclick="clearAll()">
-
 🗑️ সব ডেটা মুছুন
-
 </button>
 
 </div>
@@ -1111,7 +1181,7 @@ onclick="clearAll()">
 </section>
 
 
-<!-- ================= ADVICE ================= -->
+<!-- ADVICE -->
 
 <section id="advice" class="page">
 
@@ -1119,21 +1189,15 @@ onclick="clearAll()">
 
 <h2>💡 পরামর্শ দিন</h2>
 
-<input
-id="aname"
+<input id="aname"
 placeholder="আপনার নাম (ঐচ্ছিক)">
 
-<textarea
-id="atext"
-placeholder="আপনার পরামর্শ লিখুন...">
-</textarea>
+<textarea id="atext"
+placeholder="আপনার পরামর্শ লিখুন..."></textarea>
 
-<button
-class="btn g"
+<button class="btn g"
 onclick="sendAdvice()">
-
-📤 আমাকে পাঠান
-
+📤 পাঠান
 </button>
 
 </div>
@@ -1143,62 +1207,44 @@ onclick="sendAdvice()">
 </main>
 
 
-<!-- ================= BOTTOM NAV ================= -->
+<!-- BOTTOM -->
 
 <nav class="bottom">
 
-<button
-class="nav active"
+<button class="nav active"
 onclick="go('home',this)">
-
 <span>🏠</span>
 হোম
-
 </button>
 
-<button
-class="nav"
+<button class="nav"
 onclick="go('ledger',this)">
-
 <span>📋</span>
 হিসাব
-
 </button>
 
-<button
-class="nav"
-onclick="go('graph',this)">
-
-<span>📊</span>
-গ্রাফ
-
+<button class="nav"
+onclick="go('calc',this)">
+<span>🧮</span>
+Calculator
 </button>
 
-<button
-class="nav"
+<button class="nav"
 onclick="go('memo',this)">
-
 <span>🧾</span>
 মেমো
-
 </button>
 
-<button
-class="nav"
+<button class="nav"
 onclick="go('task',this)">
-
 <span>📌</span>
 Task
-
 </button>
 
-<button
-class="nav"
+<button class="nav"
 onclick="go('settings',this)">
-
 <span>⚙️</span>
 আরও
-
 </button>
 
 </nav>
@@ -1206,16 +1252,14 @@ onclick="go('settings',this)">
 
 <script>
 
-/* =========================================
- STORAGE
-========================================= */
+/* ================= STORAGE ================= */
 
 const K={
  e:"hm_entries",
  t:"hm_tasks",
  n:"hm_notes",
- p:"hm_prayer",
- pin:"hm_pin"
+ pin:"hm_pin",
+ prayer:"hm_prayer_api"
 };
 
 let E=JSON.parse(
@@ -1231,81 +1275,59 @@ let N=JSON.parse(
 );
 
 
-function today(){
+/* ================= BASIC ================= */
 
+function today(){
  return new Date()
  .toISOString()
  .slice(0,10);
-
 }
-
 
 function money(n){
-
  return (+n||0)
- .toLocaleString("en-US")
- +" BDT";
-
+ .toLocaleString("en-US")+" BDT";
 }
 
 
-/* =========================================
- NAVIGATION
-========================================= */
+/* ================= NAV ================= */
 
 function go(id,btn){
 
  document
  .querySelectorAll(".page")
- .forEach(
-  x=>x.classList.remove("active")
- );
+ .forEach(x=>x.classList.remove("active"));
 
- document
- .getElementById(id)
+ document.getElementById(id)
  .classList.add("active");
-
 
  document
  .querySelectorAll(".nav")
- .forEach(
-  x=>x.classList.remove("active")
- );
+ .forEach(x=>x.classList.remove("active"));
 
- if(btn)
-  btn.classList.add("active");
+ if(btn) btn.classList.add("active");
 
-
- if(id==="home")dash();
-
- if(id==="ledger")renderEntries();
-
- if(id==="graph")renderGraph();
-
- if(id==="memo")buildMemo();
-
- if(id==="task")renderTasks();
-
- if(id==="notes")renderNotes();
-
- if(id==="islam")
-  loadPrayerTimes();
-
+ if(id==="home") dash();
+ if(id==="ledger") renderEntries();
+ if(id==="graph") renderGraph();
+ if(id==="memo") buildMemo();
+ if(id==="task") renderTasks();
+ if(id==="notes") renderNotes();
+ if(id==="islam") loadPrayerTimes();
 }
 
 
-/* =========================================
- CLOCK + WEEK
-========================================= */
+/* ================= CLOCK ================= */
 
 function tick(){
 
  let d=new Date();
 
- clock.textContent=
+ document.getElementById("clock")
+ .textContent=
  d.toLocaleTimeString("en-GB");
 
- date.textContent=
+ document.getElementById("date")
+ .textContent=
  d.toLocaleDateString(
  "bn-BD",
  {
@@ -1316,34 +1338,29 @@ function tick(){
  }
  );
 
-
  let day=d.getDay();
 
- let m=new Date(d);
+ let monday=new Date(d);
 
- m.setDate(
+ monday.setDate(
   d.getDate()-
   (day===0?6:day-1)
  );
 
-
- week.innerHTML="";
-
+ let html="";
 
  for(let i=0;i<7;i++){
 
-  let x=new Date(m);
+  let x=new Date(monday);
 
   x.setDate(
-   m.getDate()+i
+   monday.getDate()+i
   );
 
-
-  week.innerHTML+=`
+  html+=`
 
   <div class="day ${
-   x.toDateString()===
-   d.toDateString()
+   x.toDateString()===d.toDateString()
    ?"active":""
   }">
 
@@ -1354,102 +1371,74 @@ function tick(){
   )}
   </small>
 
-  <b>
-  ${x.getDate()}
-  </b>
+  <b>${x.getDate()}</b>
 
   </div>
 
   `;
-
  }
 
+ document.getElementById("week")
+ .innerHTML=html;
 }
 
 setInterval(tick,1000);
 tick();
 
 
-/* =========================================
- DEFAULT DATES
-========================================= */
+/* ================= DEFAULT DATES ================= */
 
-edate.value=today();
+document.getElementById("edate").value=today();
+document.getElementById("tdate").value=today();
+document.getElementById("gfrom").value=today();
+document.getElementById("gto").value=today();
+document.getElementById("mfrom").value=today();
+document.getElementById("mto").value=today();
 
-tdate.value=today();
+document.getElementById("etime").value=
+new Date().toTimeString().slice(0,5);
 
-gfrom.value=today();
-gto.value=today();
-
-mfrom.value=today();
-mto.value=today();
-
-etime.value=
-new Date()
-.toTimeString()
-.slice(0,5);
-
-ttime.value=etime.value;
+document.getElementById("ttime").value=
+document.getElementById("etime").value;
 
 
-/* =========================================
- ENTRY
-========================================= */
+/* ================= ENTRIES ================= */
 
 function addEntry(){
 
  let e={
-
   id:Date.now(),
-
-  date:edate.value,
-
-  time:etime.value,
-
-  type:etype.value,
-
-  title:etitle.value.trim(),
-
-  amount:+eamount.value||0,
-
-  desc:edesc.value
-
+  date:document.getElementById("edate").value,
+  time:document.getElementById("etime").value,
+  type:document.getElementById("etype").value,
+  title:document.getElementById("etitle").value.trim(),
+  amount:+document.getElementById("eamount").value||0,
+  desc:document.getElementById("edesc").value
  };
 
-
- if(!e.title||!e.amount){
-
-  alert("বিষয় ও পরিমাণ দিন");
-
+ if(!e.title || !e.amount){
+  alert("বিবরণ ও পরিমাণ দিন");
   return;
-
  }
-
 
  E.push(e);
 
-
  localStorage.setItem(
-  K.e,
-  JSON.stringify(E)
+  K.e,JSON.stringify(E)
  );
 
-
- etitle.value="";
- eamount.value="";
- edesc.value="";
-
+ document.getElementById("etitle").value="";
+ document.getElementById("eamount").value="";
+ document.getElementById("edesc").value="";
 
  dash();
  renderEntries();
-
 }
 
 
 function row(e){
 
  return `
-
  <div class="item">
 
  <div>
@@ -1459,21 +1448,12 @@ function row(e){
  <br>
 
  <small class="muted">
-
- ${e.date}
- •
- ${new Date(e.date)
- .toLocaleDateString(
- "bn-BD",
- {weekday:"long"}
- )}
- •
- ${e.time||"--"}
+ ${e.date} •
+ ${e.time||"--"} •
+ ${e.type}
 
  <br>
-
  ${e.desc||""}
-
  </small>
 
  </div>
@@ -1487,30 +1467,26 @@ function row(e){
  <button
  class="btn red"
  onclick="delE(${e.id})">
-
  🗑️
-
  </button>
 
  </div>
 
  </div>
-
  `;
-
 }
 
 
 function renderEntries(){
 
  let q=
- (search.value||"")
+ (document.getElementById("search").value||"")
  .toLowerCase();
 
+ document.getElementById("entries")
+ .innerHTML=
 
- entries.innerHTML=
-
- [...E]
+ E.slice()
  .reverse()
  .filter(e=>
   (e.title+" "+e.desc)
@@ -1519,178 +1495,318 @@ function renderEntries(){
  )
  .map(row)
  .join("")
-
  ||
-
  "<div class='muted'>কোনো হিসাব নেই</div>";
-
 }
 
 
 function delE(id){
 
- E=E.filter(
-  x=>x.id!==id
- );
+ E=E.filter(x=>x.id!==id);
 
  localStorage.setItem(
-  K.e,
-  JSON.stringify(E)
+  K.e,JSON.stringify(E)
  );
 
  dash();
  renderEntries();
-
 }
 
 
-/* =========================================
- DASHBOARD
-========================================= */
+/* ================= DASHBOARD ================= */
 
 function dash(){
 
- let i=0;
- let o=0;
- let d=0;
- let r=0;
-
+ let i=0,o=0,d=0,r=0;
 
  E.forEach(e=>{
 
-  if(e.type==="income")
-   i+=e.amount;
-
-  if(e.type==="expense")
-   o+=e.amount;
-
-  if(e.type==="debt")
-   d+=e.amount;
-
-  if(e.type==="receive")
-   r+=e.amount;
+  if(e.type==="income") i+=e.amount;
+  if(e.type==="expense") o+=e.amount;
+  if(e.type==="debt") d+=e.amount;
+  if(e.type==="receive") r+=e.amount;
 
  });
 
+ document.getElementById("income").textContent=money(i);
+ document.getElementById("expense").textContent=money(o);
+ document.getElementById("balance").textContent=money(i-o);
+ document.getElementById("debt").textContent=money(d);
+ document.getElementById("receive").textContent=money(r);
 
- income.textContent=money(i);
- expense.textContent=money(o);
- balance.textContent=money(i-o);
- debt.textContent=money(d);
- receive.textContent=money(r);
-
-
- recent.innerHTML=
-
- E
- .slice(-5)
- .reverse()
- .map(row)
- .join("")
-
+ document.getElementById("recent")
+ .innerHTML=
+ E.slice(-5).reverse().map(row).join("")
  ||
-
  "<div class='muted'>কোনো হিসাব নেই</div>";
-
 }
 
 
-/* =========================================
- CALCULATOR
-========================================= */
+/* ================= CALCULATOR ================= */
 
-function calc(){
+let calcValue="";
+let calcExpression="";
+let scientific=false;
+let angleMode="DEG";
+let calcHistory=[];
 
- ctotal.textContent=
- money(
-  [c1,c2,c3,c4]
-  .reduce(
-   (s,x)=>s+(+x.value||0),
-   0
-  )
+function updateCalc(){
+
+ document.getElementById("calcExpression")
+ .textContent=calcExpression;
+
+ document.getElementById("calcResult")
+ .textContent=
+ calcValue||"0";
+}
+
+
+function setCalcMode(mode){
+
+ scientific=mode==="scientific";
+
+ document.getElementById(
+  "scientificButtons"
+ ).classList.toggle(
+  "show",
+  scientific
  );
 
 }
 
 
-function clearCalc(){
+function calcInput(x){
 
- [c1,c2,c3,c4]
- .forEach(
-  x=>x.value=0
- );
+ calcValue+=x;
+ calcExpression=calcValue;
 
- calc();
+ updateCalc();
+}
+
+
+function calcClear(){
+
+ calcValue="";
+ calcExpression="";
+ updateCalc();
+}
+
+
+function calcDelete(){
+
+ calcValue=
+ calcValue.slice(0,-1);
+
+ calcExpression=calcValue;
+
+ updateCalc();
+}
+
+
+function toggleAngle(){
+
+ angleMode=
+ angleMode==="DEG"
+ ?"RAD"
+ :"DEG";
+
+ document.getElementById(
+  "angleBtn"
+ ).textContent=angleMode;
+}
+
+
+function toRad(x){
+
+ return angleMode==="DEG"
+ ?x*Math.PI/180
+ :x;
+}
+
+
+function fromRad(x){
+
+ return angleMode==="DEG"
+ ?x*180/Math.PI
+ :x;
+}
+
+
+function calcFunc(fn){
+
+ try{
+
+  let x=parseFloat(
+   calcValue
+  );
+
+  if(isNaN(x)) return;
+
+  let r;
+
+  if(fn==="sin")
+   r=Math.sin(toRad(x));
+
+  if(fn==="cos")
+   r=Math.cos(toRad(x));
+
+  if(fn==="tan")
+   r=Math.tan(toRad(x));
+
+  if(fn==="asin")
+   r=fromRad(Math.asin(x));
+
+  if(fn==="acos")
+   r=fromRad(Math.acos(x));
+
+  if(fn==="atan")
+   r=fromRad(Math.atan(x));
+
+  if(fn==="sqrt")
+   r=Math.sqrt(x);
+
+  if(fn==="square")
+   r=x*x;
+
+  if(fn==="inverse")
+   r=1/x;
+
+  if(fn==="log")
+   r=Math.log10(x);
+
+  if(fn==="ln")
+   r=Math.log(x);
+
+  calcValue=
+   String(
+    Number(r.toFixed(12))
+   );
+
+  calcExpression=fn+"("+x+")";
+
+  addHistory(
+   calcExpression+
+   " = "+
+   calcValue
+  );
+
+  updateCalc();
+
+ }
+
+ catch(e){
+
+  calcValue="Error";
+  updateCalc();
+
+ }
 
 }
 
 
-function saveCalc(){
+function safeExpression(s){
 
- let n=
- [c1,c2,c3,c4]
- .reduce(
-  (s,x)=>s+(+x.value||0),
-  0
+ s=s.replaceAll("π","Math.PI");
+ s=s.replace(/\be\b/g,"Math.E");
+
+ s=s.replace(
+  /(\d+(?:\.\d+)?)%/g,
+  "($1/100)"
  );
 
+ s=s.replaceAll("^","**");
 
- if(!n)return;
+ if(!/^[0-9+\-*/().\sA-Za-z_]+$/.test(s))
+  throw new Error("Invalid");
 
-
- let d=new Date();
-
-
- E.push({
-
-  id:Date.now(),
-
-  date:today(),
-
-  time:d.toTimeString()
-  .slice(0,5),
-
-  type:"expense",
-
-  title:"Calculator Expense",
-
-  amount:n,
-
-  desc:
-  "যাতায়াত + খাবার + হোটেল + অন্যান্য"
-
- });
+ return s;
+}
 
 
- localStorage.setItem(
-  K.e,
-  JSON.stringify(E)
- );
+function calcEqual(){
 
+ try{
 
- dash();
+  let expression=
+   safeExpression(calcValue);
 
- clearCalc();
+  let result=
+   Function(
+    '"use strict";return ('+
+    expression+
+    ')'
+   )();
 
- alert("ব্যয় সংরক্ষণ হয়েছে");
+  if(!Number.isFinite(result))
+   throw new Error();
+
+  let old=calcValue;
+
+  calcValue=
+   String(
+    Number(
+     result.toFixed(12)
+    )
+   );
+
+  calcExpression=
+   old+" =";
+
+  addHistory(
+   old+" = "+calcValue
+  );
+
+  updateCalc();
+
+ }
+
+ catch(e){
+
+  calcValue="Error";
+  updateCalc();
+
+ }
 
 }
 
 
-/* =========================================
- GRAPH
-========================================= */
+function addHistory(text){
+
+ calcHistory.unshift(text);
+
+ calcHistory=
+ calcHistory.slice(0,10);
+
+ document.getElementById(
+  "calcHistory"
+ ).innerHTML=
+
+ "<h3>History</h3>"+
+ calcHistory
+ .map(x=>
+  `<div class="item">
+   <span>${x}</span>
+  </div>`
+ )
+ .join("");
+}
+
+
+/* ================= GRAPH ================= */
 
 function renderGraph(){
 
- let a=E.filter(e=>
-  (!gfrom.value||
-   e.date>=gfrom.value)
-  &&
-  (!gto.value||
-   e.date<=gto.value)
- );
+ let from=
+ document.getElementById("gfrom").value;
 
+ let to=
+ document.getElementById("gto").value;
+
+ let a=
+ E.filter(e=>
+  (!from||e.date>=from)&&
+  (!to||e.date<=to)
+ );
 
  let v={
   income:0,
@@ -1699,23 +1815,16 @@ function renderGraph(){
   receive:0
  };
 
-
  a.forEach(e=>{
   v[e.type]+=e.amount;
  });
 
-
  let total=
- Object.values(v)
- .reduce(
-  (s,x)=>s+x,
-  0
+ Object.values(v).reduce(
+  (s,x)=>s+x,0
  )||1;
 
-
  let cur=0;
-
- let parts=[];
 
  let colors=[
   "#087f5b",
@@ -1724,32 +1833,24 @@ function renderGraph(){
   "#287be8"
  ];
 
+ let parts=[];
 
- Object
- .entries(v)
- .forEach(
- ([k,n],idx)=>{
+ Object.entries(v).forEach(
+ ([k,n],i)=>{
 
   let end=
-  cur+
-  n/total*360;
+   cur+n/total*360;
 
   parts.push(
-   `${colors[idx]}
-   ${cur}deg
-   ${end}deg`
+   `${colors[i]} ${cur}deg ${end}deg`
   );
 
   cur=end;
-
  });
 
-
- pie.style.background=
- `conic-gradient(
- ${parts.join(",")}
- )`;
-
+ document.getElementById("pie")
+ .style.background=
+ `conic-gradient(${parts.join(",")})`;
 
  let names={
   income:"আয়",
@@ -1758,284 +1859,204 @@ function renderGraph(){
   receive:"পাওনা"
  };
 
+ document.getElementById("legend")
+ .innerHTML=
 
- legend.innerHTML=
-
- Object
- .entries(v)
- .map(
- ([k,n])=>
-
- `<div class="item">
-
+ Object.entries(v)
+ .map(([k,n])=>
+ `
+ <div class="item">
  <span>${names[k]}</span>
-
- <b>
- ${money(n)}
- •
- ${Math.round(n/total*100)}%
- </b>
-
- </div>`
-
+ <b>${money(n)}
+ (${Math.round(n/total*100)}%)</b>
+ </div>
+ `
  )
  .join("");
-
 }
 
 
-/* =========================================
- TASK
-========================================= */
+/* ================= TASK ================= */
 
 function addTask(){
 
- if(!ttext.value.trim())
-  return;
+ let text=
+ document.getElementById("ttext").value.trim();
 
+ if(!text)return;
 
  T.push({
-
   id:Date.now(),
-
-  date:tdate.value,
-
-  time:ttime.value,
-
-  text:ttext.value,
-
+  date:document.getElementById("tdate").value,
+  time:document.getElementById("ttime").value,
+  text:text,
   done:false
-
  });
 
-
  localStorage.setItem(
-  K.t,
-  JSON.stringify(T)
+  K.t,JSON.stringify(T)
  );
 
-
- ttext.value="";
+ document.getElementById("ttext").value="";
 
  renderTasks();
-
 }
 
 
 function renderTasks(){
 
- tasks.innerHTML=
+ document.getElementById("tasks")
+ .innerHTML=
 
- T
- .slice()
- .reverse()
+ T.slice().reverse()
  .map(x=>
-
- `<div class="item">
+ `
+ <div class="item">
 
  <div>
-
- <b>
- ${x.done?"✅":"📌"}
- ${x.text}
- </b>
-
+ <b>${x.done?"✅":"📌"} ${x.text}</b>
  <br>
-
- <small>
- ${x.date}
- •
- ${x.time}
- </small>
-
+ <small>${x.date} • ${x.time}</small>
  </div>
 
  <div>
 
- <button
- class="btn soft"
+ <button class="btn soft"
  onclick="doneT(${x.id})">
-
  ✓
-
  </button>
 
- <button
- class="btn red"
+ <button class="btn red"
  onclick="delT(${x.id})">
-
  🗑️
-
  </button>
 
  </div>
 
- </div>`
-
+ </div>
+ `
  )
  .join("")
-
  ||
-
  "<div class='muted'>কোনো Task নেই</div>";
-
 }
 
 
 function doneT(id){
 
- let x=T.find(
-  x=>x.id===id
- );
+ let x=T.find(x=>x.id===id);
 
- if(x)
-  x.done=!x.done;
-
+ if(x)x.done=!x.done;
 
  localStorage.setItem(
-  K.t,
-  JSON.stringify(T)
+  K.t,JSON.stringify(T)
  );
 
  renderTasks();
-
 }
 
 
 function delT(id){
 
- T=T.filter(
-  x=>x.id!==id
- );
+ T=T.filter(x=>x.id!==id);
 
  localStorage.setItem(
-  K.t,
-  JSON.stringify(T)
+  K.t,JSON.stringify(T)
  );
 
  renderTasks();
-
 }
 
 
-/* =========================================
- NOTES
-========================================= */
+/* ================= NOTES ================= */
 
 function addNote(){
 
- if(!ntext.value.trim())
-  return;
+ let text=
+ document.getElementById("ntext").value.trim();
 
+ if(!text)return;
 
  N.push({
-
   id:Date.now(),
-
   title:
-  ntitle.value||
-  "Personal Note",
-
-  text:ntext.value,
-
-  date:
-  new Date()
-  .toLocaleString("en-GB")
-
+   document.getElementById("ntitle").value
+   ||"Personal Note",
+  text:text,
+  date:new Date().toLocaleString("en-GB")
  });
 
-
  localStorage.setItem(
-  K.n,
-  JSON.stringify(N)
+  K.n,JSON.stringify(N)
  );
 
-
- ntitle.value="";
- ntext.value="";
+ document.getElementById("ntitle").value="";
+ document.getElementById("ntext").value="";
 
  renderNotes();
-
 }
 
 
 function renderNotes(){
 
- notes.innerHTML=
+ document.getElementById("notesList")
+ .innerHTML=
 
- N
- .slice()
- .reverse()
+ N.slice().reverse()
  .map(x=>
-
- `<div class="item">
+ `
+ <div class="item">
 
  <div>
 
- <b>
- 📝 ${x.title}
- </b>
+ <b>📝 ${x.title}</b>
 
- <p>
- ${x.text}
- </p>
+ <p>${x.text}</p>
 
- <small>
- ${x.date}
- </small>
+ <small>${x.date}</small>
 
  </div>
 
- <button
- class="btn red"
+ <button class="btn red"
  onclick="delN(${x.id})">
-
  🗑️
-
  </button>
 
- </div>`
-
+ </div>
+ `
  )
  .join("")
-
  ||
-
  "<div class='muted'>কোনো নোট নেই</div>";
-
 }
 
 
 function delN(id){
 
- N=N.filter(
-  x=>x.id!==id
- );
+ N=N.filter(x=>x.id!==id);
 
  localStorage.setItem(
-  K.n,
-  JSON.stringify(N)
+  K.n,JSON.stringify(N)
  );
 
  renderNotes();
-
 }
 
 
-/* =========================================
- MEMO
-========================================= */
+/* ================= MEMO ================= */
 
 function filtered(){
 
- return E.filter(e=>
-  (!mfrom.value||
-   e.date>=mfrom.value)
-  &&
-  (!mto.value||
-   e.date<=mto.value)
- );
+ let from=
+ document.getElementById("mfrom").value;
 
+ let to=
+ document.getElementById("mto").value;
+
+ return E.filter(e=>
+  (!from||e.date>=from)&&
+  (!to||e.date<=to)
+ );
 }
 
 
@@ -2043,31 +2064,64 @@ function buildMemo(){
 
  let a=filtered();
 
- let i=0;
- let o=0;
- let d=0;
- let r=0;
-
+ let incomeTotal=0;
+ let expenseTotal=0;
+ let debtTotal=0;
+ let receiveTotal=0;
 
  a.forEach(e=>{
 
   if(e.type==="income")
-   i+=e.amount;
+   incomeTotal+=e.amount;
 
   if(e.type==="expense")
-   o+=e.amount;
+   expenseTotal+=e.amount;
 
   if(e.type==="debt")
-   d+=e.amount;
+   debtTotal+=e.amount;
 
   if(e.type==="receive")
-   r+=e.amount;
+   receiveTotal+=e.amount;
 
  });
 
+ let rows=a.map(e=>
+ `
+ <tr>
 
- memoOut.innerHTML=`
+ <td>${e.date}</td>
 
+ <td>
+ ${new Date(e.date)
+ .toLocaleDateString(
+  "bn-BD",
+  {weekday:"long"}
+ )}
+ </td>
+
+ <td>${e.time||"--"}</td>
+
+ <td>${e.title}</td>
+
+ <td>${e.type==="income"
+  ?"আয়"
+  :e.type==="expense"
+  ?"ব্যয়"
+  :e.type==="debt"
+  ?"দেনা"
+  :"পাওনা"}
+ </td>
+
+ <td>${money(e.amount)}</td>
+
+ </tr>
+ `
+ ).join("");
+
+ document.getElementById("memoOut")
+ .innerHTML=
+
+ `
  <div class="memo">
 
  <div class="memohead">
@@ -2081,22 +2135,17 @@ function buildMemo(){
  </b>
 
  <p>
- MEMO / STATEMENT
+ <b>MEMO / STATEMENT</b>
  </p>
 
  <p>
-
- Period:
- ${mfrom.value||"All"}
+ Statement Period:
+ ${document.getElementById("mfrom").value}
  →
- ${mto.value||"All"}
-
+ ${document.getElementById("mto").value}
  <br>
-
- Generated:
- ${new Date()
- .toLocaleString("en-GB")}
-
+ Statement Date:
+ ${new Date().toLocaleString("en-GB")}
  </p>
 
  </div>
@@ -2121,101 +2170,81 @@ function buildMemo(){
 
  <tbody>
 
- ${
- a.map(e=>
-
- `<tr>
-
- <td>${e.date}</td>
-
- <td>
- ${new Date(e.date)
- .toLocaleDateString(
-  "bn-BD",
-  {weekday:"long"}
- )}
- </td>
-
- <td>${e.time||"--"}</td>
-
- <td>
- ${e.title}
- <br>
- ${e.desc||""}
- </td>
-
- <td>${e.type}</td>
-
- <td>${money(e.amount)}</td>
-
- </tr>`
-
- ).join("")
-
- ||
-
- `<tr>
+ ${rows ||
+ `
+ <tr>
  <td colspan="6">
- No transactions
+ কোনো লেনদেন নেই
  </td>
- </tr>`
-
- }
+ </tr>
+ `}
 
  </tbody>
 
  </table>
 
 
- <div class="totals">
+ <div class="summary">
+
+ <div>
+ <b>আয়ের খাত</b>
+ <b>${money(incomeTotal)}</b>
+ </div>
+
+ <div>
+ <b>ব্যয়ের খাত</b>
+ <b>${money(expenseTotal)}</b>
+ </div>
 
  <div>
  <b>মোট আয়</b>
- <b>${money(i)}</b>
+ <b>${money(incomeTotal)}</b>
  </div>
 
  <div>
  <b>মোট ব্যয়</b>
- <b>${money(o)}</b>
- </div>
-
- <div>
- <b>মোট দেনা</b>
- <b>${money(d)}</b>
- </div>
-
- <div>
- <b>মোট পাওনা</b>
- <b>${money(r)}</b>
+ <b>${money(expenseTotal)}</b>
  </div>
 
  <div>
  <b>অবশিষ্ট</b>
- <b>${money(i-o)}</b>
+ <b>${money(incomeTotal-expenseTotal)}</b>
+ </div>
+
+ <div>
+ <b>দেনা</b>
+ <b>${money(debtTotal)}</b>
+ </div>
+
+ <div>
+ <b>পাওনা</b>
+ <b>${money(receiveTotal)}</b>
  </div>
 
  </div>
 
 
- <div class="sign">
+ <div class="signature">
 
- <span>
- Prepared by<br>
- <b>
- Hussain's Money Management
- </b>
- </span>
+ <div>
+ Prepared by:<br>
+ <b>Hussain's Money Management</b>
+ </div>
 
- <span>
- Signature: __________________
- </span>
+ <div>
+ Authorized Signature:<br><br>
+ __________________________
+ </div>
 
+ <div>
+ Date:<br><br>
+ __________________
  </div>
 
  </div>
 
+ </div>
  `;
-
 }
 
 
@@ -2225,9 +2254,8 @@ function downloadMemo(){
 
  setTimeout(
   ()=>window.print(),
-  200
+  250
  );
-
 }
 
 
@@ -2235,286 +2263,182 @@ function downloadCSV(){
 
  let a=filtered();
 
-
  let csv=
  "Date,Day,Time,Description,Type,Amount BDT\n"+
-
  a.map(e=>
-
  [
   e.date,
-
   new Date(e.date)
-  .toLocaleDateString(
-   "en-US",
-   {weekday:"long"}
-  ),
-
+   .toLocaleDateString(
+    "en-US",
+    {weekday:"long"}
+   ),
   e.time,
-
   e.title,
-
   e.type,
-
   e.amount
-
  ]
  .map(x=>
   `"${String(x)
   .replaceAll('"','""')}"`
  )
  .join(",")
-
  )
  .join("\n");
-
 
  let blob=
  new Blob(
   ["\ufeff"+csv],
-  {
-   type:
-   "text/csv;charset=utf-8"
-  }
+  {type:"text/csv;charset=utf-8"}
  );
-
 
  let u=
  URL.createObjectURL(blob);
-
 
  let a1=
  document.createElement("a");
 
-
  a1.href=u;
 
  a1.download=
- `Hussains-Statement-${
-  mfrom.value
- }-${
-  mto.value
- }.csv`;
-
+ "Hussains-Statement-"+
+ today()+
+ ".csv";
 
  a1.click();
 
  URL.revokeObjectURL(u);
-
 }
 
 
-/* =========================================
- BACKUP
-========================================= */
+/* ================= BACKUP ================= */
 
 function backup(){
 
  let data={
-
   version:1,
-
-  createdAt:
-  new Date().toISOString(),
-
+  createdAt:new Date().toISOString(),
   entries:E,
-
   tasks:T,
-
   notes:N,
-
   prayer:
-  JSON.parse(
-   localStorage.getItem(K.p)
-   ||"{}"
-  )
-
+   JSON.parse(
+    localStorage.getItem(K.prayer)||"{}"
+   )
  };
-
 
  let blob=
  new Blob(
-  [
-   JSON.stringify(
-    data,
-    null,
-    2
-   )
-  ],
-  {
-   type:
-   "application/json"
-  }
+  [JSON.stringify(data,null,2)],
+  {type:"application/json"}
  );
-
 
  let u=
  URL.createObjectURL(blob);
 
-
  let a=
  document.createElement("a");
-
 
  a.href=u;
 
  a.download=
- `Hussain-Money-Backup-${
-  today()
- }.json`;
-
+ "Hussain-Money-Backup-"+today()+".json";
 
  a.click();
 
-
  URL.revokeObjectURL(u);
-
 }
 
 
-/* =========================================
- RESTORE
-========================================= */
+function restoreBackup(input){
 
-function restore(input){
+ let file=input.files[0];
 
- let f=input.files[0];
+ if(!file)return;
 
- if(!f)return;
+ let reader=new FileReader();
 
-
- let r=
- new FileReader();
-
-
- r.onload=()=>{
+ reader.onload=function(){
 
   try{
 
    let x=
-   JSON.parse(r.result);
-
+   JSON.parse(reader.result);
 
    E=x.entries||[];
    T=x.tasks||[];
    N=x.notes||[];
 
-
    localStorage.setItem(
-    K.e,
-    JSON.stringify(E)
+    K.e,JSON.stringify(E)
    );
 
    localStorage.setItem(
-    K.t,
-    JSON.stringify(T)
+    K.t,JSON.stringify(T)
    );
 
    localStorage.setItem(
-    K.n,
-    JSON.stringify(N)
+    K.n,JSON.stringify(N)
    );
-
-
-   if(x.prayer){
-
-    localStorage.setItem(
-     K.p,
-     JSON.stringify(
-      x.prayer
-     )
-    );
-
-   }
-
 
    dash();
    renderEntries();
    renderTasks();
    renderNotes();
 
+   alert("Backup Restore হয়েছে");
 
-   alert(
-    "Backup Restore হয়েছে"
-   );
+  }catch(e){
 
-  }
-
-  catch(e){
-
-   alert(
-    "Backup ফাইল সঠিক নয়"
-   );
+   alert("Backup ফাইল সঠিক নয়");
 
   }
-
  };
 
-
- r.readAsText(f);
-
+ reader.readAsText(file);
 }
 
 
-/* =========================================
- THEMES
-========================================= */
+/* ================= THEMES ================= */
 
 function toggleDark(){
 
- document.body
- .classList
- .toggle("dark");
-
+ document.body.classList.toggle("dark");
 
  localStorage.setItem(
   "hm_dark",
-  document.body
-  .classList
-  .contains("dark")
+  document.body.classList.contains("dark")
  );
-
 }
 
 
 function theme(x){
 
- document.body
- .classList
- .toggle(
+ document.body.classList.toggle(
   "theme-islamic",
   x==="islamic"
  );
 
-
  localStorage.setItem(
-  "hm_theme",
-  x
+  "hm_theme",x
  );
-
 }
 
 
-/* =========================================
- ADVICE
-========================================= */
+/* ================= ADVICE ================= */
 
 function sendAdvice(){
 
- let t=
- atext.value.trim();
+ let text=
+ document.getElementById("atext")
+ .value.trim();
 
+ if(!text){
 
- if(!t){
-
-  alert(
-   "পরামর্শ লিখুন"
-  );
+  alert("পরামর্শ লিখুন");
 
   return;
-
  }
-
 
  location.href=
  "mailto:hussain.connect@outlook.com"+
@@ -2525,18 +2449,17 @@ function sendAdvice(){
  "&body="+
  encodeURIComponent(
   "নাম: "+
-  (aname.value||"অজ্ঞাত")+
+  (
+   document.getElementById("aname")
+   .value||"অজ্ঞাত"
+  )+
   "\n\n"+
-  t
+  text
  );
-
 }
 
 
-/* =========================================
- AUTOMATIC PRAYER API
- ALADHAN
-========================================= */
+/* ================= PRAYER API ================= */
 
 const PRAYER_API=
 "https://api.aladhan.com/v1/timingsByAddress";
@@ -2547,7 +2470,6 @@ function getPrayerDate(){
  return new Date()
  .toISOString()
  .slice(0,10);
-
 }
 
 
@@ -2556,433 +2478,200 @@ function apiDateFormat(date){
  let p=date.split("-");
 
  return p[2]+"-"+p[1]+"-"+p[0];
-
 }
 
 
 function cleanTime(time){
 
- if(!time)
-  return "--:--";
-
+ if(!time)return "--:--";
 
  return time
- .replace(
-  /\s*\(.+\)/,
-  ""
- )
+ .replace(/\s*\(.+\)/,"")
  .trim();
-
 }
 
 
 async function loadPrayerTimes(){
 
  const city=
- document
- .getElementById(
-  "prayerCity"
- )
- .value
- .trim();
-
+ document.getElementById("prayerCity")
+ .value.trim();
 
  const country=
- document
- .getElementById(
-  "prayerCountry"
- )
- .value
- .trim();
-
+ document.getElementById("prayerCountry")
+ .value.trim();
 
  const date=
- document
- .getElementById(
-  "prayerDate"
- )
+ document.getElementById("prayerDate")
  .value;
-
 
  const method=
- document
- .getElementById(
-  "prayerMethod"
- )
+ document.getElementById("prayerMethod")
  .value;
 
-
  const status=
- document
- .getElementById(
-  "prayerStatus"
- );
+ document.getElementById("prayerStatus");
 
 
- if(
-  !city||
-  !country||
-  !date
- ){
+ if(!city||!country||!date){
 
   status.textContent=
   "শহর, দেশ ও তারিখ নির্বাচন করুন।";
 
   return;
-
  }
 
-
  status.textContent=
- "⏳ নামাজের সময় আপডেট হচ্ছে...";
-
+ "⏳ সময় আপডেট হচ্ছে...";
 
  try{
 
   const apiDate=
-  apiDateFormat(date);
-
+   apiDateFormat(date);
 
   const url=
-  `${PRAYER_API}/${apiDate}`+
-  `?address=${
-   encodeURIComponent(
+   `${PRAYER_API}/${apiDate}`+
+   `?address=${encodeURIComponent(
     city+","+country
-   )
-  }`+
-  `&method=${method}`;
-
+   )}`+
+   `&method=${method}`;
 
   const response=
-  await fetch(url);
-
-
-  if(!response.ok){
-
-   throw new Error(
-    "API response error"
-   );
-
-  }
-
+   await fetch(url);
 
   const json=
-  await response.json();
+   await response.json();
 
+  if(json.code!==200 || !json.data)
+   throw new Error();
 
-  if(
-   json.code!==200||
-   !json.data
-  ){
+  const t=json.data.timings;
 
-   throw new Error(
-    "Prayer time পাওয়া যায়নি"
-   );
+  document.getElementById("apiImsak")
+   .textContent=cleanTime(t.Imsak);
 
-  }
+  document.getElementById("apiFajr")
+   .textContent=cleanTime(t.Fajr);
 
+  document.getElementById("apiSunrise")
+   .textContent=cleanTime(t.Sunrise);
 
-  const t=
-  json.data.timings;
+  document.getElementById("apiDhuhr")
+   .textContent=cleanTime(t.Dhuhr);
 
+  document.getElementById("apiAsr")
+   .textContent=cleanTime(t.Asr);
 
-  document.getElementById(
-   "apiImsak"
-  ).textContent=
-  cleanTime(t.Imsak);
+  document.getElementById("apiSunset")
+   .textContent=cleanTime(t.Sunset);
 
+  document.getElementById("apiMaghrib")
+   .textContent=cleanTime(t.Maghrib);
 
-  document.getElementById(
-   "apiFajr"
-  ).textContent=
-  cleanTime(t.Fajr);
+  document.getElementById("apiIsha")
+   .textContent=cleanTime(t.Isha);
 
+  let h=json.data.date.hijri;
 
-  document.getElementById(
-   "apiSunrise"
-  ).textContent=
-  cleanTime(t.Sunrise);
-
-
-  document.getElementById(
-   "apiDhuhr"
-  ).textContent=
-  cleanTime(t.Dhuhr);
-
-
-  document.getElementById(
-   "apiAsr"
-  ).textContent=
-  cleanTime(t.Asr);
-
-
-  document.getElementById(
-   "apiSunset"
-  ).textContent=
-  cleanTime(t.Sunset);
-
-
-  document.getElementById(
-   "apiMaghrib"
-  ).textContent=
-  cleanTime(t.Maghrib);
-
-
-  document.getElementById(
-   "apiIsha"
-  ).textContent=
-  cleanTime(t.Isha);
-
-
-  const hijri=
-  json.data.date.hijri;
-
-
-  document.getElementById(
-   "apiHijri"
-  ).textContent=
-  `${hijri.day} ${hijri.month.en} ${hijri.year} AH`;
-
+  document.getElementById("apiHijri")
+   .textContent=
+   `${h.day} ${h.month.en} ${h.year} AH`;
 
   status.innerHTML=
-  `✅ আপডেট হয়েছে: <b>${city}, ${country}</b>`;
-
+   `✅ ${city}, ${country} থেকে আপডেট হয়েছে`;
 
   localStorage.setItem(
-   "hm_prayer_api",
+   K.prayer,
    JSON.stringify({
-
     city,
     country,
     date,
     method,
     timings:t,
-    hijri:hijri,
-    updatedAt:
-    new Date().toISOString()
-
+    hijri:h
    })
   );
 
- }
-
- catch(error){
-
-  console.error(error);
-
+ }catch(e){
 
   status.innerHTML=
-  `❌ API থেকে সময় আনা যায়নি।<br>
-  <small>
-  ইন্টারনেট সংযোগ পরীক্ষা করুন।
-  </small>`;
-
+   "❌ API থেকে সময় পাওয়া যায়নি।";
 
   loadSavedPrayer();
-
  }
-
 }
 
 
 function loadSavedPrayer(){
 
- const saved=
- localStorage.getItem(
-  "hm_prayer_api"
- );
+ let saved=
+ localStorage.getItem(K.prayer);
 
-
- if(!saved)
-  return;
-
+ if(!saved)return;
 
  try{
 
-  const data=
-  JSON.parse(saved);
+  let d=JSON.parse(saved);
+  let t=d.timings;
 
+  document.getElementById("apiImsak")
+   .textContent=cleanTime(t.Imsak);
 
-  const t=
-  data.timings;
+  document.getElementById("apiFajr")
+   .textContent=cleanTime(t.Fajr);
 
+  document.getElementById("apiSunrise")
+   .textContent=cleanTime(t.Sunrise);
 
-  document.getElementById(
-   "apiImsak"
-  ).textContent=
-  cleanTime(t.Imsak);
+  document.getElementById("apiDhuhr")
+   .textContent=cleanTime(t.Dhuhr);
 
+  document.getElementById("apiAsr")
+   .textContent=cleanTime(t.Asr);
 
-  document.getElementById(
-   "apiFajr"
-  ).textContent=
-  cleanTime(t.Fajr);
+  document.getElementById("apiSunset")
+   .textContent=cleanTime(t.Sunset);
 
+  document.getElementById("apiMaghrib")
+   .textContent=cleanTime(t.Maghrib);
 
-  document.getElementById(
-   "apiSunrise"
-  ).textContent=
-  cleanTime(t.Sunrise);
+  document.getElementById("apiIsha")
+   .textContent=cleanTime(t.Isha);
 
+  if(d.hijri){
 
-  document.getElementById(
-   "apiDhuhr"
-  ).textContent=
-  cleanTime(t.Dhuhr);
-
-
-  document.getElementById(
-   "apiAsr"
-  ).textContent=
-  cleanTime(t.Asr);
-
-
-  document.getElementById(
-   "apiSunset"
-  ).textContent=
-  cleanTime(t.Sunset);
-
-
-  document.getElementById(
-   "apiMaghrib"
-  ).textContent=
-  cleanTime(t.Maghrib);
-
-
-  document.getElementById(
-   "apiIsha"
-  ).textContent=
-  cleanTime(t.Isha);
-
-
-  if(data.hijri){
-
-   document.getElementById(
-    "apiHijri"
-   ).textContent=
-   `${data.hijri.day} `+
-   `${data.hijri.month.en} `+
-   `${data.hijri.year} AH`;
+   document.getElementById("apiHijri")
+    .textContent=
+    `${d.hijri.day} ${
+     d.hijri.month.en
+    } ${d.hijri.year} AH`;
 
   }
 
- }
-
- catch(e){
-
-  console.log(
-   "Saved prayer data invalid"
-  );
-
- }
-
+ }catch(e){}
 }
 
 
-/* =========================================
- PRAYER API INITIALIZATION
-========================================= */
+document.getElementById("prayerDate")
+.value=getPrayerDate();
 
-function initializePrayerAPI(){
-
- const input=
- document.getElementById(
-  "prayerDate"
- );
-
-
- input.value=
- getPrayerDate();
-
-
- const saved=
- localStorage.getItem(
-  "hm_prayer_api"
- );
-
-
- if(saved){
-
-  try{
-
-   const data=
-   JSON.parse(saved);
-
-
-   document.getElementById(
-    "prayerCity"
-   ).value=
-   data.city||
-   "Dubai";
-
-
-   document.getElementById(
-    "prayerCountry"
-   ).value=
-   data.country||
-   "United Arab Emirates";
-
-
-   document.getElementById(
-    "prayerMethod"
-   ).value=
-   data.method||
-   "8";
-
-  }
-
-  catch(e){}
-
- }
-
-
- loadPrayerTimes();
-
-}
-
-
-/* DATE CHANGE */
-
-document.addEventListener(
+document.getElementById("prayerDate")
+.addEventListener(
  "change",
- function(e){
-
-  if(
-   e.target.id===
-   "prayerDate"
-  ){
-
-   loadPrayerTimes();
-
-  }
-
- }
+ loadPrayerTimes
 );
 
-
-/* MIDNIGHT UPDATE */
-
 setInterval(
- function(){
+ ()=>{
 
-  const input=
-  document.getElementById(
-   "prayerDate"
-  );
+  let input=
+   document.getElementById("prayerDate");
 
-
-  if(!input)
-   return;
-
-
-  const t=
-  getPrayerDate();
-
+  let t=getPrayerDate();
 
   if(input.value!==t){
 
    input.value=t;
-
    loadPrayerTimes();
 
   }
@@ -2992,44 +2681,29 @@ setInterval(
 );
 
 
-/* =========================================
- PIN SYSTEM
-========================================= */
+/* ================= PIN ================= */
 
 let enteredPin="";
 
-
 function updatePinDots(){
 
- let dots="";
+ let s="";
 
- for(let i=0;i<4;i++){
+ for(let i=0;i<4;i++)
+  s+=i<enteredPin.length?"● ":"○ ";
 
-  dots+=
-  i<enteredPin.length
-  ?"● "
-  :"○ ";
-
- }
-
- pinDots.textContent=
- dots;
-
+ document.getElementById("pinDots")
+ .textContent=s;
 }
 
 
 function pinInput(n){
 
- if(
-  enteredPin.length>=6
- )
-  return;
-
+ if(enteredPin.length>=6)return;
 
  enteredPin+=n;
 
  updatePinDots();
-
 }
 
 
@@ -3039,224 +2713,114 @@ function pinClear(){
  enteredPin.slice(0,-1);
 
  updatePinDots();
-
 }
 
 
 function checkPin(){
 
- const saved=
- localStorage.getItem(
-  K.pin
- );
-
-
- if(!saved){
-
-  hidePin();
-
-  return;
-
- }
-
+ let saved=
+ localStorage.getItem(K.pin);
 
  if(enteredPin===saved){
 
   enteredPin="";
 
-  hidePin();
+  document.getElementById("pinLock")
+   .style.display="none";
 
- }
+  document.getElementById("pinError")
+   .textContent="";
 
- else{
+ }else{
 
-  pinError.textContent=
-  "PIN ভুল হয়েছে";
+  document.getElementById("pinError")
+   .textContent="PIN ভুল হয়েছে";
 
   enteredPin="";
 
   updatePinDots();
-
  }
-
-}
-
-
-function showPin(){
-
- document.getElementById(
-  "pinLock"
- ).style.display="flex";
-
- enteredPin="";
-
- updatePinDots();
-
-}
-
-
-function hidePin(){
-
- document.getElementById(
-  "pinLock"
- ).style.display="none";
-
- pinError.textContent="";
-
 }
 
 
 function setPin(){
 
  let p=
- prompt(
-  "নতুন PIN দিন (৪-৬ সংখ্যা):"
- );
+ prompt("নতুন PIN দিন (৪-৬ সংখ্যা):");
 
+ if(p && /^\d{4,6}$/.test(p)){
 
- if(
-  p&&
-  /^\d{4,6}$/.test(p)
- ){
+  localStorage.setItem(K.pin,p);
 
-  localStorage.setItem(
-   K.pin,
-   p
-  );
+  alert("PIN সেট হয়েছে।");
 
+ }else if(p){
 
-  alert(
-   "PIN সেট হয়েছে। এখন থেকে অ্যাপ খুললে PIN চাইবে।"
-  );
-
+  alert("৪-৬ সংখ্যার PIN দিন।");
  }
-
- else if(p){
-
-  alert(
-   "৪-৬ সংখ্যার PIN দিন।"
-  );
-
- }
-
 }
 
 
 function removePin(){
 
- if(
-  confirm(
-   "PIN Lock বন্ধ করতে চান?"
-  )
- ){
+ if(confirm("PIN Lock বন্ধ করতে চান?")){
 
-  localStorage.removeItem(
-   K.pin
-  );
+  localStorage.removeItem(K.pin);
 
-  alert(
-   "PIN Lock বন্ধ হয়েছে।"
-  );
-
+  alert("PIN Lock বন্ধ হয়েছে।");
  }
-
 }
 
 
-/* =========================================
- CLEAR ALL
-========================================= */
+/* ================= CLEAR ================= */
 
 function clearAll(){
 
- if(
-  !confirm(
-   "সব হিসাব, Task ও Notes মুছে ফেলবেন?"
-  )
- )
-  return;
+ if(!confirm(
+  "সব হিসাব, Task এবং Notes মুছে ফেলবেন?"
+ ))return;
 
-
- [
-  K.e,
-  K.t,
-  K.n
- ]
- .forEach(
-  x=>localStorage.removeItem(x)
- );
-
+ localStorage.removeItem(K.e);
+ localStorage.removeItem(K.t);
+ localStorage.removeItem(K.n);
 
  E=[];
  T=[];
  N=[];
 
-
  dash();
  renderEntries();
  renderTasks();
  renderNotes();
-
 }
 
 
-/* =========================================
- INITIAL LOAD
-========================================= */
+/* ================= START ================= */
 
 if(
- localStorage.getItem(
-  "hm_dark"
- )==="true"
-){
-
- document.body
- .classList
- .add("dark");
-
-}
-
+ localStorage.getItem("hm_dark")==="true"
+)
+ document.body.classList.add("dark");
 
 if(
- localStorage.getItem(
-  "hm_theme"
- )==="islamic"
-){
-
- document.body
- .classList
- .add(
-  "theme-islamic"
- );
-
-}
-
+ localStorage.getItem("hm_theme")==="islamic"
+)
+ document.body.classList.add("theme-islamic");
 
 dash();
-
 renderEntries();
-
 renderTasks();
-
 renderNotes();
-
 renderGraph();
-
 buildMemo();
+loadPrayerTimes();
 
-calc();
+if(localStorage.getItem(K.pin)){
 
-initializePrayerAPI();
+ document.getElementById("pinLock")
+ .style.display="flex";
 
-
-/* PIN STARTUP */
-
-if(
- localStorage.getItem(K.pin)
-){
-
- showPin();
-
+ updatePinDots();
 }
 
 </script>
