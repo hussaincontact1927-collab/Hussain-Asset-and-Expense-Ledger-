@@ -9,435 +9,505 @@
 *{box-sizing:border-box}
 
 :root{
- --green:#087f5b;
- --red:#d71920;
- --bg:#f3f6f5;
- --card:#fff;
- --text:#17201d;
- --muted:#6d7773;
- --border:#dbe4e1;
+--green:#087f5b;
+--red:#d71920;
+--gold:#b88918;
+--blue:#3976c7;
+--bg:#f3f6f5;
+--card:#fff;
+--text:#17201d;
+--muted:#6d7773;
+--border:#dbe4e1;
 }
 
 body{
- margin:0;
- background:var(--bg);
- color:var(--text);
- font-family:Arial,"Noto Sans Bengali",sans-serif;
- padding-bottom:85px;
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:Arial,"Noto Sans Bengali",sans-serif;
+padding-bottom:80px;
 }
 
 body.dark{
- --bg:#101513;
- --card:#19201d;
- --text:#f1f5f3;
- --muted:#a9b4af;
- --border:#35423e;
+--bg:#101513;
+--card:#19201d;
+--text:#f1f5f3;
+--muted:#a9b4af;
+--border:#35423e;
 }
 
-/* HEADER */
+button,input,select,textarea{
+font:inherit;
+}
+
+button{
+cursor:pointer;
+}
+
 header{
- color:#fff;
- padding:16px;
- border-radius:0 0 28px 28px;
- background:linear-gradient(120deg,#087f5b 0 58%,#d71920 58%);
- background-size:cover;
- background-position:center;
+color:#fff;
+padding:16px;
+border-radius:0 0 28px 28px;
+background:linear-gradient(120deg,#087f5b 0 58%,#d71920 58%);
+background-position:center;
+background-size:cover;
 }
 
 .top{
- display:flex;
- align-items:center;
- gap:10px;
+display:flex;
+align-items:center;
+gap:10px;
 }
 
 .menu{
- width:44px;
- height:44px;
- border:0;
- border-radius:13px;
- background:#ffffff25;
- color:#fff;
- font-size:25px;
+width:44px;
+height:44px;
+border:0;
+border-radius:13px;
+background:#ffffff25;
+color:white;
+font-size:25px;
 }
 
 h1{
- margin:0;
- font-size:21px;
+font-size:20px;
+margin:0;
 }
 
 .clock{
- margin-top:14px;
- font-size:28px;
- font-weight:bold;
+font-size:27px;
+font-weight:bold;
+margin-top:14px;
 }
 
 .dates{
- margin-top:4px;
- font-size:12px;
- line-height:1.7;
+font-size:12px;
+line-height:1.7;
+margin-top:4px;
 }
 
 .prayer-pills{
- display:flex;
- gap:6px;
- overflow:auto;
- margin-top:10px;
+display:flex;
+gap:6px;
+overflow:auto;
+margin-top:10px;
 }
 
 .pill{
- white-space:nowrap;
- background:#ffffff20;
- border:1px solid #ffffff35;
- border-radius:12px;
- padding:6px 9px;
- font-size:11px;
+white-space:nowrap;
+padding:6px 9px;
+border:1px solid #ffffff35;
+border-radius:12px;
+background:#ffffff20;
+font-size:11px;
 }
 
-/* MAIN */
 main{
- max-width:920px;
- margin:auto;
- padding:13px;
+max-width:950px;
+margin:auto;
+padding:13px;
 }
 
 .grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
 }
 
 .card{
- background:var(--card);
- border:1px solid var(--border);
- border-radius:20px;
- padding:14px;
- margin-bottom:12px;
- box-shadow:0 2px 10px #00000008;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:20px;
+padding:14px;
+margin-bottom:12px;
+box-shadow:0 2px 10px #00000008;
 }
 
 .full{
- grid-column:1/-1;
+grid-column:1/-1;
 }
 
 .stat b{
- display:block;
- font-size:22px;
- margin-top:5px;
+display:block;
+font-size:21px;
+margin-top:5px;
 }
 
-.green{color:#087f5b}
-.red{color:#d71920}
-.blue{color:#3675c8}
-.gold{color:#a57900}
+.green{color:var(--green)}
+.red{color:var(--red)}
+.blue{color:var(--blue)}
+.gold{color:var(--gold)}
 
 label{
- display:block;
- margin:8px 0 4px;
- font-size:13px;
- font-weight:bold;
+display:block;
+font-size:13px;
+font-weight:bold;
+margin:8px 0 4px;
 }
 
 input,select,textarea{
- width:100%;
- padding:10px;
- border:1px solid var(--border);
- border-radius:12px;
- background:var(--card);
- color:var(--text);
+width:100%;
+padding:10px;
+border:1px solid var(--border);
+border-radius:12px;
+background:var(--card);
+color:var(--text);
 }
 
 textarea{
- min-height:90px;
+min-height:100px;
 }
 
 .row{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:9px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:9px;
 }
 
 .actions{
- display:flex;
- flex-wrap:wrap;
- gap:7px;
- margin-top:10px;
+display:flex;
+flex-wrap:wrap;
+gap:7px;
+margin-top:10px;
 }
 
 .btn{
- border:0;
- border-radius:12px;
- padding:10px 13px;
- background:#e8f1ee;
- color:var(--green);
- font-weight:bold;
+border:0;
+border-radius:12px;
+padding:10px 13px;
+background:#e8f1ee;
+color:var(--green);
+font-weight:bold;
 }
 
 .primary{
- background:var(--green);
- color:#fff;
+background:var(--green);
+color:white;
 }
 
 .danger{
- background:#fde8e9;
- color:#c71928;
+background:#fde8e9;
+color:#c71928;
 }
 
 .list{
- display:grid;
- gap:8px;
- margin-top:10px;
+display:grid;
+gap:8px;
+margin-top:10px;
 }
 
 .item{
- border:1px solid var(--border);
- border-radius:14px;
- padding:10px;
- display:flex;
- justify-content:space-between;
- gap:8px;
- align-items:center;
+border:1px solid var(--border);
+border-radius:14px;
+padding:10px;
+display:flex;
+justify-content:space-between;
+gap:8px;
+align-items:center;
 }
 
 .muted{
- color:var(--muted);
- font-size:12px;
+color:var(--muted);
+font-size:12px;
 }
 
-/* BOTTOM ICON NAV */
+/* BOTTOM ICON BAR */
+
 .bottom{
- position:fixed;
- z-index:50;
- bottom:7px;
- left:7px;
- right:7px;
- background:#fffffff2;
- border:1px solid var(--border);
- border-radius:22px;
- padding:5px;
- display:flex;
- justify-content:space-around;
- box-shadow:0 6px 25px #0002;
- backdrop-filter:blur(10px);
+position:fixed;
+z-index:50;
+bottom:7px;
+left:7px;
+right:7px;
+background:#fffffff2;
+border:1px solid var(--border);
+border-radius:22px;
+padding:5px;
+display:flex;
+justify-content:space-around;
+box-shadow:0 6px 25px #0002;
+backdrop-filter:blur(10px);
 }
 
 body.dark .bottom{
- background:#19201df2;
+background:#19201df2;
 }
 
 .nav{
- border:0;
- background:transparent;
- color:var(--muted);
- font-size:9px;
- min-width:42px;
- padding:4px;
- border-radius:13px;
+border:0;
+background:transparent;
+color:var(--muted);
+font-size:9px;
+min-width:45px;
+padding:4px;
+border-radius:13px;
 }
 
 .nav span{
- display:block;
- font-size:19px;
+display:block;
+font-size:19px;
 }
 
 .nav.active{
- background:var(--green);
- color:#fff;
+background:var(--green);
+color:white;
 }
 
 /* DRAWER */
+
 .drawer{
- position:fixed;
- z-index:100;
- top:0;
- bottom:0;
- left:-320px;
- width:305px;
- max-width:88%;
- background:var(--card);
- padding:16px;
- overflow:auto;
- transition:.25s;
- box-shadow:8px 0 30px #0003;
+position:fixed;
+z-index:100;
+top:0;
+bottom:0;
+left:-330px;
+width:310px;
+max-width:88%;
+background:var(--card);
+padding:16px;
+overflow:auto;
+transition:.25s;
+box-shadow:8px 0 30px #0003;
 }
 
 .drawer.open{
- left:0;
+left:0;
 }
 
 .shade{
- display:none;
- position:fixed;
- inset:0;
- background:#0008;
- z-index:90;
+display:none;
+position:fixed;
+inset:0;
+background:#0008;
+z-index:90;
 }
 
 .shade.show{
- display:block;
+display:block;
 }
 
 .mi{
- display:block;
- width:100%;
- border:0;
- text-align:left;
- padding:12px;
- margin:6px 0;
- border-radius:13px;
- background:#edf3f1;
- color:var(--text);
- font-weight:bold;
+display:flex;
+align-items:center;
+gap:10px;
+width:100%;
+border:0;
+text-align:left;
+padding:12px;
+margin:6px 0;
+border-radius:13px;
+background:#edf3f1;
+color:var(--text);
+font-weight:bold;
 }
 
 body.dark .mi{
- background:#222c28;
+background:#222c28;
 }
 
 /* MODAL */
+
 .modal-bg{
- display:none;
- position:fixed;
- z-index:120;
- inset:0;
- background:#0008;
- padding:12px;
- overflow:auto;
+display:none;
+position:fixed;
+z-index:120;
+inset:0;
+background:#0008;
+padding:12px;
+overflow:auto;
 }
 
 .modal-bg.show{
- display:block;
+display:block;
 }
 
 .modal{
- max-width:760px;
- margin:20px auto;
- background:var(--card);
- color:var(--text);
- border-radius:24px;
- padding:16px;
+max-width:760px;
+margin:20px auto;
+background:var(--card);
+color:var(--text);
+border-radius:24px;
+padding:16px;
 }
 
 /* CALCULATOR */
+
 .calc{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:6px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:6px;
 }
 
 .calc input{
- grid-column:1/-1;
- font-size:25px;
- text-align:right;
+grid-column:1/-1;
+font-size:25px;
+text-align:right;
 }
 
 .calc button{
- padding:14px;
- border:0;
- border-radius:10px;
- background:#e8efed;
- color:var(--text);
- font-weight:bold;
+padding:14px;
+border:0;
+border-radius:10px;
+background:#e8efed;
+color:var(--text);
+font-weight:bold;
 }
 
 /* MEMO */
+
 .memo{
- background:#fff;
- color:#111;
- border:1px solid #aaa;
- padding:22px;
- max-width:700px;
- margin:12px auto;
+background:#fff;
+color:#111;
+border:1px solid #aaa;
+padding:22px;
+max-width:700px;
+margin:12px auto;
 }
 
 .memo h2{
- margin-top:0;
+margin-top:0;
 }
 
-.memo .rule{
- border-top:4px solid #087f5b;
- margin:14px 0;
+.rule{
+border-top:4px solid var(--green);
+margin:14px 0;
 }
 
 .memo table{
- width:100%;
- border-collapse:collapse;
- font-size:10px;
+width:100%;
+border-collapse:collapse;
+font-size:10px;
 }
 
-.memo th,
-.memo td{
- border:1px solid #999;
- padding:6px;
+.memo th,.memo td{
+border:1px solid #999;
+padding:6px;
 }
 
 .memo th{
- background:#087f5b;
- color:#fff;
+background:var(--green);
+color:#fff;
 }
 
 .signature{
- display:flex;
- justify-content:space-between;
- margin-top:50px;
+display:flex;
+justify-content:space-between;
+margin-top:50px;
 }
 
-/* THEMES */
+/* THEME */
+
 .themes{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:8px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
 }
 
 .theme{
- height:75px;
- border:0;
- border-radius:14px;
- color:#fff;
- font-weight:bold;
+height:70px;
+border:0;
+border-radius:14px;
+color:white;
+font-weight:bold;
 }
 
-/* RESPONSIVE */
+/* ISLAMIC MENU */
+
+.islamic-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:9px;
+}
+
+.big-option{
+border:1px solid var(--border);
+border-radius:18px;
+padding:15px;
+background:var(--card);
+text-align:center;
+font-weight:bold;
+color:var(--text);
+}
+
+.big-option .ico{
+font-size:30px;
+display:block;
+margin-bottom:6px;
+}
+
+/* RAMADAN */
+
+.countdown{
+font-size:25px;
+font-weight:bold;
+text-align:center;
+padding:18px;
+border-radius:18px;
+background:linear-gradient(135deg,#087f5b,#174b3d);
+color:white;
+}
+
+/* HADITH */
+
+.hadith-option{
+display:flex;
+gap:12px;
+align-items:center;
+padding:14px;
+border:1px solid var(--border);
+border-radius:17px;
+margin:8px 0;
+background:var(--card);
+color:var(--text);
+}
+
+.hadith-option .ico{
+font-size:29px;
+}
+
+/* PIN */
+
+.pin-dots{
+font-size:25px;
+letter-spacing:8px;
+text-align:center;
+}
+
+/* READING */
+
+body.reading{
+font-size:18px;
+line-height:1.9;
+}
+
+body.reading .card{
+border-radius:8px;
+}
+
 @media(max-width:520px){
- .row{
-  grid-template-columns:1fr;
- }
-
- .grid{
-  gap:7px;
- }
-
- .card{
-  padding:12px;
- }
-
- .memo{
-  padding:12px;
- }
-
- .memo table{
-  font-size:8px;
- }
+.row{grid-template-columns:1fr}
+.grid{gap:7px}
+.card{padding:12px}
+.memo{padding:12px}
+.memo table{font-size:8px}
 }
 
 @media print{
- body>*{
-  display:none!important;
- }
-
- .modal-bg.show{
-  display:block!important;
-  position:static;
-  background:#fff;
-  padding:0;
- }
-
- .modal{
-  max-width:none;
- }
-
- .no-print{
-  display:none!important;
- }
+body>*{
+display:none!important;
+}
+.modal-bg.show{
+display:block!important;
+position:static;
+background:#fff;
+padding:0;
+}
+.modal{
+max-width:none;
+}
+.no-print{
+display:none!important;
+}
 }
 </style>
 </head>
@@ -473,53 +543,68 @@ body.dark .mi{
 <aside id="drawer" class="drawer">
 
 <div style="display:flex;justify-content:space-between;align-items:center">
-
 <h2>☰ Menu</h2>
-
 <button class="btn" onclick="toggleMenu()">✕</button>
-
 </div>
 
-<button class="mi" onclick="goTo('home')">🏠 Home</button>
-
-<button class="mi" onclick="goTo('entry')">💰 হিসাব যোগ</button>
-
-<button class="mi" onclick="goTo('history')">📋 হিসাব তালিকা</button>
-
-<button class="mi" onclick="goTo('graph')">📊 বৃত্ত গ্রাফ</button>
-
-<button class="mi" onclick="calculator()">🧮 Calculator</button>
-
-<button class="mi" onclick="memo()">📄 Statement Memo</button>
-
-<button class="mi" onclick="goTo('task')">📌 Task</button>
-
-<button class="mi" onclick="goTo('prayer')">🕌 নামাজ ও রোযা</button>
-
-<button class="mi"
-onclick="window.open('https://amartafheem.com/','_blank')">
-📖 তাহফীমুল কুরআন
+<button class="mi" onclick="goTo('home')">
+🏠 <span>Home</span>
 </button>
 
-<button class="mi"
-onclick="window.open('https://www.hadithbd.com','_blank')">
-📜 হাদিস
+<button class="mi" onclick="goTo('entry')">
+💰 <span>নতুন হিসাব</span>
 </button>
 
-<button class="mi" onclick="backup()">💾 Backup</button>
+<button class="mi" onclick="goTo('history')">
+📋 <span>হিসাব তালিকা</span>
+</button>
 
-<button class="mi" onclick="restore()">📥 Restore</button>
+<button class="mi" onclick="goTo('report')">
+📊 <span>রিপোর্ট ও গ্রাফ</span>
+</button>
 
-<button class="mi" onclick="suggestion()">📝 পরামর্শ বক্স</button>
+<button class="mi" onclick="calculator()">
+🧮 <span>Calculator</span>
+</button>
 
-<button class="mi" onclick="settings()">⚙️ Settings</button>
+<button class="mi" onclick="memo()">
+📄 <span>Statement Memo</span>
+</button>
+
+<button class="mi" onclick="goTo('task')">
+📌 <span>Task</span>
+</button>
+
+<button class="mi" onclick="islamicMenu()">
+🕌 <span>ইসলামিক</span>
+</button>
+
+<button class="mi" onclick="hadithQuranMenu()">
+📖 <span>হাদিস & কুরআন</span>
+</button>
+
+<button class="mi" onclick="backup()">
+💾 <span>Backup</span>
+</button>
+
+<button class="mi" onclick="restore()">
+📥 <span>Restore</span>
+</button>
+
+<button class="mi" onclick="suggestion()">
+📝 <span>পরামর্শ বক্স</span>
+</button>
+
+<button class="mi" onclick="settings()">
+⚙️ <span>Settings</span>
+</button>
 
 </aside>
 
 
 <main>
 
-<!-- DASHBOARD -->
+<!-- HOME -->
 
 <section id="home" class="grid">
 
@@ -571,59 +656,32 @@ onclick="window.open('https://www.hadithbd.com','_blank')">
 
 </div>
 
-
 <div class="row">
 
 <div>
-
 <label>📂 ধরন</label>
 
 <select id="type">
-
 <option value="income">💰 আয়</option>
-
 <option value="expense">💸 ব্যয়</option>
-
 <option value="debt">🤝 দেনা</option>
-
 <option value="receive">💳 পাওনা</option>
-
 </select>
 
 </div>
 
-
 <div>
-
 <label>💵 পরিমাণ</label>
-
-<input
-id="amount"
-type="number"
-inputmode="decimal"
-placeholder="0"
->
-
+<input id="amount" type="number" inputmode="decimal" placeholder="0">
 </div>
 
 </div>
-
 
 <label>📒 আয়/ব্যয়ের খাত</label>
-
-<input
-id="category"
-placeholder="বেতন / বাজার / বিল / অন্যান্য"
->
-
+<input id="category" placeholder="বেতন / বাজার / বিল / অন্যান্য">
 
 <label>📝 বিবরণ</label>
-
-<input
-id="description"
-placeholder="ঐচ্ছিক"
->
-
+<input id="description" placeholder="ঐচ্ছিক">
 
 <div class="actions">
 
@@ -646,25 +704,54 @@ placeholder="ঐচ্ছিক"
 
 <h2>📋 হিসাব তালিকা</h2>
 
-<input
-id="search"
-oninput="render()"
-placeholder="🔎 খাত বা বিবরণ খুঁজুন"
->
+<div class="row">
+
+<input id="search" oninput="render()" placeholder="🔎 খুঁজুন">
+
+<select id="monthFilter" onchange="render()">
+<option value="">সব মাস</option>
+<option value="01">জানুয়ারি</option>
+<option value="02">ফেব্রুয়ারি</option>
+<option value="03">মার্চ</option>
+<option value="04">এপ্রিল</option>
+<option value="05">মে</option>
+<option value="06">জুন</option>
+<option value="07">জুলাই</option>
+<option value="08">আগস্ট</option>
+<option value="09">সেপ্টেম্বর</option>
+<option value="10">অক্টোবর</option>
+<option value="11">নভেম্বর</option>
+<option value="12">ডিসেম্বর</option>
+</select>
+
+</div>
 
 <div id="entries" class="list"></div>
 
 </section>
 
 
-<!-- GRAPH -->
+<!-- REPORT -->
 
-<section id="graph" class="card">
+<section id="report" class="card">
 
-<h2>📊 বৃত্ত গ্রাফ</h2>
+<h2>📊 রিপোর্ট ও বৃত্ত গ্রাফ</h2>
 
-<canvas
-id="pie"
+<div class="grid">
+
+<div class="card stat green">
+মোট আয়
+<b id="reportIncome">0 BDT</b>
+</div>
+
+<div class="card stat red">
+মোট ব্যয়
+<b id="reportExpense">0 BDT</b>
+</div>
+
+</div>
+
+<canvas id="pie"
 width="330"
 height="270"
 style="max-width:100%">
@@ -684,128 +771,62 @@ style="max-width:100%">
 <div class="row">
 
 <div>
-
 <label>📅 তারিখ</label>
-
 <input id="taskDate" type="date">
-
 </div>
 
 <div>
-
 <label>⏰ সময়</label>
-
 <input id="taskTime" type="time">
-
 </div>
 
 </div>
 
 <label>📝 Task</label>
+<input id="taskText" placeholder="কাজ লিখুন">
 
-<input
-id="taskText"
-placeholder="কাজ লিখুন"
->
-
-<button
-class="btn primary"
-style="margin-top:9px"
+<button class="btn primary" style="margin-top:9px"
 onclick="addTask()">
-
 📌 Task যোগ করুন
-
 </button>
 
 <div id="tasks" class="list"></div>
 
 </section>
 
-
-<!-- PRAYER -->
-
-<section id="prayer" class="card">
-
-<h2>🕌 নামাজ ও রোযার সময়সূচি</h2>
-
-<div class="row">
-
-<div>
-
-<label>City</label>
-
-<input id="city" value="Dhaka">
-
-</div>
-
-<div>
-
-<label>Country</label>
-
-<input id="country" value="Bangladesh">
-
-</div>
-
-</div>
-
-<button
-class="btn primary"
-style="margin-top:9px"
-onclick="loadPrayer()">
-
-🔄 API থেকে আপডেট
-
-</button>
-
-<div id="prayerList" class="list"></div>
-
-</section>
-
 </main>
 
 
-<!-- BOTTOM ICONS -->
+<!-- BOTTOM ICON BAR -->
 
 <nav class="bottom">
 
 <button class="nav active" onclick="goTo('home')">
-<span>🏠</span>
-Home
+<span>🏠</span>Home
 </button>
 
 <button class="nav" onclick="goTo('entry')">
-<span>💰</span>
-হিসাব
+<span>💰</span>হিসাব
 </button>
 
-<button class="nav" onclick="goTo('graph')">
-<span>📊</span>
-Graph
+<button class="nav" onclick="goTo('report')">
+<span>📊</span>রিপোর্ট
 </button>
 
 <button class="nav" onclick="calculator()">
-<span>🧮</span>
-Calc
+<span>🧮</span>Calc
 </button>
 
 <button class="nav" onclick="memo()">
-<span>📄</span>
-Memo
+<span>📄</span>Memo
 </button>
 
-<button class="nav" onclick="goTo('task')">
-<span>📌</span>
-Task
+<button class="nav" onclick="islamicMenu()">
+<span>🕌</span>ইসলামিক
 </button>
 
-<button class="nav" onclick="goTo('prayer')">
-<span>🕌</span>
-নামাজ
-</button>
-
-<button class="nav" onclick="settings()">
-<span>⚙️</span>
-Settings
+<button class="nav" onclick="hadithQuranMenu()">
+<span>📖</span>হাদিস
 </button>
 
 </nav>
@@ -814,1613 +835,1535 @@ Settings
 <!-- MODAL -->
 
 <div id="modalBg" class="modal-bg">
-
 <div id="modal" class="modal"></div>
-
 </div>
 
 
 <script>
 
 /* =========================
-   DATABASE
+DATABASE
 ========================= */
 
 const STORAGE_KEY="HUSSAIN_PERSONAL_LEDGER";
 
 let db=JSON.parse(
- localStorage.getItem(STORAGE_KEY)
- ||
- '{"entries":[],"tasks":[],"lang":"bn","theme":"bd","dark":false}'
+localStorage.getItem(STORAGE_KEY) ||
+'{"entries":[],"tasks":[],"lang":"bn","theme":"bd","dark":false,"reading":false,"pin":""}'
 );
 
-
 function save(){
-
- localStorage.setItem(
-  STORAGE_KEY,
-  JSON.stringify(db)
- );
-
+localStorage.setItem(STORAGE_KEY,JSON.stringify(db));
 }
-
-
-/* =========================
-   BASIC FUNCTIONS
-========================= */
 
 function $(id){
-
- return document.getElementById(id);
-
+return document.getElementById(id);
 }
-
 
 function money(value){
-
- return Number(value||0)
- .toLocaleString(undefined,{
-  maximumFractionDigits:2
- })+" BDT";
-
+return Number(value||0).toLocaleString(undefined,{
+maximumFractionDigits:2
+})+" BDT";
 }
-
 
 function toggleMenu(){
-
- $("drawer").classList.toggle("open");
-
- $("shade").classList.toggle("show");
-
+$("drawer").classList.toggle("open");
+$("shade").classList.toggle("show");
 }
-
 
 function goTo(id){
-
- $("drawer").classList.remove("open");
-
- $("shade").classList.remove("show");
-
- $(id).scrollIntoView({
-  behavior:"smooth"
- });
-
+$("drawer").classList.remove("open");
+$("shade").classList.remove("show");
+$(id).scrollIntoView({behavior:"smooth"});
 }
-
 
 function openModal(html){
-
- $("modal").innerHTML=html;
-
- $("modalBg").classList.add("show");
-
+$("modal").innerHTML=html;
+$("modalBg").classList.add("show");
 }
 
-
 function closeModal(){
-
- $("modalBg").classList.remove("show");
-
+$("modalBg").classList.remove("show");
 }
 
 
 /* =========================
-   ACCOUNTING
+ACCOUNTING
 ========================= */
 
 function addEntry(){
 
- const amount=Number($("amount").value);
+const amount=Number($("amount").value);
 
- if(!amount){
-
-  alert("পরিমাণ লিখুন");
-
-  return;
-
- }
-
-
- db.entries.unshift({
-
-  id:Date.now(),
-
-  date:$("date").value,
-
-  time:$("time").value,
-
-  type:$("type").value,
-
-  amount:amount,
-
-  category:$("category").value || "—",
-
-  description:$("description").value || ""
-
- });
-
-
- save();
-
- clearForm();
-
- render();
-
+if(!amount){
+alert("পরিমাণ লিখুন");
+return;
 }
 
+db.entries.unshift({
+id:Date.now(),
+date:$("date").value,
+time:$("time").value,
+type:$("type").value,
+amount:amount,
+category:$("category").value||"—",
+description:$("description").value||""
+});
+
+save();
+clearForm();
+render();
+}
 
 function clearForm(){
-
- $("amount").value="";
-
- $("category").value="";
-
- $("description").value="";
-
+$("amount").value="";
+$("category").value="";
+$("description").value="";
 }
-
 
 function total(type){
-
- return db.entries
- .filter(x=>x.type===type)
- .reduce((sum,x)=>sum+Number(x.amount),0);
-
+return db.entries
+.filter(x=>x.type===type)
+.reduce((sum,x)=>sum+Number(x.amount),0);
 }
-
 
 function render(){
 
- let search=($("search").value||"").toLowerCase();
+let search=($("search").value||"").toLowerCase();
+let month=$("monthFilter").value;
 
- let list=db.entries.filter(x=>
+let list=db.entries.filter(x=>{
 
-  (x.category+" "+x.description+" "+x.type)
-  .toLowerCase()
-  .includes(search)
+let text=(x.category+" "+x.description+" "+x.type).toLowerCase();
 
- );
+let matchSearch=text.includes(search);
 
+let matchMonth=!month ||
+(x.date||"").slice(5,7)===month;
 
- $("entries").innerHTML=
+return matchSearch&&matchMonth;
+});
 
- list.length
+$("entries").innerHTML=list.length?
 
- ?
+list.map(x=>`
 
- list.map(x=>`
+<div class="item">
 
- <div class="item">
+<div>
 
- <div>
+<b>${x.category}</b>
 
- <b>${x.category}</b>
+<br>
 
- <br>
+<small>
+${x.date} • ${x.time} • ${typeName(x.type)}
+${x.description?" • "+x.description:""}
+</small>
 
- <small>
+</div>
 
- ${x.date}
- •
- ${x.time}
- •
- ${typeName(x.type)}
+<div>
 
- ${x.description ? " • "+x.description : ""}
+<b>${money(x.amount)}</b>
 
- </small>
+<br>
 
- </div>
+<button class="btn"
+onclick="editEntry(${x.id})">
+✏️
+</button>
 
- <div>
+<button class="btn danger"
+onclick="deleteEntry(${x.id})">
+🗑️
+</button>
 
- <b>${money(x.amount)}</b>
+</div>
 
- <br>
+</div>
 
- <button
- class="btn danger"
- onclick="deleteEntry(${x.id})">
+`).join("")
 
- 🗑️
+:
 
- </button>
+`<div class="muted" style="text-align:center">
+কোনো হিসাব নেই
+</div>`;
 
- </div>
+$("income").textContent=money(total("income"));
+$("expense").textContent=money(total("expense"));
+$("balance").textContent=money(total("income")-total("expense"));
+$("debt").textContent=money(total("debt"));
+$("receive").textContent=money(total("receive"));
 
- </div>
+$("reportIncome").textContent=money(total("income"));
+$("reportExpense").textContent=money(total("expense"));
 
- `).join("")
-
- :
-
- `<div class="muted" style="text-align:center">
- কোনো হিসাব নেই
- </div>`;
-
-
- $("income").textContent=money(total("income"));
-
- $("expense").textContent=money(total("expense"));
-
- $("balance").textContent=
- money(total("income")-total("expense"));
-
- $("debt").textContent=money(total("debt"));
-
- $("receive").textContent=money(total("receive"));
-
- drawPie();
-
+drawPie();
 }
-
 
 function typeName(type){
 
- if(type==="income")return"আয়";
+if(type==="income")return"আয়";
+if(type==="expense")return"ব্যয়";
+if(type==="debt")return"দেনা";
 
- if(type==="expense")return"ব্যয়";
-
- if(type==="debt")return"দেনা";
-
- return"পাওনা";
-
+return"পাওনা";
 }
-
 
 function deleteEntry(id){
 
- if(!confirm("এই হিসাবটি মুছে ফেলবেন?"))return;
+if(!confirm("এই হিসাবটি মুছে ফেলবেন?"))return;
 
- db.entries=db.entries.filter(x=>x.id!==id);
+db.entries=db.entries.filter(x=>x.id!==id);
 
- save();
+save();
+render();
+}
 
- render();
+function editEntry(id){
+
+const x=db.entries.find(a=>a.id===id);
+
+if(!x)return;
+
+$("date").value=x.date;
+$("time").value=x.time;
+$("type").value=x.type;
+$("amount").value=x.amount;
+$("category").value=x.category;
+$("description").value=x.description;
+
+db.entries=db.entries.filter(a=>a.id!==id);
+
+save();
+render();
+
+goTo("entry");
 
 }
 
 
 /* =========================
-   PIE GRAPH
+PIE
 ========================= */
 
 function drawPie(){
 
- const canvas=$("pie");
+const canvas=$("pie");
+const ctx=canvas.getContext("2d");
 
- const ctx=canvas.getContext("2d");
+ctx.clearRect(0,0,canvas.width,canvas.height);
 
- ctx.clearRect(
- 0,
- 0,
- canvas.width,
- canvas.height
- );
+const values=[
+total("income"),
+total("expense"),
+total("debt"),
+total("receive")
+];
 
+const sum=values.reduce((a,b)=>a+b,0);
 
- const values=[
-  total("income"),
-  total("expense"),
-  total("debt"),
-  total("receive")
- ];
+if(!sum){
 
+$("legend").textContent="হিসাব যোগ করলে গ্রাফ দেখা যাবে";
+return;
+}
 
- const totalValue=values.reduce(
-  (a,b)=>a+b,
-  0
- );
+const colors=[
+"#087f5b",
+"#d71920",
+"#c69214",
+"#3976c7"
+];
 
+let start=-Math.PI/2;
 
- if(!totalValue){
+values.forEach((value,i)=>{
 
-  $("legend").textContent=
-  "হিসাব যোগ করলে গ্রাফ দেখা যাবে";
+if(!value)return;
 
-  return;
+const end=start+(value/sum)*Math.PI*2;
 
- }
+ctx.beginPath();
+ctx.moveTo(165,135);
+ctx.arc(165,135,100,start,end);
+ctx.fillStyle=colors[i];
+ctx.fill();
 
+start=end;
 
- const colors=[
-  "#087f5b",
-  "#d71920",
-  "#c69214",
-  "#3675c8"
- ];
+});
 
+ctx.beginPath();
+ctx.arc(165,135,45,0,Math.PI*2);
+ctx.fillStyle=getComputedStyle(document.body)
+.getPropertyValue("--card");
+ctx.fill();
 
- let start=-Math.PI/2;
-
-
- values.forEach((value,index)=>{
-
-  const end=
-   start+
-   (value/totalValue)*
-   Math.PI*2;
-
-
-  ctx.beginPath();
-
-  ctx.moveTo(165,135);
-
-  ctx.arc(
-   165,
-   135,
-   100,
-   start,
-   end
-  );
-
-  ctx.fillStyle=colors[index];
-
-  ctx.fill();
-
-  start=end;
-
- });
-
-
- /* CENTER */
-
- ctx.beginPath();
-
- ctx.arc(
- 165,
- 135,
- 48,
- 0,
- Math.PI*2
- );
-
- ctx.fillStyle=
- getComputedStyle(document.body)
- .getPropertyValue("--card") ||
- "#fff";
-
- ctx.fill();
-
-
- $("legend").textContent=
-
- "💰 "+money(values[0])+
- " | 💸 "+money(values[1])+
- " | 🤝 "+money(values[2])+
- " | 💳 "+money(values[3]);
-
+$("legend").innerHTML=
+"💰 আয়: "+money(values[0])+
+" &nbsp; 💸 ব্যয়: "+money(values[1])+
+" &nbsp; 🤝 দেনা: "+money(values[2])+
+" &nbsp; 💳 পাওনা: "+money(values[3]);
 }
 
 
 /* =========================
-   TASK
+TASK
 ========================= */
 
 function addTask(){
 
- if(!$("taskText").value.trim()){
-
-  alert("Task লিখুন");
-
-  return;
-
- }
-
-
- db.tasks.unshift({
-
-  id:Date.now(),
-
-  date:$("taskDate").value,
-
-  time:$("taskTime").value,
-
-  text:$("taskText").value,
-
-  done:false
-
- });
-
-
- save();
-
- $("taskText").value="";
-
- renderTasks();
-
+if(!$("taskText").value.trim()){
+alert("Task লিখুন");
+return;
 }
 
+db.tasks.unshift({
+id:Date.now(),
+date:$("taskDate").value,
+time:$("taskTime").value,
+text:$("taskText").value,
+done:false
+});
+
+save();
+
+$("taskText").value="";
+
+renderTasks();
+}
 
 function renderTasks(){
 
- $("tasks").innerHTML=
+$("tasks").innerHTML=db.tasks.map(x=>`
 
- db.tasks.map(x=>`
+<div class="item">
 
- <div class="item">
+<div>
+<b>${x.done?"✅":"📌"} ${x.text}</b>
+<br>
+<small>${x.date} • ${x.time}</small>
+</div>
 
- <div>
+<div>
 
- <b>
- ${x.done?"✅":"📌"}
- ${x.text}
- </b>
+<button class="btn"
+onclick="taskDone(${x.id})">
+✓
+</button>
 
- <br>
+<button class="btn danger"
+onclick="taskDelete(${x.id})">
+🗑️
+</button>
 
- <small>
- ${x.date} • ${x.time}
- </small>
+</div>
 
- </div>
+</div>
 
- <div>
+`).join("") ||
 
- <button
- class="btn"
- onclick="taskDone(${x.id})">
- ✓
- </button>
-
- <button
- class="btn danger"
- onclick="taskDelete(${x.id})">
- 🗑️
- </button>
-
- </div>
-
- </div>
-
- `).join("")
-
- ||
-
- `<div class="muted" style="text-align:center">
- কোনো Task নেই
- </div>`;
+`<div class="muted">কোনো Task নেই</div>`;
 
 }
-
 
 function taskDone(id){
 
- const task=db.tasks.find(
-  x=>x.id===id
- );
+const x=db.tasks.find(a=>a.id===id);
 
- if(task){
+if(x)x.done=!x.done;
 
-  task.done=!task.done;
-
-  save();
-
-  renderTasks();
-
- }
-
+save();
+renderTasks();
 }
-
 
 function taskDelete(id){
 
- db.tasks=db.tasks.filter(
-  x=>x.id!==id
- );
+db.tasks=db.tasks.filter(x=>x.id!==id);
 
- save();
-
- renderTasks();
-
+save();
+renderTasks();
 }
 
 
 /* =========================
-   NORMAL CALCULATOR
+CALCULATOR
 ========================= */
 
 function calculator(){
 
- openModal(`
+openModal(`
 
- <h2>🧮 Calculator</h2>
+<h2>🧮 Calculator</h2>
 
- <div class="calc">
+<div class="calc">
 
- <input id="calc" readonly>
+<input id="calc" readonly>
 
- <button onclick="calcAdd('7')">7</button>
- <button onclick="calcAdd('8')">8</button>
- <button onclick="calcAdd('9')">9</button>
- <button onclick="calcAdd('/')">÷</button>
+<button onclick="calcAdd('7')">7</button>
+<button onclick="calcAdd('8')">8</button>
+<button onclick="calcAdd('9')">9</button>
+<button onclick="calcAdd('/')">÷</button>
 
- <button onclick="calcAdd('4')">4</button>
- <button onclick="calcAdd('5')">5</button>
- <button onclick="calcAdd('6')">6</button>
- <button onclick="calcAdd('*')">×</button>
+<button onclick="calcAdd('4')">4</button>
+<button onclick="calcAdd('5')">5</button>
+<button onclick="calcAdd('6')">6</button>
+<button onclick="calcAdd('*')">×</button>
 
- <button onclick="calcAdd('1')">1</button>
- <button onclick="calcAdd('2')">2</button>
- <button onclick="calcAdd('3')">3</button>
- <button onclick="calcAdd('-')">−</button>
+<button onclick="calcAdd('1')">1</button>
+<button onclick="calcAdd('2')">2</button>
+<button onclick="calcAdd('3')">3</button>
+<button onclick="calcAdd('-')">−</button>
 
- <button onclick="calcAdd('0')">0</button>
- <button onclick="calcAdd('.')">.</button>
- <button onclick="calcAdd('+')">+</button>
- <button onclick="clearCalc()">C</button>
+<button onclick="calcAdd('0')">0</button>
+<button onclick="calcAdd('.')">.</button>
+<button onclick="calcAdd('+')">+</button>
+<button onclick="clearCalc()">C</button>
 
- <button onclick="calcAdd('(')">(</button>
- <button onclick="calcAdd(')')">)</button>
- <button onclick="backspace()">⌫</button>
- <button onclick="calculate()">=</button>
+<button onclick="calcAdd('(')">(</button>
+<button onclick="calcAdd(')')">)</button>
+<button onclick="backspace()">⌫</button>
+<button onclick="calculate()">=</button>
 
- </div>
+</div>
 
- <div class="actions">
+<div class="actions">
 
- <button class="btn"
- onclick="scientificCalculator()">
+<button class="btn"
+onclick="scientificCalculator()">
+🔬 Scientific Mode
+</button>
 
- 🔬 Scientific Mode
+<button class="btn"
+onclick="closeModal()">
+✕
+</button>
 
- </button>
-
- <button class="btn"
- onclick="closeModal()">
-
- ✕
-
- </button>
-
- </div>
-
- `);
-
+</div>
+`);
 }
 
-
-function calcAdd(value){
-
- $("calc").value+=value;
-
+function calcAdd(v){
+$("calc").value+=v;
 }
-
 
 function clearCalc(){
-
- $("calc").value="";
-
+$("calc").value="";
 }
-
 
 function backspace(){
-
- $("calc").value=
- $("calc").value.slice(0,-1);
-
+$("calc").value=$("calc").value.slice(0,-1);
 }
-
 
 function calculate(){
 
- try{
-
-  $("calc").value=
-  Function(
-   "return "+$("calc").value
-  )();
-
- }catch(e){
-
-  $("calc").value="Error";
-
- }
-
+try{
+$("calc").value=Function(
+"return "+$("calc").value
+)();
+}
+catch(e){
+$("calc").value="Error";
 }
 
-
-/* =========================
-   SCIENTIFIC
-========================= */
+}
 
 function scientificCalculator(){
 
- openModal(`
+openModal(`
 
- <h2>🔬 Scientific Calculator</h2>
+<h2>🔬 Scientific Calculator</h2>
 
- <div class="calc">
+<div class="calc">
 
- <input id="calc" readonly>
+<input id="calc" readonly>
 
- <button onclick="calcAdd('Math.sin(')">sin</button>
- <button onclick="calcAdd('Math.cos(')">cos</button>
- <button onclick="calcAdd('Math.tan(')">tan</button>
- <button onclick="calcAdd('Math.log10(')">log</button>
+<button onclick="calcAdd('Math.sin(')">sin</button>
+<button onclick="calcAdd('Math.cos(')">cos</button>
+<button onclick="calcAdd('Math.tan(')">tan</button>
+<button onclick="calcAdd('Math.log10(')">log</button>
 
- <button onclick="calcAdd('Math.log(')">ln</button>
- <button onclick="calcAdd('Math.sqrt(')">√</button>
- <button onclick="calcAdd('Math.PI')">π</button>
- <button onclick="calcAdd('**')">^</button>
+<button onclick="calcAdd('Math.log(')">ln</button>
+<button onclick="calcAdd('Math.sqrt(')">√</button>
+<button onclick="calcAdd('Math.PI')">π</button>
+<button onclick="calcAdd('**')">^</button>
 
- <button onclick="calcAdd('7')">7</button>
- <button onclick="calcAdd('8')">8</button>
- <button onclick="calcAdd('9')">9</button>
- <button onclick="calcAdd('/')">÷</button>
+<button onclick="calcAdd('7')">7</button>
+<button onclick="calcAdd('8')">8</button>
+<button onclick="calcAdd('9')">9</button>
+<button onclick="calcAdd('/')">÷</button>
 
- <button onclick="calcAdd('4')">4</button>
- <button onclick="calcAdd('5')">5</button>
- <button onclick="calcAdd('6')">6</button>
- <button onclick="calcAdd('*')">×</button>
+<button onclick="calcAdd('4')">4</button>
+<button onclick="calcAdd('5')">5</button>
+<button onclick="calcAdd('6')">6</button>
+<button onclick="calcAdd('*')">×</button>
 
- <button onclick="calcAdd('1')">1</button>
- <button onclick="calcAdd('2')">2</button>
- <button onclick="calcAdd('3')">3</button>
- <button onclick="calcAdd('-')">−</button>
+<button onclick="calcAdd('1')">1</button>
+<button onclick="calcAdd('2')">2</button>
+<button onclick="calcAdd('3')">3</button>
+<button onclick="calcAdd('-')">−</button>
 
- <button onclick="calcAdd('0')">0</button>
- <button onclick="calcAdd('.')">.</button>
- <button onclick="clearCalc()">C</button>
- <button onclick="calculate()">=</button>
+<button onclick="calcAdd('0')">0</button>
+<button onclick="calcAdd('.')">.</button>
+<button onclick="clearCalc()">C</button>
+<button onclick="calculate()">=</button>
 
- </div>
+</div>
 
- <div class="actions">
+<div class="actions">
 
- <button class="btn"
- onclick="calculator()">
- Normal Mode
- </button>
+<button class="btn"
+onclick="calculator()">
+Normal Mode
+</button>
 
- <button class="btn"
- onclick="closeModal()">
- ✕
- </button>
+<button class="btn"
+onclick="closeModal()">
+✕
+</button>
 
- </div>
-
- `);
-
+</div>
+`);
 }
 
 
 /* =========================
-   STATEMENT MEMO
+MEMO
 ========================= */
 
 function memo(){
 
- openModal(`
+openModal(`
 
- <div class="no-print">
+<div class="no-print">
 
- <h2>📄 Statement Memo</h2>
+<h2>📄 Statement Memo</h2>
 
- <div class="row">
+<div class="row">
 
- <div>
+<div>
+<label>From Date</label>
+<input id="fromDate" type="date">
+</div>
 
- <label>From Date</label>
+<div>
+<label>To Date</label>
+<input id="toDate" type="date">
+</div>
 
- <input id="fromDate" type="date">
+</div>
 
- </div>
+<div class="actions">
 
- <div>
+<button class="btn primary"
+onclick="makeMemo()">
+👁️ Memo তৈরি
+</button>
 
- <label>To Date</label>
+<button class="btn"
+onclick="window.print()">
+🖨️ PDF / Print
+</button>
 
- <input id="toDate" type="date">
+<button class="btn"
+onclick="downloadMemo()">
+⬇️ Download
+</button>
 
- </div>
+<button class="btn"
+onclick="closeModal()">
+✕
+</button>
 
- </div>
+</div>
 
- <div class="actions">
+</div>
 
- <button
- class="btn primary"
- onclick="makeMemo()">
- 👁️ Memo তৈরি
- </button>
+<div id="memoView"></div>
+`);
 
- <button
- class="btn"
- onclick="window.print()">
- 🖨️ Print / PDF
- </button>
+const dates=db.entries.map(x=>x.date).sort();
 
- <button
- class="btn"
- onclick="downloadMemo()">
- ⬇️ Download
- </button>
+$("fromDate").value=dates[0]||new Date().toISOString().slice(0,10);
+$("toDate").value=new Date().toISOString().slice(0,10);
 
- <button
- class="btn"
- onclick="closeModal()">
- ✕
- </button>
-
- </div>
-
- </div>
-
- <div id="memoView"></div>
-
- `);
-
-
- const dates=db.entries
- .map(x=>x.date)
- .sort();
-
-
- $("fromDate").value=
- dates.length
- ?
- dates[0]
- :
- new Date().toISOString().slice(0,10);
-
-
- $("toDate").value=
- new Date().toISOString().slice(0,10);
-
-
- makeMemo();
-
+makeMemo();
 }
-
 
 function makeMemo(){
 
- const from=$("fromDate").value;
+const from=$("fromDate").value;
+const to=$("toDate").value;
 
- const to=$("toDate").value;
+const list=db.entries.filter(x=>x.date>=from&&x.date<=to);
 
+let rows=list.map((x,i)=>`
 
- const list=db.entries.filter(x=>
-  x.date>=from &&
-  x.date<=to
- );
+<tr>
+<td>${i+1}</td>
+<td>${x.date}</td>
+<td>${x.time}</td>
+<td>${typeName(x.type)}</td>
+<td>${x.category}</td>
+<td>${money(x.amount)}</td>
+</tr>
 
+`).join("");
 
- let rows=list.map((x,i)=>`
+if(!rows){
 
- <tr>
-
- <td>${i+1}</td>
-
- <td>${x.date}</td>
-
- <td>${x.time}</td>
-
- <td>${typeName(x.type)}</td>
-
- <td>${x.category}</td>
-
- <td>${money(x.amount)}</td>
-
- </tr>
-
- `).join("");
-
-
- if(!rows){
-
-  rows=`
-
-  <tr>
-
-  <td colspan="6">
-  কোনো হিসাব নেই
-  </td>
-
-  </tr>
-
-  `;
-
- }
-
-
- $("memoView").innerHTML=`
-
- <div id="memoPaper" class="memo">
-
- <div style="
- display:flex;
- justify-content:space-between;
- gap:10px">
-
- <div>
-
- <h2>
- Hussain's Money Management
- </h2>
-
- <b>
- 📒 ব্যক্তিগত হিসাব খাতা
- </b>
-
- </div>
-
- <b>
- STATEMENT
- </b>
-
- </div>
-
-
- <div class="rule"></div>
-
-
- <p>
-
- <b>From:</b>
- ${from}
-
- &nbsp;&nbsp;
-
- <b>To:</b>
- ${to}
-
- </p>
-
-
- <table>
-
- <tr>
-
- <th>ক্রমিক</th>
-
- <th>তারিখ</th>
-
- <th>সময়</th>
-
- <th>ধরন</th>
-
- <th>আয়/ব্যয়ের খাত</th>
-
- <th>পরিমাণ</th>
-
- </tr>
-
- ${rows}
-
- </table>
-
-
- <div class="signature">
-
- <div>
-
- Prepared by:<br>
-
- <b>Hussain</b>
-
- </div>
-
- <div>
-
- Signature:<br>
-
- __________________
-
- </div>
-
- </div>
-
- </div>
-
- `;
-
+rows=`
+<tr>
+<td colspan="6">কোনো হিসাব নেই</td>
+</tr>`;
 }
 
+$("memoView").innerHTML=`
+
+<div id="memoPaper" class="memo">
+
+<div style="display:flex;justify-content:space-between">
+
+<div>
+<h2>Hussain's Money Management</h2>
+<b>📒 ব্যক্তিগত হিসাব খাতা</b>
+</div>
+
+<b>STATEMENT</b>
+
+</div>
+
+<div class="rule"></div>
+
+<p>
+<b>From:</b> ${from}
+&nbsp;&nbsp;
+<b>To:</b> ${to}
+</p>
+
+<table>
+
+<tr>
+<th>ক্রমিক</th>
+<th>তারিখ</th>
+<th>সময়</th>
+<th>ধরন</th>
+<th>আয়/ব্যয়ের খাত</th>
+<th>পরিমাণ</th>
+</tr>
+
+${rows}
+
+</table>
+
+<div style="margin-top:15px">
+
+<b>মোট আয়:</b> ${money(list.filter(x=>x.type==="income").reduce((a,x)=>a+x.amount,0))}
+
+<br>
+
+<b>মোট ব্যয়:</b> ${money(list.filter(x=>x.type==="expense").reduce((a,x)=>a+x.amount,0))}
+
+<br>
+
+<b>নিট:</b> ${money(
+list.filter(x=>x.type==="income").reduce((a,x)=>a+x.amount,0)
+-
+list.filter(x=>x.type==="expense").reduce((a,x)=>a+x.amount,0)
+)}
+
+</div>
+
+<div class="signature">
+
+<div>
+Prepared by:<br>
+<b>Hussain</b>
+</div>
+
+<div>
+Signature:<br>
+____________________
+</div>
+
+</div>
+
+</div>
+`;
+}
 
 function downloadMemo(){
 
- makeMemo();
+makeMemo();
 
+const html=`
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hussain Statement</title>
+<style>
+body{font-family:Arial;padding:20px}
+.memo{max-width:700px;margin:auto}
+table{width:100%;border-collapse:collapse}
+th,td{border:1px solid #999;padding:7px}
+th{background:#087f5b;color:white}
+.signature{display:flex;justify-content:space-between;margin-top:60px}
+</style>
+</head>
+<body>
+${$("memoPaper").outerHTML}
+</body>
+</html>
+`;
 
- const html=`
+const blob=new Blob([html],{type:"text/html"});
 
- <!DOCTYPE html>
+const link=document.createElement("a");
 
- <html>
-
- <head>
-
- <meta charset="UTF-8">
-
- <title>Hussain Statement</title>
-
- </head>
-
- <body>
-
- ${$("memoPaper").outerHTML}
-
- </body>
-
- </html>
-
- `;
-
-
- const blob=new Blob(
-  [html],
-  {type:"text/html"}
- );
-
-
- const link=document.createElement("a");
-
-
- link.href=
- URL.createObjectURL(blob);
-
-
- link.download=
- "Hussain-Statement-Memo.html";
-
-
- link.click();
-
+link.href=URL.createObjectURL(blob);
+link.download="Hussain-Statement-Memo.html";
+link.click();
 }
 
 
 /* =========================
-   BACKUP
+BACKUP
 ========================= */
 
 function backup(){
 
- const blob=new Blob(
-  [JSON.stringify(db,null,2)],
-  {type:"application/json"}
- );
+const blob=new Blob(
+[JSON.stringify(db,null,2)],
+{type:"application/json"}
+);
 
+const link=document.createElement("a");
 
- const link=document.createElement("a");
-
-
- link.href=
- URL.createObjectURL(blob);
-
-
- link.download=
- "Hussain-Ledger-Backup.json";
-
-
- link.click();
-
+link.href=URL.createObjectURL(blob);
+link.download="Hussain-Ledger-Backup.json";
+link.click();
 }
 
 
 /* =========================
-   RESTORE
+RESTORE
 ========================= */
 
 function restore(){
 
- const input=
- document.createElement("input");
+const input=document.createElement("input");
 
- input.type="file";
+input.type="file";
+input.accept=".json";
 
- input.accept=".json";
+input.onchange=function(){
 
+const reader=new FileReader();
 
- input.onchange=function(){
+reader.onload=function(){
 
-  const reader=
-  new FileReader();
+try{
 
+db=JSON.parse(reader.result);
 
-  reader.onload=function(){
+save();
+render();
+renderTasks();
+applySettings();
 
-   try{
+alert("Backup সফলভাবে Restore হয়েছে।");
 
-    db=JSON.parse(
-     reader.result
-    );
+}catch(e){
 
-    save();
+alert("Backup ফাইলটি সঠিক নয়।");
 
-    render();
+}
 
-    renderTasks();
+};
 
-    applySettings();
+reader.readAsText(input.files[0]);
 
-    alert(
-     "Backup সফলভাবে Restore হয়েছে।"
-    );
+};
 
-   }catch(e){
-
-    alert(
-     "Backup ফাইলটি সঠিক নয়।"
-    );
-
-   }
-
-  };
-
-
-  reader.readAsText(
-   input.files[0]
-  );
-
- };
-
-
- input.click();
-
+input.click();
 }
 
 
 /* =========================
-   SUGGESTION BOX
+SUGGESTION
 ========================= */
 
 function suggestion(){
 
- openModal(`
+openModal(`
 
- <h2>📝 পরামর্শ বক্স</h2>
+<h2>📝 পরামর্শ বক্স</h2>
 
- <textarea
- id="suggestionText"
- placeholder="আপনার পরামর্শ লিখুন...">
- </textarea>
+<textarea id="suggestionText"
+placeholder="আপনার পরামর্শ লিখুন..."></textarea>
 
- <p class="muted">
+<p class="muted">
+পাঠানো হবে: hussain.connect@outlook.com
+</p>
 
- পাঠানো হবে:
- hussain.connect@outlook.com
+<div class="actions">
 
- </p>
+<button class="btn primary"
+onclick="sendSuggestion()">
+📨 পাঠান
+</button>
 
- <div class="actions">
+<button class="btn"
+onclick="closeModal()">
+✕
+</button>
 
- <button
- class="btn primary"
- onclick="sendSuggestion()">
-
- 📨 পাঠান
-
- </button>
-
- <button
- class="btn"
- onclick="closeModal()">
-
- ✕
-
- </button>
-
- </div>
-
- `);
-
+</div>
+`);
 }
-
 
 function sendSuggestion(){
 
- const text=
- $("suggestionText").value;
+const text=$("suggestionText").value;
+
+location.href=
+"mailto:hussain.connect@outlook.com"+
+"?subject=Hussain%20Ledger%20Suggestion"+
+"&body="+encodeURIComponent(text);
+}
 
 
- location.href=
- "mailto:hussain.connect@outlook.com"+
- "?subject=Hussain%20Ledger%20Suggestion"+
- "&body="+
- encodeURIComponent(text);
+/* =========================
+ISLAMIC MENU
+========================= */
+
+function islamicMenu(){
+
+openModal(`
+
+<h2>🕌 ইসলামিক</h2>
+
+<div class="islamic-grid">
+
+<button class="big-option"
+onclick="prayerPage()">
+<span class="ico">🕌</span>
+নামাজের সময়
+</button>
+
+<button class="big-option"
+onclick="prayerPage()">
+<span class="ico">🌙</span>
+সেহরি ও ইফতার
+</button>
+
+<button class="big-option"
+onclick="prayerPage()">
+<span class="ico">🌅</span>
+সূর্যোদয় / সূর্যাস্ত
+</button>
+
+<button class="big-option"
+onclick="ramadan()">
+<span class="ico">🌙</span>
+Ramadan Countdown
+</button>
+
+<button class="big-option"
+onclick="showDates()">
+<span class="ico">📅</span>
+বাংলা ও হিজরি তারিখ
+</button>
+
+<button class="big-option"
+onclick="closeModal();goTo('home')">
+<span class="ico">🕰️</span>
+পরবর্তী ওয়াক্ত
+</button>
+
+</div>
+
+<div id="islamicContent"></div>
+
+<div class="actions">
+<button class="btn" onclick="closeModal()">✕ বন্ধ</button>
+</div>
+`);
+}
+
+function prayerPage(){
+
+closeModal();
+goTo("prayerPage");
+}
+
+
+/* =========================
+PRAYER SECTION
+========================= */
+
+function createPrayerSection(){
+
+if($("prayerPage"))return;
+
+const section=document.createElement("section");
+
+section.id="prayerPage";
+section.className="card";
+
+section.innerHTML=`
+
+<h2>🕌 নামাজ ও রোযার সময়সূচি</h2>
+
+<div class="row">
+
+<div>
+<label>City</label>
+<input id="city" value="Dhaka">
+</div>
+
+<div>
+<label>Country</label>
+<input id="country" value="Bangladesh">
+</div>
+
+</div>
+
+<button class="btn primary"
+style="margin-top:9px"
+onclick="loadPrayer()">
+🔄 API থেকে আপডেট
+</button>
+
+<div id="prayerList" class="list"></div>
+`;
+
+document.querySelector("main").appendChild(section);
+
+}
+
+createPrayerSection();
+
+
+async function loadPrayer(){
+
+const city=$("city").value;
+const country=$("country").value;
+
+const now=new Date();
+
+const url=
+"https://api.aladhan.com/v1/timingsByCity/"+
+now.getDate()+"-"+
+(now.getMonth()+1)+"-"+
+now.getFullYear()+
+"?city="+encodeURIComponent(city)+
+"&country="+encodeURIComponent(country)+
+"&method=1";
+
+try{
+
+const response=await fetch(url);
+const json=await response.json();
+
+const t=json.data.timings;
+
+const list=[
+
+["🌙","সেহরি শেষ সময়",t.Imsak],
+["🌇","ইফতার / সূর্যাস্ত",t.Maghrib],
+["🌅","সূর্যোদয়",t.Sunrise],
+["🕌","ফজর",t.Fajr],
+["🕌","যোহর",t.Dhuhr],
+["🕌","আসর",t.Asr],
+["🕌","মাগরিব",t.Maghrib],
+["🕌","ইশা",t.Isha]
+
+];
+
+$("prayerList").innerHTML=list.map(x=>`
+
+<div class="item">
+
+<b>${x[0]} ${x[1]}</b>
+<b>${x[2]}</b>
+
+</div>
+
+`).join("");
+
+$("prayerPills").innerHTML=list.map(x=>`
+
+<div class="pill">
+${x[1]}<br>
+<b>${x[2]}</b>
+</div>
+
+`).join("");
+
+}catch(e){
+
+$("prayerList").innerHTML=
+`<div class="muted">
+API থেকে সময় পাওয়া যায়নি। Internet connection পরীক্ষা করুন।
+</div>`;
+
+}
 
 }
 
 
 /* =========================
-   SETTINGS
+RAMADAN
+========================= */
+
+function ramadan(){
+
+const now=new Date();
+
+let year=now.getFullYear();
+
+let ramadanStart=new Date(year,1,18);
+
+if(now>ramadanStart){
+ramadanStart=new Date(year+1,1,8);
+}
+
+openModal(`
+
+<h2>🌙 Ramadan Countdown</h2>
+
+<div class="countdown" id="ramadanTimer">
+লোড হচ্ছে...
+</div>
+
+<p class="muted" style="text-align:center">
+সম্ভাব্য রমাদ্বান শুরু: ${ramadanStart.toLocaleDateString("bn-BD")}
+</p>
+
+<div class="actions">
+<button class="btn" onclick="closeModal()">✕</button>
+</div>
+`);
+
+function tick(){
+
+const diff=ramadanStart-new Date();
+
+if(diff<=0){
+
+$("ramadanTimer").innerHTML=
+"🌙 রমাদ্বান মোবারক";
+
+return;
+}
+
+const days=Math.floor(diff/86400000);
+const hours=Math.floor(diff/3600000)%24;
+const minutes=Math.floor(diff/60000)%60;
+const seconds=Math.floor(diff/1000)%60;
+
+$("ramadanTimer").innerHTML=
+"🌙 "+days+" দিন<br>"+
+hours+" ঘণ্টা "+
+minutes+" মিনিট "+
+seconds+" সেকেন্ড";
+
+}
+
+tick();
+
+setInterval(tick,1000);
+}
+
+
+/* =========================
+HADITH & QURAN
+========================= */
+
+function hadithQuranMenu(){
+
+openModal(`
+
+<h2>📖 হাদিস & কুরআন</h2>
+
+<div>
+
+<button class="hadith-option"
+onclick="openHadithBD()">
+
+<div class="ico">📜</div>
+
+<div>
+<b>HadithBD</b>
+<br>
+<small>বাংলা হাদিসের অনলাইন সংগ্রহ</small>
+</div>
+
+</button>
+
+
+<button class="hadith-option"
+onclick="fortyHadith()">
+
+<div class="ico">📜</div>
+
+<div>
+<b>বাংলা ৪০ হাদিস</b>
+<br>
+<small>ইমাম নববীর ৪০ হাদিস</small>
+</div>
+
+</button>
+
+
+<button class="hadith-option"
+onclick="openTafheem()">
+
+<div class="ico">📖</div>
+
+<div>
+<b>তাফহীমুল কুরআন</b>
+<br>
+<small>কুরআন ও তাফসির</small>
+</div>
+
+</button>
+
+</div>
+
+<div class="actions">
+
+<button class="btn"
+onclick="closeModal()">
+✕ বন্ধ
+</button>
+
+</div>
+
+`);
+}
+
+
+function openHadithBD(){
+
+window.open(
+"https://www.hadithbd.com",
+"_blank"
+);
+
+}
+
+function openTafheem(){
+
+window.open(
+"https://amartafheem.com/",
+"_blank"
+);
+
+}
+
+function fortyHadith(){
+
+openModal(`
+
+<h2>📜 বাংলা ৪০ হাদিস</h2>
+
+<div class="card">
+
+<h3>ইমাম নববীর ৪০ হাদিস</h3>
+
+<p>
+এখানে ইমাম নববীর ৪০ হাদিসের
+আরবি মূল, বাংলা অনুবাদ ও
+হাদিসের উৎস দেখার ব্যবস্থা রাখা হয়েছে।
+</p>
+
+<p class="muted">
+নির্ভরযোগ্য অনলাইন উৎস থেকে পূর্ণ পাঠ
+দেখুন।
+</p>
+
+<button class="btn primary"
+onclick="window.open(
+'https://www.hadithbd.com/',
+'_blank'
+)">
+📜 HadithBD খুলুন
+</button>
+
+</div>
+
+<div class="actions">
+
+<button class="btn"
+onclick="hadithQuranMenu()">
+↩ ফিরে যান
+</button>
+
+<button class="btn"
+onclick="closeModal()">
+✕
+</button>
+
+</div>
+
+`);
+}
+
+
+/* =========================
+SETTINGS
 ========================= */
 
 function settings(){
 
- openModal(`
+openModal(`
 
- <h2>⚙️ Settings</h2>
+<h2>⚙️ Settings</h2>
 
- <label>
- 🌐 Language
- </label>
+<label>🌐 Language</label>
 
- <select
- id="language"
- onchange="changeLanguage(this.value)">
+<select id="language"
+onchange="changeLanguage(this.value)">
 
- <option value="bn">
- বাংলা
- </option>
+<option value="bn">বাংলা</option>
+<option value="en">English</option>
+<option value="ar">العربية</option>
+<option value="ur">اردو</option>
+<option value="es">Español</option>
 
- <option value="en">
- English
- </option>
+</select>
 
- <option value="ar">
- العربية
- </option>
+<h3>🖼️ Header Wallpaper</h3>
 
- <option value="ur">
- اردو
- </option>
+<div class="themes">
 
- <option value="es">
- Español
- </option>
+<button class="theme"
+style="background:linear-gradient(135deg,#075c45,#102820)"
+onclick="changeTheme('islamic1')">
+🕌 Islamic 1
+</button>
 
- </select>
+<button class="theme"
+style="background:linear-gradient(135deg,#087f5b,#9a7415)"
+onclick="changeTheme('islamic2')">
+🌙 Islamic 2
+</button>
 
+<button class="theme"
+style="background:linear-gradient(135deg,#073c2d,#111)"
+onclick="changeTheme('islamic3')">
+📖 Islamic 3
+</button>
 
- <h3>
- 🖼️ Header Wallpaper
- </h3>
+<button class="theme"
+style="background:linear-gradient(135deg,#0b6d53,#365f46)"
+onclick="changeTheme('islamic4')">
+🕌 Islamic 4
+</button>
 
+<button class="theme"
+style="background:linear-gradient(135deg,#175d3a,#5e994e)"
+onclick="changeTheme('forest1')">
+🌳 বাংলাদেশ বন ১
+</button>
 
- <div class="themes">
+<button class="theme"
+style="background:linear-gradient(135deg,#14583f,#769d55)"
+onclick="changeTheme('forest2')">
+🌿 বাংলাদেশ প্রকৃতি ২
+</button>
 
+<button class="theme"
+style="background:linear-gradient(120deg,#087f5b 0 58%,#d71920 58%)"
+onclick="changeTheme('bd')">
+🇧🇩 বাংলাদেশ
+</button>
 
- <button
- class="theme"
- style="
- background:linear-gradient(
- 135deg,#075c45,#102820)">
- onclick="changeTheme('islamic1')">
+</div>
 
- 🕌 Islamic 1
+<div class="actions">
 
- </button>
+<button class="btn"
+onclick="toggleDarkMode()">
+🌙 Reading Mode
+</button>
 
+<button class="btn"
+onclick="pinSettings()">
+🔐 PIN Lock
+</button>
 
- <button
- class="theme"
- style="
- background:linear-gradient(
- 135deg,#087f5b,#9a7415)">
- onclick="changeTheme('islamic2')">
+</div>
 
- 🌙 Islamic 2
-
- </button>
-
-
- <button
- class="theme"
- style="
- background:linear-gradient(
- 135deg,#073c2d,#111)">
- onclick="changeTheme('islamic3')">
-
- 📖 Islamic 3
-
- </button>
-
-
- <button
- class="theme"
- style="
- background:linear-gradient(
- 135deg,#0b6d53,#365f46)">
- onclick="changeTheme('islamic4')">
-
- 🕌 Islamic 4
-
- </button>
-
-
- <button
- class="theme"
- style="
- background:linear-gradient(
- 135deg,#175d3a,#5e994e)">
- onclick="changeTheme('forest1')">
-
- 🌳 বাংলাদেশ বন ১
-
- </button>
-
-
- <button
- class="theme"
- style="
- background:linear-gradient(
- 135deg,#14583f,#769d55)">
- onclick="changeTheme('forest2')">
-
- 🌿 বাংলাদেশ প্রকৃতি ২
-
- </button>
-
-
- <button
- class="theme"
- style="
- background:linear-gradient(
- 120deg,#087f5b 0 58%,#d71920 58%)">
- onclick="changeTheme('bd')">
-
- 🇧🇩 বাংলাদেশ
-
- </button>
-
-
- </div>
-
-
- <div class="actions">
-
- <button
- class="btn"
- onclick="toggleDarkMode()">
-
- 🌙 Reading Mode
-
- </button>
-
- <button
- class="btn"
- onclick="backup()">
-
- 💾 Backup
-
- </button>
-
- </div>
-
- `);
-
-
- $("language").value=
- db.lang;
-
+`);
 }
 
-
-/* =========================
-   LANGUAGE
-========================= */
 
 function changeLanguage(lang){
 
- db.lang=lang;
-
- save();
-
- applySettings();
-
- closeModal();
+db.lang=lang;
+save();
+applySettings();
+closeModal();
 
 }
-
 
 function applyLanguage(){
 
- const titles={
+const titles={
+bn:"আমার ব্যক্তিগত হিসাব খাতা",
+en:"My Personal Ledger",
+ar:"دفتري المالي الشخصي",
+ur:"میری ذاتی حساب کتاب",
+es:"Mi Libro de Finanzas Personal"
+};
 
- bn:"আমার ব্যক্তিগত হিসাব খাতা",
+$("appTitle").textContent=titles[db.lang]||titles.bn;
 
- en:"My Personal Ledger",
-
- ar:"دفتري المالي الشخصي",
-
- ur:"میری ذاتی حساب کتاب",
-
- es:"Mi Libro de Finanzas Personal"
-
- };
-
-
- $("appTitle").textContent=
- titles[db.lang] ||
- titles.bn;
-
-
- document.documentElement.dir=
- (
-  db.lang==="ar" ||
-  db.lang==="ur"
- )
- ?
- "rtl"
- :
- "ltr";
-
+document.documentElement.dir=
+(db.lang==="ar"||db.lang==="ur")?"rtl":"ltr";
 }
-
-
-/* =========================
-   THEMES
-========================= */
 
 function changeTheme(theme){
 
- db.theme=theme;
-
- save();
-
- applySettings();
-
- closeModal();
+db.theme=theme;
+save();
+applySettings();
+closeModal();
 
 }
-
 
 function toggleDarkMode(){
 
- db.dark=!db.dark;
-
- save();
-
- applySettings();
-
- closeModal();
+db.dark=!db.dark;
+save();
+applySettings();
+closeModal();
 
 }
-
 
 function applySettings(){
 
- document.body.classList.toggle(
-  "dark",
-  db.dark
- );
+document.body.classList.toggle("dark",db.dark);
+document.body.classList.toggle("reading",db.reading);
 
+const themes={
 
- const themes={
+bd:"linear-gradient(120deg,#087f5b 0 58%,#d71920 58%)",
 
- bd:
- "linear-gradient(120deg,#087f5b 0 58%,#d71920 58%)",
+islamic1:"linear-gradient(120deg,#075c45,#102820)",
 
- islamic1:
- "linear-gradient(120deg,#075c45,#102820)",
+islamic2:"linear-gradient(120deg,#087f5b,#9a7415)",
 
- islamic2:
- "linear-gradient(120deg,#087f5b,#9a7415)",
+islamic3:"linear-gradient(120deg,#073c2d,#111)",
 
- islamic3:
- "linear-gradient(120deg,#073c2d,#111)",
+islamic4:"linear-gradient(120deg,#0b6d53,#365f46)",
 
- islamic4:
- "linear-gradient(120deg,#0b6d53,#365f46)",
+forest1:"linear-gradient(120deg,#175d3a,#5e994e)",
 
- forest1:
- "linear-gradient(120deg,#175d3a,#5e994e)",
+forest2:"linear-gradient(120deg,#14583f,#769d55)"
 
- forest2:
- "linear-gradient(120deg,#14583f,#769d55)"
+};
 
- };
+$("header").style.background=
+themes[db.theme]||themes.bd;
 
-
- $("header").style.background=
- themes[db.theme] ||
- themes.bd;
-
-
- applyLanguage();
+applyLanguage();
 
 }
 
 
 /* =========================
-   NAMAZ API
+PIN
 ========================= */
 
-async function loadPrayer(){
+function pinSettings(){
 
- const city=
- $("city").value;
+openModal(`
 
- const country=
- $("country").value;
+<h2>🔐 PIN Lock</h2>
 
+<p class="muted">
+নতুন PIN দিতে চাইলে নিচে ৪-৬ সংখ্যার PIN লিখুন।
+</p>
 
- const now=new Date();
+<input
+id="newPin"
+type="password"
+inputmode="numeric"
+maxlength="6"
+placeholder="নতুন PIN">
 
+<div class="actions">
 
- const url=
+<button class="btn primary"
+onclick="savePin()">
+💾 Save PIN
+</button>
 
- "https://api.aladhan.com/v1/timingsByCity/"+
- now.getDate()+
- "-"+
- (now.getMonth()+1)+
- "-"+
- now.getFullYear()+
- "?city="+
- encodeURIComponent(city)+
- "&country="+
- encodeURIComponent(country)+
- "&method=1";
+<button class="btn"
+onclick="removePin()">
+🔓 PIN Remove
+</button>
 
+</div>
+`);
+}
 
- try{
+function savePin(){
 
-  const response=
-  await fetch(url);
+const pin=$("newPin").value;
 
+if(!/^[0-9]{4,6}$/.test(pin)){
 
-  const json=
-  await response.json();
+alert("৪-৬ সংখ্যার PIN দিন");
+return;
 
+}
 
-  const t=
-  json.data.timings;
+db.pin=pin;
+save();
 
+alert("PIN সংরক্ষণ হয়েছে");
+closeModal();
 
-  const list=[
+}
 
-   ["🌙","সেহরী শেষ সময়",t.Imsak],
+function removePin(){
 
-   ["🌇","ইফতার / সূর্যাস্ত",t.Maghrib],
+db.pin="";
+save();
 
-   ["🌅","সূর্যোদয়",t.Sunrise],
-
-   ["🕌","ফজর",t.Fajr],
-
-   ["🕌","যোহর",t.Dhuhr],
-
-   ["🕌","আসর",t.Asr],
-
-   ["🕌","মাগরিব",t.Maghrib],
-
-   ["🕌","ইশা",t.Isha]
-
-  ];
-
-
-  $("prayerList").innerHTML=
-
-  list.map(x=>`
-
-   <div class="item">
-
-   <b>
-   ${x[0]} ${x[1]}
-   </b>
-
-   <b>
-   ${x[2]}
-   </b>
-
-   </div>
-
-  `).join("");
-
-
-  $("prayerPills").innerHTML=
-
-  list.map(x=>`
-
-   <div class="pill">
-
-   ${x[1]}<br>
-
-   <b>${x[2]}</b>
-
-   </div>
-
-  `).join("");
-
-
- }catch(error){
-
-  $("prayerList").innerHTML=
-
-  `<div class="muted">
-
-  API থেকে সময় পাওয়া যায়নি।
-  ইন্টারনেট সংযোগ পরীক্ষা করুন।
-
-  </div>`;
-
- }
+alert("PIN Lock সরানো হয়েছে");
+closeModal();
 
 }
 
 
 /* =========================
-   CLOCK + DATES
+DATES
+========================= */
+
+function showDates(){
+
+const now=new Date();
+
+openModal(`
+
+<h2>📅 তারিখ</h2>
+
+<div class="card">
+
+<b>🇧🇩 বাংলা:</b><br>
+${now.toLocaleDateString("bn-BD",{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+})}
+
+<br><br>
+
+<b>🇬🇧 English:</b><br>
+${now.toLocaleDateString("en-GB",{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+})}
+
+<br><br>
+
+<b>🌙 Hijri:</b><br>
+${new Intl.DateTimeFormat(
+"ar-SA-u-ca-islamic",
+{
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+).format(now)}
+
+</div>
+
+<button class="btn"
+onclick="closeModal()">
+✕
+</button>
+
+`);
+}
+
+
+/* =========================
+CLOCK
 ========================= */
 
 function updateClock(){
 
- const now=new Date();
+const now=new Date();
 
+$("clock").textContent=
+now.toLocaleTimeString();
 
- $("clock").textContent=
- now.toLocaleTimeString();
+$("dates").innerHTML=
 
+now.toLocaleDateString(
+"bn-BD",
+{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+)+
+"<br>"+
+now.toLocaleDateString(
+"en-GB",
+{
+day:"2-digit",
+month:"long",
+year:"numeric"
+}
+)+
+"<br>🌙 "+
+new Intl.DateTimeFormat(
+"ar-SA-u-ca-islamic",
+{
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+).format(now);
 
- $("dates").innerHTML=
-
- now.toLocaleDateString(
-  "bn-BD",
-  {
-   weekday:"long",
-   day:"numeric",
-   month:"long",
-   year:"numeric"
-  }
- )+
- "<br>"+
- now.toLocaleDateString(
-  "en-GB",
-  {
-   day:"2-digit",
-   month:"long",
-   year:"numeric"
-  }
- );
-
-
- try{
-
-  $("dates").innerHTML+=
-
-  "<br>🌙 "+
-
-  new Intl.DateTimeFormat(
-   "ar-SA-u-ca-islamic",
-   {
-    day:"numeric",
-    month:"long",
-    year:"numeric"
-   }
-  ).format(now);
-
- }catch(e){}
-
-
- setTimeout(
-  updateClock,
-  1000
- );
+setTimeout(updateClock,1000);
 
 }
 
 
 /* =========================
-   INITIALIZE
+INITIALIZE
 ========================= */
 
 const now=new Date();
-
-const today=
- now.toISOString().slice(0,10);
-
+const today=now.toISOString().slice(0,10);
 
 $("date").value=today;
-
-$("time").value=
- now.toTimeString().slice(0,5);
+$("time").value=now.toTimeString().slice(0,5);
 
 $("taskDate").value=today;
-
-$("taskTime").value=
- now.toTimeString().slice(0,5);
-
+$("taskTime").value=now.toTimeString().slice(0,5);
 
 applySettings();
-
 render();
-
 renderTasks();
-
 updateClock();
-
 loadPrayer();
 
 </script>
